@@ -33,6 +33,7 @@
             network
             mpris
             tray
+            astal3
             astal4
             wireplumber
           ])
@@ -50,7 +51,11 @@
                 python3
               ];
             })
-          ];
+          ]
+          ++ (with pkgs; [
+            networkmanager
+            json-glib
+          ]);
         gtk-deps = with pkgs; [
           glib.dev
           gtk4.dev
@@ -63,6 +68,7 @@
           gtk4-layer-shell
           freetype
           wayland.dev
+          networkmanager
         ];
       in
       {
