@@ -70,6 +70,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "astal-niri-sys"
+version = "0.0.1"
+dependencies = [
+ "gio-sys 0.21.5",
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
 name = "astal-river"
 version = "0.1.0"
 dependencies = [

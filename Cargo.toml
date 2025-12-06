@@ -14,6 +14,8 @@ members = [
     "crates/astal-river/sys",
     "crates/astal-network",
     "crates/astal-network/sys",
+    "crates/astal-niri",
+    "crates/astal-niri/sys",
 ]
 
 [workspace.dependencies]
