@@ -1,6 +1,35 @@
-[package]
-name = "astal"
-version = "0.1.0"
-edition = "2024"
+[workspace]
+resolver = "2"
 
-[dependencies]
+members = [
+    "astal3",
+    "astal3/sys",
+    "astal4",
+    "astal4/sys",
+    "crates/astal-hyprland",
+    "crates/astal-hyprland/sys",
+    "crates/astal-io",
+    "crates/astal-io/sys",
+    "crates/astal-river",
+    "crates/astal-river/sys",
+    "crates/astal-network",
+    "crates/astal-network/sys",
+]
+
+[workspace.dependencies]
+gdk = "0.18.2"
+gdk-sys = "0.18.2"
+gdk4 = "0.10.3"
+gdk-pixbuf = "0.21.5"
+glib = "0.21.5"
+glib-sys = "0.21.5"
+gtk = "0.18.2"
+gtk-sys = "0.18.2"
+gtk4 = "0.10.3"
+gtk4-sys = "0.10.3"
+gobject-sys = "0.21.5"
+libc = "0.2"
+libnm = { git = "https://github.com/Daru-san/nm-rs", version = "0.1.0" }
+nm-sys = { git = "https://github.com/Daru-san/nm-rs", version = "0.0.1" }
+gio-sys = "0.21.5"
+gio = "0.21.5"
