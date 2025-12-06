@@ -1,0 +1,83 @@
+[options]
+girs_directories = ["../gtk-girs", "../girs"]
+library = "Astal"
+version = "3.0"
+min_cfg_version = "3.0"
+target_path = "."
+work_mode = "normal"
+use_gi_docgen = true
+generate_safety_asserts = true
+deprecate_by_min_version = true
+single_version_file = "."
+generate_builder = true
+trust_return_value_nullability = true
+
+generate = [
+    "Astal.MouseButton",
+    "Astal.WindowAnchor",
+    "Astal.Exclusivity",
+    "Astal.Layer",
+    "Astal.Keymode",
+    "Astal.Box",
+    "Astal.Button",
+    "Astal.HoverEvent",
+    "Astal.ClickEvent",
+    "Astal.ScrollEvent",
+    "Astal.CenterBox",
+    "Astal.CircularProgress",
+    "Astal.EventBox",
+    "Astal.MotionEvent",
+    "Astal.Icon",
+    "Astal.Label",
+    "Astal.LevelBar",
+    "Astal.Overlay",
+    "Astal.Scrollable",
+    "Astal.Slider",
+    "Astal.Stack",
+    "Astal.Window",
+    "Astal.Application",
+]
+
+manual = [
+    "Gtk.Box",
+    "Gtk.Container",
+    "Gtk.Widget",
+    "GObject.InitiallyUnowned",
+    "Atk.ImplementorIface",
+    "Gtk.Buildable",
+    "Gtk.Orientable",
+    "Gtk.Button",
+    "Gtk.Bin",
+    "Gtk.Actionable",
+    "Gtk.Activatable",
+    "Gtk.Application",
+    "Gio.Application",
+    "Gio.ActionGroup",
+    "Gio.ActionMap",
+    "AstalIO.Application",
+    "Gtk.EventBox",
+    "Gtk.LevelBar",
+    "Gtk.Window",
+    "Gtk.Stack",
+    "Gtk.ScrolledWindow",
+    "Gtk.Scale",
+    "Gtk.Range",
+    "Gtk.Image",
+    "Gtk.Overlay",
+    "Gtk.Misc",
+    "Gtk.Label",
+    "Gdk.EventCrossing",
+    "Gdk.EventButton",
+    "Gdk.EventScroll",
+    "Gdk.EventMotion",
+    "Gtk.IconInfo",
+    "GdkPixbuf.Pixbuf",
+    "Gio.Icon",
+    "Gtk.PolicyType",
+    "Gdk.Monitor",
+    "Gio.SocketConnection",
+]
+
+[[object]]
+name = "Astal.*"
+status = "generate"

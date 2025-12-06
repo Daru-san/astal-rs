@@ -1,0 +1,44 @@
+[package]
+name = "astal3-sys"
+version = "0.0.1"
+edition = "2021"
+build = "build.rs"
+
+[package.metadata.system-deps.astal]
+name = "astal-3.0"
+version = "3.0.0"
+
+[package.metadata.docs.rs]
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+all-features = true
+
+[lib]
+name = "astal_sys"
+
+[dependencies]
+libc.workspace = true
+
+[dependencies.glib-sys]
+workspace = true
+
+[dependencies.gdk-pixbuf]
+workspace = true
+
+[dependencies.gtk-sys]
+workspace = true
+
+[dependencies.gio-sys]
+workspace = true
+
+[dependencies.gdk-sys]
+workspace = true
+
+[build-dependencies]
+system-deps = "7"
+
+[dev-dependencies]
+shell-words = "1.0.0"
+tempfile = "3"
+
+[features]
