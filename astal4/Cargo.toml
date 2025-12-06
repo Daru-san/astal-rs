@@ -5,7 +5,7 @@ edition = "2024"
 
 [dependencies]
 astal-io = { version = "0.1.0", path = "../crates/astal-io" }
-astal-sys = { version = "0.0.1", path = "sys" }
+astal4-sys = { version = "0.0.1", path = "sys" }
 gdk4.workspace = true
 gio.workspace = true
 glib.workspace = true

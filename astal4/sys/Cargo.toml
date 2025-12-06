@@ -1,5 +1,5 @@
 [package]
-name = "astal-sys"
+name = "astal4-sys"
 version = "0.0.1"
 edition = "2021"
 build = "build.rs"
@@ -15,7 +15,6 @@ all-features = true
 
 [lib]
 name = "astal_sys"
-
 
 [dependencies]
 gtk4.workspace = true
