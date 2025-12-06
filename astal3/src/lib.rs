@@ -1,14 +1,17 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+#![allow(unsafe_op_in_unsafe_fn)]
+#![allow(deprecated)]
+#![allow(unused_imports)]
+
+macro_rules! assert_initialized_main_thread {
+    () => {};
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+macro_rules! skip_assert_initialized {
+    () => {};
 }
+
+mod auto;
+pub mod prelude;
+use astal_sys as ffi;
+pub use auto::*;
+use glib::object as gobject;
