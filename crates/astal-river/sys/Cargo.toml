@@ -25,15 +25,6 @@ workspace = true
 [dependencies.gobject-sys]
 workspace = true
 
-[dependencies.gtk4-sys]
-workspace = true
-
-[dependencies.gio-sys]
-workspace = true
-
-[dependencies.gdk-sys]
-workspace = true
-
 [build-dependencies]
 system-deps = "7"
 

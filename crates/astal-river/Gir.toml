@@ -23,3 +23,7 @@ generate = [
 ]
 
 manual = ["Gio.Initable", "GLib.DestroyNotify"]
+
+[[object]]
+name = "AstalRiver.*"
+status = "generate"

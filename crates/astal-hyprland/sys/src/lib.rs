@@ -4,23 +4,27 @@
 // DO NOT EDIT
 
 #![allow(non_camel_case_types, non_upper_case_globals, non_snake_case)]
-#![allow(clippy::approx_constant, clippy::type_complexity, clippy::unreadable_literal, clippy::upper_case_acronyms)]
+#![allow(
+    clippy::approx_constant,
+    clippy::type_complexity,
+    clippy::unreadable_literal,
+    clippy::upper_case_acronyms
+)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+use gio_sys as gio;
 use glib_sys as glib;
 use gobject_sys as gobject;
-use gtk4_sys as gtk4;
-use gio_sys as gio;
-use gdk_sys as gdk;
 
-#[allow(unused_imports)]
-use std::ffi::{c_int, c_char, c_uchar, c_float, c_uint, c_double,
-    c_short, c_ushort, c_long, c_ulong, c_void};
-#[allow(unused_imports)]
-use libc::{size_t, ssize_t, time_t, off_t, intptr_t, uintptr_t, FILE};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
+#[allow(unused_imports)]
+use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+#[allow(unused_imports)]
+use std::ffi::{
+    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
+};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -33,8 +37,10 @@ pub const ASTAL_HYPRLAND_MONITOR_TRANSFORM_ROTATE_180_DEG: AstalHyprlandMonitorT
 pub const ASTAL_HYPRLAND_MONITOR_TRANSFORM_ROTATE_270_DEG: AstalHyprlandMonitorTransform = 3;
 pub const ASTAL_HYPRLAND_MONITOR_TRANSFORM_FLIPPED: AstalHyprlandMonitorTransform = 4;
 pub const ASTAL_HYPRLAND_MONITOR_TRANSFORM_FLIPPED_ROTATE_90_DEG: AstalHyprlandMonitorTransform = 5;
-pub const ASTAL_HYPRLAND_MONITOR_TRANSFORM_FLIPPED_ROTATE_180_DEG: AstalHyprlandMonitorTransform = 6;
-pub const ASTAL_HYPRLAND_MONITOR_TRANSFORM_FLIPPED_ROTATE_270_DEG: AstalHyprlandMonitorTransform = 7;
+pub const ASTAL_HYPRLAND_MONITOR_TRANSFORM_FLIPPED_ROTATE_180_DEG: AstalHyprlandMonitorTransform =
+    6;
+pub const ASTAL_HYPRLAND_MONITOR_TRANSFORM_FLIPPED_ROTATE_270_DEG: AstalHyprlandMonitorTransform =
+    7;
 
 // Constants
 pub const ASTAL_HYPRLAND_MAJOR_VERSION: c_int = 0;
@@ -59,7 +65,7 @@ pub struct AstalHyprlandBindClass {
 impl ::std::fmt::Debug for AstalHyprlandBindClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandBindClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -81,7 +87,7 @@ pub struct AstalHyprlandClientClass {
 impl ::std::fmt::Debug for AstalHyprlandClientClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandClientClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -103,7 +109,7 @@ pub struct AstalHyprlandHyprlandClass {
 impl ::std::fmt::Debug for AstalHyprlandHyprlandClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandHyprlandClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -125,7 +131,7 @@ pub struct AstalHyprlandMonitorClass {
 impl ::std::fmt::Debug for AstalHyprlandMonitorClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandMonitorClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -147,7 +153,7 @@ pub struct AstalHyprlandPositionClass {
 impl ::std::fmt::Debug for AstalHyprlandPositionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandPositionClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -169,7 +175,7 @@ pub struct AstalHyprlandWorkspaceClass {
 impl ::std::fmt::Debug for AstalHyprlandWorkspaceClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandWorkspaceClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -193,7 +199,7 @@ pub struct AstalHyprlandBind {
 impl ::std::fmt::Debug for AstalHyprlandBind {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandBind @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -207,7 +213,7 @@ pub struct AstalHyprlandClient {
 impl ::std::fmt::Debug for AstalHyprlandClient {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandClient @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -221,7 +227,7 @@ pub struct AstalHyprlandHyprland {
 impl ::std::fmt::Debug for AstalHyprlandHyprland {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandHyprland @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -235,7 +241,7 @@ pub struct AstalHyprlandMonitor {
 impl ::std::fmt::Debug for AstalHyprlandMonitor {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandMonitor @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -249,7 +255,7 @@ pub struct AstalHyprlandPosition {
 impl ::std::fmt::Debug for AstalHyprlandPosition {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandPosition @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -264,8 +270,8 @@ pub struct AstalHyprlandWorkspace {
 impl ::std::fmt::Debug for AstalHyprlandWorkspace {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalHyprlandWorkspace @ {self:p}"))
-         .field("_clients", &self._clients)
-         .finish()
+            .field("_clients", &self._clients)
+            .finish()
     }
 }
 
@@ -323,7 +329,10 @@ extern "C" {
     pub fn astal_hyprland_client_get_type() -> GType;
     pub fn astal_hyprland_client_kill(self_: *mut AstalHyprlandClient);
     pub fn astal_hyprland_client_focus(self_: *mut AstalHyprlandClient);
-    pub fn astal_hyprland_client_move_to(self_: *mut AstalHyprlandClient, ws: *mut AstalHyprlandWorkspace);
+    pub fn astal_hyprland_client_move_to(
+        self_: *mut AstalHyprlandClient,
+        ws: *mut AstalHyprlandWorkspace,
+    );
     pub fn astal_hyprland_client_toggle_floating(self_: *mut AstalHyprlandClient);
     pub fn astal_hyprland_client_new() -> *mut AstalHyprlandClient;
     pub fn astal_hyprland_client_get_address(self_: *mut AstalHyprlandClient) -> *const c_char;
@@ -333,18 +342,30 @@ extern "C" {
     pub fn astal_hyprland_client_get_y(self_: *mut AstalHyprlandClient) -> c_int;
     pub fn astal_hyprland_client_get_width(self_: *mut AstalHyprlandClient) -> c_int;
     pub fn astal_hyprland_client_get_height(self_: *mut AstalHyprlandClient) -> c_int;
-    pub fn astal_hyprland_client_get_workspace(self_: *mut AstalHyprlandClient) -> *mut AstalHyprlandWorkspace;
+    pub fn astal_hyprland_client_get_workspace(
+        self_: *mut AstalHyprlandClient,
+    ) -> *mut AstalHyprlandWorkspace;
     pub fn astal_hyprland_client_get_floating(self_: *mut AstalHyprlandClient) -> gboolean;
-    pub fn astal_hyprland_client_get_monitor(self_: *mut AstalHyprlandClient) -> *mut AstalHyprlandMonitor;
+    pub fn astal_hyprland_client_get_monitor(
+        self_: *mut AstalHyprlandClient,
+    ) -> *mut AstalHyprlandMonitor;
     pub fn astal_hyprland_client_get_class(self_: *mut AstalHyprlandClient) -> *const c_char;
     pub fn astal_hyprland_client_get_title(self_: *mut AstalHyprlandClient) -> *const c_char;
-    pub fn astal_hyprland_client_get_initial_class(self_: *mut AstalHyprlandClient) -> *const c_char;
-    pub fn astal_hyprland_client_get_initial_title(self_: *mut AstalHyprlandClient) -> *const c_char;
+    pub fn astal_hyprland_client_get_initial_class(
+        self_: *mut AstalHyprlandClient,
+    ) -> *const c_char;
+    pub fn astal_hyprland_client_get_initial_title(
+        self_: *mut AstalHyprlandClient,
+    ) -> *const c_char;
     pub fn astal_hyprland_client_get_pid(self_: *mut AstalHyprlandClient) -> c_uint;
     pub fn astal_hyprland_client_get_xwayland(self_: *mut AstalHyprlandClient) -> gboolean;
     pub fn astal_hyprland_client_get_pinned(self_: *mut AstalHyprlandClient) -> gboolean;
-    pub fn astal_hyprland_client_get_fullscreen(self_: *mut AstalHyprlandClient) -> AstalHyprlandFullscreen;
-    pub fn astal_hyprland_client_get_fullscreen_client(self_: *mut AstalHyprlandClient) -> AstalHyprlandFullscreen;
+    pub fn astal_hyprland_client_get_fullscreen(
+        self_: *mut AstalHyprlandClient,
+    ) -> AstalHyprlandFullscreen;
+    pub fn astal_hyprland_client_get_fullscreen_client(
+        self_: *mut AstalHyprlandClient,
+    ) -> AstalHyprlandFullscreen;
     pub fn astal_hyprland_client_get_swallowing(self_: *mut AstalHyprlandClient) -> *const c_char;
     pub fn astal_hyprland_client_get_focus_history_id(self_: *mut AstalHyprlandClient) -> c_int;
 
@@ -353,31 +374,104 @@ extern "C" {
     //=========================================================================
     pub fn astal_hyprland_hyprland_get_type() -> GType;
     pub fn astal_hyprland_hyprland_get_default() -> *mut AstalHyprlandHyprland;
-    pub fn astal_hyprland_hyprland_get_monitor(self_: *mut AstalHyprlandHyprland, id: c_int) -> *mut AstalHyprlandMonitor;
-    pub fn astal_hyprland_hyprland_get_workspace(self_: *mut AstalHyprlandHyprland, id: c_int) -> *mut AstalHyprlandWorkspace;
-    pub fn astal_hyprland_hyprland_get_client(self_: *mut AstalHyprlandHyprland, address: *const c_char) -> *mut AstalHyprlandClient;
-    pub fn astal_hyprland_hyprland_get_monitor_by_name(self_: *mut AstalHyprlandHyprland, name: *const c_char) -> *mut AstalHyprlandMonitor;
-    pub fn astal_hyprland_hyprland_get_workspace_by_name(self_: *mut AstalHyprlandHyprland, name: *const c_char) -> *mut AstalHyprlandWorkspace;
-    pub fn astal_hyprland_hyprland_message(self_: *mut AstalHyprlandHyprland, message: *const c_char) -> *mut c_char;
-    pub fn astal_hyprland_hyprland_message_async(self_: *mut AstalHyprlandHyprland, message: *const c_char, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_hyprland_hyprland_message_finish(self_: *mut AstalHyprlandHyprland, _res_: *mut gio::GAsyncResult) -> *mut c_char;
-    pub fn astal_hyprland_hyprland_dispatch(self_: *mut AstalHyprlandHyprland, dispatcher: *const c_char, args: *const c_char);
-    pub fn astal_hyprland_hyprland_move_cursor(self_: *mut AstalHyprlandHyprland, x: c_int, y: c_int);
-    pub fn astal_hyprland_hyprland_sync_monitors(self_: *mut AstalHyprlandHyprland, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_hyprland_hyprland_sync_monitors_finish(self_: *mut AstalHyprlandHyprland, _res_: *mut gio::GAsyncResult, error: *mut *mut glib::GError);
-    pub fn astal_hyprland_hyprland_sync_workspaces(self_: *mut AstalHyprlandHyprland, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_hyprland_hyprland_sync_workspaces_finish(self_: *mut AstalHyprlandHyprland, _res_: *mut gio::GAsyncResult, error: *mut *mut glib::GError);
-    pub fn astal_hyprland_hyprland_sync_clients(self_: *mut AstalHyprlandHyprland, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_hyprland_hyprland_sync_clients_finish(self_: *mut AstalHyprlandHyprland, _res_: *mut gio::GAsyncResult, error: *mut *mut glib::GError);
+    pub fn astal_hyprland_hyprland_get_monitor(
+        self_: *mut AstalHyprlandHyprland,
+        id: c_int,
+    ) -> *mut AstalHyprlandMonitor;
+    pub fn astal_hyprland_hyprland_get_workspace(
+        self_: *mut AstalHyprlandHyprland,
+        id: c_int,
+    ) -> *mut AstalHyprlandWorkspace;
+    pub fn astal_hyprland_hyprland_get_client(
+        self_: *mut AstalHyprlandHyprland,
+        address: *const c_char,
+    ) -> *mut AstalHyprlandClient;
+    pub fn astal_hyprland_hyprland_get_monitor_by_name(
+        self_: *mut AstalHyprlandHyprland,
+        name: *const c_char,
+    ) -> *mut AstalHyprlandMonitor;
+    pub fn astal_hyprland_hyprland_get_workspace_by_name(
+        self_: *mut AstalHyprlandHyprland,
+        name: *const c_char,
+    ) -> *mut AstalHyprlandWorkspace;
+    pub fn astal_hyprland_hyprland_message(
+        self_: *mut AstalHyprlandHyprland,
+        message: *const c_char,
+    ) -> *mut c_char;
+    pub fn astal_hyprland_hyprland_message_async(
+        self_: *mut AstalHyprlandHyprland,
+        message: *const c_char,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_hyprland_hyprland_message_finish(
+        self_: *mut AstalHyprlandHyprland,
+        _res_: *mut gio::GAsyncResult,
+    ) -> *mut c_char;
+    pub fn astal_hyprland_hyprland_dispatch(
+        self_: *mut AstalHyprlandHyprland,
+        dispatcher: *const c_char,
+        args: *const c_char,
+    );
+    pub fn astal_hyprland_hyprland_move_cursor(
+        self_: *mut AstalHyprlandHyprland,
+        x: c_int,
+        y: c_int,
+    );
+    pub fn astal_hyprland_hyprland_sync_monitors(
+        self_: *mut AstalHyprlandHyprland,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_hyprland_hyprland_sync_monitors_finish(
+        self_: *mut AstalHyprlandHyprland,
+        _res_: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    );
+    pub fn astal_hyprland_hyprland_sync_workspaces(
+        self_: *mut AstalHyprlandHyprland,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_hyprland_hyprland_sync_workspaces_finish(
+        self_: *mut AstalHyprlandHyprland,
+        _res_: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    );
+    pub fn astal_hyprland_hyprland_sync_clients(
+        self_: *mut AstalHyprlandHyprland,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_hyprland_hyprland_sync_clients_finish(
+        self_: *mut AstalHyprlandHyprland,
+        _res_: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    );
     pub fn astal_hyprland_hyprland_new() -> *mut AstalHyprlandHyprland;
-    pub fn astal_hyprland_hyprland_get_monitors(self_: *mut AstalHyprlandHyprland) -> *mut glib::GList;
-    pub fn astal_hyprland_hyprland_get_workspaces(self_: *mut AstalHyprlandHyprland) -> *mut glib::GList;
-    pub fn astal_hyprland_hyprland_get_clients(self_: *mut AstalHyprlandHyprland) -> *mut glib::GList;
-    pub fn astal_hyprland_hyprland_get_focused_workspace(self_: *mut AstalHyprlandHyprland) -> *mut AstalHyprlandWorkspace;
-    pub fn astal_hyprland_hyprland_get_focused_monitor(self_: *mut AstalHyprlandHyprland) -> *mut AstalHyprlandMonitor;
-    pub fn astal_hyprland_hyprland_get_focused_client(self_: *mut AstalHyprlandHyprland) -> *mut AstalHyprlandClient;
-    pub fn astal_hyprland_hyprland_get_binds(self_: *mut AstalHyprlandHyprland) -> *mut glib::GList;
-    pub fn astal_hyprland_hyprland_get_cursor_position(self_: *mut AstalHyprlandHyprland) -> *mut AstalHyprlandPosition;
+    pub fn astal_hyprland_hyprland_get_monitors(
+        self_: *mut AstalHyprlandHyprland,
+    ) -> *mut glib::GList;
+    pub fn astal_hyprland_hyprland_get_workspaces(
+        self_: *mut AstalHyprlandHyprland,
+    ) -> *mut glib::GList;
+    pub fn astal_hyprland_hyprland_get_clients(
+        self_: *mut AstalHyprlandHyprland,
+    ) -> *mut glib::GList;
+    pub fn astal_hyprland_hyprland_get_focused_workspace(
+        self_: *mut AstalHyprlandHyprland,
+    ) -> *mut AstalHyprlandWorkspace;
+    pub fn astal_hyprland_hyprland_get_focused_monitor(
+        self_: *mut AstalHyprlandHyprland,
+    ) -> *mut AstalHyprlandMonitor;
+    pub fn astal_hyprland_hyprland_get_focused_client(
+        self_: *mut AstalHyprlandHyprland,
+    ) -> *mut AstalHyprlandClient;
+    pub fn astal_hyprland_hyprland_get_binds(self_: *mut AstalHyprlandHyprland)
+        -> *mut glib::GList;
+    pub fn astal_hyprland_hyprland_get_cursor_position(
+        self_: *mut AstalHyprlandHyprland,
+    ) -> *mut AstalHyprlandPosition;
 
     //=========================================================================
     // AstalHyprlandMonitor
@@ -387,7 +481,9 @@ extern "C" {
     pub fn astal_hyprland_monitor_new() -> *mut AstalHyprlandMonitor;
     pub fn astal_hyprland_monitor_get_id(self_: *mut AstalHyprlandMonitor) -> c_int;
     pub fn astal_hyprland_monitor_get_name(self_: *mut AstalHyprlandMonitor) -> *const c_char;
-    pub fn astal_hyprland_monitor_get_description(self_: *mut AstalHyprlandMonitor) -> *const c_char;
+    pub fn astal_hyprland_monitor_get_description(
+        self_: *mut AstalHyprlandMonitor,
+    ) -> *const c_char;
     pub fn astal_hyprland_monitor_get_make(self_: *mut AstalHyprlandMonitor) -> *const c_char;
     pub fn astal_hyprland_monitor_get_model(self_: *mut AstalHyprlandMonitor) -> *const c_char;
     pub fn astal_hyprland_monitor_get_serial(self_: *mut AstalHyprlandMonitor) -> *const c_char;
@@ -396,21 +492,33 @@ extern "C" {
     pub fn astal_hyprland_monitor_get_refresh_rate(self_: *mut AstalHyprlandMonitor) -> c_double;
     pub fn astal_hyprland_monitor_get_x(self_: *mut AstalHyprlandMonitor) -> c_int;
     pub fn astal_hyprland_monitor_get_y(self_: *mut AstalHyprlandMonitor) -> c_int;
-    pub fn astal_hyprland_monitor_get_active_workspace(self_: *mut AstalHyprlandMonitor) -> *mut AstalHyprlandWorkspace;
-    pub fn astal_hyprland_monitor_get_special_workspace(self_: *mut AstalHyprlandMonitor) -> *mut AstalHyprlandWorkspace;
+    pub fn astal_hyprland_monitor_get_active_workspace(
+        self_: *mut AstalHyprlandMonitor,
+    ) -> *mut AstalHyprlandWorkspace;
+    pub fn astal_hyprland_monitor_get_special_workspace(
+        self_: *mut AstalHyprlandMonitor,
+    ) -> *mut AstalHyprlandWorkspace;
     pub fn astal_hyprland_monitor_get_reserved_top(self_: *mut AstalHyprlandMonitor) -> c_int;
     pub fn astal_hyprland_monitor_get_reserved_bottom(self_: *mut AstalHyprlandMonitor) -> c_int;
     pub fn astal_hyprland_monitor_get_reserved_left(self_: *mut AstalHyprlandMonitor) -> c_int;
     pub fn astal_hyprland_monitor_get_reserved_right(self_: *mut AstalHyprlandMonitor) -> c_int;
     pub fn astal_hyprland_monitor_get_scale(self_: *mut AstalHyprlandMonitor) -> c_double;
-    pub fn astal_hyprland_monitor_get_transform(self_: *mut AstalHyprlandMonitor) -> AstalHyprlandMonitorTransform;
+    pub fn astal_hyprland_monitor_get_transform(
+        self_: *mut AstalHyprlandMonitor,
+    ) -> AstalHyprlandMonitorTransform;
     pub fn astal_hyprland_monitor_get_focused(self_: *mut AstalHyprlandMonitor) -> gboolean;
     pub fn astal_hyprland_monitor_get_dpms_status(self_: *mut AstalHyprlandMonitor) -> gboolean;
     pub fn astal_hyprland_monitor_get_vrr(self_: *mut AstalHyprlandMonitor) -> gboolean;
-    pub fn astal_hyprland_monitor_get_actively_tearing(self_: *mut AstalHyprlandMonitor) -> gboolean;
+    pub fn astal_hyprland_monitor_get_actively_tearing(
+        self_: *mut AstalHyprlandMonitor,
+    ) -> gboolean;
     pub fn astal_hyprland_monitor_get_disabled(self_: *mut AstalHyprlandMonitor) -> gboolean;
-    pub fn astal_hyprland_monitor_get_current_format(self_: *mut AstalHyprlandMonitor) -> *const c_char;
-    pub fn astal_hyprland_monitor_get_available_modes(self_: *mut AstalHyprlandMonitor) -> *mut glib::GArray;
+    pub fn astal_hyprland_monitor_get_current_format(
+        self_: *mut AstalHyprlandMonitor,
+    ) -> *const c_char;
+    pub fn astal_hyprland_monitor_get_available_modes(
+        self_: *mut AstalHyprlandMonitor,
+    ) -> *mut glib::GArray;
 
     //=========================================================================
     // AstalHyprlandPosition
@@ -426,16 +534,30 @@ extern "C" {
     // AstalHyprlandWorkspace
     //=========================================================================
     pub fn astal_hyprland_workspace_get_type() -> GType;
-    pub fn astal_hyprland_workspace_new_dummy(id: c_int, monitor: *mut AstalHyprlandMonitor) -> *mut AstalHyprlandWorkspace;
+    pub fn astal_hyprland_workspace_new_dummy(
+        id: c_int,
+        monitor: *mut AstalHyprlandMonitor,
+    ) -> *mut AstalHyprlandWorkspace;
     pub fn astal_hyprland_workspace_focus(self_: *mut AstalHyprlandWorkspace);
-    pub fn astal_hyprland_workspace_move_to(self_: *mut AstalHyprlandWorkspace, m: *mut AstalHyprlandMonitor);
+    pub fn astal_hyprland_workspace_move_to(
+        self_: *mut AstalHyprlandWorkspace,
+        m: *mut AstalHyprlandMonitor,
+    );
     pub fn astal_hyprland_workspace_new() -> *mut AstalHyprlandWorkspace;
     pub fn astal_hyprland_workspace_get_id(self_: *mut AstalHyprlandWorkspace) -> c_int;
     pub fn astal_hyprland_workspace_get_name(self_: *mut AstalHyprlandWorkspace) -> *const c_char;
-    pub fn astal_hyprland_workspace_get_monitor(self_: *mut AstalHyprlandWorkspace) -> *mut AstalHyprlandMonitor;
-    pub fn astal_hyprland_workspace_get_clients(self_: *mut AstalHyprlandWorkspace) -> *mut glib::GList;
-    pub fn astal_hyprland_workspace_get_has_fullscreen(self_: *mut AstalHyprlandWorkspace) -> gboolean;
-    pub fn astal_hyprland_workspace_get_last_client(self_: *mut AstalHyprlandWorkspace) -> *mut AstalHyprlandClient;
+    pub fn astal_hyprland_workspace_get_monitor(
+        self_: *mut AstalHyprlandWorkspace,
+    ) -> *mut AstalHyprlandMonitor;
+    pub fn astal_hyprland_workspace_get_clients(
+        self_: *mut AstalHyprlandWorkspace,
+    ) -> *mut glib::GList;
+    pub fn astal_hyprland_workspace_get_has_fullscreen(
+        self_: *mut AstalHyprlandWorkspace,
+    ) -> gboolean;
+    pub fn astal_hyprland_workspace_get_last_client(
+        self_: *mut AstalHyprlandWorkspace,
+    ) -> *mut AstalHyprlandClient;
 
     //=========================================================================
     // Other functions

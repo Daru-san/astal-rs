@@ -18,7 +18,12 @@ pub use self::geometry::Geometry;
 mod enums;
 pub use self::enums::Transform;
 
+pub(crate) mod functions;
+
+mod constants;
+pub use self::constants::VERSION;
+
 pub(crate) mod builders {
-    
-    
+    pub use super::layout::LayoutBuilder;
+    pub use super::output::OutputBuilder;
 }

@@ -5,10 +5,7 @@ edition = "2024"
 
 [dependencies]
 astal-river-sys = { version = "0.0.1", path = "sys" }
-gdk.workspace = true
-gio.workspace = true
 glib.workspace = true
-gtk4.workspace = true
 
 [features]
 gio_v2_22 = []

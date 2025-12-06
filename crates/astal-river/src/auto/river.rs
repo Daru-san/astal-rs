@@ -3,9 +3,13 @@
 // from ../../gtk-girs
 // DO NOT EDIT
 
-use crate::{ffi,Layout,Output};
-use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
-use std::{boxed::Box as Box_};
+use crate::{Layout, Output, ffi};
+use glib::{
+    object::ObjectType as _,
+    signal::{SignalHandlerId, connect_raw},
+    translate::*,
+};
+use std::boxed::Box as Box_;
 
 #[cfg(feature = "gio_v2_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_22")))]
@@ -32,9 +36,7 @@ impl River {
     #[doc(alias = "astal_river_river_new")]
     pub fn new() -> Option<River> {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::astal_river_river_new())
-        }
+        unsafe { from_glib_full(ffi::astal_river_river_new()) }
     }
 
     #[doc(alias = "astal_river_river_get_focused_output")]
@@ -42,7 +44,9 @@ impl River {
     #[doc(alias = "focused-output")]
     pub fn focused_output(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::astal_river_river_get_focused_output(self.to_glib_none().0))
+            from_glib_none(ffi::astal_river_river_get_focused_output(
+                self.to_glib_none().0,
+            ))
         }
     }
 
@@ -51,23 +55,26 @@ impl River {
     #[doc(alias = "focused-view")]
     pub fn focused_view(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::astal_river_river_get_focused_view(self.to_glib_none().0))
+            from_glib_none(ffi::astal_river_river_get_focused_view(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     #[doc(alias = "astal_river_river_get_mode")]
     #[doc(alias = "get_mode")]
     pub fn mode(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_none(ffi::astal_river_river_get_mode(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(ffi::astal_river_river_get_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "astal_river_river_get_output")]
     #[doc(alias = "get_output")]
     pub fn output(&self, name: &str) -> Option<Output> {
         unsafe {
-            from_glib_none(ffi::astal_river_river_get_output(self.to_glib_none().0, name.to_glib_none().0))
+            from_glib_none(ffi::astal_river_river_get_output(
+                self.to_glib_none().0,
+                name.to_glib_none().0,
+            ))
         }
     }
 
@@ -75,14 +82,19 @@ impl River {
     #[doc(alias = "get_outputs")]
     pub fn outputs(&self) -> Vec<Output> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::astal_river_river_get_outputs(self.to_glib_none().0))
+            FromGlibPtrContainer::from_glib_none(ffi::astal_river_river_get_outputs(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     #[doc(alias = "astal_river_river_new_layout")]
     pub fn new_layout(&self, namespace: &str) -> Layout {
         unsafe {
-            from_glib_full(ffi::astal_river_river_new_layout(self.to_glib_none().0, namespace.to_glib_none().0))
+            from_glib_full(ffi::astal_river_river_new_layout(
+                self.to_glib_none().0,
+                namespace.to_glib_none().0,
+            ))
         }
     }
 
@@ -93,101 +105,175 @@ impl River {
 
     #[doc(alias = "astal_river_river_get_default")]
     #[doc(alias = "get_default")]
-    #[allow(clippy::should_implement_trait)]    pub fn default() -> Option<River> {
+    #[allow(clippy::should_implement_trait)]
+    pub fn default() -> Option<River> {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(ffi::astal_river_river_get_default())
-        }
+        unsafe { from_glib_none(ffi::astal_river_river_get_default()) }
     }
 
     #[doc(alias = "changed")]
     pub fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<F: Fn(&River) + 'static>(this: *mut ffi::AstalRiverRiver, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn changed_trampoline<F: Fn(&River) + 'static>(
+            this: *mut ffi::AstalRiverRiver,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"changed".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(changed_trampoline::<F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"changed".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    changed_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "output-added")]
     pub fn connect_output_added<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn output_added_trampoline<F: Fn(&River, &str) + 'static>(this: *mut ffi::AstalRiverRiver, output: *mut std::ffi::c_char, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn output_added_trampoline<F: Fn(&River, &str) + 'static>(
+            this: *mut ffi::AstalRiverRiver,
+            output: *mut std::ffi::c_char,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &glib::GString::from_glib_borrow(output))
+            f(
+                &from_glib_borrow(this),
+                &glib::GString::from_glib_borrow(output),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"output-added".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(output_added_trampoline::<F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"output-added".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    output_added_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "output-removed")]
     pub fn connect_output_removed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn output_removed_trampoline<F: Fn(&River, &str) + 'static>(this: *mut ffi::AstalRiverRiver, output: *mut std::ffi::c_char, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn output_removed_trampoline<F: Fn(&River, &str) + 'static>(
+            this: *mut ffi::AstalRiverRiver,
+            output: *mut std::ffi::c_char,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &glib::GString::from_glib_borrow(output))
+            f(
+                &from_glib_borrow(this),
+                &glib::GString::from_glib_borrow(output),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"output-removed".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(output_removed_trampoline::<F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"output-removed".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    output_removed_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "focused-output")]
     pub fn connect_focused_output_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_focused_output_trampoline<F: Fn(&River) + 'static>(this: *mut ffi::AstalRiverRiver, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_focused_output_trampoline<F: Fn(&River) + 'static>(
+            this: *mut ffi::AstalRiverRiver,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"notify::focused-output".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_focused_output_trampoline::<F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::focused-output".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_focused_output_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "focused-view")]
     pub fn connect_focused_view_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_focused_view_trampoline<F: Fn(&River) + 'static>(this: *mut ffi::AstalRiverRiver, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_focused_view_trampoline<F: Fn(&River) + 'static>(
+            this: *mut ffi::AstalRiverRiver,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"notify::focused-view".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_focused_view_trampoline::<F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::focused-view".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_focused_view_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "mode")]
     pub fn connect_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_mode_trampoline<F: Fn(&River) + 'static>(this: *mut ffi::AstalRiverRiver, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_mode_trampoline<F: Fn(&River) + 'static>(
+            this: *mut ffi::AstalRiverRiver,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"notify::mode".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_mode_trampoline::<F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::mode".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_mode_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "outputs")]
     pub fn connect_outputs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_outputs_trampoline<F: Fn(&River) + 'static>(this: *mut ffi::AstalRiverRiver, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_outputs_trampoline<F: Fn(&River) + 'static>(
+            this: *mut ffi::AstalRiverRiver,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"notify::outputs".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_outputs_trampoline::<F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                c"notify::outputs".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_outputs_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }

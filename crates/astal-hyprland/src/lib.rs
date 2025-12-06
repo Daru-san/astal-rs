@@ -1,4 +1,5 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
+#![allow(unsafe_op_in_unsafe_fn)]
 
 macro_rules! assert_initialized_main_thread {
     () => {};

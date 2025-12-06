@@ -4,13 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-gdk-sys.workspace = true
-gdk.workspace = true
 glib.workspace = true
-glib-sys.workspace = true
 gtk4.workspace = true
-gtk4-sys.workspace = true
-gobject-sys.workspace = true
 astal-hyprland-sys = { version = "0.0.1", path = "sys" }
 
 [package.metadata.docs.rs]

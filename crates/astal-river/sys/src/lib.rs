@@ -4,23 +4,26 @@
 // DO NOT EDIT
 
 #![allow(non_camel_case_types, non_upper_case_globals, non_snake_case)]
-#![allow(clippy::approx_constant, clippy::type_complexity, clippy::unreadable_literal, clippy::upper_case_acronyms)]
+#![allow(
+    clippy::approx_constant,
+    clippy::type_complexity,
+    clippy::unreadable_literal,
+    clippy::upper_case_acronyms
+)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
 use glib_sys as glib;
 use gobject_sys as gobject;
-use gtk4_sys as gtk4;
-use gio_sys as gio;
-use gdk_sys as gdk;
 
-#[allow(unused_imports)]
-use std::ffi::{c_int, c_char, c_uchar, c_float, c_uint, c_double,
-    c_short, c_ushort, c_long, c_ulong, c_void};
-#[allow(unused_imports)]
-use libc::{size_t, ssize_t, time_t, off_t, intptr_t, uintptr_t, FILE};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
+#[allow(unused_imports)]
+use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+#[allow(unused_imports)]
+use std::ffi::{
+    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
+};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -44,7 +47,18 @@ pub const ASTAL_RIVER_VERSION: &[u8] = b"0.1.0\0";
 
 // Callbacks
 pub type AstalRiverCommandCallback = Option<unsafe extern "C" fn(gboolean, *const c_char)>;
-pub type AstalRiverLayoutDemandCallback = Option<unsafe extern "C" fn(*mut AstalRiverLayout, *mut AstalRiverOutput, c_uint, c_uint, c_uint, *mut *mut c_char, *mut *mut glib::GList, gpointer)>;
+pub type AstalRiverLayoutDemandCallback = Option<
+    unsafe extern "C" fn(
+        *mut AstalRiverLayout,
+        *mut AstalRiverOutput,
+        c_uint,
+        c_uint,
+        c_uint,
+        *mut *mut c_char,
+        *mut *mut glib::GList,
+        gpointer,
+    ),
+>;
 
 // Records
 #[derive(Copy, Clone)]
@@ -59,11 +73,11 @@ pub struct AstalRiverGeometry {
 impl ::std::fmt::Debug for AstalRiverGeometry {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalRiverGeometry @ {self:p}"))
-         .field("x", &self.x)
-         .field("y", &self.y)
-         .field("width", &self.width)
-         .field("height", &self.height)
-         .finish()
+            .field("x", &self.x)
+            .field("y", &self.y)
+            .field("width", &self.width)
+            .field("height", &self.height)
+            .finish()
     }
 }
 
@@ -76,8 +90,8 @@ pub struct AstalRiverLayoutClass {
 impl ::std::fmt::Debug for AstalRiverLayoutClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalRiverLayoutClass @ {self:p}"))
-         .field("parent_class", &self.parent_class)
-         .finish()
+            .field("parent_class", &self.parent_class)
+            .finish()
     }
 }
 
@@ -90,8 +104,8 @@ pub struct AstalRiverOutputClass {
 impl ::std::fmt::Debug for AstalRiverOutputClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalRiverOutputClass @ {self:p}"))
-         .field("parent_class", &self.parent_class)
-         .finish()
+            .field("parent_class", &self.parent_class)
+            .finish()
     }
 }
 
@@ -104,8 +118,8 @@ pub struct AstalRiverRiverClass {
 impl ::std::fmt::Debug for AstalRiverRiverClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalRiverRiverClass @ {self:p}"))
-         .field("parent_class", &self.parent_class)
-         .finish()
+            .field("parent_class", &self.parent_class)
+            .finish()
     }
 }
 
@@ -120,7 +134,7 @@ pub struct AstalRiverLayout {
 impl ::std::fmt::Debug for AstalRiverLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalRiverLayout @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -134,7 +148,7 @@ pub struct AstalRiverOutput {
 impl ::std::fmt::Debug for AstalRiverOutput {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalRiverOutput @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -148,7 +162,7 @@ pub struct AstalRiverRiver {
 impl ::std::fmt::Debug for AstalRiverRiver {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalRiverRiver @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -163,7 +177,12 @@ extern "C" {
     // AstalRiverGeometry
     //=========================================================================
     pub fn astal_river_geometry_get_type() -> GType;
-    pub fn astal_river_geometry_new(x: c_uint, y: c_uint, width: c_uint, height: c_uint) -> *mut AstalRiverGeometry;
+    pub fn astal_river_geometry_new(
+        x: c_uint,
+        y: c_uint,
+        width: c_uint,
+        height: c_uint,
+    ) -> *mut AstalRiverGeometry;
     pub fn astal_river_geometry_new_zero() -> *mut AstalRiverGeometry;
     pub fn astal_river_geometry_copy(geometry: *mut AstalRiverGeometry) -> *mut AstalRiverGeometry;
     pub fn astal_river_geometry_free(geometry: *mut AstalRiverGeometry);
@@ -173,7 +192,12 @@ extern "C" {
     //=========================================================================
     pub fn astal_river_layout_get_type() -> GType;
     pub fn astal_river_layout_get_namespace(self_: *mut AstalRiverLayout) -> *const c_char;
-    pub fn astal_river_layout_set_layout_demand_callback(self_: *mut AstalRiverLayout, callback: AstalRiverLayoutDemandCallback, user_data: gpointer, destroy_notify: glib::GDestroyNotify);
+    pub fn astal_river_layout_set_layout_demand_callback(
+        self_: *mut AstalRiverLayout,
+        callback: AstalRiverLayoutDemandCallback,
+        user_data: gpointer,
+        destroy_notify: glib::GDestroyNotify,
+    );
 
     //=========================================================================
     // AstalRiverOutput
@@ -208,10 +232,21 @@ extern "C" {
     pub fn astal_river_river_get_focused_output(self_: *mut AstalRiverRiver) -> *mut c_char;
     pub fn astal_river_river_get_focused_view(self_: *mut AstalRiverRiver) -> *mut c_char;
     pub fn astal_river_river_get_mode(self_: *mut AstalRiverRiver) -> *mut c_char;
-    pub fn astal_river_river_get_output(self_: *mut AstalRiverRiver, name: *mut c_char) -> *mut AstalRiverOutput;
+    pub fn astal_river_river_get_output(
+        self_: *mut AstalRiverRiver,
+        name: *mut c_char,
+    ) -> *mut AstalRiverOutput;
     pub fn astal_river_river_get_outputs(self_: *mut AstalRiverRiver) -> *mut glib::GList;
-    pub fn astal_river_river_new_layout(self_: *mut AstalRiverRiver, namespace: *const c_char) -> *mut AstalRiverLayout;
-    pub fn astal_river_river_run_command_async(self_: *mut AstalRiverRiver, length: c_int, cmd: *mut *const c_char, callback: AstalRiverCommandCallback);
+    pub fn astal_river_river_new_layout(
+        self_: *mut AstalRiverRiver,
+        namespace: *const c_char,
+    ) -> *mut AstalRiverLayout;
+    pub fn astal_river_river_run_command_async(
+        self_: *mut AstalRiverRiver,
+        length: c_int,
+        cmd: *mut *const c_char,
+        callback: AstalRiverCommandCallback,
+    );
 
     //=========================================================================
     // Other functions
