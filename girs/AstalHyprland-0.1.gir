@@ -5,7 +5,7 @@
 <include name="GLib" version="2.0" />
 <package name="astal-hyprland" />
 <c:include name="astal-hyprland.h" />
-<namespace name="AstalHyprland" version="0.1" c:prefix="AstalHyprland" c:identifier-prefixes="AstalHyprland" c:symbol-prefixes="astal_hyprland">
+<namespace name="AstalHyprland" version="0.1" shared-library="libastal-hyprland.so" c:prefix="AstalHyprland" c:identifier-prefixes="AstalHyprland" c:symbol-prefixes="astal_hyprland">
 	<bitfield name="Fullscreen" c:type="AstalHyprlandFullscreen" glib:type-name="AstalHyprlandFullscreen" glib:get-type="astal_hyprland_fullscreen_get_type">
 		<member name="current" c:identifier="ASTAL_HYPRLAND_FULLSCREEN_CURRENT" value="-1" />
 		<member name="none" c:identifier="ASTAL_HYPRLAND_FULLSCREEN_NONE" value="0" />
