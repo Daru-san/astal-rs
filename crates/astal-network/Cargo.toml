@@ -1,0 +1,9 @@
+[package]
+name = "astal-network"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+astal-network-sys = { version = "0.0.1", path = "sys" }
+glib.workspace = true
+libnm.workspace = true
