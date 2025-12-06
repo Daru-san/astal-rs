@@ -1,0 +1,1279 @@
+<?xml version="1.0"?>
+<!-- This file was automatically generated from C sources - DO NOT EDIT!
+To affect the contents of this file, edit the original C definitions,
+and/or use gtk-doc annotations.  -->
+<repository version="1.2"
+            xmlns="http://www.gtk.org/introspection/core/1.0"
+            xmlns:c="http://www.gtk.org/introspection/c/1.0"
+            xmlns:doc="http://www.gtk.org/introspection/doc/1.0"
+            xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
+  <include name="GObject" version="2.0"/>
+  <include name="Gio" version="2.0"/>
+  <package name="astal-river-0.1"/>
+  <c:include name="astal-river.h"/>
+  <doc:format name="unknown"/>
+  <namespace name="AstalRiver"
+             version="0.1"
+             shared-library="/nix/store/w6nrblbr05v6miaxag3hwszv88k2d4nb-astal-river-0-unstable-2025-11-26/lib/libastal-river.so.0"
+             c:identifier-prefixes="AstalRiver"
+             c:symbol-prefixes="astal_river">
+    <callback name="CommandCallback" c:type="AstalRiverCommandCallback">
+      <doc xml:space="preserve"
+           filename="include/astal-river.h"
+           line="103">A callback function that is called after a river command is run.</doc>
+      <source-position filename="include/astal-river.h" line="110"/>
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="success" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="include/astal-river.h"
+               line="105">a #gboolean indicating whether the command was executed successfully</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </parameter>
+        <parameter name="msg" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="include/astal-river.h"
+               line="106">a string containing the result of the command</doc>
+          <type name="utf8" c:type="const gchar*"/>
+        </parameter>
+      </parameters>
+    </callback>
+    <record name="Geometry"
+            c:type="AstalRiverGeometry"
+            glib:type-name="AstalRiverGeometry"
+            glib:get-type="astal_river_geometry_get_type"
+            c:symbol-prefix="geometry">
+      <source-position filename="include/astal-river.h" line="19"/>
+      <field name="x" writable="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="y" writable="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="width" writable="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="height" writable="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <constructor name="new" c:identifier="astal_river_geometry_new">
+        <doc xml:space="preserve"
+             filename="src/river-layout.c"
+             line="40">Creates a new  AstalRiverGeometry instance.</doc>
+        <source-position filename="include/astal-river.h" line="27"/>
+        <return-value transfer-ownership="full">
+          <type name="Geometry" c:type="AstalRiverGeometry*"/>
+        </return-value>
+        <parameters>
+          <parameter name="x" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="y" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="width" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="height" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_zero"
+                   c:identifier="astal_river_geometry_new_zero">
+        <doc xml:space="preserve"
+             filename="src/river-layout.c"
+             line="56">Creates a new  AstalRiverGeometry instance.</doc>
+        <source-position filename="include/astal-river.h" line="29"/>
+        <return-value transfer-ownership="full">
+          <type name="Geometry" c:type="AstalRiverGeometry*"/>
+        </return-value>
+      </constructor>
+      <method name="copy" c:identifier="astal_river_geometry_copy">
+        <doc xml:space="preserve"
+             filename="src/river-layout.c"
+             line="15">Creates a copy of the given AstalRiverGeometry.</doc>
+        <source-position filename="include/astal-river.h" line="23"/>
+        <return-value transfer-ownership="full">
+          <type name="Geometry" c:type="AstalRiverGeometry*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="geometry" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-layout.c"
+                 line="17">the AstalRiverGeometry to copy</doc>
+            <type name="Geometry" c:type="AstalRiverGeometry*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="free" c:identifier="astal_river_geometry_free">
+        <doc xml:space="preserve"
+             filename="src/river-layout.c"
+             line="31">Frees the given AstalRiverGeometry.</doc>
+        <source-position filename="include/astal-river.h" line="25"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="geometry" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-layout.c"
+                 line="33">the AstalRiverGeometry to free</doc>
+            <type name="Geometry" c:type="AstalRiverGeometry*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+    </record>
+    <class name="Layout"
+           c:symbol-prefix="layout"
+           c:type="AstalRiverLayout"
+           parent="GObject.Object"
+           final="1"
+           glib:type-name="AstalRiverLayout"
+           glib:get-type="astal_river_layout_get_type"
+           glib:type-struct="LayoutClass">
+      <doc xml:space="preserve"
+           filename="src/river-layout.c"
+           line="119">handles the layout of windows.</doc>
+      <source-position filename="include/astal-river.h" line="47"/>
+      <method name="get_namespace"
+              c:identifier="astal_river_layout_get_namespace"
+              glib:get-property="namespace">
+        <doc xml:space="preserve"
+             filename="src/river-layout.c"
+             line="125">the namespace of the layout</doc>
+        <source-position filename="include/astal-river.h" line="136"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/river-layout.c"
+               line="131">the namespace of the layout</doc>
+          <type name="utf8" c:type="const gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-layout.c"
+                 line="127">the AstalRiverLayout object</doc>
+            <type name="Layout" c:type="AstalRiverLayout*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_layout_demand_callback"
+              c:identifier="astal_river_layout_set_layout_demand_callback">
+        <doc xml:space="preserve"
+             filename="src/river-layout.c"
+             line="138">Sets the callback to be called when a layout demand is made.</doc>
+        <source-position filename="include/astal-river.h" line="138"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-layout.c"
+                 line="140">the AstalRiverLayout object</doc>
+            <type name="Layout" c:type="AstalRiverLayout*"/>
+          </instance-parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     scope="notified"
+                     closure="1"
+                     destroy="2">
+            <doc xml:space="preserve"
+                 filename="src/river-layout.c"
+                 line="141">the callback to be called when a layout demand is made</doc>
+            <type name="LayoutDemandCallback"
+                  c:type="AstalRiverLayoutDemandCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="src/river-layout.c"
+                 line="142">user data to be passed to the callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="destroy_notify"
+                     transfer-ownership="none"
+                     scope="async">
+            <doc xml:space="preserve"
+                 filename="src/river-layout.c"
+                 line="143">a function to destroy the user data when it is no longer needed</doc>
+            <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+          </parameter>
+        </parameters>
+      </method>
+      <property name="namespace"
+                writable="1"
+                construct-only="1"
+                transfer-ownership="none"
+                getter="get_namespace"
+                default-value="NULL">
+        <doc xml:space="preserve"
+             filename="src/river-layout.c"
+             line="324">The namespace of this layout</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <glib:signal name="namespace-in-use" when="last">
+        <doc xml:space="preserve"
+             filename="src/river-layout.c"
+             line="336">Emitted when the namespace of this layout is already in use on an output.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="output" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-layout.c"
+                 line="339">the AstalRiverOutput object that is using the namespace</doc>
+            <type name="Output"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="user-command" when="last">
+        <doc xml:space="preserve"
+             filename="src/river-layout.c"
+             line="347">Emitted when a user command is requested for this layout.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="command" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-layout.c"
+                 line="350">the command send by the user</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="output" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-layout.c"
+                 line="351">the currently focused output</doc>
+            <type name="Output"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+    </class>
+    <record name="LayoutClass"
+            c:type="AstalRiverLayoutClass"
+            glib:is-gtype-struct-for="Layout">
+      <source-position filename="include/astal-river.h" line="47"/>
+      <field name="parent_class">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+    </record>
+    <callback name="LayoutDemandCallback"
+              c:type="AstalRiverLayoutDemandCallback">
+      <doc xml:space="preserve"
+           filename="include/astal-river.h"
+           line="115">A callback function that is called when the layout manager needs to determine the layout for a
+given output.</doc>
+      <source-position filename="include/astal-river.h" line="131"/>
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="self" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="include/astal-river.h"
+               line="117">an #AstalRiverLayout instance</doc>
+          <type name="Layout" c:type="AstalRiverLayout*"/>
+        </parameter>
+        <parameter name="output" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="include/astal-river.h"
+               line="118">an #AstalRiverOutput instance for which the layout is being demanded</doc>
+          <type name="Output" c:type="AstalRiverOutput*"/>
+        </parameter>
+        <parameter name="view_count" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="include/astal-river.h"
+               line="119">the number of views currently on the output</doc>
+          <type name="guint" c:type="guint"/>
+        </parameter>
+        <parameter name="usable_width" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="include/astal-river.h"
+               line="120">the usable width of the output for layout</doc>
+          <type name="guint" c:type="guint"/>
+        </parameter>
+        <parameter name="usable_height" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="include/astal-river.h"
+               line="121">the usable height of the output for layout</doc>
+          <type name="guint" c:type="guint"/>
+        </parameter>
+        <parameter name="layout_name"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="include/astal-river.h"
+               line="122">the name for the the layout provided by this callback</doc>
+          <type name="utf8" c:type="gchar**"/>
+        </parameter>
+        <parameter name="geometries"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="include/astal-river.h"
+               line="123">a list of
+#AstalRiverGeometry that will be used for the layout for of the views</doc>
+          <type name="GLib.List" c:type="GList**">
+            <type name="Geometry"/>
+          </type>
+        </parameter>
+        <parameter name="user_data"
+                   transfer-ownership="none"
+                   nullable="1"
+                   allow-none="1"
+                   closure="7">
+          <doc xml:space="preserve"
+               filename="include/astal-river.h"
+               line="125">user data passed to the callback</doc>
+          <type name="gpointer" c:type="gpointer"/>
+        </parameter>
+      </parameters>
+    </callback>
+    <constant name="MAJOR_VERSION"
+              value="0"
+              c:type="ASTAL_RIVER_MAJOR_VERSION">
+      <source-position filename="include/astal-river.h" line="7"/>
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="MICRO_VERSION"
+              value="0"
+              c:type="ASTAL_RIVER_MICRO_VERSION">
+      <source-position filename="include/astal-river.h" line="9"/>
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="MINOR_VERSION"
+              value="1"
+              c:type="ASTAL_RIVER_MINOR_VERSION">
+      <source-position filename="include/astal-river.h" line="8"/>
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <class name="Output"
+           c:symbol-prefix="output"
+           c:type="AstalRiverOutput"
+           parent="GObject.Object"
+           final="1"
+           glib:type-name="AstalRiverOutput"
+           glib:get-type="astal_river_output_get_type"
+           glib:type-struct="OutputClass">
+      <doc xml:space="preserve"
+           filename="src/river-output.c"
+           line="95">holds all the information associated with a monitor.</doc>
+      <source-position filename="include/astal-river.h" line="51"/>
+      <method name="get_description"
+              c:identifier="astal_river_output_get_description"
+              glib:get-property="description">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="222">the description of the output</doc>
+        <source-position filename="include/astal-river.h" line="69"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <type name="utf8" c:type="const gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="224">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_focused_tags"
+              c:identifier="astal_river_output_get_focused_tags"
+              glib:get-property="focused-tags">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="183">the focused tags of the output</doc>
+        <source-position filename="include/astal-river.h" line="61"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/river-output.c"
+               line="189">the focused tags of the output</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="185">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_focused_view"
+              c:identifier="astal_river_output_get_focused_view"
+              glib:get-property="focused-view">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="140">the focused view on the output</doc>
+        <source-position filename="include/astal-river.h" line="59"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/river-output.c"
+               line="146">the focused view on the output</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="142">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_height"
+              c:identifier="astal_river_output_get_height"
+              glib:get-property="height">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="294">the height of the output</doc>
+        <source-position filename="include/astal-river.h" line="76"/>
+        <return-value transfer-ownership="none">
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="296">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_id"
+              c:identifier="astal_river_output_get_id"
+              glib:get-property="id">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="101">the id of the underlying wl_output object</doc>
+        <source-position filename="include/astal-river.h" line="53"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/river-output.c"
+               line="107">the id of the underlying wl_output object</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="103">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_layout_name"
+              c:identifier="astal_river_output_get_layout_name"
+              glib:get-property="layout-name">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="127">the currently used layout name of the output</doc>
+        <source-position filename="include/astal-river.h" line="57"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/river-output.c"
+               line="133">the currently used layout name of the output</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="129">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_make"
+              c:identifier="astal_river_output_get_make"
+              glib:get-property="make">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="235">the make of the output</doc>
+        <source-position filename="include/astal-river.h" line="70"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <type name="utf8" c:type="const gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="237">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_model"
+              c:identifier="astal_river_output_get_model"
+              glib:get-property="model">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="248">the model of the output</doc>
+        <source-position filename="include/astal-river.h" line="71"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <type name="utf8" c:type="const gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="250">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_name"
+              c:identifier="astal_river_output_get_name"
+              glib:get-property="name">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="114">the name of the output</doc>
+        <source-position filename="include/astal-river.h" line="55"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/river-output.c"
+               line="120">the name of the output</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="116">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_occupied_tags"
+              c:identifier="astal_river_output_get_occupied_tags"
+              glib:get-property="occupied-tags">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="209">the occupied tags of the output</doc>
+        <source-position filename="include/astal-river.h" line="67"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/river-output.c"
+               line="215">the occupied tags of the output</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="211">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_physical_height"
+              c:identifier="astal_river_output_get_physical_height"
+              glib:get-property="physical-height">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="316">the physical height of the output</doc>
+        <source-position filename="include/astal-river.h" line="78"/>
+        <return-value transfer-ownership="none">
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="318">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_physical_width"
+              c:identifier="astal_river_output_get_physical_width"
+              glib:get-property="physical-width">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="305">the physical width of the output</doc>
+        <source-position filename="include/astal-river.h" line="77"/>
+        <return-value transfer-ownership="none">
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="307">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_refresh_rate"
+              c:identifier="astal_river_output_get_refresh_rate"
+              glib:get-property="refresh-rate">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="338">the refresh rate of the output</doc>
+        <source-position filename="include/astal-river.h" line="80"/>
+        <return-value transfer-ownership="none">
+          <type name="gdouble" c:type="gdouble"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="340">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_scale_factor"
+              c:identifier="astal_river_output_get_scale_factor"
+              glib:get-property="scale-factor">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="327">the scale factor of the output</doc>
+        <source-position filename="include/astal-river.h" line="79"/>
+        <return-value transfer-ownership="none">
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="329">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_urgent_tags"
+              c:identifier="astal_river_output_get_urgent_tags"
+              glib:get-property="urgent-tags">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="196">the urgent tags of the output</doc>
+        <source-position filename="include/astal-river.h" line="65"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/river-output.c"
+               line="202">the urgent tags of the output</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="198">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_width"
+              c:identifier="astal_river_output_get_width"
+              glib:get-property="width">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="283">the width of the output</doc>
+        <source-position filename="include/astal-river.h" line="75"/>
+        <return-value transfer-ownership="none">
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="285">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_x"
+              c:identifier="astal_river_output_get_x"
+              glib:get-property="x">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="261">the x coordinate of the outputs position</doc>
+        <source-position filename="include/astal-river.h" line="73"/>
+        <return-value transfer-ownership="none">
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="263">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_y"
+              c:identifier="astal_river_output_get_y"
+              glib:get-property="y">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="272">the y coordinate of the outputs position</doc>
+        <source-position filename="include/astal-river.h" line="74"/>
+        <return-value transfer-ownership="none">
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="274">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_focused_tags"
+              c:identifier="astal_river_output_set_focused_tags"
+              glib:set-property="focused-tags">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="162">sets the focused tags of the output</doc>
+        <source-position filename="include/astal-river.h" line="63"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="164">the AstalRiverOutput object</doc>
+            <type name="Output" c:type="AstalRiverOutput*"/>
+          </instance-parameter>
+          <parameter name="tags" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river-output.c"
+                 line="165">the tagmask to be focused</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <property name="description"
+                transfer-ownership="none"
+                getter="get_description"
+                default-value="NULL">
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="focused-tags"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_focused_tags"
+                getter="get_focused_tags"
+                default-value="0">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="637">The currently focused tags</doc>
+        <type name="guint" c:type="guint"/>
+      </property>
+      <property name="focused-view"
+                transfer-ownership="none"
+                getter="get_focused_view"
+                default-value="NULL">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="680">The name of currently focused view</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="height"
+                transfer-ownership="none"
+                getter="get_height"
+                default-value="0">
+        <type name="gint" c:type="gint"/>
+      </property>
+      <property name="id"
+                transfer-ownership="none"
+                getter="get_id"
+                default-value="0">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="659">The id of the underlying wl_output object</doc>
+        <type name="guint" c:type="guint"/>
+      </property>
+      <property name="layout-name"
+                transfer-ownership="none"
+                getter="get_layout_name"
+                default-value="NULL">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="666">The name of active layout</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="make"
+                transfer-ownership="none"
+                getter="get_make"
+                default-value="NULL">
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="model"
+                transfer-ownership="none"
+                getter="get_model"
+                default-value="NULL">
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="name"
+                transfer-ownership="none"
+                getter="get_name"
+                default-value="NULL">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="673">The name of this output</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="occupied-tags"
+                transfer-ownership="none"
+                getter="get_occupied_tags"
+                default-value="0">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="644">The currently occupied tags</doc>
+        <type name="guint" c:type="guint"/>
+      </property>
+      <property name="physical-height"
+                transfer-ownership="none"
+                getter="get_physical_height"
+                default-value="0">
+        <type name="gint" c:type="gint"/>
+      </property>
+      <property name="physical-width"
+                transfer-ownership="none"
+                getter="get_physical_width"
+                default-value="0">
+        <type name="gint" c:type="gint"/>
+      </property>
+      <property name="refresh-rate"
+                transfer-ownership="none"
+                getter="get_refresh_rate"
+                default-value="0.000000">
+        <type name="gdouble" c:type="gdouble"/>
+      </property>
+      <property name="scale-factor"
+                transfer-ownership="none"
+                getter="get_scale_factor"
+                default-value="0">
+        <type name="gint" c:type="gint"/>
+      </property>
+      <property name="transform"
+                transfer-ownership="none"
+                default-value="ASTAL_RIVER_TRANSFORM_NORMAL">
+        <type name="Transform"/>
+      </property>
+      <property name="urgent-tags"
+                transfer-ownership="none"
+                getter="get_urgent_tags"
+                default-value="0">
+        <doc xml:space="preserve"
+             filename="src/river-output.c"
+             line="652">The currently tags marked as urgent</doc>
+        <type name="guint" c:type="guint"/>
+      </property>
+      <property name="width"
+                transfer-ownership="none"
+                getter="get_width"
+                default-value="0">
+        <type name="gint" c:type="gint"/>
+      </property>
+      <property name="x"
+                transfer-ownership="none"
+                getter="get_x"
+                default-value="0">
+        <type name="gint" c:type="gint"/>
+      </property>
+      <property name="y"
+                transfer-ownership="none"
+                getter="get_y"
+                default-value="0">
+        <type name="gint" c:type="gint"/>
+      </property>
+      <glib:signal name="changed" when="first">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </glib:signal>
+    </class>
+    <record name="OutputClass"
+            c:type="AstalRiverOutputClass"
+            glib:is-gtype-struct-for="Output">
+      <source-position filename="include/astal-river.h" line="51"/>
+      <field name="parent_class">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+    </record>
+    <class name="River"
+           c:symbol-prefix="river"
+           c:type="AstalRiverRiver"
+           parent="GObject.Object"
+           glib:type-name="AstalRiverRiver"
+           glib:get-type="astal_river_river_get_type"
+           glib:type-struct="RiverClass">
+      <doc xml:space="preserve"
+           filename="src/river.c"
+           line="105">This class creates a connection to the river compositor.</doc>
+      <source-position filename="include/astal-river.h" line="84"/>
+      <implements name="Gio.Initable"/>
+      <constructor name="new" c:identifier="astal_river_river_new">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="434">creates a new River object. It is recommended to use the [func@AstalRiver.get_default] method
+instead of this method.</doc>
+        <source-position filename="include/astal-river.h" line="86"/>
+        <return-value transfer-ownership="full" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/river.c"
+               line="440">a newly created connection to river</doc>
+          <type name="River" c:type="AstalRiverRiver*"/>
+        </return-value>
+      </constructor>
+      <function name="get_default"
+                c:identifier="astal_river_river_get_default">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="453">returns the default River object.</doc>
+        <source-position filename="include/astal-river.h" line="88"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/river.c"
+               line="458">gets the default River object.</doc>
+          <type name="River" c:type="AstalRiverRiver*"/>
+        </return-value>
+      </function>
+      <method name="get_focused_output"
+              c:identifier="astal_river_river_get_focused_output"
+              glib:get-property="focused-output">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="152">returns the name of the currently focused output</doc>
+        <source-position filename="include/astal-river.h" line="97"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/river.c"
+               line="158">the name of the currently focused output</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="154">the AstalRiverOutput object</doc>
+            <type name="River" c:type="AstalRiverRiver*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_focused_view"
+              c:identifier="astal_river_river_get_focused_view"
+              glib:get-property="focused-view">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="139">returns the currently focused view</doc>
+        <source-position filename="include/astal-river.h" line="95"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/river.c"
+               line="145">the currently focused view</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="141">the AstalRiverOutput object</doc>
+            <type name="River" c:type="AstalRiverRiver*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_mode"
+              c:identifier="astal_river_river_get_mode"
+              glib:get-property="mode">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="165">returns the currently active mode</doc>
+        <source-position filename="include/astal-river.h" line="99"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/river.c"
+               line="171">the currently active mode</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="167">the AstalRiverOutput object</doc>
+            <type name="River" c:type="AstalRiverRiver*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_output" c:identifier="astal_river_river_get_output">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="125">returns the output with the given name or null</doc>
+        <source-position filename="include/astal-river.h" line="93"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/river.c"
+               line="132">the output with the given name or null</doc>
+          <type name="Output" c:type="AstalRiverOutput*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="127">the AstalRiverRiver object</doc>
+            <type name="River" c:type="AstalRiverRiver*"/>
+          </instance-parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="128">the name of the output</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_outputs"
+              c:identifier="astal_river_river_get_outputs"
+              glib:get-property="outputs">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="111">returns a list of all outputs</doc>
+        <source-position filename="include/astal-river.h" line="91"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/river.c"
+               line="117">a list of all outputs</doc>
+          <type name="GLib.List" c:type="GList*">
+            <type name="Output"/>
+          </type>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="113">the AstalRiverRiver object</doc>
+            <type name="River" c:type="AstalRiverRiver*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="new_layout" c:identifier="astal_river_river_new_layout">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="201">creates a new [class@AstalRiver.Layout] object for this river instance.</doc>
+        <source-position filename="include/astal-river.h" line="101"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="src/river.c"
+               line="208">a newly created AstalRiverLayout object</doc>
+          <type name="Layout" c:type="AstalRiverLayout*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="203">the AstalRiverRiver object</doc>
+            <type name="River" c:type="AstalRiverRiver*"/>
+          </instance-parameter>
+          <parameter name="namespace" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="204">the namespace of the layout</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="run_command_async"
+              c:identifier="astal_river_river_run_command_async">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="326">Sends a given command to the compositor and calls the callback after it was executed.</doc>
+        <source-position filename="include/astal-river.h" line="112"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="328">the AstalRiverRiver object</doc>
+            <type name="River" c:type="AstalRiverRiver*"/>
+          </instance-parameter>
+          <parameter name="length" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="329">the length of the cmd array</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="cmd" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="330">the command to execute</doc>
+            <array length="0" zero-terminated="0" c:type="const gchar**">
+              <type name="utf8" c:type="gchar*"/>
+            </array>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="331">the callback to invoke.</doc>
+            <type name="CommandCallback" c:type="AstalRiverCommandCallback"/>
+          </parameter>
+        </parameters>
+      </method>
+      <property name="focused-output"
+                transfer-ownership="none"
+                getter="get_focused_output"
+                default-value="NULL">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="526">The name of the currently focused output</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="focused-view"
+                transfer-ownership="none"
+                getter="get_focused_view"
+                default-value="NULL">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="519">The name of the currently focused view</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="mode"
+                transfer-ownership="none"
+                getter="get_mode"
+                default-value="NULL">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="512">The currently active mode</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="outputs" transfer-ownership="none" getter="get_outputs">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="533">A list of [class@AstalRiver.Output] objects</doc>
+        <type name="GLib.List" c:type="gpointer">
+          <type name="Output"/>
+        </type>
+      </property>
+      <glib:signal name="changed" when="first">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </glib:signal>
+      <glib:signal name="output-added" when="first">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="543">This signal is emitted when a new output was connected</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="output" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="546">the name of the added output</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="output-removed" when="first">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="553">This signal is emitted when a new output was disconnected</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="output" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/river.c"
+                 line="556">the name of the removed output</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+    </class>
+    <record name="RiverClass"
+            c:type="AstalRiverRiverClass"
+            glib:is-gtype-struct-for="River">
+      <source-position filename="include/astal-river.h" line="84"/>
+      <field name="parent_class">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+    </record>
+    <enumeration name="Transform"
+                 glib:type-name="AstalRiverTransform"
+                 glib:get-type="astal_river_transform_get_type"
+                 c:type="AstalRiverTransform">
+      <member name="normal"
+              value="0"
+              c:identifier="ASTAL_RIVER_TRANSFORM_NORMAL"
+              glib:nick="normal"
+              glib:name="ASTAL_RIVER_TRANSFORM_NORMAL">
+      </member>
+      <member name="rotate_90"
+              value="1"
+              c:identifier="ASTAL_RIVER_TRANSFORM_ROTATE_90_DEG"
+              glib:nick="rotate-90"
+              glib:name="ASTAL_RIVER_TRANSFORM_ROTATE_90_DEG">
+      </member>
+      <member name="rotate_180"
+              value="2"
+              c:identifier="ASTAL_RIVER_TRANSFORM_ROTATE_180_DEG"
+              glib:nick="rotate-180"
+              glib:name="ASTAL_RIVER_TRANSFORM_ROTATE_180_DEG">
+      </member>
+      <member name="rotate_270"
+              value="3"
+              c:identifier="ASTAL_RIVER_TRANSFORM_ROTATE_270_DEG"
+              glib:nick="rotate-270"
+              glib:name="ASTAL_RIVER_TRANSFORM_ROTATE_270_DEG">
+      </member>
+      <member name="flipped"
+              value="4"
+              c:identifier="ASTAL_RIVER_TRANSFORM_FLIPPED"
+              glib:nick="flipped"
+              glib:name="ASTAL_RIVER_TRANSFORM_FLIPPED">
+      </member>
+      <member name="flipped_rotate_90"
+              value="5"
+              c:identifier="ASTAL_RIVER_TRANSFORM_FLIPPED_ROTATE_90_DEG"
+              glib:nick="flipped-rotate-90"
+              glib:name="ASTAL_RIVER_TRANSFORM_FLIPPED_ROTATE_90_DEG">
+      </member>
+      <member name="flipped_rotate_180"
+              value="6"
+              c:identifier="ASTAL_RIVER_TRANSFORM_FLIPPED_ROTATE_180_DEG"
+              glib:nick="flipped-rotate-180"
+              glib:name="ASTAL_RIVER_TRANSFORM_FLIPPED_ROTATE_180_DEG">
+      </member>
+      <member name="flipped_rotate_270"
+              value="7"
+              c:identifier="ASTAL_RIVER_TRANSFORM_FLIPPED_ROTATE_270_DEG"
+              glib:nick="flipped-rotate-270"
+              glib:name="ASTAL_RIVER_TRANSFORM_FLIPPED_ROTATE_270_DEG">
+      </member>
+    </enumeration>
+    <constant name="VERSION" value="0.1.0" c:type="ASTAL_RIVER_VERSION">
+      <source-position filename="include/astal-river.h" line="10"/>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <function name="get_default" c:identifier="astal_river_get_default">
+      <source-position filename="include/astal-river.h" line="89"/>
+      <return-value transfer-ownership="none" nullable="1">
+        <doc xml:space="preserve"
+             filename="src/river.c"
+             line="471">gets the default River object.</doc>
+        <type name="River" c:type="AstalRiverRiver*"/>
+      </return-value>
+    </function>
+  </namespace>
+</repository>
