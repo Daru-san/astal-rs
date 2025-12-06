@@ -1,0 +1,24 @@
+[package]
+name = "astal4"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+astal-io = { version = "0.1.0", path = "../crates/astal-io" }
+astal-sys = { version = "0.0.1", path = "sys" }
+gdk4.workspace = true
+gio.workspace = true
+glib.workspace = true
+gtk4.workspace = true
+
+[features]
+gtk_v4_2 = ["gtk4/v4_2"]
+gtk_v4_18 = ["gtk4/v4_18"]
+gtk_v4_6 = ["gtk4/v4_6"]
+gtk_v4_10 = ["gtk4/v4_10"]
+gtk_v4_12 = ["gtk4/v4_12"]
+gio_v2_80 = []
+gtk_v4_22 = []
+gio_v2_28 = []
+v4_22 = []
+gio_v2_32 = []

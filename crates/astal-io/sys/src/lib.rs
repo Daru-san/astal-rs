@@ -4,23 +4,27 @@
 // DO NOT EDIT
 
 #![allow(non_camel_case_types, non_upper_case_globals, non_snake_case)]
-#![allow(clippy::approx_constant, clippy::type_complexity, clippy::unreadable_literal, clippy::upper_case_acronyms)]
+#![allow(
+    clippy::approx_constant,
+    clippy::type_complexity,
+    clippy::unreadable_literal,
+    clippy::upper_case_acronyms
+)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+use gio_sys as gio;
 use glib_sys as glib;
 use gobject_sys as gobject;
-use gtk4_sys as gtk4;
-use gio_sys as gio;
-use gdk_sys as gdk;
 
-#[allow(unused_imports)]
-use std::ffi::{c_int, c_char, c_uchar, c_float, c_uint, c_double,
-    c_short, c_ushort, c_long, c_ulong, c_void};
-#[allow(unused_imports)]
-use libc::{size_t, ssize_t, time_t, off_t, intptr_t, uintptr_t, FILE};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
+#[allow(unused_imports)]
+use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+#[allow(unused_imports)]
+use std::ffi::{
+    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
+};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -43,9 +47,19 @@ pub struct AstalIOApplicationIface {
     pub parent_iface: gobject::GTypeInterface,
     pub quit: Option<unsafe extern "C" fn(*mut AstalIOApplication, *mut *mut glib::GError)>,
     pub inspector: Option<unsafe extern "C" fn(*mut AstalIOApplication, *mut *mut glib::GError)>,
-    pub toggle_window: Option<unsafe extern "C" fn(*mut AstalIOApplication, *const c_char, *mut *mut glib::GError)>,
-    pub acquire_socket: Option<unsafe extern "C" fn(*mut AstalIOApplication, *mut *mut glib::GError)>,
-    pub request: Option<unsafe extern "C" fn(*mut AstalIOApplication, *const c_char, *mut gio::GSocketConnection, *mut *mut glib::GError)>,
+    pub toggle_window: Option<
+        unsafe extern "C" fn(*mut AstalIOApplication, *const c_char, *mut *mut glib::GError),
+    >,
+    pub acquire_socket:
+        Option<unsafe extern "C" fn(*mut AstalIOApplication, *mut *mut glib::GError)>,
+    pub request: Option<
+        unsafe extern "C" fn(
+            *mut AstalIOApplication,
+            *const c_char,
+            *mut gio::GSocketConnection,
+            *mut *mut glib::GError,
+        ),
+    >,
     pub get_instance_name: Option<unsafe extern "C" fn(*mut AstalIOApplication) -> *mut c_char>,
     pub set_instance_name: Option<unsafe extern "C" fn(*mut AstalIOApplication, *const c_char)>,
 }
@@ -53,14 +67,14 @@ pub struct AstalIOApplicationIface {
 impl ::std::fmt::Debug for AstalIOApplicationIface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalIOApplicationIface @ {self:p}"))
-         .field("quit", &self.quit)
-         .field("inspector", &self.inspector)
-         .field("toggle_window", &self.toggle_window)
-         .field("acquire_socket", &self.acquire_socket)
-         .field("request", &self.request)
-         .field("get_instance_name", &self.get_instance_name)
-         .field("set_instance_name", &self.set_instance_name)
-         .finish()
+            .field("quit", &self.quit)
+            .field("inspector", &self.inspector)
+            .field("toggle_window", &self.toggle_window)
+            .field("acquire_socket", &self.acquire_socket)
+            .field("request", &self.request)
+            .field("get_instance_name", &self.get_instance_name)
+            .field("set_instance_name", &self.set_instance_name)
+            .finish()
     }
 }
 
@@ -68,14 +82,16 @@ impl ::std::fmt::Debug for AstalIOApplicationIface {
 #[repr(C)]
 pub struct AstalIODaemonClass {
     pub parent_class: gio::GApplicationClass,
-    pub request: Option<unsafe extern "C" fn(*mut AstalIODaemon, *const c_char, *mut gio::GSocketConnection)>,
+    pub request: Option<
+        unsafe extern "C" fn(*mut AstalIODaemon, *const c_char, *mut gio::GSocketConnection),
+    >,
 }
 
 impl ::std::fmt::Debug for AstalIODaemonClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalIODaemonClass @ {self:p}"))
-         .field("request", &self.request)
-         .finish()
+            .field("request", &self.request)
+            .finish()
     }
 }
 
@@ -97,7 +113,7 @@ pub struct AstalIOProcessClass {
 impl ::std::fmt::Debug for AstalIOProcessClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalIOProcessClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -119,7 +135,7 @@ pub struct AstalIOTimeClass {
 impl ::std::fmt::Debug for AstalIOTimeClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalIOTimeClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -141,7 +157,7 @@ pub struct AstalIOVariableBaseClass {
 impl ::std::fmt::Debug for AstalIOVariableBaseClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalIOVariableBaseClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -163,7 +179,7 @@ pub struct AstalIOVariableClass {
 impl ::std::fmt::Debug for AstalIOVariableClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalIOVariableClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -187,7 +203,7 @@ pub struct AstalIODaemon {
 impl ::std::fmt::Debug for AstalIODaemon {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalIODaemon @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -201,7 +217,7 @@ pub struct AstalIOProcess {
 impl ::std::fmt::Debug for AstalIOProcess {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalIOProcess @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -214,8 +230,7 @@ pub struct AstalIOTime {
 
 impl ::std::fmt::Debug for AstalIOTime {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("AstalIOTime @ {self:p}"))
-         .finish()
+        f.debug_struct(&format!("AstalIOTime @ {self:p}")).finish()
     }
 }
 
@@ -229,7 +244,7 @@ pub struct AstalIOVariable {
 impl ::std::fmt::Debug for AstalIOVariable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalIOVariable @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -243,7 +258,7 @@ pub struct AstalIOVariableBase {
 impl ::std::fmt::Debug for AstalIOVariableBase {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalIOVariableBase @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -261,7 +276,6 @@ impl ::std::fmt::Debug for AstalIOApplication {
     }
 }
 
-
 extern "C" {
 
     //=========================================================================
@@ -273,7 +287,11 @@ extern "C" {
     // AstalIODaemon
     //=========================================================================
     pub fn astal_io_daemon_get_type() -> GType;
-    pub fn astal_io_daemon_request(self_: *mut AstalIODaemon, request: *const c_char, conn: *mut gio::GSocketConnection);
+    pub fn astal_io_daemon_request(
+        self_: *mut AstalIODaemon,
+        request: *const c_char,
+        conn: *mut gio::GSocketConnection,
+    );
     pub fn astal_io_daemon_new() -> *mut AstalIODaemon;
 
     //=========================================================================
@@ -282,28 +300,84 @@ extern "C" {
     pub fn astal_io_process_get_type() -> GType;
     pub fn astal_io_process_kill(self_: *mut AstalIOProcess);
     pub fn astal_io_process_signal(self_: *mut AstalIOProcess, signal_num: c_int);
-    pub fn astal_io_process_write(self_: *mut AstalIOProcess, in_: *const c_char, error: *mut *mut glib::GError);
-    pub fn astal_io_process_write_async(self_: *mut AstalIOProcess, in_: *const c_char, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
+    pub fn astal_io_process_write(
+        self_: *mut AstalIOProcess,
+        in_: *const c_char,
+        error: *mut *mut glib::GError,
+    );
+    pub fn astal_io_process_write_async(
+        self_: *mut AstalIOProcess,
+        in_: *const c_char,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
     pub fn astal_io_process_write_finish(self_: *mut AstalIOProcess, _res_: *mut gio::GAsyncResult);
-    pub fn astal_io_process_new(cmd: *mut *mut c_char, cmd_length1: c_int, error: *mut *mut glib::GError) -> *mut AstalIOProcess;
-    pub fn astal_io_process_subprocessv(cmd: *mut *mut c_char, cmd_length1: c_int, error: *mut *mut glib::GError) -> *mut AstalIOProcess;
-    pub fn astal_io_process_subprocess(cmd: *const c_char, error: *mut *mut glib::GError) -> *mut AstalIOProcess;
-    pub fn astal_io_process_execv(cmd: *mut *mut c_char, cmd_length1: c_int, error: *mut *mut glib::GError) -> *mut c_char;
+    pub fn astal_io_process_new(
+        cmd: *mut *mut c_char,
+        cmd_length1: c_int,
+        error: *mut *mut glib::GError,
+    ) -> *mut AstalIOProcess;
+    pub fn astal_io_process_subprocessv(
+        cmd: *mut *mut c_char,
+        cmd_length1: c_int,
+        error: *mut *mut glib::GError,
+    ) -> *mut AstalIOProcess;
+    pub fn astal_io_process_subprocess(
+        cmd: *const c_char,
+        error: *mut *mut glib::GError,
+    ) -> *mut AstalIOProcess;
+    pub fn astal_io_process_execv(
+        cmd: *mut *mut c_char,
+        cmd_length1: c_int,
+        error: *mut *mut glib::GError,
+    ) -> *mut c_char;
     pub fn astal_io_process_exec(cmd: *const c_char, error: *mut *mut glib::GError) -> *mut c_char;
-    pub fn astal_io_process_exec_asyncv(cmd: *mut *mut c_char, cmd_length1: c_int, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_io_process_exec_asyncv_finish(_res_: *mut gio::GAsyncResult, error: *mut *mut glib::GError) -> *mut c_char;
-    pub fn astal_io_process_exec_async(cmd: *const c_char, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_io_process_exec_finish(_res_: *mut gio::GAsyncResult, error: *mut *mut glib::GError) -> *mut c_char;
-    pub fn astal_io_process_get_argv(self_: *mut AstalIOProcess, result_length1: *mut c_int) -> *mut *mut c_char;
+    pub fn astal_io_process_exec_asyncv(
+        cmd: *mut *mut c_char,
+        cmd_length1: c_int,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_io_process_exec_asyncv_finish(
+        _res_: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut c_char;
+    pub fn astal_io_process_exec_async(
+        cmd: *const c_char,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_io_process_exec_finish(
+        _res_: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut c_char;
+    pub fn astal_io_process_get_argv(
+        self_: *mut AstalIOProcess,
+        result_length1: *mut c_int,
+    ) -> *mut *mut c_char;
 
     //=========================================================================
     // AstalIOTime
     //=========================================================================
     pub fn astal_io_time_get_type() -> GType;
-    pub fn astal_io_time_new_interval_prio(interval: c_uint, prio: c_int, fn_: *mut gobject::GClosure) -> *mut AstalIOTime;
-    pub fn astal_io_time_new_timeout_prio(timeout: c_uint, prio: c_int, fn_: *mut gobject::GClosure) -> *mut AstalIOTime;
-    pub fn astal_io_time_new_idle_prio(prio: c_int, fn_: *mut gobject::GClosure) -> *mut AstalIOTime;
-    pub fn astal_io_time_interval(interval: c_uint, fn_: *mut gobject::GClosure) -> *mut AstalIOTime;
+    pub fn astal_io_time_new_interval_prio(
+        interval: c_uint,
+        prio: c_int,
+        fn_: *mut gobject::GClosure,
+    ) -> *mut AstalIOTime;
+    pub fn astal_io_time_new_timeout_prio(
+        timeout: c_uint,
+        prio: c_int,
+        fn_: *mut gobject::GClosure,
+    ) -> *mut AstalIOTime;
+    pub fn astal_io_time_new_idle_prio(
+        prio: c_int,
+        fn_: *mut gobject::GClosure,
+    ) -> *mut AstalIOTime;
+    pub fn astal_io_time_interval(
+        interval: c_uint,
+        fn_: *mut gobject::GClosure,
+    ) -> *mut AstalIOTime;
     pub fn astal_io_time_timeout(timeout: c_uint, fn_: *mut gobject::GClosure) -> *mut AstalIOTime;
     pub fn astal_io_time_idle(fn_: *mut gobject::GClosure) -> *mut AstalIOTime;
     pub fn astal_io_time_cancel(self_: *mut AstalIOTime);
@@ -314,13 +388,45 @@ extern "C" {
     //=========================================================================
     pub fn astal_io_variable_get_type() -> GType;
     pub fn astal_io_variable_new(init: *mut gobject::GValue) -> *mut AstalIOVariable;
-    pub fn astal_io_variable_poll(self_: *mut AstalIOVariable, interval: c_uint, exec: *const c_char, transform: *mut gobject::GClosure, error: *mut *mut glib::GError) -> *mut AstalIOVariable;
-    pub fn astal_io_variable_pollv(self_: *mut AstalIOVariable, interval: c_uint, execv: *mut *mut c_char, execv_length1: c_int, transform: *mut gobject::GClosure, error: *mut *mut glib::GError) -> *mut AstalIOVariable;
-    pub fn astal_io_variable_pollfn(self_: *mut AstalIOVariable, interval: c_uint, fn_: *mut gobject::GClosure, error: *mut *mut glib::GError) -> *mut AstalIOVariable;
-    pub fn astal_io_variable_watch(self_: *mut AstalIOVariable, exec: *const c_char, transform: *mut gobject::GClosure, error: *mut *mut glib::GError) -> *mut AstalIOVariable;
-    pub fn astal_io_variable_watchv(self_: *mut AstalIOVariable, execv: *mut *mut c_char, execv_length1: c_int, transform: *mut gobject::GClosure, error: *mut *mut glib::GError) -> *mut AstalIOVariable;
+    pub fn astal_io_variable_poll(
+        self_: *mut AstalIOVariable,
+        interval: c_uint,
+        exec: *const c_char,
+        transform: *mut gobject::GClosure,
+        error: *mut *mut glib::GError,
+    ) -> *mut AstalIOVariable;
+    pub fn astal_io_variable_pollv(
+        self_: *mut AstalIOVariable,
+        interval: c_uint,
+        execv: *mut *mut c_char,
+        execv_length1: c_int,
+        transform: *mut gobject::GClosure,
+        error: *mut *mut glib::GError,
+    ) -> *mut AstalIOVariable;
+    pub fn astal_io_variable_pollfn(
+        self_: *mut AstalIOVariable,
+        interval: c_uint,
+        fn_: *mut gobject::GClosure,
+        error: *mut *mut glib::GError,
+    ) -> *mut AstalIOVariable;
+    pub fn astal_io_variable_watch(
+        self_: *mut AstalIOVariable,
+        exec: *const c_char,
+        transform: *mut gobject::GClosure,
+        error: *mut *mut glib::GError,
+    ) -> *mut AstalIOVariable;
+    pub fn astal_io_variable_watchv(
+        self_: *mut AstalIOVariable,
+        execv: *mut *mut c_char,
+        execv_length1: c_int,
+        transform: *mut gobject::GClosure,
+        error: *mut *mut glib::GError,
+    ) -> *mut AstalIOVariable;
     pub fn astal_io_variable_start_poll(self_: *mut AstalIOVariable, error: *mut *mut glib::GError);
-    pub fn astal_io_variable_start_watch(self_: *mut AstalIOVariable, error: *mut *mut glib::GError);
+    pub fn astal_io_variable_start_watch(
+        self_: *mut AstalIOVariable,
+        error: *mut *mut glib::GError,
+    );
     pub fn astal_io_variable_stop_poll(self_: *mut AstalIOVariable);
     pub fn astal_io_variable_stop_watch(self_: *mut AstalIOVariable);
     pub fn astal_io_variable_is_polling(self_: *mut AstalIOVariable) -> gboolean;
@@ -342,33 +448,94 @@ extern "C" {
     //=========================================================================
     pub fn astal_io_application_get_type() -> GType;
     pub fn astal_io_application_quit(self_: *mut AstalIOApplication, error: *mut *mut glib::GError);
-    pub fn astal_io_application_inspector(self_: *mut AstalIOApplication, error: *mut *mut glib::GError);
-    pub fn astal_io_application_toggle_window(self_: *mut AstalIOApplication, window: *const c_char, error: *mut *mut glib::GError);
-    pub fn astal_io_application_acquire_socket(self_: *mut AstalIOApplication, error: *mut *mut glib::GError);
-    pub fn astal_io_application_request(self_: *mut AstalIOApplication, request: *const c_char, conn: *mut gio::GSocketConnection, error: *mut *mut glib::GError);
+    pub fn astal_io_application_inspector(
+        self_: *mut AstalIOApplication,
+        error: *mut *mut glib::GError,
+    );
+    pub fn astal_io_application_toggle_window(
+        self_: *mut AstalIOApplication,
+        window: *const c_char,
+        error: *mut *mut glib::GError,
+    );
+    pub fn astal_io_application_acquire_socket(
+        self_: *mut AstalIOApplication,
+        error: *mut *mut glib::GError,
+    );
+    pub fn astal_io_application_request(
+        self_: *mut AstalIOApplication,
+        request: *const c_char,
+        conn: *mut gio::GSocketConnection,
+        error: *mut *mut glib::GError,
+    );
     pub fn astal_io_application_get_instance_name(self_: *mut AstalIOApplication) -> *mut c_char;
-    pub fn astal_io_application_set_instance_name(self_: *mut AstalIOApplication, value: *const c_char);
+    pub fn astal_io_application_set_instance_name(
+        self_: *mut AstalIOApplication,
+        value: *const c_char,
+    );
 
     //=========================================================================
     // Other functions
     //=========================================================================
-    pub fn astal_io_acquire_socket(app: *mut AstalIOApplication, sock: *mut *mut c_char, error: *mut *mut glib::GError) -> *mut gio::GSocketService;
+    pub fn astal_io_acquire_socket(
+        app: *mut AstalIOApplication,
+        sock: *mut *mut c_char,
+        error: *mut *mut glib::GError,
+    ) -> *mut gio::GSocketService;
     pub fn astal_io_get_instances() -> *mut glib::GList;
     pub fn astal_io_quit_instance(instance: *const c_char, error: *mut *mut glib::GError);
     pub fn astal_io_open_inspector(instance: *const c_char, error: *mut *mut glib::GError);
-    pub fn astal_io_toggle_window_by_name(instance: *const c_char, window: *const c_char, error: *mut *mut glib::GError);
-    pub fn astal_io_send_message(instance: *const c_char, request: *const c_char, error: *mut *mut glib::GError) -> *mut c_char;
-    pub fn astal_io_send_request(instance: *const c_char, request: *const c_char, error: *mut *mut glib::GError) -> *mut c_char;
-    pub fn astal_io_read_sock(conn: *mut gio::GSocketConnection, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_io_read_sock_finish(_res_: *mut gio::GAsyncResult, error: *mut *mut glib::GError) -> *mut c_char;
-    pub fn astal_io_write_sock(conn: *mut gio::GSocketConnection, response: *const c_char, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
+    pub fn astal_io_toggle_window_by_name(
+        instance: *const c_char,
+        window: *const c_char,
+        error: *mut *mut glib::GError,
+    );
+    pub fn astal_io_send_message(
+        instance: *const c_char,
+        request: *const c_char,
+        error: *mut *mut glib::GError,
+    ) -> *mut c_char;
+    pub fn astal_io_send_request(
+        instance: *const c_char,
+        request: *const c_char,
+        error: *mut *mut glib::GError,
+    ) -> *mut c_char;
+    pub fn astal_io_read_sock(
+        conn: *mut gio::GSocketConnection,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_io_read_sock_finish(
+        _res_: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut c_char;
+    pub fn astal_io_write_sock(
+        conn: *mut gio::GSocketConnection,
+        response: *const c_char,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
     pub fn astal_io_write_sock_finish(_res_: *mut gio::GAsyncResult, error: *mut *mut glib::GError);
     pub fn astal_io_read_file(path: *const c_char) -> *mut c_char;
-    pub fn astal_io_read_file_async(path: *const c_char, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_io_read_file_finish(_res_: *mut gio::GAsyncResult, error: *mut *mut glib::GError) -> *mut c_char;
+    pub fn astal_io_read_file_async(
+        path: *const c_char,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_io_read_file_finish(
+        _res_: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut c_char;
     pub fn astal_io_write_file(path: *const c_char, content: *const c_char);
-    pub fn astal_io_write_file_async(path: *const c_char, content: *const c_char, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
+    pub fn astal_io_write_file_async(
+        path: *const c_char,
+        content: *const c_char,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
     pub fn astal_io_write_file_finish(_res_: *mut gio::GAsyncResult, error: *mut *mut glib::GError);
-    pub fn astal_io_monitor_file(path: *const c_char, callback: *mut gobject::GClosure) -> *mut gio::GFileMonitor;
+    pub fn astal_io_monitor_file(
+        path: *const c_char,
+        callback: *mut gobject::GClosure,
+    ) -> *mut gio::GFileMonitor;
 
 }

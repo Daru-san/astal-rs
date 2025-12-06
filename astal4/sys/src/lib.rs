@@ -12,10 +12,9 @@
 )]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
-use gdk_sys as gdk;
+use gdk4::ffi as gdk;
 use gio_sys as gio;
 use glib_sys as glib;
-use gobject_sys as gobject;
 use gtk4_sys as gtk;
 
 #[cfg(unix)]
