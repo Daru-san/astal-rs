@@ -1,0 +1,5 @@
+[submodule "gtk-girs"]
+	path = gtk-girs
+	url = https://github.com/gtk-rs/gir-files
+	update = none
+	branch = main
