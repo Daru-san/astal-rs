@@ -70,12 +70,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "astal-niri"
+version = "0.1.0"
+
+[[package]]
 name = "astal-niri-sys"
 version = "0.0.1"
 dependencies = [
  "gio-sys 0.21.5",
  "glib-sys 0.21.5",
  "gobject-sys 0.21.5",
+ "json-glib-sys",
  "libc",
  "shell-words",
  "system-deps 7.0.7",
@@ -846,6 +851,18 @@ checksum = "0ad4bb2b565bca0645f4d68c5c9af97fba094e9791da685bf83cb5f3ce74acf2"
 dependencies = [
  "equivalent",
  "hashbrown",
+]
+
+[[package]]
+name = "json-glib-sys"
+version = "0.0.1"
+source = "git+https://github.com/Daru-san/json-glib-rs#043dc257a9fc705ff52073766d1bef0f3cc373f4"
+dependencies = [
+ "gio-sys 0.21.5",
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "system-deps 7.0.7",
 ]
 
 [[package]]
