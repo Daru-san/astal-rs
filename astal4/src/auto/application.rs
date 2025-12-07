@@ -17,6 +17,366 @@ use std::boxed::Box as Box_;
 #[cfg(feature = "gio_v2_28")]
 #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `monitors`
+    ///  Get all monitors from `Gdk::Display`.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `windows`
+    ///  Windows that has been added to this app using [`ApplicationExtManual::add_window()`][crate::gtk::prelude::ApplicationExtManual::add_window()].
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `gtk-theme`
+    ///  Shortcut for [`gtk_theme_name`][struct@crate::Gtk::Settings#gtk_theme_name]
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `icon-theme`
+    ///  Shortcut for [`gtk_icon_theme_name`][struct@crate::Gtk::Settings#gtk_icon_theme_name]
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `cursor-theme`
+    ///  Shortcut for [`gtk_cursor_theme_name`][struct@crate::Gtk::Settings#gtk_cursor_theme_name]
+    ///
+    /// Readable | Writeable
+    /// <details><summary><h4>Application</h4></summary>
+    ///
+    ///
+    /// #### `active-window`
+    ///  The currently focused window of the application.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `autosave-interval`
+    ///  The number of seconds between automatic state saves. Defaults to 15.
+    /// A value of 0 will opt out of automatic state saving.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `menubar`
+    ///  The menu model to be used for the application's menu bar.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `register-session`
+    ///  Set this property to true to register with the session manager.
+    ///
+    /// This will make GTK track the session state (such as the
+    /// [`screensaver-active`][struct@crate::gtk::Application#screensaver-active] property).
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `screensaver-active`
+    ///  This property is true if GTK believes that the screensaver
+    /// is currently active.
+    ///
+    /// Tracking the screensaver state is currently only supported on
+    /// Linux.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `support-save`
+    ///  Set this property to true if the application supports
+    /// state saving and restoring.
+    ///
+    /// Readable | Writeable
+    /// </details>
+    /// <details><summary><h4>Application</h4></summary>
+    ///
+    ///
+    /// #### `action-group`
+    ///  The group of actions that the application exports.
+    ///
+    /// Writeable
+    ///
+    ///
+    /// #### `application-id`
+    ///  The unique identifier for the application.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `flags`
+    ///  Flags specifying the behaviour of the application.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `inactivity-timeout`
+    ///  Time (in milliseconds) to stay alive after becoming idle.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `is-busy`
+    ///  Whether the application is currently marked as busy through
+    /// g_application_mark_busy() or g_application_bind_busy_property().
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `is-registered`
+    ///  Whether [`ApplicationExtManual::register()`][crate::gio::prelude::ApplicationExtManual::register()] has been called.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `is-remote`
+    ///  Whether this application instance is remote.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `resource-base-path`
+    ///  The base resource path for the application.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `version`
+    ///  The human-readable version number of the application.
+    ///
+    /// Readable | Writeable
+    /// </details>
+    /// <details><summary><h4>Application</h4></summary>
+    ///
+    ///
+    /// #### `instance-name`
+    ///  Readable | Writeable | Construct
+    /// </details>
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `window-toggled`
+    ///  Emitted when a window that has been added using [`ApplicationExtManual::add_window()`][crate::gtk::prelude::ApplicationExtManual::add_window()] changes its visibility .
+    ///
+    ///
+    /// <details><summary><h4>Application</h4></summary>
+    ///
+    ///
+    /// #### `query-end`
+    ///  Emitted when the session manager is about to end the session.
+    ///
+    /// Applications can connect to this signal and call
+    /// [`ApplicationExtManual::inhibit()`][crate::gtk::prelude::ApplicationExtManual::inhibit()] with [flags@Gtk.ApplicationInhibitFlags.logout]
+    /// to delay the end of the session until state has been saved.
+    ///
+    ///
+    ///
+    ///
+    /// #### `restore-state`
+    ///  Emitted when application global state is restored.
+    ///
+    /// The handler for this signal should do the opposite of what the
+    /// corresponding handler for [`save-state`][struct@crate::gtk::Application#save-state]
+    /// does.
+    ///
+    ///
+    ///
+    ///
+    /// #### `restore-window`
+    ///  Emitted when an application's per-window state is restored.
+    ///
+    /// In response to this signal, you should create a new application
+    /// window, add it to @application, apply the provided @state, and present it.
+    /// The application can use the @reason to determine how much of the state
+    /// should be restored.
+    ///
+    /// You must be careful to be robust in the face of app upgrades and downgrades:
+    /// the @state might have been created by a previous or occasionally even a future
+    /// version of your app. Do not assume that a given key exists in the state.
+    /// Apps must try to restore state saved by a previous version, but are free to
+    /// discard state if it was written by a future version.
+    ///
+    /// GTK will remember which window the user was using most recently, and will
+    /// emit this signal for that window first. Thus, if you decide that the provided
+    /// @reason means that only one window should be restored, you can reliably
+    /// ignore emissions if a window already exists
+    ///
+    /// Note that this signal is not emitted only during the app's initial launch.
+    /// If all windows are closed but the app keeps running, the signal will be
+    /// emitted the next time a new window is opened.
+    ///
+    ///
+    ///
+    ///
+    /// #### `save-state`
+    ///  Emitted when the application is saving global state.
+    ///
+    /// The handler for this signal should persist any
+    /// global state of @application into @dict.
+    ///
+    /// See [`restore-state`][struct@crate::gtk::Application#restore-state] for how to
+    /// restore global state, and [`save-state`][struct@crate::Gtk::ApplicationWindow#save-state]
+    /// and [`restore-window`][struct@crate::gtk::Application#restore-window] for handling
+    /// per-window state.
+    ///
+    ///
+    ///
+    ///
+    /// #### `window-added`
+    ///  Emitted when a window is added to an application.
+    ///
+    /// See [`ApplicationExtManual::add_window()`][crate::gtk::prelude::ApplicationExtManual::add_window()].
+    ///
+    ///
+    ///
+    ///
+    /// #### `window-removed`
+    ///  Emitted when a window is removed from an application.
+    ///
+    /// This can happen as a side-effect of the window being destroyed
+    /// or explicitly through [`ApplicationExtManual::remove_window()`][crate::gtk::prelude::ApplicationExtManual::remove_window()].
+    ///
+    ///
+    /// </details>
+    /// <details><summary><h4>Application</h4></summary>
+    ///
+    ///
+    /// #### `activate`
+    ///  The ::activate signal is emitted on the primary instance when an
+    /// activation occurs. See g_application_activate().
+    ///
+    ///
+    ///
+    ///
+    /// #### `command-line`
+    ///  The ::command-line signal is emitted on the primary instance when
+    /// a commandline is not handled locally. See g_application_run() and
+    /// the #GApplicationCommandLine documentation for more information.
+    ///
+    ///
+    ///
+    ///
+    /// #### `handle-local-options`
+    ///  The ::handle-local-options signal is emitted on the local instance
+    /// after the parsing of the commandline options has occurred.
+    ///
+    /// You can add options to be recognised during commandline option
+    /// parsing using g_application_add_main_option_entries() and
+    /// g_application_add_option_group().
+    ///
+    /// Signal handlers can inspect @options (along with values pointed to
+    /// from the @arg_data of an installed #GOptionEntrys) in order to
+    /// decide to perform certain actions, including direct local handling
+    /// (which may be useful for options like --version).
+    ///
+    /// In the event that the application is marked
+    /// `G_APPLICATION_HANDLES_COMMAND_LINE` the "normal processing" will
+    /// send the @options dictionary to the primary instance where it can be
+    /// read with g_application_command_line_get_options_dict().  The signal
+    /// handler can modify the dictionary before returning, and the
+    /// modified dictionary will be sent.
+    ///
+    /// In the event that `G_APPLICATION_HANDLES_COMMAND_LINE` is not set,
+    /// "normal processing" will treat the remaining uncollected command
+    /// line arguments as filenames or URIs.  If there are no arguments,
+    /// the application is activated by g_application_activate().  One or
+    /// more arguments results in a call to g_application_open().
+    ///
+    /// If you want to handle the local commandline arguments for yourself
+    /// by converting them to calls to g_application_open() or
+    /// g_action_group_activate_action() then you must be sure to register
+    /// the application first.  You should probably not call
+    /// g_application_activate() for yourself, however: just return -1 and
+    /// allow the default handler to do it for you.  This will ensure that
+    /// the `--gapplication-service` switch works properly (i.e. no activation
+    /// in that case).
+    ///
+    /// Note that this signal is emitted from the default implementation of
+    /// local_command_line().  If you override that function and don't
+    /// chain up then this signal will never be emitted.
+    ///
+    /// You can override local_command_line() if you need more powerful
+    /// capabilities than what is provided here, but this should not
+    /// normally be required.
+    ///
+    ///
+    ///
+    ///
+    /// #### `name-lost`
+    ///  The ::name-lost signal is emitted only on the registered primary instance
+    /// when a new instance has taken over. This can only happen if the application
+    /// is using the `G_APPLICATION_ALLOW_REPLACEMENT` flag.
+    ///
+    /// The default handler for this signal calls g_application_quit().
+    ///
+    ///
+    ///
+    ///
+    /// #### `open`
+    ///  The ::open signal is emitted on the primary instance when there are
+    /// files to open. See g_application_open() for more information.
+    ///
+    ///
+    ///
+    ///
+    /// #### `shutdown`
+    ///  The ::shutdown signal is emitted only on the registered primary instance
+    /// immediately after the main loop terminates.
+    ///
+    ///
+    ///
+    ///
+    /// #### `startup`
+    ///  The ::startup signal is emitted on the primary instance immediately
+    /// after registration. See g_application_register().
+    ///
+    ///
+    /// </details>
+    /// <details><summary><h4>ActionGroup</h4></summary>
+    ///
+    ///
+    /// #### `action-added`
+    ///  Signals that a new action was just added to the group.
+    ///
+    /// This signal is emitted after the action has been added
+    /// and is now visible.
+    ///
+    /// Detailed
+    ///
+    ///
+    /// #### `action-enabled-changed`
+    ///  Signals that the enabled status of the named action has changed.
+    ///
+    /// Detailed
+    ///
+    ///
+    /// #### `action-removed`
+    ///  Signals that an action is just about to be removed from the group.
+    ///
+    /// This signal is emitted before the action is removed, so the action
+    /// is still visible and can be queried from the signal handler.
+    ///
+    /// Detailed
+    ///
+    ///
+    /// #### `action-state-changed`
+    ///  Signals that the state of the named action has changed.
+    ///
+    /// Detailed
+    /// </details>
+    ///
+    /// # Implements
+    ///
+    /// [`ApplicationExt`][trait@crate::prelude::ApplicationExt], [`trait@gtk::prelude::ApplicationExt`], [`trait@gio::prelude::ApplicationExt`], [`trait@gio::prelude::ActionGroupExt`], [`trait@gio::prelude::ActionMapExt`], [`trait@astal_io::prelude::ApplicationExt`]
     #[doc(alias = "AstalApplication")]
     pub struct Application(Object<ffi::AstalApplication, ffi::AstalApplicationClass>) @extends gtk::Application, gio::Application, @implements gio::ActionGroup, gio::ActionMap, astal_io::Application;
 
@@ -86,24 +446,29 @@ impl ApplicationBuilder {
         }
     }
 
+    /// Shortcut for [`gtk_theme_name`][struct@crate::Gtk::Settings#gtk_theme_name]
     pub fn gtk_theme(self, gtk_theme: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("gtk-theme", gtk_theme.into()),
         }
     }
 
+    /// Shortcut for [`gtk_icon_theme_name`][struct@crate::Gtk::Settings#gtk_icon_theme_name]
     pub fn icon_theme(self, icon_theme: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("icon-theme", icon_theme.into()),
         }
     }
 
+    /// Shortcut for [`gtk_cursor_theme_name`][struct@crate::Gtk::Settings#gtk_cursor_theme_name]
     pub fn cursor_theme(self, cursor_theme: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("cursor-theme", cursor_theme.into()),
         }
     }
 
+    /// The number of seconds between automatic state saves. Defaults to 15.
+    /// A value of 0 will opt out of automatic state saving.
     #[cfg(feature = "gtk_v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_22")))]
     pub fn autosave_interval(self, autosave_interval: u32) -> Self {
@@ -118,6 +483,12 @@ impl ApplicationBuilder {
     //    Self { builder: self.builder.property("menubar", menubar.clone().upcast()), }
     //}
 
+    /// Set this property to true to register with the session manager.
+    ///
+    /// This will make GTK track the session state (such as the
+    /// [`screensaver-active`][struct@crate::gtk::Application#screensaver-active] property).
+    /// This property is ignored. GTK always registers
+    /// with the session manager
     #[cfg_attr(feature = "v4_22", deprecated = "Since 4.22")]
     pub fn register_session(self, register_session: bool) -> Self {
         Self {
@@ -125,6 +496,8 @@ impl ApplicationBuilder {
         }
     }
 
+    /// Set this property to true if the application supports
+    /// state saving and restoring.
     #[cfg(feature = "gtk_v4_22")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_22")))]
     pub fn support_save(self, support_save: bool) -> Self {
@@ -133,6 +506,7 @@ impl ApplicationBuilder {
         }
     }
 
+    /// The unique identifier for the application.
     #[cfg(feature = "gio_v2_28")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
     pub fn application_id(self, application_id: impl Into<glib::GString>) -> Self {
@@ -148,6 +522,7 @@ impl ApplicationBuilder {
     //pub fn flags(self, flags: /*Ignored*/gio::ApplicationFlags) -> Self {
     //    Self { builder: self.builder.property("flags", flags), }
     //}
+    /// Time (in milliseconds) to stay alive after becoming idle.
     #[cfg(feature = "gio_v2_28")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
     pub fn inactivity_timeout(self, inactivity_timeout: u32) -> Self {
@@ -158,6 +533,7 @@ impl ApplicationBuilder {
         }
     }
 
+    /// The base resource path for the application.
     #[cfg(feature = "gio_v2_28")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
     pub fn resource_base_path(self, resource_base_path: impl Into<glib::GString>) -> Self {
@@ -168,6 +544,7 @@ impl ApplicationBuilder {
         }
     }
 
+    /// The human-readable version number of the application.
     #[cfg(feature = "gio_v2_80")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_80")))]
     pub fn version(self, version: impl Into<glib::GString>) -> Self {
@@ -191,7 +568,13 @@ impl ApplicationBuilder {
     }
 }
 
+/// Trait containing all [`struct@Application`] methods.
+///
+/// # Implementors
+///
+/// [`Application`][struct@crate::Application]
 pub trait ApplicationExt: IsA<Application> + 'static {
+    /// Remove all `Gtk::StyleContext` providers.
     #[doc(alias = "astal_application_reset_css")]
     fn reset_css(&self) {
         unsafe {
@@ -199,6 +582,7 @@ pub trait ApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    /// Get a window by its [`name`][struct@crate::gtk::Widget#name] that has been added to this app using [`ApplicationExtManual::add_window()`][crate::gtk::prelude::ApplicationExtManual::add_window()].
     #[doc(alias = "astal_application_get_window")]
     #[doc(alias = "get_window")]
     fn window(&self, name: &str) -> Option<gtk::Window> {
@@ -210,6 +594,9 @@ pub trait ApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    /// Add a new `Gtk::StyleContext` provider.
+    /// ## `style`
+    /// Css string or a path to a css file. 
     #[doc(alias = "astal_application_apply_css")]
     fn apply_css(&self, style: &str, reset: bool) {
         unsafe {
@@ -221,6 +608,7 @@ pub trait ApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    /// Shortcut for `Gtk::IconTheme::add_search_path()`.
     #[doc(alias = "astal_application_add_icons")]
     fn add_icons(&self, path: Option<&str>) {
         unsafe {
@@ -228,6 +616,11 @@ pub trait ApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    /// Handler for an incoming request.
+    /// ## `request`
+    /// Body of the request 
+    /// ## `conn`
+    /// The connection which expects the response. 
     #[doc(alias = "astal_application_request")]
     fn request(&self, request: &str, conn: &impl IsA<gio::SocketConnection>) {
         unsafe {
@@ -319,6 +712,7 @@ pub trait ApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    /// Emitted when a window that has been added using [`ApplicationExtManual::add_window()`][crate::gtk::prelude::ApplicationExtManual::add_window()] changes its visibility .
     #[doc(alias = "window-toggled")]
     fn connect_window_toggled<F: Fn(&Self, &gtk::Window) + 'static>(
         &self,

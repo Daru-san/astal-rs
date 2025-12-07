@@ -13,8 +13,10 @@ use glib::{prelude::*,translate::*};
 pub enum Exclusivity {
     #[doc(alias = "ASTAL_EXCLUSIVITY_NORMAL")]
     Normal,
+    /// Request the compositor to allocate space for this window.
     #[doc(alias = "ASTAL_EXCLUSIVITY_EXCLUSIVE")]
     Exclusive,
+    /// Request the compositor to stack layers on top of each other.
     #[doc(alias = "ASTAL_EXCLUSIVITY_IGNORE")]
     Ignore,
 #[doc(hidden)]
@@ -112,10 +114,13 @@ impl From<Exclusivity> for glib::Value {
 #[non_exhaustive]
 #[doc(alias = "AstalKeymode")]
 pub enum Keymode {
+    /// Window should not receive keyboard events.
     #[doc(alias = "ASTAL_KEYMODE_NONE")]
     None,
+    /// Window should have exclusive focus if it is on the top or overlay layer.
     #[doc(alias = "ASTAL_KEYMODE_EXCLUSIVE")]
     Exclusive,
+    /// Focus and Unfocues the window as needed.
     #[doc(alias = "ASTAL_KEYMODE_ON_DEMAND")]
     OnDemand,
 #[doc(hidden)]

@@ -16,6 +16,419 @@ use std::boxed::Box as Box_;
 #[cfg(feature = "gtk_v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_10")))]
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `value`
+    ///  Value of this slider. Defaults to `0`.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `min`
+    ///  Minimum possible value of this slider. Defaults to `0`.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `max`
+    ///  Maximum possible value of this slider. Defaults to `1`.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `step`
+    ///  Size of step increments. Defaults to `0.05`.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `page`
+    ///  Size of page increments. Defaults to `0.01`.
+    ///
+    /// Readable | Writeable
+    /// <details><summary><h4>Scale</h4></summary>
+    ///
+    ///
+    /// #### `digits`
+    ///  The number of decimal places that are displayed in the value.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `draw-value`
+    ///  Whether the current value is displayed as a string next to the slider.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `has-origin`
+    ///  Whether the scale has an origin.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `value-pos`
+    ///  The position in which the current value is displayed.
+    ///
+    /// Readable | Writeable
+    /// </details>
+    /// <details><summary><h4>Range</h4></summary>
+    ///
+    ///
+    /// #### `adjustment`
+    ///  The adjustment that is controlled by the range.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `fill-level`
+    ///  The fill level (e.g. prebuffering of a network stream).
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `inverted`
+    ///  If [`true`], the direction in which the slider moves is inverted.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `restrict-to-fill-level`
+    ///  Controls whether slider movement is restricted to an
+    /// upper boundary set by the fill level.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `round-digits`
+    ///  The number of digits to round the value to when
+    /// it changes.
+    ///
+    /// See [`change-value`][struct@crate::gtk::Range#change-value].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `show-fill-level`
+    ///  Controls whether fill level indicator graphics are displayed
+    /// on the trough.
+    ///
+    /// Readable | Writeable
+    /// </details>
+    /// <details><summary><h4>Widget</h4></summary>
+    ///
+    ///
+    /// #### `can-focus`
+    ///  Whether the widget or any of its descendents can accept
+    /// the input focus.
+    ///
+    /// This property is meant to be set by widget implementations,
+    /// typically in their instance init function.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `can-target`
+    ///  Whether the widget can receive pointer events.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `css-classes`
+    ///  A list of css classes applied to this widget.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `css-name`
+    ///  The name of this widget in the CSS tree.
+    ///
+    /// This property is meant to be set by widget implementations,
+    /// typically in their instance init function.
+    ///
+    /// Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `cursor`
+    ///  The cursor used by @widget.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `focus-on-click`
+    ///  Whether the widget should grab focus when it is clicked with the mouse.
+    ///
+    /// This property is only relevant for widgets that can take focus.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `focusable`
+    ///  Whether this widget itself will accept the input focus.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `halign`
+    ///  How to distribute horizontal space if widget gets extra space.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `has-default`
+    ///  Whether the widget is the default widget.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `has-focus`
+    ///  Whether the widget has the input focus.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `has-tooltip`
+    ///  Enables or disables the emission of the [`query-tooltip`][struct@crate::gtk::Widget#query-tooltip]
+    /// signal on @widget.
+    ///
+    /// A true value indicates that @widget can have a tooltip, in this case
+    /// the widget will be queried using [`query-tooltip`][struct@crate::gtk::Widget#query-tooltip] to
+    /// determine whether it will provide a tooltip or not.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `height-request`
+    ///  Overrides for height request of the widget.
+    ///
+    /// If this is -1, the natural request will be used.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `hexpand`
+    ///  Whether to expand horizontally.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `hexpand-set`
+    ///  Whether to use the `hexpand` property.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `layout-manager`
+    ///  The `Gtk::LayoutManager` instance to use to compute
+    /// the preferred size of the widget, and allocate its children.
+    ///
+    /// This property is meant to be set by widget implementations,
+    /// typically in their instance init function.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `limit-events`
+    ///  Makes this widget act like a modal dialog, with respect to
+    /// event delivery.
+    ///
+    /// Global event controllers will not handle events with targets
+    /// inside the widget, unless they are set up to ignore propagation
+    /// limits. See `Gtk::EventController::set_propagation_limit()`.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `margin-bottom`
+    ///  Margin on bottom side of widget.
+    ///
+    /// This property adds margin outside of the widget's normal size
+    /// request, the margin will be added in addition to the size from
+    /// [`WidgetExtManual::set_size_request()`][crate::gtk::prelude::WidgetExtManual::set_size_request()] for example.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `margin-end`
+    ///  Margin on end of widget, horizontally.
+    ///
+    /// This property supports left-to-right and right-to-left text
+    /// directions.
+    ///
+    /// This property adds margin outside of the widget's normal size
+    /// request, the margin will be added in addition to the size from
+    /// [`WidgetExtManual::set_size_request()`][crate::gtk::prelude::WidgetExtManual::set_size_request()] for example.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `margin-start`
+    ///  Margin on start of widget, horizontally.
+    ///
+    /// This property supports left-to-right and right-to-left text
+    /// directions.
+    ///
+    /// This property adds margin outside of the widget's normal size
+    /// request, the margin will be added in addition to the size from
+    /// [`WidgetExtManual::set_size_request()`][crate::gtk::prelude::WidgetExtManual::set_size_request()] for example.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `margin-top`
+    ///  Margin on top side of widget.
+    ///
+    /// This property adds margin outside of the widget's normal size
+    /// request, the margin will be added in addition to the size from
+    /// [`WidgetExtManual::set_size_request()`][crate::gtk::prelude::WidgetExtManual::set_size_request()] for example.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `name`
+    ///  The name of the widget.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `opacity`
+    ///  The requested opacity of the widget.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `overflow`
+    ///  How content outside the widget's content area is treated.
+    ///
+    /// This property is meant to be set by widget implementations,
+    /// typically in their instance init function.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `parent`
+    ///  The parent widget of this widget.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `receives-default`
+    ///  Whether the widget will receive the default action when it is focused.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `root`
+    ///  The [`gtk::Root`][crate::gtk::Root] widget of the widget tree containing this widget.
+    ///
+    /// This will be `NULL` if the widget is not contained in a root widget.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `scale-factor`
+    ///  The scale factor of the widget.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `sensitive`
+    ///  Whether the widget responds to input.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `tooltip-markup`
+    ///  Sets the text of tooltip to be the given string, which is marked up
+    /// with Pango markup.
+    ///
+    /// Also see `Gtk::Tooltip::set_markup()`.
+    ///
+    /// This is a convenience property which will take care of getting the
+    /// tooltip shown if the given string is not `NULL`:
+    /// [`has-tooltip`][struct@crate::gtk::Widget#has-tooltip] will automatically be set to true
+    /// and there will be taken care of [`query-tooltip`][struct@crate::gtk::Widget#query-tooltip] in
+    /// the default signal handler.
+    ///
+    /// Note that if both [`tooltip-text`][struct@crate::gtk::Widget#tooltip-text] and
+    /// [`tooltip-markup`][struct@crate::gtk::Widget#tooltip-markup] are set, the last one wins.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `tooltip-text`
+    ///  Sets the text of tooltip to be the given string.
+    ///
+    /// Also see `Gtk::Tooltip::set_text()`.
+    ///
+    /// This is a convenience property which will take care of getting the
+    /// tooltip shown if the given string is not `NULL`:
+    /// [`has-tooltip`][struct@crate::gtk::Widget#has-tooltip] will automatically be set to true
+    /// and there will be taken care of [`query-tooltip`][struct@crate::gtk::Widget#query-tooltip] in
+    /// the default signal handler.
+    ///
+    /// Note that if both [`tooltip-text`][struct@crate::gtk::Widget#tooltip-text] and
+    /// [`tooltip-markup`][struct@crate::gtk::Widget#tooltip-markup] are set, the last one wins.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `valign`
+    ///  How to distribute vertical space if widget gets extra space.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `vexpand`
+    ///  Whether to expand vertically.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `vexpand-set`
+    ///  Whether to use the `vexpand` property.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `visible`
+    ///  Whether the widget is visible.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `width-request`
+    ///  Overrides for width request of the widget.
+    ///
+    /// If this is -1, the natural request will be used.
+    ///
+    /// Readable | Writeable
+    /// </details>
+    /// <details><summary><h4>Accessible</h4></summary>
+    ///
+    ///
+    /// #### `accessible-role`
+    ///  The accessible role of the given [`gtk::Accessible`][crate::gtk::Accessible] implementation.
+    ///
+    /// The accessible role cannot be changed once set.
+    ///
+    /// Readable | Writeable
+    /// </details>
+    /// <details><summary><h4>Orientable</h4></summary>
+    ///
+    ///
+    /// #### `orientation`
+    ///  The orientation of the orientable.
+    ///
+    /// Readable | Writeable
+    /// </details>
+    ///
+    /// # Implements
+    ///
+    /// [`SliderExt`][trait@crate::prelude::SliderExt], [`trait@gtk::prelude::ScaleExt`], [`trait@gtk::prelude::RangeExt`], [`trait@gtk::prelude::WidgetExt`], [`trait@glib::InitiallyUnownedExt`], [`trait@gtk::prelude::AccessibleExt`], [`trait@gtk::prelude::BuildableExt`], [`trait@gtk::prelude::ConstraintTargetExt`], [`trait@gtk::prelude::AccessibleRangeExt`], [`trait@gtk::prelude::OrientableExt`]
     #[doc(alias = "AstalSlider")]
     pub struct Slider(Object<ffi::AstalSlider, ffi::AstalSliderClass>) @extends gtk::Scale, gtk::Range, gtk::Widget, gobject::InitiallyUnowned, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::AccessibleRange, gtk::Orientable;
 
@@ -74,48 +487,56 @@ impl SliderBuilder {
         }
     }
 
+    /// Value of this slider. Defaults to `0`.
     pub fn value(self, value: f64) -> Self {
         Self {
             builder: self.builder.property("value", value),
         }
     }
 
+    /// Minimum possible value of this slider. Defaults to `0`.
     pub fn min(self, min: f64) -> Self {
         Self {
             builder: self.builder.property("min", min),
         }
     }
 
+    /// Maximum possible value of this slider. Defaults to `1`.
     pub fn max(self, max: f64) -> Self {
         Self {
             builder: self.builder.property("max", max),
         }
     }
 
+    /// Size of step increments. Defaults to `0.05`.
     pub fn step(self, step: f64) -> Self {
         Self {
             builder: self.builder.property("step", step),
         }
     }
 
+    /// Size of page increments. Defaults to `0.01`.
     pub fn page(self, page: f64) -> Self {
         Self {
             builder: self.builder.property("page", page),
         }
     }
 
+    /// The number of decimal places that are displayed in the value.
     pub fn digits(self, digits: i32) -> Self {
         Self {
             builder: self.builder.property("digits", digits),
         }
     }
 
+    /// Whether the current value is displayed as a string next to the slider.
     pub fn draw_value(self, draw_value: bool) -> Self {
         Self {
             builder: self.builder.property("draw-value", draw_value),
         }
     }
 
+    /// Whether the scale has an origin.
     pub fn has_origin(self, has_origin: bool) -> Self {
         Self {
             builder: self.builder.property("has-origin", has_origin),
@@ -130,18 +551,22 @@ impl SliderBuilder {
     //    Self { builder: self.builder.property("adjustment", adjustment.clone().upcast()), }
     //}
 
+    /// The fill level (e.g. prebuffering of a network stream).
     pub fn fill_level(self, fill_level: f64) -> Self {
         Self {
             builder: self.builder.property("fill-level", fill_level),
         }
     }
 
+    /// If [`true`], the direction in which the slider moves is inverted.
     pub fn inverted(self, inverted: bool) -> Self {
         Self {
             builder: self.builder.property("inverted", inverted),
         }
     }
 
+    /// Controls whether slider movement is restricted to an
+    /// upper boundary set by the fill level.
     pub fn restrict_to_fill_level(self, restrict_to_fill_level: bool) -> Self {
         Self {
             builder: self
@@ -150,36 +575,53 @@ impl SliderBuilder {
         }
     }
 
+    /// The number of digits to round the value to when
+    /// it changes.
+    ///
+    /// See [`change-value`][struct@crate::gtk::Range#change-value].
     pub fn round_digits(self, round_digits: i32) -> Self {
         Self {
             builder: self.builder.property("round-digits", round_digits),
         }
     }
 
+    /// Controls whether fill level indicator graphics are displayed
+    /// on the trough.
     pub fn show_fill_level(self, show_fill_level: bool) -> Self {
         Self {
             builder: self.builder.property("show-fill-level", show_fill_level),
         }
     }
 
+    /// Whether the widget or any of its descendents can accept
+    /// the input focus.
+    ///
+    /// This property is meant to be set by widget implementations,
+    /// typically in their instance init function.
     pub fn can_focus(self, can_focus: bool) -> Self {
         Self {
             builder: self.builder.property("can-focus", can_focus),
         }
     }
 
+    /// Whether the widget can receive pointer events.
     pub fn can_target(self, can_target: bool) -> Self {
         Self {
             builder: self.builder.property("can-target", can_target),
         }
     }
 
+    /// A list of css classes applied to this widget.
     pub fn css_classes(self, css_classes: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("css-classes", css_classes.into()),
         }
     }
 
+    /// The name of this widget in the CSS tree.
+    ///
+    /// This property is meant to be set by widget implementations,
+    /// typically in their instance init function.
     pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("css-name", css_name.into()),
@@ -190,12 +632,16 @@ impl SliderBuilder {
     //    Self { builder: self.builder.property("cursor", cursor), }
     //}
 
+    /// Whether the widget should grab focus when it is clicked with the mouse.
+    ///
+    /// This property is only relevant for widgets that can take focus.
     pub fn focus_on_click(self, focus_on_click: bool) -> Self {
         Self {
             builder: self.builder.property("focus-on-click", focus_on_click),
         }
     }
 
+    /// Whether this widget itself will accept the input focus.
     pub fn focusable(self, focusable: bool) -> Self {
         Self {
             builder: self.builder.property("focusable", focusable),
@@ -206,24 +652,35 @@ impl SliderBuilder {
     //    Self { builder: self.builder.property("halign", halign), }
     //}
 
+    /// Enables or disables the emission of the [`query-tooltip`][struct@crate::gtk::Widget#query-tooltip]
+    /// signal on @widget.
+    ///
+    /// A true value indicates that @widget can have a tooltip, in this case
+    /// the widget will be queried using [`query-tooltip`][struct@crate::gtk::Widget#query-tooltip] to
+    /// determine whether it will provide a tooltip or not.
     pub fn has_tooltip(self, has_tooltip: bool) -> Self {
         Self {
             builder: self.builder.property("has-tooltip", has_tooltip),
         }
     }
 
+    /// Overrides for height request of the widget.
+    ///
+    /// If this is -1, the natural request will be used.
     pub fn height_request(self, height_request: i32) -> Self {
         Self {
             builder: self.builder.property("height-request", height_request),
         }
     }
 
+    /// Whether to expand horizontally.
     pub fn hexpand(self, hexpand: bool) -> Self {
         Self {
             builder: self.builder.property("hexpand", hexpand),
         }
     }
 
+    /// Whether to use the `hexpand` property.
     pub fn hexpand_set(self, hexpand_set: bool) -> Self {
         Self {
             builder: self.builder.property("hexpand-set", hexpand_set),
@@ -234,6 +691,12 @@ impl SliderBuilder {
     //    Self { builder: self.builder.property("layout-manager", layout_manager.clone().upcast()), }
     //}
 
+    /// Makes this widget act like a modal dialog, with respect to
+    /// event delivery.
+    ///
+    /// Global event controllers will not handle events with targets
+    /// inside the widget, unless they are set up to ignore propagation
+    /// limits. See `Gtk::EventController::set_propagation_limit()`.
     #[cfg(feature = "gtk_v4_18")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_18")))]
     pub fn limit_events(self, limit_events: bool) -> Self {
@@ -242,36 +705,64 @@ impl SliderBuilder {
         }
     }
 
+    /// Margin on bottom side of widget.
+    ///
+    /// This property adds margin outside of the widget's normal size
+    /// request, the margin will be added in addition to the size from
+    /// [`WidgetExtManual::set_size_request()`][crate::gtk::prelude::WidgetExtManual::set_size_request()] for example.
     pub fn margin_bottom(self, margin_bottom: i32) -> Self {
         Self {
             builder: self.builder.property("margin-bottom", margin_bottom),
         }
     }
 
+    /// Margin on end of widget, horizontally.
+    ///
+    /// This property supports left-to-right and right-to-left text
+    /// directions.
+    ///
+    /// This property adds margin outside of the widget's normal size
+    /// request, the margin will be added in addition to the size from
+    /// [`WidgetExtManual::set_size_request()`][crate::gtk::prelude::WidgetExtManual::set_size_request()] for example.
     pub fn margin_end(self, margin_end: i32) -> Self {
         Self {
             builder: self.builder.property("margin-end", margin_end),
         }
     }
 
+    /// Margin on start of widget, horizontally.
+    ///
+    /// This property supports left-to-right and right-to-left text
+    /// directions.
+    ///
+    /// This property adds margin outside of the widget's normal size
+    /// request, the margin will be added in addition to the size from
+    /// [`WidgetExtManual::set_size_request()`][crate::gtk::prelude::WidgetExtManual::set_size_request()] for example.
     pub fn margin_start(self, margin_start: i32) -> Self {
         Self {
             builder: self.builder.property("margin-start", margin_start),
         }
     }
 
+    /// Margin on top side of widget.
+    ///
+    /// This property adds margin outside of the widget's normal size
+    /// request, the margin will be added in addition to the size from
+    /// [`WidgetExtManual::set_size_request()`][crate::gtk::prelude::WidgetExtManual::set_size_request()] for example.
     pub fn margin_top(self, margin_top: i32) -> Self {
         Self {
             builder: self.builder.property("margin-top", margin_top),
         }
     }
 
+    /// The name of the widget.
     pub fn name(self, name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("name", name.into()),
         }
     }
 
+    /// The requested opacity of the widget.
     pub fn opacity(self, opacity: f64) -> Self {
         Self {
             builder: self.builder.property("opacity", opacity),
@@ -282,18 +773,33 @@ impl SliderBuilder {
     //    Self { builder: self.builder.property("overflow", overflow), }
     //}
 
+    /// Whether the widget will receive the default action when it is focused.
     pub fn receives_default(self, receives_default: bool) -> Self {
         Self {
             builder: self.builder.property("receives-default", receives_default),
         }
     }
 
+    /// Whether the widget responds to input.
     pub fn sensitive(self, sensitive: bool) -> Self {
         Self {
             builder: self.builder.property("sensitive", sensitive),
         }
     }
 
+    /// Sets the text of tooltip to be the given string, which is marked up
+    /// with Pango markup.
+    ///
+    /// Also see `Gtk::Tooltip::set_markup()`.
+    ///
+    /// This is a convenience property which will take care of getting the
+    /// tooltip shown if the given string is not `NULL`:
+    /// [`has-tooltip`][struct@crate::gtk::Widget#has-tooltip] will automatically be set to true
+    /// and there will be taken care of [`query-tooltip`][struct@crate::gtk::Widget#query-tooltip] in
+    /// the default signal handler.
+    ///
+    /// Note that if both [`tooltip-text`][struct@crate::gtk::Widget#tooltip-text] and
+    /// [`tooltip-markup`][struct@crate::gtk::Widget#tooltip-markup] are set, the last one wins.
     pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -302,6 +808,18 @@ impl SliderBuilder {
         }
     }
 
+    /// Sets the text of tooltip to be the given string.
+    ///
+    /// Also see `Gtk::Tooltip::set_text()`.
+    ///
+    /// This is a convenience property which will take care of getting the
+    /// tooltip shown if the given string is not `NULL`:
+    /// [`has-tooltip`][struct@crate::gtk::Widget#has-tooltip] will automatically be set to true
+    /// and there will be taken care of [`query-tooltip`][struct@crate::gtk::Widget#query-tooltip] in
+    /// the default signal handler.
+    ///
+    /// Note that if both [`tooltip-text`][struct@crate::gtk::Widget#tooltip-text] and
+    /// [`tooltip-markup`][struct@crate::gtk::Widget#tooltip-markup] are set, the last one wins.
     pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("tooltip-text", tooltip_text.into()),
@@ -312,24 +830,30 @@ impl SliderBuilder {
     //    Self { builder: self.builder.property("valign", valign), }
     //}
 
+    /// Whether to expand vertically.
     pub fn vexpand(self, vexpand: bool) -> Self {
         Self {
             builder: self.builder.property("vexpand", vexpand),
         }
     }
 
+    /// Whether to use the `vexpand` property.
     pub fn vexpand_set(self, vexpand_set: bool) -> Self {
         Self {
             builder: self.builder.property("vexpand-set", vexpand_set),
         }
     }
 
+    /// Whether the widget is visible.
     pub fn visible(self, visible: bool) -> Self {
         Self {
             builder: self.builder.property("visible", visible),
         }
     }
 
+    /// Overrides for width request of the widget.
+    ///
+    /// If this is -1, the natural request will be used.
     pub fn width_request(self, width_request: i32) -> Self {
         Self {
             builder: self.builder.property("width-request", width_request),
@@ -353,6 +877,11 @@ impl SliderBuilder {
     }
 }
 
+/// Trait containing all [`struct@Slider`] methods.
+///
+/// # Implementors
+///
+/// [`Slider`][struct@crate::Slider]
 pub trait SliderExt: IsA<Slider> + 'static {
     #[doc(alias = "astal_slider_get_value")]
     #[doc(alias = "get_value")]
