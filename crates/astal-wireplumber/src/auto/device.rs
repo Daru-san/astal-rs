@@ -8,6 +8,79 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `active-profile-id`
+    ///  The id of the currently active profile.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `description`
+    ///  Readable
+    ///
+    ///
+    /// #### `device-type`
+    ///  The type of this device
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `form-factor`
+    ///  The from factor of this device.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `icon`
+    ///  The icon name for this device.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `id`
+    ///  The id of this device.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `input-route-id`
+    ///  The id of the currently active input route.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `input-routes`
+    ///  A list of available input routes
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `output-route-id`
+    ///  The id of the currently active output route.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `output-routes`
+    ///  A list of available output routes
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `profiles`
+    ///  A list of available profiles
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `routes`
+    ///  A list of available routes
+    ///
+    /// Readable
     #[doc(alias = "AstalWpDevice")]
     pub struct Device(Object<ffi::AstalWpDevice, ffi::AstalWpDeviceClass>);
 
@@ -26,6 +99,7 @@ impl Device {
             }
         
 
+    /// gets the currently active profile of this device
     #[doc(alias = "astal_wp_device_get_active_profile_id")]
     #[doc(alias = "get_active_profile_id")]
     #[doc(alias = "active-profile-id")]
@@ -35,6 +109,7 @@ impl Device {
         }
     }
 
+    /// gets the description of this device
     #[doc(alias = "astal_wp_device_get_description")]
     #[doc(alias = "get_description")]
     pub fn description(&self) -> Option<glib::GString> {
@@ -43,6 +118,7 @@ impl Device {
         }
     }
 
+    /// gets the type of this device
     #[doc(alias = "astal_wp_device_get_device_type")]
     #[doc(alias = "get_device_type")]
     #[doc(alias = "device-type")]
@@ -52,6 +128,7 @@ impl Device {
         }
     }
 
+    /// gets the form factor of this device.
     #[doc(alias = "astal_wp_device_get_form_factor")]
     #[doc(alias = "get_form_factor")]
     #[doc(alias = "form-factor")]
@@ -61,6 +138,7 @@ impl Device {
         }
     }
 
+    /// gets the icon of this device
     #[doc(alias = "astal_wp_device_get_icon")]
     #[doc(alias = "get_icon")]
     pub fn icon(&self) -> glib::GString {
@@ -69,6 +147,7 @@ impl Device {
         }
     }
 
+    /// gets the id of this device
     #[doc(alias = "astal_wp_device_get_id")]
     #[doc(alias = "get_id")]
     pub fn id(&self) -> u32 {
@@ -77,6 +156,7 @@ impl Device {
         }
     }
 
+    /// gets the currently active input route of this device
     #[doc(alias = "astal_wp_device_get_input_route_id")]
     #[doc(alias = "get_input_route_id")]
     #[doc(alias = "input-route-id")]
@@ -86,6 +166,7 @@ impl Device {
         }
     }
 
+    /// gets a GList containing the input routes
     #[doc(alias = "astal_wp_device_get_input_routes")]
     #[doc(alias = "get_input_routes")]
     #[doc(alias = "input-routes")]
@@ -95,6 +176,7 @@ impl Device {
         }
     }
 
+    /// gets the currently active output route of this device
     #[doc(alias = "astal_wp_device_get_output_route_id")]
     #[doc(alias = "get_output_route_id")]
     #[doc(alias = "output-route-id")]
@@ -104,6 +186,7 @@ impl Device {
         }
     }
 
+    /// gets a GList containing the output routes
     #[doc(alias = "astal_wp_device_get_output_routes")]
     #[doc(alias = "get_output_routes")]
     #[doc(alias = "output-routes")]
@@ -113,6 +196,9 @@ impl Device {
         }
     }
 
+    /// gets the profile with the given id
+    /// ## `id`
+    /// the id of the profile
     #[doc(alias = "astal_wp_device_get_profile")]
     #[doc(alias = "get_profile")]
     pub fn profile(&self, id: i32) -> Option<Profile> {
@@ -121,6 +207,7 @@ impl Device {
         }
     }
 
+    /// gets a GList containing the profiles
     #[doc(alias = "astal_wp_device_get_profiles")]
     #[doc(alias = "get_profiles")]
     pub fn profiles(&self) -> Vec<Profile> {
@@ -129,6 +216,8 @@ impl Device {
         }
     }
 
+    /// Gets the pipewire property with the give key. You should use the GObject properties of this node
+    /// whereever possible, as you can get notified on changes, which is not the case here.
     #[doc(alias = "astal_wp_device_get_pw_property")]
     #[doc(alias = "get_pw_property")]
     pub fn pw_property(&self, key: &str) -> Option<glib::GString> {
@@ -137,6 +226,9 @@ impl Device {
         }
     }
 
+    /// gets the route with the given id
+    /// ## `id`
+    /// the id of the route
     #[doc(alias = "astal_wp_device_get_route")]
     #[doc(alias = "get_route")]
     pub fn route(&self, id: i32) -> Option<Route> {
@@ -145,6 +237,7 @@ impl Device {
         }
     }
 
+    /// gets a GList containing the routes
     #[doc(alias = "astal_wp_device_get_routes")]
     #[doc(alias = "get_routes")]
     pub fn routes(&self) -> Vec<Route> {
@@ -153,6 +246,9 @@ impl Device {
         }
     }
 
+    /// sets the profile for this device
+    /// ## `profile_id`
+    /// the id of the profile
     #[doc(alias = "astal_wp_device_set_active_profile_id")]
     #[doc(alias = "active-profile-id")]
     pub fn set_active_profile_id(&self, profile_id: i32) {
@@ -161,6 +257,9 @@ impl Device {
         }
     }
 
+    /// sets the route for this device. You should use the [`Endpoint::set_route()`][crate::Endpoint::set_route()] instead.
+    /// ## `card_device`
+    /// card device index
     #[doc(alias = "astal_wp_device_set_route")]
     pub fn set_route(&self, route: &Route, card_device: u32) {
         unsafe {
@@ -168,11 +267,13 @@ impl Device {
         }
     }
 
+    /// The id of the currently active input route.
     #[doc(alias = "input-route-id")]
     pub fn set_input_route_id(&self, input_route_id: i32) {
         ObjectExt::set_property(self,"input-route-id", input_route_id)
     }
 
+    /// The id of the currently active output route.
     #[doc(alias = "output-route-id")]
     pub fn set_output_route_id(&self, output_route_id: i32) {
         ObjectExt::set_property(self,"output-route-id", output_route_id)
@@ -349,14 +450,17 @@ pub struct DeviceBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// The id of the currently active profile.
                             pub fn active_profile_id(self, active_profile_id: i32) -> Self {
                             Self { builder: self.builder.property("active-profile-id", active_profile_id), }
                         }
 
+                            /// The id of the currently active input route.
                             pub fn input_route_id(self, input_route_id: i32) -> Self {
                             Self { builder: self.builder.property("input-route-id", input_route_id), }
                         }
 
+                            /// The id of the currently active output route.
                             pub fn output_route_id(self, output_route_id: i32) -> Self {
                             Self { builder: self.builder.property("output-route-id", output_route_id), }
                         }

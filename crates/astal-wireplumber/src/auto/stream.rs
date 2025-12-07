@@ -8,6 +8,118 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `media-category`
+    ///  the media category of this stream.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `media-role`
+    ///  the media role of this stream.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `target-endpoint`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `target-serial`
+    ///  Readable | Writeable
+    /// <details><summary><h4>Node</h4></summary>
+    ///
+    ///
+    /// #### `channels`
+    ///  A list of per channel volumes
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `description`
+    ///  The description of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `icon`
+    ///  The icon of this node. Note that nodes do not have icons associated with them in
+    /// pipewire, so the icon of the associated device is used instead.
+    ///
+    /// Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `id`
+    ///  The pipewire id of this node.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `lock-channels`
+    ///  Whether to lock the channels together or not.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `media-class`
+    ///  The media class of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `mute`
+    ///  The mute state of this node
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `name`
+    ///  The name of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `path`
+    ///  The object path of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `serial`
+    ///  The object serial of this node.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `state`
+    ///  the current state of this node.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `volume`
+    ///  The volume of this node
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `volume-icon`
+    ///  The volume icon of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `wp`
+    ///  Readable | Writeable | Construct Only
+    /// </details>
+    ///
+    /// # Implements
+    ///
+    /// [`NodeExt`][trait@crate::prelude::NodeExt]
     #[doc(alias = "AstalWpStream")]
     pub struct Stream(Object<ffi::AstalWpStream, ffi::AstalWpStreamClass>) @extends Node;
 
@@ -44,6 +156,7 @@ impl Stream {
         }
     }
 
+    /// get the target [`Endpoint`][crate::Endpoint]
     #[doc(alias = "astal_wp_stream_get_target_endpoint")]
     #[doc(alias = "get_target_endpoint")]
     #[doc(alias = "target-endpoint")]
@@ -62,6 +175,7 @@ impl Stream {
         }
     }
 
+    /// set the target [`Endpoint`][crate::Endpoint]
     #[doc(alias = "astal_wp_stream_set_target_endpoint")]
     #[doc(alias = "target-endpoint")]
     pub fn set_target_endpoint(&self, target: Option<&Endpoint>) {
@@ -153,18 +267,23 @@ pub struct StreamBuilder {
                             Self { builder: self.builder.property("target-serial", target_serial), }
                         }
 
+                            /// The icon of this node. Note that nodes do not have icons associated with them in
+                            /// pipewire, so the icon of the associated device is used instead.
                             pub fn icon(self, icon: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("icon", icon.into()), }
                         }
 
+                            /// Whether to lock the channels together or not.
                             pub fn lock_channels(self, lock_channels: bool) -> Self {
                             Self { builder: self.builder.property("lock-channels", lock_channels), }
                         }
 
+                            /// The mute state of this node
                             pub fn mute(self, mute: bool) -> Self {
                             Self { builder: self.builder.property("mute", mute), }
                         }
 
+                            /// The volume of this node
                             pub fn volume(self, volume: f64) -> Self {
                             Self { builder: self.builder.property("volume", volume), }
                         }

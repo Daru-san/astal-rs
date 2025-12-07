@@ -8,6 +8,135 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `device`
+    ///  The the device associated with this endpoint.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `device-id`
+    ///  The id of the device associated with this endpoint.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `is-default`
+    ///  Whether this node is the default one used for this media-class. Note that setting this
+    /// property to false has no effect.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `is-default-node`
+    ///  Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `route`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `route-id`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `routes`
+    ///  A list of available routes
+    ///
+    /// Readable
+    /// <details><summary><h4>Node</h4></summary>
+    ///
+    ///
+    /// #### `channels`
+    ///  A list of per channel volumes
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `description`
+    ///  The description of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `icon`
+    ///  The icon of this node. Note that nodes do not have icons associated with them in
+    /// pipewire, so the icon of the associated device is used instead.
+    ///
+    /// Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `id`
+    ///  The pipewire id of this node.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `lock-channels`
+    ///  Whether to lock the channels together or not.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `media-class`
+    ///  The media class of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `mute`
+    ///  The mute state of this node
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `name`
+    ///  The name of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `path`
+    ///  The object path of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `serial`
+    ///  The object serial of this node.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `state`
+    ///  the current state of this node.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `volume`
+    ///  The volume of this node
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `volume-icon`
+    ///  The volume icon of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `wp`
+    ///  Readable | Writeable | Construct Only
+    /// </details>
+    ///
+    /// # Implements
+    ///
+    /// [`NodeExt`][trait@crate::prelude::NodeExt]
     #[doc(alias = "AstalWpEndpoint")]
     pub struct Endpoint(Object<ffi::AstalWpEndpoint, ffi::AstalWpEndpointClass>) @extends Node;
 
@@ -26,6 +155,7 @@ impl Endpoint {
             }
         
 
+    /// gets the device associated with this endpoint
     #[doc(alias = "astal_wp_endpoint_get_device")]
     #[doc(alias = "get_device")]
     pub fn device(&self) -> Option<Device> {
@@ -34,6 +164,7 @@ impl Endpoint {
         }
     }
 
+    /// gets the id of the device associated with this endpoint
     #[doc(alias = "astal_wp_endpoint_get_device_id")]
     #[doc(alias = "get_device_id")]
     #[doc(alias = "device-id")]
@@ -43,6 +174,7 @@ impl Endpoint {
         }
     }
 
+    /// is this endpoint configured as the default.
     #[doc(alias = "astal_wp_endpoint_get_is_default")]
     #[doc(alias = "get_is_default")]
     #[doc(alias = "is-default")]
@@ -52,6 +184,7 @@ impl Endpoint {
         }
     }
 
+    /// Gets the currently active [`Route`][crate::Route]
     #[doc(alias = "astal_wp_endpoint_get_route")]
     #[doc(alias = "get_route")]
     pub fn route(&self) -> Option<Route> {
@@ -60,6 +193,7 @@ impl Endpoint {
         }
     }
 
+    /// gets the id of the currently active route
     #[doc(alias = "astal_wp_endpoint_get_route_id")]
     #[doc(alias = "get_route_id")]
     #[doc(alias = "route-id")]
@@ -69,6 +203,9 @@ impl Endpoint {
         }
     }
 
+    /// Gets a list of available routes.
+    /// This list is filtered and contains only routes, that are actually available. You can get a full
+    /// list of routes from [`routes`][struct@crate::Device#routes]
     #[doc(alias = "astal_wp_endpoint_get_routes")]
     #[doc(alias = "get_routes")]
     pub fn routes(&self) -> Vec<Route> {
@@ -77,6 +214,7 @@ impl Endpoint {
         }
     }
 
+    /// Sets this endpoint as the default
     #[doc(alias = "astal_wp_endpoint_set_is_default")]
     #[doc(alias = "is-default")]
     pub fn set_is_default(&self, is_default: bool) {
@@ -85,6 +223,7 @@ impl Endpoint {
         }
     }
 
+    /// Sets the currently active [`Route`][crate::Route]
     #[doc(alias = "astal_wp_endpoint_set_route")]
     #[doc(alias = "route")]
     pub fn set_route(&self, route: &Route) {
@@ -93,6 +232,7 @@ impl Endpoint {
         }
     }
 
+    /// Sets the currently active route id
     #[doc(alias = "astal_wp_endpoint_set_route_id")]
     #[doc(alias = "route-id")]
     pub fn set_route_id(&self, route_id: u32) {
@@ -199,6 +339,8 @@ pub struct EndpointBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// Whether this node is the default one used for this media-class. Note that setting this
+                            /// property to false has no effect.
                             pub fn is_default(self, is_default: bool) -> Self {
                             Self { builder: self.builder.property("is-default", is_default), }
                         }
@@ -215,18 +357,23 @@ pub struct EndpointBuilder {
                             Self { builder: self.builder.property("route-id", route_id), }
                         }
 
+                            /// The icon of this node. Note that nodes do not have icons associated with them in
+                            /// pipewire, so the icon of the associated device is used instead.
                             pub fn icon(self, icon: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("icon", icon.into()), }
                         }
 
+                            /// Whether to lock the channels together or not.
                             pub fn lock_channels(self, lock_channels: bool) -> Self {
                             Self { builder: self.builder.property("lock-channels", lock_channels), }
                         }
 
+                            /// The mute state of this node
                             pub fn mute(self, mute: bool) -> Self {
                             Self { builder: self.builder.property("mute", mute), }
                         }
 
+                            /// The volume of this node
                             pub fn volume(self, volume: f64) -> Self {
                             Self { builder: self.builder.property("volume", volume), }
                         }

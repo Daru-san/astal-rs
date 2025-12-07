@@ -8,6 +8,96 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// is instanciated by [`Wp`][crate::Wp]. An instance of this class can only be received there.
+    ///
+    ///  This is a convenience class and acts as a filter for [`Wp`][crate::Wp] to filter for audio
+    /// endpoints and devices.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `default-microphone`
+    ///  The AstalEndpoint object representing the default microphone
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `default-speaker`
+    ///  The AstalEndpoint object representing the default speaker
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `devices`
+    ///  A list of AstalWpEndpoint objects
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `microphones`
+    ///  A list of AstalWpEndpoint objects
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `recorders`
+    ///  A list of AstalWpStream objects
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `speakers`
+    ///  A list of AstalWpEndpoint objects
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `streams`
+    ///  A list of AstalWpStream objects
+    ///
+    /// Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `device-added`
+    ///
+    ///
+    ///
+    /// #### `device-removed`
+    ///
+    ///
+    ///
+    /// #### `microphone-added`
+    ///
+    ///
+    ///
+    /// #### `microphone-removed`
+    ///
+    ///
+    ///
+    /// #### `recorder-added`
+    ///
+    ///
+    ///
+    /// #### `recorder-removed`
+    ///
+    ///
+    ///
+    /// #### `speaker-added`
+    ///
+    ///
+    ///
+    /// #### `speaker-removed`
+    ///
+    ///
+    ///
+    /// #### `stream-added`
+    ///
+    ///
+    ///
+    /// #### `stream-removed`
+    ///
     #[doc(alias = "AstalWpAudio")]
     pub struct Audio(Object<ffi::AstalWpAudio, ffi::AstalWpAudioClass>);
 
@@ -17,6 +107,7 @@ glib::wrapper! {
 }
 
 impl Audio {
+    /// creates a new Audio object. You should use [`audio`][struct@crate::Wp#audio] instead
     #[doc(alias = "astal_wp_audio_new")]
     pub fn new(wp: &Wp) -> Audio {
         skip_assert_initialized!();
@@ -25,6 +116,7 @@ impl Audio {
         }
     }
 
+    /// gets the default microphone object
     #[doc(alias = "astal_wp_audio_get_default_microphone")]
     #[doc(alias = "get_default_microphone")]
     #[doc(alias = "default-microphone")]
@@ -34,6 +126,7 @@ impl Audio {
         }
     }
 
+    /// gets the default speaker object
     #[doc(alias = "astal_wp_audio_get_default_speaker")]
     #[doc(alias = "get_default_speaker")]
     #[doc(alias = "default-speaker")]
@@ -43,6 +136,9 @@ impl Audio {
         }
     }
 
+    /// gets the device with the given id
+    /// ## `id`
+    /// the id of the device
     #[doc(alias = "astal_wp_audio_get_device")]
     #[doc(alias = "get_device")]
     pub fn device(&self, id: u32) -> Option<Device> {
@@ -51,6 +147,7 @@ impl Audio {
         }
     }
 
+    /// a GList containing the devices
     #[doc(alias = "astal_wp_audio_get_devices")]
     #[doc(alias = "get_devices")]
     pub fn devices(&self) -> Vec<Device> {
@@ -59,6 +156,9 @@ impl Audio {
         }
     }
 
+    /// gets the microphone with the given id
+    /// ## `id`
+    /// the id of the endpoint
     #[doc(alias = "astal_wp_audio_get_microphone")]
     #[doc(alias = "get_microphone")]
     pub fn microphone(&self, id: u32) -> Option<Endpoint> {
@@ -67,6 +167,7 @@ impl Audio {
         }
     }
 
+    /// a GList containing the microphones
     #[doc(alias = "astal_wp_audio_get_microphones")]
     #[doc(alias = "get_microphones")]
     pub fn microphones(&self) -> Vec<Endpoint> {
@@ -75,6 +176,9 @@ impl Audio {
         }
     }
 
+    /// the node with the given id
+    /// ## `id`
+    /// the id of the endpoint
     #[doc(alias = "astal_wp_audio_get_node")]
     #[doc(alias = "get_node")]
     pub fn node(&self, id: u32) -> Option<Node> {
@@ -83,6 +187,9 @@ impl Audio {
         }
     }
 
+    /// gets the recorder with the given id
+    /// ## `id`
+    /// the id of the endpoint
     #[doc(alias = "astal_wp_audio_get_recorder")]
     #[doc(alias = "get_recorder")]
     pub fn recorder(&self, id: u32) -> Option<Stream> {
@@ -91,6 +198,7 @@ impl Audio {
         }
     }
 
+    /// a GList containing the recorders
     #[doc(alias = "astal_wp_audio_get_recorders")]
     #[doc(alias = "get_recorders")]
     pub fn recorders(&self) -> Vec<Stream> {
@@ -99,6 +207,9 @@ impl Audio {
         }
     }
 
+    /// gets the speaker with the given id
+    /// ## `id`
+    /// the id of the endpoint
     #[doc(alias = "astal_wp_audio_get_speaker")]
     #[doc(alias = "get_speaker")]
     pub fn speaker(&self, id: u32) -> Option<Endpoint> {
@@ -107,6 +218,7 @@ impl Audio {
         }
     }
 
+    /// a GList containing the speakers
     #[doc(alias = "astal_wp_audio_get_speakers")]
     #[doc(alias = "get_speakers")]
     pub fn speakers(&self) -> Vec<Endpoint> {
@@ -115,6 +227,9 @@ impl Audio {
         }
     }
 
+    /// gets the stream with the given id
+    /// ## `id`
+    /// the id of the endpoint
     #[doc(alias = "astal_wp_audio_get_stream")]
     #[doc(alias = "get_stream")]
     pub fn stream(&self, id: u32) -> Option<Stream> {
@@ -123,6 +238,7 @@ impl Audio {
         }
     }
 
+    /// a GList containing the streams
     #[doc(alias = "astal_wp_audio_get_streams")]
     #[doc(alias = "get_streams")]
     pub fn streams(&self) -> Vec<Stream> {

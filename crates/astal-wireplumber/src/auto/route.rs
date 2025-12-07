@@ -7,6 +7,37 @@ use crate::{ffi,Available,Direction};
 use glib::{prelude::*,translate::*};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `available`
+    ///  the available state of this route
+    ///
+    /// Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `description`
+    ///  Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `direction`
+    ///  The direction for this route
+    ///
+    /// Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `index`
+    ///  Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `name`
+    ///  Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `priority`
+    ///  Readable | Writeable | Construct Only
     #[doc(alias = "AstalWpRoute")]
     pub struct Route(Object<ffi::AstalWpRoute, ffi::AstalWpRouteClass>);
 
@@ -103,6 +134,7 @@ pub struct RouteBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// the available state of this route
                             pub fn available(self, available: Available) -> Self {
                             Self { builder: self.builder.property("available", available), }
                         }
@@ -111,6 +143,7 @@ pub struct RouteBuilder {
                             Self { builder: self.builder.property("description", description.into()), }
                         }
 
+                            /// The direction for this route
                             pub fn direction(self, direction: Direction) -> Self {
                             Self { builder: self.builder.property("direction", direction), }
                         }

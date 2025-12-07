@@ -8,6 +8,76 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// manages the connection to wireplumber. Usually you don't want to use this class directly, but use
+    /// the [`Audio`][crate::Audio] or [`Video`][crate::Video] instead.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `audio`
+    ///  Readable
+    ///
+    ///
+    /// #### `connected`
+    ///  The connection status to the pipewire daemon
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `default-microphone`
+    ///  The [`Endpoint`][crate::Endpoint] representing the default micophone
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `default-speaker`
+    ///  The [`Endpoint`][crate::Endpoint] representing the default speaker
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `devices`
+    ///  A list of [`Device`][crate::Device] objects
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `nodes`
+    ///  A list of [`Node`][crate::Node] objects
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `scale`
+    ///  The scale used for the volume
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `video`
+    ///  Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `device-added`
+    ///
+    ///
+    ///
+    /// #### `device-removed`
+    ///
+    ///
+    ///
+    /// #### `node-added`
+    ///
+    ///
+    ///
+    /// #### `node-removed`
+    ///
+    ///
+    ///
+    /// #### `ready`
+    ///
     #[doc(alias = "AstalWpWp")]
     pub struct Wp(Object<ffi::AstalWpWp, ffi::AstalWpWpClass>);
 
@@ -26,6 +96,11 @@ impl Wp {
             }
         
 
+    /// gets the [`Audio`][crate::Audio] object
+    ///
+    /// # Returns
+    ///
+    /// gets the audio object
     #[doc(alias = "astal_wp_wp_get_audio")]
     #[doc(alias = "get_audio")]
     pub fn audio(&self) -> Audio {
@@ -34,6 +109,11 @@ impl Wp {
         }
     }
 
+    /// gets the default microphone object
+    ///
+    /// # Returns
+    ///
+    /// gets the default microphone object
     #[doc(alias = "astal_wp_wp_get_default_microphone")]
     #[doc(alias = "get_default_microphone")]
     #[doc(alias = "default-microphone")]
@@ -43,6 +123,11 @@ impl Wp {
         }
     }
 
+    /// gets the default speaker object
+    ///
+    /// # Returns
+    ///
+    /// gets the default speaker object
     #[doc(alias = "astal_wp_wp_get_default_speaker")]
     #[doc(alias = "get_default_speaker")]
     #[doc(alias = "default-speaker")]
@@ -52,6 +137,13 @@ impl Wp {
         }
     }
 
+    /// the device with the given id
+    /// ## `id`
+    /// the id of the device
+    ///
+    /// # Returns
+    ///
+    /// the device with the given id
     #[doc(alias = "astal_wp_wp_get_device")]
     #[doc(alias = "get_device")]
     pub fn device(&self, id: u32) -> Option<Device> {
@@ -60,6 +152,12 @@ impl Wp {
         }
     }
 
+    /// the GList containing the devices
+    ///
+    /// # Returns
+    ///
+    /// a GList containing the
+    /// devices
     #[doc(alias = "astal_wp_wp_get_devices")]
     #[doc(alias = "get_devices")]
     pub fn devices(&self) -> Vec<Device> {
@@ -68,6 +166,13 @@ impl Wp {
         }
     }
 
+    /// the node with the given id
+    /// ## `id`
+    /// the id of the node
+    ///
+    /// # Returns
+    ///
+    /// the node with the given id
     #[doc(alias = "astal_wp_wp_get_node")]
     #[doc(alias = "get_node")]
     pub fn node(&self, id: u32) -> Option<Node> {
@@ -76,6 +181,7 @@ impl Wp {
         }
     }
 
+    /// finds the AstalWpNode with the give serial.
     #[doc(alias = "astal_wp_wp_get_node_by_serial")]
     #[doc(alias = "get_node_by_serial")]
     pub fn node_by_serial(&self, serial: i32) -> Option<Node> {
@@ -84,6 +190,12 @@ impl Wp {
         }
     }
 
+    /// a GList containing all nodes
+    ///
+    /// # Returns
+    ///
+    /// a GList containing the
+    /// nodes
     #[doc(alias = "astal_wp_wp_get_nodes")]
     #[doc(alias = "get_nodes")]
     pub fn nodes(&self) -> Vec<Node> {
@@ -100,6 +212,11 @@ impl Wp {
         }
     }
 
+    /// gets the video object
+    ///
+    /// # Returns
+    ///
+    /// gets the video object
     #[doc(alias = "astal_wp_wp_get_video")]
     #[doc(alias = "get_video")]
     pub fn video(&self) -> Video {
@@ -116,10 +233,16 @@ impl Wp {
         }
     }
 
+    /// The connection status to the pipewire daemon
     pub fn is_connected(&self) -> bool {
         ObjectExt::property(self, "connected")
     }
 
+    /// gets the default wireplumber object.
+    ///
+    /// # Returns
+    ///
+    /// gets the default wireplumber object.
     #[doc(alias = "astal_wp_wp_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]    pub fn default() -> Wp {
@@ -313,6 +436,7 @@ pub struct WpBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// The scale used for the volume
                             pub fn scale(self, scale: Scale) -> Self {
                             Self { builder: self.builder.property("scale", scale), }
                         }

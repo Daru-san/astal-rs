@@ -8,6 +8,96 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `channels`
+    ///  A list of per channel volumes
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `description`
+    ///  The description of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `icon`
+    ///  The icon of this node. Note that nodes do not have icons associated with them in
+    /// pipewire, so the icon of the associated device is used instead.
+    ///
+    /// Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `id`
+    ///  The pipewire id of this node.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `lock-channels`
+    ///  Whether to lock the channels together or not.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `media-class`
+    ///  The media class of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `mute`
+    ///  The mute state of this node
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `name`
+    ///  The name of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `path`
+    ///  The object path of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `serial`
+    ///  The object serial of this node.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `state`
+    ///  the current state of this node.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `volume`
+    ///  The volume of this node
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `volume-icon`
+    ///  The volume icon of this node
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `wp`
+    ///  Readable | Writeable | Construct Only
+    ///
+    /// # Implements
+    ///
+    /// [`NodeExt`][trait@crate::prelude::NodeExt]
     #[doc(alias = "AstalWpNode")]
     pub struct Node(Object<ffi::AstalWpNode, ffi::AstalWpNodeClass>);
 
@@ -44,18 +134,23 @@ pub struct NodeBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// The icon of this node. Note that nodes do not have icons associated with them in
+                            /// pipewire, so the icon of the associated device is used instead.
                             pub fn icon(self, icon: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("icon", icon.into()), }
                         }
 
+                            /// Whether to lock the channels together or not.
                             pub fn lock_channels(self, lock_channels: bool) -> Self {
                             Self { builder: self.builder.property("lock-channels", lock_channels), }
                         }
 
+                            /// The mute state of this node
                             pub fn mute(self, mute: bool) -> Self {
                             Self { builder: self.builder.property("mute", mute), }
                         }
 
+                            /// The volume of this node
                             pub fn volume(self, volume: f64) -> Self {
                             Self { builder: self.builder.property("volume", volume), }
                         }
@@ -72,7 +167,13 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Node`] methods.
+///
+/// # Implementors
+///
+/// [`Endpoint`][struct@crate::Endpoint], [`Node`][struct@crate::Node], [`Stream`][struct@crate::Stream]
 pub trait NodeExt: IsA<Node> + 'static {
+    /// gets the list representing the per channel volumes
     #[doc(alias = "astal_wp_node_get_channels")]
     #[doc(alias = "get_channels")]
     fn channels(&self) -> Vec<Channel> {
@@ -81,6 +182,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// gets the description of this node
     #[doc(alias = "astal_wp_node_get_description")]
     #[doc(alias = "get_description")]
     fn description(&self) -> Option<glib::GString> {
@@ -89,6 +191,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// gets the icon for this node
     #[doc(alias = "astal_wp_node_get_icon")]
     #[doc(alias = "get_icon")]
     fn icon(&self) -> glib::GString {
@@ -97,6 +200,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// gets the id of the node.
     #[doc(alias = "astal_wp_node_get_id")]
     #[doc(alias = "get_id")]
     fn id(&self) -> u32 {
@@ -114,6 +218,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// gets the media class of the node.
     #[doc(alias = "astal_wp_node_get_media_class")]
     #[doc(alias = "get_media_class")]
     #[doc(alias = "media-class")]
@@ -123,6 +228,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// gets the mute status of the node.
     #[doc(alias = "astal_wp_node_get_mute")]
     #[doc(alias = "get_mute")]
     #[doc(alias = "mute")]
@@ -132,6 +238,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// gets the name of this node
     #[doc(alias = "astal_wp_node_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
@@ -140,6 +247,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// gets the object path of this node
     #[doc(alias = "astal_wp_node_get_path")]
     #[doc(alias = "get_path")]
     fn path(&self) -> Option<glib::GString> {
@@ -148,6 +256,8 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// Gets the pipewire property with the give key. You should use the GObject properties of this node
+    /// whereever possible, as you can get notified on changes, which is not the case here.
     #[doc(alias = "astal_wp_node_get_pw_property")]
     #[doc(alias = "get_pw_property")]
     fn pw_property(&self, key: &str) -> Option<glib::GString> {
@@ -156,6 +266,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// gets the serial number of this node
     #[doc(alias = "astal_wp_node_get_serial")]
     #[doc(alias = "get_serial")]
     fn serial(&self) -> i32 {
@@ -164,6 +275,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// gets the current state of this node
     #[doc(alias = "astal_wp_node_get_state")]
     #[doc(alias = "get_state")]
     fn state(&self) -> NodeState {
@@ -172,6 +284,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// gets the volume
     #[doc(alias = "astal_wp_node_get_volume")]
     #[doc(alias = "get_volume")]
     fn volume(&self) -> f64 {
@@ -203,6 +316,7 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// Lock the channel volumes together. If set, all channels will always have the same volume.
     #[doc(alias = "astal_wp_node_set_lock_channels")]
     #[doc(alias = "lock-channels")]
     fn set_lock_channels(&self, lock_channels: bool) {
@@ -211,6 +325,9 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// Sets the mute status for the node.
+    /// ## `mute`
+    /// A boolean indicating whether to mute the node.
     #[doc(alias = "astal_wp_node_set_mute")]
     #[doc(alias = "mute")]
     fn set_mute(&self, mute: bool) {
@@ -219,6 +336,10 @@ pub trait NodeExt: IsA<Node> + 'static {
         }
     }
 
+    /// Sets the volume level for this node. The volume is clamped to be between
+    /// 0 and 1.5.
+    /// ## `volume`
+    /// The new volume level to set.
     #[doc(alias = "astal_wp_node_set_volume")]
     #[doc(alias = "volume")]
     fn set_volume(&self, volume: f64) {

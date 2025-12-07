@@ -7,6 +7,11 @@ use crate::{ffi,Wp};
 use glib::{translate::*};
 
 
+/// gets the default wireplumber object.
+///
+/// # Returns
+///
+/// gets the default wireplumber object.
 #[doc(alias = "astal_wp_get_default")]
 #[doc(alias = "get_default")]
 #[allow(clippy::should_implement_trait)]pub fn default() -> Wp {

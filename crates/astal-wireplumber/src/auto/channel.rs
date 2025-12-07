@@ -8,6 +8,21 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `name`
+    ///  Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `volume`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `volume-icon`
+    ///  Readable
     #[doc(alias = "AstalWpChannel")]
     pub struct Channel(Object<ffi::AstalWpChannel, ffi::AstalWpChannelClass>);
 
@@ -26,6 +41,7 @@ impl Channel {
             }
         
 
+    /// the name of the channel
     #[doc(alias = "astal_wp_channel_get_name")]
     #[doc(alias = "get_name")]
     pub fn name(&self) -> glib::GString {
@@ -34,6 +50,7 @@ impl Channel {
         }
     }
 
+    /// the volume of the channel
     #[doc(alias = "astal_wp_channel_get_volume")]
     #[doc(alias = "get_volume")]
     pub fn volume(&self) -> f64 {
@@ -51,6 +68,8 @@ impl Channel {
         }
     }
 
+    /// sets the volume for this channel. Note that if [`lock-channels`][struct@crate::Node#lock-channels] is true for
+    /// the node this channel is associated with, this method will set the volume for all channels.
     #[doc(alias = "astal_wp_channel_set_volume")]
     #[doc(alias = "volume")]
     pub fn set_volume(&self, volume: f64) {

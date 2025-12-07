@@ -7,6 +7,31 @@ use crate::{ffi,Available};
 use glib::{prelude::*,translate::*};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `available`
+    ///  the available state of this profile
+    ///
+    /// Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `description`
+    ///  Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `index`
+    ///  Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `name`
+    ///  Readable | Writeable | Construct Only
+    ///
+    ///
+    /// #### `priority`
+    ///  Readable | Writeable | Construct Only
     #[doc(alias = "AstalWpProfile")]
     pub struct Profile(Object<ffi::AstalWpProfile, ffi::AstalWpProfileClass>);
 
@@ -87,6 +112,7 @@ pub struct ProfileBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// the available state of this profile
                             pub fn available(self, available: Available) -> Self {
                             Self { builder: self.builder.property("available", available), }
                         }

@@ -8,6 +8,84 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// is instanciated by [`Wp`][crate::Wp]. An instance of class can only be received there.
+    ///
+    ///  This is a convinience class and acts as a filter for [`Wp`][crate::Wp] to filter for video
+    /// endpoints and devices.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `devices`
+    ///  A list of AstalWpEndpoint objects
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `recorders`
+    ///  A list of AstalWpEndpoint objects
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `sinks`
+    ///  A list of AstalWpEndpoint objects
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `sources`
+    ///  A list of AstalWpEndpoint objects
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `streams`
+    ///  A list of AstalWpEndpoint objects
+    ///
+    /// Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `device-added`
+    ///
+    ///
+    ///
+    /// #### `device-removed`
+    ///
+    ///
+    ///
+    /// #### `recorder-added`
+    ///
+    ///
+    ///
+    /// #### `recorder-removed`
+    ///
+    ///
+    ///
+    /// #### `sink-added`
+    ///
+    ///
+    ///
+    /// #### `sink-removed`
+    ///
+    ///
+    ///
+    /// #### `source-added`
+    ///
+    ///
+    ///
+    /// #### `source-removed`
+    ///
+    ///
+    ///
+    /// #### `stream-added`
+    ///
+    ///
+    ///
+    /// #### `stream-removed`
+    ///
     #[doc(alias = "AstalWpVideo")]
     pub struct Video(Object<ffi::AstalWpVideo, ffi::AstalWpVideoClass>);
 
@@ -25,6 +103,13 @@ impl Video {
         }
     }
 
+    /// the device with the given id
+    /// ## `id`
+    /// the id of the device
+    ///
+    /// # Returns
+    ///
+    /// the device with the given id
     #[doc(alias = "astal_wp_video_get_device")]
     #[doc(alias = "get_device")]
     pub fn device(&self, id: u32) -> Option<Device> {
@@ -33,6 +118,12 @@ impl Video {
         }
     }
 
+    /// a list containing the devices
+    ///
+    /// # Returns
+    ///
+    /// a GList containing the
+    /// devices
     #[doc(alias = "astal_wp_video_get_devices")]
     #[doc(alias = "get_devices")]
     pub fn devices(&self) -> Vec<Device> {
@@ -41,6 +132,13 @@ impl Video {
         }
     }
 
+    /// the recorder with the given id
+    /// ## `id`
+    /// the id of the endpoint
+    ///
+    /// # Returns
+    ///
+    /// the recorder with the given id
     #[doc(alias = "astal_wp_video_get_recorder")]
     #[doc(alias = "get_recorder")]
     pub fn recorder(&self, id: u32) -> Option<Stream> {
@@ -49,6 +147,12 @@ impl Video {
         }
     }
 
+    /// a list containing the video recorders
+    ///
+    /// # Returns
+    ///
+    /// a GList containing the
+    /// video recorders
     #[doc(alias = "astal_wp_video_get_recorders")]
     #[doc(alias = "get_recorders")]
     pub fn recorders(&self) -> Vec<Stream> {
@@ -57,6 +161,13 @@ impl Video {
         }
     }
 
+    /// the sink with the given id
+    /// ## `id`
+    /// the id of the endpoint
+    ///
+    /// # Returns
+    ///
+    /// the sink with the given id
     #[doc(alias = "astal_wp_video_get_sink")]
     #[doc(alias = "get_sink")]
     pub fn sink(&self, id: u32) -> Option<Endpoint> {
@@ -65,6 +176,12 @@ impl Video {
         }
     }
 
+    /// a list containing the video sinks
+    ///
+    /// # Returns
+    ///
+    /// a GList containing the
+    /// video sinks
     #[doc(alias = "astal_wp_video_get_sinks")]
     #[doc(alias = "get_sinks")]
     pub fn sinks(&self) -> Vec<Endpoint> {
@@ -73,6 +190,13 @@ impl Video {
         }
     }
 
+    /// the source with the given id
+    /// ## `id`
+    /// the id of the endpoint
+    ///
+    /// # Returns
+    ///
+    /// the source with the given id
     #[doc(alias = "astal_wp_video_get_source")]
     #[doc(alias = "get_source")]
     pub fn source(&self, id: u32) -> Option<Endpoint> {
@@ -81,6 +205,12 @@ impl Video {
         }
     }
 
+    /// a list containing the video sources
+    ///
+    /// # Returns
+    ///
+    /// a GList containing the
+    /// video sources
     #[doc(alias = "astal_wp_video_get_sources")]
     #[doc(alias = "get_sources")]
     pub fn sources(&self) -> Vec<Endpoint> {
@@ -89,6 +219,13 @@ impl Video {
         }
     }
 
+    /// the stream with the given id
+    /// ## `id`
+    /// the id of the endpoint
+    ///
+    /// # Returns
+    ///
+    /// the stream with the given id
     #[doc(alias = "astal_wp_video_get_stream")]
     #[doc(alias = "get_stream")]
     pub fn stream(&self, id: u32) -> Option<Stream> {
@@ -97,6 +234,12 @@ impl Video {
         }
     }
 
+    /// a list containing the video streams
+    ///
+    /// # Returns
+    ///
+    /// a GList containing the
+    /// video streams
     #[doc(alias = "astal_wp_video_get_streams")]
     #[doc(alias = "get_streams")]
     pub fn streams(&self) -> Vec<Stream> {
