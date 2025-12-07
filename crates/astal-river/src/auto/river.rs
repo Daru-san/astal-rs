@@ -14,6 +14,55 @@ use std::boxed::Box as Box_;
 #[cfg(feature = "gio_v2_22")]
 #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_22")))]
 glib::wrapper! {
+    /// This class creates a connection to the river compositor.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `focused-output`
+    ///  The name of the currently focused output
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `focused-view`
+    ///  The name of the currently focused view
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `mode`
+    ///  The currently active mode
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `outputs`
+    ///  A list of [`Output`][crate::Output] objects
+    ///
+    /// Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `changed`
+    ///
+    ///
+    ///
+    /// #### `output-added`
+    ///  This signal is emitted when a new output was connected
+    ///
+    ///
+    ///
+    ///
+    /// #### `output-removed`
+    ///  This signal is emitted when a new output was disconnected
+    ///
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`trait@gio::prelude::InitableExt`]
     #[doc(alias = "AstalRiverRiver")]
     pub struct River(Object<ffi::AstalRiverRiver, ffi::AstalRiverRiverClass>) @implements gio::Initable;
 
@@ -33,12 +82,23 @@ glib::wrapper! {
 }
 
 impl River {
+    /// creates a new River object. It is recommended to use the [`default()`][Self::default()] method
+    /// instead of this method.
+    ///
+    /// # Returns
+    ///
+    /// a newly created connection to river
     #[doc(alias = "astal_river_river_new")]
     pub fn new() -> Option<River> {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::astal_river_river_new()) }
     }
 
+    /// returns the name of the currently focused output
+    ///
+    /// # Returns
+    ///
+    /// the name of the currently focused output
     #[doc(alias = "astal_river_river_get_focused_output")]
     #[doc(alias = "get_focused_output")]
     #[doc(alias = "focused-output")]
@@ -50,6 +110,11 @@ impl River {
         }
     }
 
+    /// returns the currently focused view
+    ///
+    /// # Returns
+    ///
+    /// the currently focused view
     #[doc(alias = "astal_river_river_get_focused_view")]
     #[doc(alias = "get_focused_view")]
     #[doc(alias = "focused-view")]
@@ -61,12 +126,24 @@ impl River {
         }
     }
 
+    /// returns the currently active mode
+    ///
+    /// # Returns
+    ///
+    /// the currently active mode
     #[doc(alias = "astal_river_river_get_mode")]
     #[doc(alias = "get_mode")]
     pub fn mode(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::astal_river_river_get_mode(self.to_glib_none().0)) }
     }
 
+    /// returns the output with the given name or null
+    /// ## `name`
+    /// the name of the output
+    ///
+    /// # Returns
+    ///
+    /// the output with the given name or null
     #[doc(alias = "astal_river_river_get_output")]
     #[doc(alias = "get_output")]
     pub fn output(&self, name: &str) -> Option<Output> {
@@ -78,6 +155,11 @@ impl River {
         }
     }
 
+    /// returns a list of all outputs
+    ///
+    /// # Returns
+    ///
+    /// a list of all outputs
     #[doc(alias = "astal_river_river_get_outputs")]
     #[doc(alias = "get_outputs")]
     pub fn outputs(&self) -> Vec<Output> {
@@ -88,6 +170,13 @@ impl River {
         }
     }
 
+    /// creates a new [`Layout`][crate::Layout] object for this river instance.
+    /// ## `namespace`
+    /// the namespace of the layout
+    ///
+    /// # Returns
+    ///
+    /// a newly created AstalRiverLayout object
     #[doc(alias = "astal_river_river_new_layout")]
     pub fn new_layout(&self, namespace: &str) -> Layout {
         unsafe {
@@ -103,6 +192,11 @@ impl River {
     //    unsafe { TODO: call ffi:astal_river_river_run_command_async() }
     //}
 
+    /// returns the default River object.
+    ///
+    /// # Returns
+    ///
+    /// gets the default River object.
     #[doc(alias = "astal_river_river_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]
@@ -133,6 +227,9 @@ impl River {
         }
     }
 
+    /// This signal is emitted when a new output was connected
+    /// ## `output`
+    /// the name of the added output
     #[doc(alias = "output-added")]
     pub fn connect_output_added<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn output_added_trampoline<F: Fn(&River, &str) + 'static>(
@@ -159,6 +256,9 @@ impl River {
         }
     }
 
+    /// This signal is emitted when a new output was disconnected
+    /// ## `output`
+    /// the name of the removed output
     #[doc(alias = "output-removed")]
     pub fn connect_output_removed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn output_removed_trampoline<F: Fn(&River, &str) + 'static>(

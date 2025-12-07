@@ -8,6 +8,105 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// holds all the information associated with a monitor.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `description`
+    ///  Readable
+    ///
+    ///
+    /// #### `focused-tags`
+    ///  The currently focused tags
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `focused-view`
+    ///  The name of currently focused view
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `height`
+    ///  Readable
+    ///
+    ///
+    /// #### `id`
+    ///  The id of the underlying wl_output object
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `layout-name`
+    ///  The name of active layout
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `make`
+    ///  Readable
+    ///
+    ///
+    /// #### `model`
+    ///  Readable
+    ///
+    ///
+    /// #### `name`
+    ///  The name of this output
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `occupied-tags`
+    ///  The currently occupied tags
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `physical-height`
+    ///  Readable
+    ///
+    ///
+    /// #### `physical-width`
+    ///  Readable
+    ///
+    ///
+    /// #### `refresh-rate`
+    ///  Readable
+    ///
+    ///
+    /// #### `scale-factor`
+    ///  Readable
+    ///
+    ///
+    /// #### `transform`
+    ///  Readable
+    ///
+    ///
+    /// #### `urgent-tags`
+    ///  The currently tags marked as urgent
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `width`
+    ///  Readable
+    ///
+    ///
+    /// #### `x`
+    ///  Readable
+    ///
+    ///
+    /// #### `y`
+    ///  Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `changed`
+    ///
     #[doc(alias = "AstalRiverOutput")]
     pub struct Output(Object<ffi::AstalRiverOutput, ffi::AstalRiverOutputClass>);
 
@@ -26,6 +125,7 @@ impl Output {
             }
         
 
+    /// the description of the output
     #[doc(alias = "astal_river_output_get_description")]
     #[doc(alias = "get_description")]
     pub fn description(&self) -> Option<glib::GString> {
@@ -34,6 +134,11 @@ impl Output {
         }
     }
 
+    /// the focused tags of the output
+    ///
+    /// # Returns
+    ///
+    /// the focused tags of the output
     #[doc(alias = "astal_river_output_get_focused_tags")]
     #[doc(alias = "get_focused_tags")]
     #[doc(alias = "focused-tags")]
@@ -43,6 +148,11 @@ impl Output {
         }
     }
 
+    /// the focused view on the output
+    ///
+    /// # Returns
+    ///
+    /// the focused view on the output
     #[doc(alias = "astal_river_output_get_focused_view")]
     #[doc(alias = "get_focused_view")]
     #[doc(alias = "focused-view")]
@@ -52,6 +162,7 @@ impl Output {
         }
     }
 
+    /// the height of the output
     #[doc(alias = "astal_river_output_get_height")]
     #[doc(alias = "get_height")]
     pub fn height(&self) -> i32 {
@@ -60,6 +171,11 @@ impl Output {
         }
     }
 
+    /// the id of the underlying wl_output object
+    ///
+    /// # Returns
+    ///
+    /// the id of the underlying wl_output object
     #[doc(alias = "astal_river_output_get_id")]
     #[doc(alias = "get_id")]
     pub fn id(&self) -> u32 {
@@ -68,6 +184,11 @@ impl Output {
         }
     }
 
+    /// the currently used layout name of the output
+    ///
+    /// # Returns
+    ///
+    /// the currently used layout name of the output
     #[doc(alias = "astal_river_output_get_layout_name")]
     #[doc(alias = "get_layout_name")]
     #[doc(alias = "layout-name")]
@@ -77,6 +198,7 @@ impl Output {
         }
     }
 
+    /// the make of the output
     #[doc(alias = "astal_river_output_get_make")]
     #[doc(alias = "get_make")]
     pub fn make(&self) -> Option<glib::GString> {
@@ -85,6 +207,7 @@ impl Output {
         }
     }
 
+    /// the model of the output
     #[doc(alias = "astal_river_output_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<glib::GString> {
@@ -93,6 +216,11 @@ impl Output {
         }
     }
 
+    /// the name of the output
+    ///
+    /// # Returns
+    ///
+    /// the name of the output
     #[doc(alias = "astal_river_output_get_name")]
     #[doc(alias = "get_name")]
     pub fn name(&self) -> Option<glib::GString> {
@@ -101,6 +229,11 @@ impl Output {
         }
     }
 
+    /// the occupied tags of the output
+    ///
+    /// # Returns
+    ///
+    /// the occupied tags of the output
     #[doc(alias = "astal_river_output_get_occupied_tags")]
     #[doc(alias = "get_occupied_tags")]
     #[doc(alias = "occupied-tags")]
@@ -110,6 +243,7 @@ impl Output {
         }
     }
 
+    /// the physical height of the output
     #[doc(alias = "astal_river_output_get_physical_height")]
     #[doc(alias = "get_physical_height")]
     #[doc(alias = "physical-height")]
@@ -119,6 +253,7 @@ impl Output {
         }
     }
 
+    /// the physical width of the output
     #[doc(alias = "astal_river_output_get_physical_width")]
     #[doc(alias = "get_physical_width")]
     #[doc(alias = "physical-width")]
@@ -128,6 +263,7 @@ impl Output {
         }
     }
 
+    /// the refresh rate of the output
     #[doc(alias = "astal_river_output_get_refresh_rate")]
     #[doc(alias = "get_refresh_rate")]
     #[doc(alias = "refresh-rate")]
@@ -137,6 +273,7 @@ impl Output {
         }
     }
 
+    /// the scale factor of the output
     #[doc(alias = "astal_river_output_get_scale_factor")]
     #[doc(alias = "get_scale_factor")]
     #[doc(alias = "scale-factor")]
@@ -146,6 +283,11 @@ impl Output {
         }
     }
 
+    /// the urgent tags of the output
+    ///
+    /// # Returns
+    ///
+    /// the urgent tags of the output
     #[doc(alias = "astal_river_output_get_urgent_tags")]
     #[doc(alias = "get_urgent_tags")]
     #[doc(alias = "urgent-tags")]
@@ -155,6 +297,7 @@ impl Output {
         }
     }
 
+    /// the width of the output
     #[doc(alias = "astal_river_output_get_width")]
     #[doc(alias = "get_width")]
     pub fn width(&self) -> i32 {
@@ -163,6 +306,7 @@ impl Output {
         }
     }
 
+    /// the x coordinate of the outputs position
     #[doc(alias = "astal_river_output_get_x")]
     #[doc(alias = "get_x")]
     pub fn x(&self) -> i32 {
@@ -171,6 +315,7 @@ impl Output {
         }
     }
 
+    /// the y coordinate of the outputs position
     #[doc(alias = "astal_river_output_get_y")]
     #[doc(alias = "get_y")]
     pub fn y(&self) -> i32 {
@@ -179,6 +324,9 @@ impl Output {
         }
     }
 
+    /// sets the focused tags of the output
+    /// ## `tags`
+    /// the tagmask to be focused
     #[doc(alias = "astal_river_output_set_focused_tags")]
     #[doc(alias = "focused-tags")]
     pub fn set_focused_tags(&self, tags: u32) {
@@ -466,6 +614,7 @@ pub struct OutputBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// The currently focused tags
                             pub fn focused_tags(self, focused_tags: u32) -> Self {
                             Self { builder: self.builder.property("focused-tags", focused_tags), }
                         }

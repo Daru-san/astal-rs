@@ -12,6 +12,29 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    /// handles the layout of windows.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `namespace`
+    ///  The namespace of this layout
+    ///
+    /// Readable | Writeable | Construct Only
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `namespace-in-use`
+    ///  Emitted when the namespace of this layout is already in use on an output.
+    ///
+    ///
+    ///
+    ///
+    /// #### `user-command`
+    ///  Emitted when a user command is requested for this layout.
+    ///
+    ///
     #[doc(alias = "AstalRiverLayout")]
     pub struct Layout(Object<ffi::AstalRiverLayout, ffi::AstalRiverLayoutClass>);
 
@@ -29,6 +52,11 @@ impl Layout {
         LayoutBuilder::new()
     }
 
+    /// the namespace of the layout
+    ///
+    /// # Returns
+    ///
+    /// the namespace of the layout
     #[doc(alias = "astal_river_layout_get_namespace")]
     #[doc(alias = "get_namespace")]
     pub fn namespace(&self) -> Option<glib::GString> {
@@ -40,6 +68,9 @@ impl Layout {
     //    unsafe { TODO: call ffi:astal_river_layout_set_layout_demand_callback() }
     //}
 
+    /// Emitted when the namespace of this layout is already in use on an output.
+    /// ## `output`
+    /// the AstalRiverOutput object that is using the namespace
     #[doc(alias = "namespace-in-use")]
     pub fn connect_namespace_in_use<F: Fn(&Self, &Output) + 'static>(
         &self,
@@ -66,6 +97,11 @@ impl Layout {
         }
     }
 
+    /// Emitted when a user command is requested for this layout.
+    /// ## `command`
+    /// the command send by the user
+    /// ## `output`
+    /// the currently focused output
     #[doc(alias = "user-command")]
     pub fn connect_user_command<F: Fn(&Self, &str, &Output) + 'static>(
         &self,
@@ -114,6 +150,7 @@ impl LayoutBuilder {
         }
     }
 
+    /// The namespace of this layout
     pub fn namespace(self, namespace: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("namespace", namespace.into()),

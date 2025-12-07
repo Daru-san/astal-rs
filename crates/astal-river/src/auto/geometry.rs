@@ -18,6 +18,7 @@ glib::wrapper! {
 }
 
 impl Geometry {
+    /// Creates a new  AstalRiverGeometry instance.
     #[doc(alias = "astal_river_geometry_new")]
     pub fn new(x: u32, y: u32, width: u32, height: u32) -> Geometry {
         assert_initialized_main_thread!();
@@ -26,6 +27,7 @@ impl Geometry {
         }
     }
 
+    /// Creates a new  AstalRiverGeometry instance.
     #[doc(alias = "astal_river_geometry_new_zero")]
     pub fn new_zero() -> Geometry {
         assert_initialized_main_thread!();
