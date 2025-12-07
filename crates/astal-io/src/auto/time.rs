@@ -8,6 +8,25 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// `Time` provides shortcuts for GLib timeout functions.
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `now`
+    ///  Emitted when the timer ticks.
+    ///
+    ///
+    ///
+    ///
+    /// #### `cancelled`
+    ///  Emitted when the timere is cancelled.
+    ///
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`TimeExt`][trait@crate::prelude::TimeExt]
     #[doc(alias = "AstalIOTime")]
     pub struct Time(Object<ffi::AstalIOTime, ffi::AstalIOTimeClass>);
 
@@ -20,6 +39,7 @@ impl Time {
         pub const NONE: Option<&'static Time> = None;
     
 
+    /// Start an interval timer with default Priority.
     #[doc(alias = "astal_io_time_new_interval_prio")]
     pub fn interval_prio(interval: u32, prio: i32, fn_: Option<&glib::Closure>) -> Time {
         assert_initialized_main_thread!();
@@ -28,6 +48,7 @@ impl Time {
         }
     }
 
+    /// Start a timeout timer with default Priority.
     #[doc(alias = "astal_io_time_new_timeout_prio")]
     pub fn timeout_prio(timeout: u32, prio: i32, fn_: Option<&glib::Closure>) -> Time {
         assert_initialized_main_thread!();
@@ -36,6 +57,7 @@ impl Time {
         }
     }
 
+    /// Start an idle timer with default priority.
     #[doc(alias = "astal_io_time_new_idle_prio")]
     pub fn idle_prio(prio: i32, fn_: Option<&glib::Closure>) -> Time {
         assert_initialized_main_thread!();
@@ -52,6 +74,11 @@ impl Time {
         }
     }
 
+    /// Start an interval timer. Ticks immediately then every `interval` milliseconds.
+    /// ## `interval`
+    /// Tick every milliseconds. 
+    /// ## `fn_`
+    /// Optional callback. 
     #[doc(alias = "astal_io_time_interval")]
     pub fn interval(interval: u32, fn_: Option<&glib::Closure>) -> Time {
         assert_initialized_main_thread!();
@@ -60,6 +87,11 @@ impl Time {
         }
     }
 
+    /// Start a timeout timer which ticks after `timeout` milliseconds.
+    /// ## `timeout`
+    /// Tick after milliseconds. 
+    /// ## `fn_`
+    /// Optional callback. 
     #[doc(alias = "astal_io_time_timeout")]
     pub fn timeout(timeout: u32, fn_: Option<&glib::Closure>) -> Time {
         assert_initialized_main_thread!();
@@ -68,6 +100,9 @@ impl Time {
         }
     }
 
+    /// Start a timer which will tick when there are no higher priority tasks pending.
+    /// ## `fn_`
+    /// Optional callback. 
     #[doc(alias = "astal_io_time_idle")]
     pub fn idle(fn_: Option<&glib::Closure>) -> Time {
         assert_initialized_main_thread!();
@@ -83,7 +118,13 @@ impl Default for Time {
                      }
                  }
 
+/// Trait containing all [`struct@Time`] methods.
+///
+/// # Implementors
+///
+/// [`Time`][struct@crate::Time]
 pub trait TimeExt: IsA<Time> + 'static {
+    /// Cancel timer and emit [`cancelled`][struct@crate::Time#cancelled]
     #[doc(alias = "astal_io_time_cancel")]
     fn cancel(&self) {
         unsafe {
@@ -91,6 +132,7 @@ pub trait TimeExt: IsA<Time> + 'static {
         }
     }
 
+    /// Emitted when the timer ticks.
     #[doc(alias = "now")]
     fn connect_now<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn now_trampoline<P: IsA<Time>, F: Fn(&P) + 'static>(this: *mut ffi::AstalIOTime, f: glib::ffi::gpointer) {
@@ -104,6 +146,7 @@ pub trait TimeExt: IsA<Time> + 'static {
         }
     }
 
+    /// Emitted when the timere is cancelled.
     #[doc(alias = "cancelled")]
     fn connect_cancelled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cancelled_trampoline<P: IsA<Time>, F: Fn(&P) + 'static>(this: *mut ffi::AstalIOTime, f: glib::ffi::gpointer) {

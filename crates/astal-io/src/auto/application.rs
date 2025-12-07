@@ -8,6 +8,17 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// This interface is used internally in Astal3 and Astal4, not meant for public usage.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `instance-name`
+    ///  Readable | Writeable | Construct
+    ///
+    /// # Implements
+    ///
+    /// [`ApplicationExt`][trait@crate::prelude::ApplicationExt]
     #[doc(alias = "AstalIOApplication")]
     pub struct Application(Interface<ffi::AstalIOApplication, ffi::AstalIOApplicationIface>);
 
@@ -21,6 +32,11 @@ impl Application {
     
 }
 
+/// Trait containing all [`struct@Application`] methods.
+///
+/// # Implementors
+///
+/// [`Application`][struct@crate::Application], [`Daemon`][struct@crate::Daemon]
 pub trait ApplicationExt: IsA<Application> + 'static {
     #[doc(alias = "astal_io_application_quit")]
     fn quit(&self) -> Result<(), glib::Error> {

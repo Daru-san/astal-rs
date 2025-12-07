@@ -9,6 +9,11 @@ use glib::{prelude::*,translate::*};
 #[cfg(feature = "gio_v2_28")]
 #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
 glib::wrapper! {
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`DaemonExt`][trait@crate::prelude::DaemonExt], [`trait@gio::prelude::ApplicationExt`], [`trait@gio::prelude::ActionGroupExt`], [`trait@gio::prelude::ActionMapExt`], [`ApplicationExt`][trait@crate::prelude::ApplicationExt]
     #[doc(alias = "AstalIODaemon")]
     pub struct Daemon(Object<ffi::AstalIODaemon, ffi::AstalIODaemonClass>) @extends gio::Application, @implements gio::ActionGroup, gio::ActionMap, Application;
 
@@ -80,6 +85,10 @@ pub struct DaemonBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// The group of actions that the application exports.
+                            /// Use the [`gio::ActionMap`][crate::gio::ActionMap] interface instead.
+                            ///   Never ever mix use of this API with use of `GActionMap` on the
+                            ///   same @application or things will go very badly wrong.
                             #[cfg(feature = "gio_v2_28")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
@@ -87,6 +96,7 @@ pub struct DaemonBuilder {
                             Self { builder: self.builder.property("action-group", action_group.clone().upcast()), }
                         }
 
+                            /// The unique identifier for the application.
                             #[cfg(feature = "gio_v2_28")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
     pub fn application_id(self, application_id: impl Into<glib::GString>) -> Self {
@@ -99,18 +109,21 @@ pub struct DaemonBuilder {
                         //    Self { builder: self.builder.property("flags", flags), }
                         //}
 
+                            /// Time (in milliseconds) to stay alive after becoming idle.
                             #[cfg(feature = "gio_v2_28")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
     pub fn inactivity_timeout(self, inactivity_timeout: u32) -> Self {
                             Self { builder: self.builder.property("inactivity-timeout", inactivity_timeout), }
                         }
 
+                            /// The base resource path for the application.
                             #[cfg(feature = "gio_v2_28")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
     pub fn resource_base_path(self, resource_base_path: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("resource-base-path", resource_base_path.into()), }
                         }
 
+                            /// The human-readable version number of the application.
                             #[cfg(feature = "gio_v2_80")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_80")))]
     pub fn version(self, version: impl Into<glib::GString>) -> Self {
@@ -129,7 +142,17 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Daemon`] methods.
+///
+/// # Implementors
+///
+/// [`Daemon`][struct@crate::Daemon]
 pub trait DaemonExt: IsA<Daemon> + 'static {
+    /// Handler for an incoming request.
+    /// ## `request`
+    /// Body of the request 
+    /// ## `conn`
+    /// The connection which expects the response. 
     #[doc(alias = "astal_io_daemon_request")]
     fn request(&self, request: &str, conn: &impl IsA<gio::SocketConnection>) {
         unsafe {

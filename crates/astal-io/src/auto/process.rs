@@ -8,6 +8,37 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// `Process` provides shortcuts for `Gio::Subprocess` with sane defaults.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `argv`
+    ///  Readable | Writeable | Construct Only
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `stdout`
+    ///  When the underlying subprocess writes to its stdout.
+    ///
+    ///
+    ///
+    ///
+    /// #### `stderr`
+    ///  When the underlying subprocess writes to its stderr.
+    ///
+    ///
+    ///
+    ///
+    /// #### `exit`
+    ///  When the underlying subprocess exits or is terminated.
+    ///
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`ProcessExt`][trait@crate::prelude::ProcessExt]
     #[doc(alias = "AstalIOProcess")]
     pub struct Process(Object<ffi::AstalIOProcess, ffi::AstalIOProcessClass>);
 
@@ -20,6 +51,7 @@ impl Process {
         pub const NONE: Option<&'static Process> = None;
     
 
+    /// See [`subprocessv()`][Self::subprocessv()]
     #[doc(alias = "astal_io_process_new")]
     pub fn new(cmd: &[&str]) -> Result<Process, glib::Error> {
         assert_initialized_main_thread!();
@@ -40,6 +72,8 @@ impl Process {
             }
         
 
+    /// Start a new subprocess with the given command.
+    /// The first element of the vector is executed with the remaining elements as the argument list.
     #[doc(alias = "astal_io_process_subprocessv")]
     pub fn subprocessv(cmd: &[&str]) -> Result<Process, glib::Error> {
         assert_initialized_main_thread!();
@@ -51,6 +85,7 @@ impl Process {
         }
     }
 
+    /// Start a new subprocess with the given command which is parsed using `shell_parse_argv()`.
     #[doc(alias = "astal_io_process_subprocess")]
     pub fn subprocess(cmd: &str) -> Result<Process, glib::Error> {
         assert_initialized_main_thread!();
@@ -61,6 +96,11 @@ impl Process {
         }
     }
 
+    /// Execute a command synchronously. The first element of the vector is executed with the remaining elements as the argument list.
+    ///
+    /// # Returns
+    ///
+    /// stdout of the subprocess 
     #[doc(alias = "astal_io_process_execv")]
     pub fn execv(cmd: &[&str]) -> Result<glib::GString, glib::Error> {
         assert_initialized_main_thread!();
@@ -72,6 +112,11 @@ impl Process {
         }
     }
 
+    /// Execute a command synchronously. The command is parsed using `shell_parse_argv()`.
+    ///
+    /// # Returns
+    ///
+    /// stdout of the subprocess 
     #[doc(alias = "astal_io_process_exec")]
     pub fn exec(cmd: &str) -> Result<glib::GString, glib::Error> {
         assert_initialized_main_thread!();
@@ -125,7 +170,13 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Process`] methods.
+///
+/// # Implementors
+///
+/// [`Process`][struct@crate::Process]
 pub trait ProcessExt: IsA<Process> + 'static {
+    /// Force quit the subprocess.
     #[doc(alias = "astal_io_process_kill")]
     fn kill(&self) {
         unsafe {
@@ -133,6 +184,9 @@ pub trait ProcessExt: IsA<Process> + 'static {
         }
     }
 
+    /// Send a signal to the subprocess.
+    /// ## `signal_num`
+    /// Signal number to be sent 
     #[doc(alias = "astal_io_process_signal")]
     fn signal(&self, signal_num: i32) {
         unsafe {
@@ -140,6 +194,9 @@ pub trait ProcessExt: IsA<Process> + 'static {
         }
     }
 
+    /// Write a line to the subprocess' stdin synchronously.
+    /// ## `in_`
+    /// String to be written to stdin 
     #[doc(alias = "astal_io_process_write")]
     fn write(&self, in_: &str) -> Result<(), glib::Error> {
         unsafe {
@@ -164,6 +221,9 @@ pub trait ProcessExt: IsA<Process> + 'static {
         }
     }
 
+    /// When the underlying subprocess writes to its stdout.
+    /// ## `out`
+    /// Line written to stdout 
     #[doc(alias = "stdout")]
     fn connect_stdout<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn stdout_trampoline<P: IsA<Process>, F: Fn(&P, &str) + 'static>(this: *mut ffi::AstalIOProcess, out: *const std::ffi::c_char, f: glib::ffi::gpointer) {
@@ -177,6 +237,9 @@ pub trait ProcessExt: IsA<Process> + 'static {
         }
     }
 
+    /// When the underlying subprocess writes to its stderr.
+    /// ## `err`
+    /// Line written to stderr 
     #[doc(alias = "stderr")]
     fn connect_stderr<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn stderr_trampoline<P: IsA<Process>, F: Fn(&P, &str) + 'static>(this: *mut ffi::AstalIOProcess, err: *const std::ffi::c_char, f: glib::ffi::gpointer) {
@@ -190,6 +253,9 @@ pub trait ProcessExt: IsA<Process> + 'static {
         }
     }
 
+    /// When the underlying subprocess exits or is terminated.
+    /// ## `code`
+    /// Exit code or signal number if terminated 
     #[doc(alias = "exit")]
     fn connect_exit<F: Fn(&Self, i32, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn exit_trampoline<P: IsA<Process>, F: Fn(&P, i32, bool) + 'static>(this: *mut ffi::AstalIOProcess, code: std::ffi::c_int, terminated: glib::ffi::gboolean, f: glib::ffi::gpointer) {

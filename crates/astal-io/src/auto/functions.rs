@@ -7,6 +7,11 @@ use crate::{ffi,Application};
 use glib::{prelude::*,translate::*};
 
 
+/// Starts a [`gio::SocketService`][crate::gio::SocketService] and binds `XDG_RUNTIME_DIR/astal/<instance_name>.sock`. This socket is then used by the astal
+/// cli. Not meant for public usage, but for [`ApplicationExt::acquire_socket()`][crate::prelude::ApplicationExt::acquire_socket()].
+///
+/// # Returns
+///
 #[doc(alias = "astal_io_acquire_socket")]
 pub fn acquire_socket(app: &impl IsA<Application>) -> Result<(gio::SocketService, glib::GString), glib::Error> {
     skip_assert_initialized!();
@@ -18,6 +23,7 @@ pub fn acquire_socket(app: &impl IsA<Application>) -> Result<(gio::SocketService
     }
 }
 
+/// Get a list of running Astal.Application instances. It is the equivalent of `astal --list`.
 #[doc(alias = "astal_io_get_instances")]
 #[doc(alias = "get_instances")]
 pub fn instances() -> Vec<glib::GString> {
@@ -27,6 +33,7 @@ pub fn instances() -> Vec<glib::GString> {
     }
 }
 
+/// Quit an an Astal instances. It is the equivalent of `astal --quit -i instance`.
 #[doc(alias = "astal_io_quit_instance")]
 pub fn quit_instance(instance: &str) -> Result<(), glib::Error> {
     assert_initialized_main_thread!();
@@ -37,6 +44,7 @@ pub fn quit_instance(instance: &str) -> Result<(), glib::Error> {
     }
 }
 
+/// Open the Gtk debug tool of an an Astal instances. It is the equivalent of `astal --inspector -i instance`.
 #[doc(alias = "astal_io_open_inspector")]
 pub fn open_inspector(instance: &str) -> Result<(), glib::Error> {
     assert_initialized_main_thread!();
@@ -47,6 +55,7 @@ pub fn open_inspector(instance: &str) -> Result<(), glib::Error> {
     }
 }
 
+/// Toggle a Window of an Astal instances. It is the equivalent of `astal -i instance --toggle window`.
 #[doc(alias = "astal_io_toggle_window_by_name")]
 pub fn toggle_window_by_name(instance: &str, window: &str) -> Result<(), glib::Error> {
     assert_initialized_main_thread!();
@@ -57,6 +66,7 @@ pub fn toggle_window_by_name(instance: &str, window: &str) -> Result<(), glib::E
     }
 }
 
+/// Use [`send_request()`][crate::send_request()] instead.
 #[doc(alias = "astal_io_send_message")]
 pub fn send_message(instance: &str, request: &str) -> Result<glib::GString, glib::Error> {
     assert_initialized_main_thread!();
@@ -67,6 +77,7 @@ pub fn send_message(instance: &str, request: &str) -> Result<glib::GString, glib
     }
 }
 
+/// Send a request to an Astal instances. It is the equivalent of `astal -i instance "request content"`.
 #[doc(alias = "astal_io_send_request")]
 pub fn send_request(instance: &str, request: &str) -> Result<glib::GString, glib::Error> {
     assert_initialized_main_thread!();
@@ -87,6 +98,7 @@ pub fn send_request(instance: &str, request: &str) -> Result<glib::GString, glib
 //    unsafe { TODO: call ffi:astal_io_write_sock() }
 //}
 
+/// Read the contents of a file synchronously.
 #[doc(alias = "astal_io_read_file")]
 pub fn read_file(path: &str) -> glib::GString {
     assert_initialized_main_thread!();
@@ -100,6 +112,7 @@ pub fn read_file(path: &str) -> glib::GString {
 //    unsafe { TODO: call ffi:astal_io_read_file_async() }
 //}
 
+/// Write content to a file synchronously.
 #[doc(alias = "astal_io_write_file")]
 pub fn write_file(path: &str, content: &str) {
     assert_initialized_main_thread!();
@@ -113,6 +126,8 @@ pub fn write_file(path: &str, content: &str) {
 //    unsafe { TODO: call ffi:astal_io_write_file_async() }
 //}
 
+/// Monitor a file for changes. If the path is a directory, monitor it recursively. The callback will be called passed two parameters: the path of
+/// the file that changed and an `Gio::FileMonitorEvent` indicating the reason.
 #[doc(alias = "astal_io_monitor_file")]
 pub fn monitor_file(path: &str, callback: &glib::Closure) -> Option<gio::FileMonitor> {
     assert_initialized_main_thread!();
