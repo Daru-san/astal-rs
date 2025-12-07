@@ -1,0 +1,8 @@
+[package]
+name = "astal-wp"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+astal-wp-sys = { version = "0.1.0", path = "sys" }
+glib.workspace = true
