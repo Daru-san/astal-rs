@@ -13,6 +13,107 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `address`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `mapped`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `hidden`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `x`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `y`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `width`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `height`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `workspace`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `floating`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `monitor`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `class`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `title`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `initial-class`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `initial-title`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `pid`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `xwayland`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `pinned`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `fullscreen`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `fullscreen-client`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `swallowing`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `focus-history-id`
+    ///  Readable | Writeable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `removed`
+    ///
+    ///
+    ///
+    /// #### `moved-to`
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`ClientExt`][trait@crate::prelude::ClientExt]
     #[doc(alias = "AstalHyprlandClient")]
     pub struct Client(Object<ffi::AstalHyprlandClient, ffi::AstalHyprlandClientClass>);
 
@@ -200,6 +301,11 @@ impl ClientBuilder {
     }
 }
 
+/// Trait containing all [`struct@Client`] methods.
+///
+/// # Implementors
+///
+/// [`Client`][struct@crate::Client]
 pub trait ClientExt: IsA<Client> + 'static {
     #[doc(alias = "astal_hyprland_client_kill")]
     fn kill(&self) {

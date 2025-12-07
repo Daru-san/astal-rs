@@ -8,6 +8,43 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `id`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `name`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `monitor`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `clients`
+    ///  Readable
+    ///
+    ///
+    /// #### `has-fullscreen`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `last-client`
+    ///  Readable | Writeable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `removed`
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`WorkspaceExt`][trait@crate::prelude::WorkspaceExt]
     #[doc(alias = "AstalHyprlandWorkspace")]
     pub struct Workspace(Object<ffi::AstalHyprlandWorkspace, ffi::AstalHyprlandWorkspaceClass>);
 
@@ -101,6 +138,11 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Workspace`] methods.
+///
+/// # Implementors
+///
+/// [`Workspace`][struct@crate::Workspace]
 pub trait WorkspaceExt: IsA<Workspace> + 'static {
     #[doc(alias = "astal_hyprland_workspace_focus")]
     fn focus(&self) {

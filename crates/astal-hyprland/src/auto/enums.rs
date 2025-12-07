@@ -12,18 +12,25 @@ use glib::{prelude::*, translate::*};
 pub enum MonitorTransform {
     #[doc(alias = "ASTAL_HYPRLAND_MONITOR_TRANSFORM_NORMAL")]
     Normal,
+    /// rotate by 90° counter clockwise
     #[doc(alias = "ASTAL_HYPRLAND_MONITOR_TRANSFORM_ROTATE_90_DEG")]
     Rotate90Deg,
+    /// rotate by 180°
     #[doc(alias = "ASTAL_HYPRLAND_MONITOR_TRANSFORM_ROTATE_180_DEG")]
     Rotate180Deg,
+    /// rotate by 270° counter clockwise
     #[doc(alias = "ASTAL_HYPRLAND_MONITOR_TRANSFORM_ROTATE_270_DEG")]
     Rotate270Deg,
+    /// mirror both axis
     #[doc(alias = "ASTAL_HYPRLAND_MONITOR_TRANSFORM_FLIPPED")]
     Flipped,
+    /// flip and rotate by 90°
     #[doc(alias = "ASTAL_HYPRLAND_MONITOR_TRANSFORM_FLIPPED_ROTATE_90_DEG")]
     FlippedRotate90Deg,
+    /// flip and rotate by 180°
     #[doc(alias = "ASTAL_HYPRLAND_MONITOR_TRANSFORM_FLIPPED_ROTATE_180_DEG")]
     FlippedRotate180Deg,
+    /// flip and rotate by 270°
     #[doc(alias = "ASTAL_HYPRLAND_MONITOR_TRANSFORM_FLIPPED_ROTATE_270_DEG")]
     FlippedRotate270Deg,
     #[doc(hidden)]

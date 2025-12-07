@@ -13,6 +13,103 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `monitors`
+    ///  Readable
+    ///
+    ///
+    /// #### `workspaces`
+    ///  Readable
+    ///
+    ///
+    /// #### `clients`
+    ///  Readable
+    ///
+    ///
+    /// #### `focused-workspace`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `focused-monitor`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `focused-client`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `binds`
+    ///  Readable
+    ///
+    ///
+    /// #### `cursor-position`
+    ///  Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `event`
+    ///
+    ///
+    ///
+    /// #### `minimize`
+    ///
+    ///
+    ///
+    /// #### `floating`
+    ///
+    ///
+    ///
+    /// #### `urgent`
+    ///
+    ///
+    ///
+    /// #### `client-moved`
+    ///
+    ///
+    ///
+    /// #### `submap`
+    ///
+    ///
+    ///
+    /// #### `keyboard-layout`
+    ///
+    ///
+    ///
+    /// #### `config-reloaded`
+    ///
+    ///
+    ///
+    /// #### `client-added`
+    ///
+    ///
+    ///
+    /// #### `client-removed`
+    ///
+    ///
+    ///
+    /// #### `workspace-added`
+    ///
+    ///
+    ///
+    /// #### `workspace-removed`
+    ///
+    ///
+    ///
+    /// #### `monitor-added`
+    ///
+    ///
+    ///
+    /// #### `monitor-removed`
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`HyprlandExt`][trait@crate::prelude::HyprlandExt]
     #[doc(alias = "AstalHyprlandHyprland")]
     pub struct Hyprland(Object<ffi::AstalHyprlandHyprland, ffi::AstalHyprlandHyprlandClass>);
 
@@ -102,6 +199,11 @@ impl HyprlandBuilder {
     }
 }
 
+/// Trait containing all [`struct@Hyprland`] methods.
+///
+/// # Implementors
+///
+/// [`Hyprland`][struct@crate::Hyprland]
 pub trait HyprlandExt: IsA<Hyprland> + 'static {
     #[doc(alias = "astal_hyprland_hyprland_get_monitor")]
     #[doc(alias = "get_monitor")]

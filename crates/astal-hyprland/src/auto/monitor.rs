@@ -8,6 +8,123 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `id`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `name`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `description`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `make`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `model`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `serial`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `width`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `height`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `refresh-rate`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `x`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `y`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `active-workspace`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `special-workspace`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `reserved-top`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `reserved-bottom`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `reserved-left`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `reserved-right`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `scale`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `transform`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `focused`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `dpms-status`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `vrr`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `actively-tearing`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `disabled`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `current-format`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `available-modes`
+    ///  Readable | Writeable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `removed`
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`MonitorExt`][trait@crate::prelude::MonitorExt]
     #[doc(alias = "AstalHyprlandMonitor")]
     pub struct Monitor(Object<ffi::AstalHyprlandMonitor, ffi::AstalHyprlandMonitorClass>);
 
@@ -177,6 +294,11 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Monitor`] methods.
+///
+/// # Implementors
+///
+/// [`Monitor`][struct@crate::Monitor]
 pub trait MonitorExt: IsA<Monitor> + 'static {
     #[doc(alias = "astal_hyprland_monitor_focus")]
     fn focus(&self) {

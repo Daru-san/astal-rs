@@ -8,6 +8,21 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `x`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `y`
+    ///  Readable | Writeable | Construct
+    ///
+    /// # Implements
+    ///
+    /// [`PositionExt`][trait@crate::prelude::PositionExt]
     #[doc(alias = "AstalHyprlandPosition")]
     pub struct Position(Object<ffi::AstalHyprlandPosition, ffi::AstalHyprlandPositionClass>);
 
@@ -74,6 +89,11 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Position`] methods.
+///
+/// # Implementors
+///
+/// [`Position`][struct@crate::Position]
 pub trait PositionExt: IsA<Position> + 'static {
     #[doc(alias = "astal_hyprland_position_get_x")]
     #[doc(alias = "get_x")]

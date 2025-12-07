@@ -12,6 +12,73 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `locked`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `mouse`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `release`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `repeat`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `long-press`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `non-consuming`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `has-description`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `modmask`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `submap`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `key`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `keycode`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `catch-all`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `description`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `dispatcher`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `arg`
+    ///  Readable | Writeable | Construct
+    ///
+    /// # Implements
+    ///
+    /// [`BindExt`][trait@crate::prelude::BindExt]
     #[doc(alias = "AstalHyprlandBind")]
     pub struct Bind(Object<ffi::AstalHyprlandBind, ffi::AstalHyprlandBindClass>);
 
@@ -159,6 +226,11 @@ impl BindBuilder {
     }
 }
 
+/// Trait containing all [`struct@Bind`] methods.
+///
+/// # Implementors
+///
+/// [`Bind`][struct@crate::Bind]
 pub trait BindExt: IsA<Bind> + 'static {
     #[doc(alias = "astal_hyprland_bind_get_locked")]
     #[doc(alias = "get_locked")]
