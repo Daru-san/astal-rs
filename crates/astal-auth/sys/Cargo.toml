@@ -6,7 +6,6 @@ categories.workspace = true
 license.workspace = true
 repository.workspace = true
 version.workspace = true
-readme.workspace = true
 build = "build.rs"
 
 [package.metadata.system-deps.astal_auth_0_1]
