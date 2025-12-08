@@ -7,6 +7,7 @@ use crate::{ffi,Device};
 use glib::{translate::*};
 
 
+/// Get the DisplayDevice.
 #[doc(alias = "astal_battery_get_default")]
 #[doc(alias = "get_default")]
 #[allow(clippy::should_implement_trait)]pub fn default() -> Device {

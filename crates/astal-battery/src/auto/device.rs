@@ -8,6 +8,233 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Client for a UPower [device](https://upower.freedesktop.org/docs/Device.html).
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `device-type`
+    ///  If it is [enum@AstalBattery.Type.BATTERY], you will need to verify that the property power-supply has the value `true` before
+    /// considering it as a laptop battery. Otherwise it will likely be the battery for a device of an unknown type.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `native-path`
+    ///  Native path of the power source. This is the sysfs path, for example /sys/devices/LNXSYSTM:00/device:00/PNP0C0A:00/power_supply/BAT0. It is
+    /// blank if the device is being driven by a user space driver.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `vendor`
+    ///  Name of the vendor of the battery.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `model`
+    ///  Name of the model of this battery.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `serial`
+    ///  Unique serial number of the battery.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `update-time`
+    ///  The point in time (seconds since the Epoch) that data was read from the power source.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `power-supply`
+    ///  If the power device is used to supply the system. This would be set `true` for laptop batteries and UPS devices, but set to `false` for
+    /// wireless mice or PDAs.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `online`
+    ///  Whether power is currently being provided through line power.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.LINE_POWER].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `energy`
+    ///  Amount of energy (measured in Wh) currently available in the power source.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `energy-empty`
+    ///  Amount of energy (measured in Wh) in the power source when it's considered to be empty.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `energy-full`
+    ///  Amount of energy (measured in Wh) in the power source when it's considered full.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `energy-full-design`
+    ///  Amount of energy (measured in Wh) the power source is designed to hold when it's considered full.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `energy-rate`
+    ///  Amount of energy being drained from the source, measured in W. If positive, the source is being discharged, if negative it's being charged.
+    ///
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `voltage`
+    ///  Voltage in the Cell or being recorded by the meter.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `charge-cycles`
+    ///  The number of charge cycles as defined by the TCO certification, or -1 if that value is unknown or not applicable.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `luminosity`
+    ///  Luminosity being recorded by the meter.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `time-to-empty`
+    ///  Number of seconds until the power source is considered empty. Is set to 0 if unknown.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `time-to-full`
+    ///  Number of seconds until the power source is considered full. Is set to 0 if unknown.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `percentage`
+    ///  The amount of energy left in the power source expressed as a percentage between 0 and 1.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY]. The percentage
+    /// will be an approximation if [`battery_level`][struct@crate::Device#battery_level] is set to something other than None.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `temperature`
+    ///  The temperature of the device in degrees Celsius.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `is-present`
+    ///  If the power source is present in the bay.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `state`
+    ///  The battery power state.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `is-rechargable`
+    ///  If the power source is rechargeable.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `capacity`
+    ///  The capacity of the power source expressed as a percentage between 0 and 1.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `technology`
+    ///  Technology used in the battery:
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `warning-level`
+    ///  Warning level of the battery.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `battery-level`
+    ///  The level of the battery for devices which do not report a percentage but rather a coarse battery level. If the value is None. then the device
+    /// does not support coarse battery reporting, and the [`percentage`][struct@crate::Device#percentage] should be used instead.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `icon-name`
+    ///  An icon name representing this Device.
+    /// NOTE: [`battery_icon_name`][struct@crate::Device#battery_icon_name] might be a better fit as it is calculated from percentage.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `charging`
+    ///  Indicates if [`state`][struct@crate::Device#state] is charging or fully charged.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `is-battery`
+    ///  Indicates if [`device_type`][struct@crate::Device#device_type] is not line power or unknown.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `battery-icon-name`
+    ///  An icon name in the form of "battery-level-$percentage-$state-symbolic".
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `device-type-name`
+    ///  A string representation of this device's [`device_type`][struct@crate::Device#device_type].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `device-type-icon`
+    ///  An icon name that can be used to represent this device's [`device_type`][struct@crate::Device#device_type].
+    ///
+    /// Readable | Writeable
+    ///
+    /// # Implements
+    ///
+    /// [`DeviceExt`][trait@crate::prelude::DeviceExt]
     #[doc(alias = "AstalBatteryDevice")]
     pub struct Device(Object<ffi::AstalBatteryDevice, ffi::AstalBatteryDeviceClass>);
 
@@ -34,6 +261,7 @@ impl Device {
             }
         
 
+    /// Get the DisplayDevice.
     #[doc(alias = "astal_battery_device_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]    pub fn default() -> Option<Device> {
@@ -64,134 +292,189 @@ pub struct DeviceBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// If it is [enum@AstalBattery.Type.BATTERY], you will need to verify that the property power-supply has the value `true` before
+                            /// considering it as a laptop battery. Otherwise it will likely be the battery for a device of an unknown type.
                             pub fn device_type(self, device_type: Type) -> Self {
                             Self { builder: self.builder.property("device-type", device_type), }
                         }
 
+                            /// Native path of the power source. This is the sysfs path, for example /sys/devices/LNXSYSTM:00/device:00/PNP0C0A:00/power_supply/BAT0. It is
+                            /// blank if the device is being driven by a user space driver.
                             pub fn native_path(self, native_path: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("native-path", native_path.into()), }
                         }
 
+                            /// Name of the vendor of the battery.
                             pub fn vendor(self, vendor: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("vendor", vendor.into()), }
                         }
 
+                            /// Name of the model of this battery.
                             pub fn model(self, model: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("model", model.into()), }
                         }
 
+                            /// Unique serial number of the battery.
                             pub fn serial(self, serial: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("serial", serial.into()), }
                         }
 
+                            /// The point in time (seconds since the Epoch) that data was read from the power source.
                             pub fn update_time(self, update_time: u64) -> Self {
                             Self { builder: self.builder.property("update-time", update_time), }
                         }
 
+                            /// If the power device is used to supply the system. This would be set `true` for laptop batteries and UPS devices, but set to `false` for
+                            /// wireless mice or PDAs.
                             pub fn power_supply(self, power_supply: bool) -> Self {
                             Self { builder: self.builder.property("power-supply", power_supply), }
                         }
 
+                            /// Whether power is currently being provided through line power.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.LINE_POWER].
                             pub fn online(self, online: bool) -> Self {
                             Self { builder: self.builder.property("online", online), }
                         }
 
+                            /// Amount of energy (measured in Wh) currently available in the power source.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn energy(self, energy: f64) -> Self {
                             Self { builder: self.builder.property("energy", energy), }
                         }
 
+                            /// Amount of energy (measured in Wh) in the power source when it's considered to be empty.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn energy_empty(self, energy_empty: f64) -> Self {
                             Self { builder: self.builder.property("energy-empty", energy_empty), }
                         }
 
+                            /// Amount of energy (measured in Wh) in the power source when it's considered full.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn energy_full(self, energy_full: f64) -> Self {
                             Self { builder: self.builder.property("energy-full", energy_full), }
                         }
 
+                            /// Amount of energy (measured in Wh) the power source is designed to hold when it's considered full.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn energy_full_design(self, energy_full_design: f64) -> Self {
                             Self { builder: self.builder.property("energy-full-design", energy_full_design), }
                         }
 
+                            /// Amount of energy being drained from the source, measured in W. If positive, the source is being discharged, if negative it's being charged.
+                            ///
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn energy_rate(self, energy_rate: f64) -> Self {
                             Self { builder: self.builder.property("energy-rate", energy_rate), }
                         }
 
+                            /// Voltage in the Cell or being recorded by the meter.
                             pub fn voltage(self, voltage: f64) -> Self {
                             Self { builder: self.builder.property("voltage", voltage), }
                         }
 
+                            /// The number of charge cycles as defined by the TCO certification, or -1 if that value is unknown or not applicable.
                             pub fn charge_cycles(self, charge_cycles: i32) -> Self {
                             Self { builder: self.builder.property("charge-cycles", charge_cycles), }
                         }
 
+                            /// Luminosity being recorded by the meter.
                             pub fn luminosity(self, luminosity: f64) -> Self {
                             Self { builder: self.builder.property("luminosity", luminosity), }
                         }
 
+                            /// Number of seconds until the power source is considered empty. Is set to 0 if unknown.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn time_to_empty(self, time_to_empty: i64) -> Self {
                             Self { builder: self.builder.property("time-to-empty", time_to_empty), }
                         }
 
+                            /// Number of seconds until the power source is considered full. Is set to 0 if unknown.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn time_to_full(self, time_to_full: i64) -> Self {
                             Self { builder: self.builder.property("time-to-full", time_to_full), }
                         }
 
+                            /// The amount of energy left in the power source expressed as a percentage between 0 and 1.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY]. The percentage
+                            /// will be an approximation if [`battery_level`][struct@crate::Device#battery_level] is set to something other than None.
                             pub fn percentage(self, percentage: f64) -> Self {
                             Self { builder: self.builder.property("percentage", percentage), }
                         }
 
+                            /// The temperature of the device in degrees Celsius.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn temperature(self, temperature: f64) -> Self {
                             Self { builder: self.builder.property("temperature", temperature), }
                         }
 
+                            /// If the power source is present in the bay.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn is_present(self, is_present: bool) -> Self {
                             Self { builder: self.builder.property("is-present", is_present), }
                         }
 
+                            /// The battery power state.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn state(self, state: State) -> Self {
                             Self { builder: self.builder.property("state", state), }
                         }
 
+                            /// If the power source is rechargeable.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn is_rechargable(self, is_rechargable: bool) -> Self {
                             Self { builder: self.builder.property("is-rechargable", is_rechargable), }
                         }
 
+                            /// The capacity of the power source expressed as a percentage between 0 and 1.
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn capacity(self, capacity: f64) -> Self {
                             Self { builder: self.builder.property("capacity", capacity), }
                         }
 
+                            /// Technology used in the battery:
+                            /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
                             pub fn technology(self, technology: Technology) -> Self {
                             Self { builder: self.builder.property("technology", technology), }
                         }
 
+                            /// Warning level of the battery.
                             pub fn warning_level(self, warning_level: WarningLevel) -> Self {
                             Self { builder: self.builder.property("warning-level", warning_level), }
                         }
 
+                            /// The level of the battery for devices which do not report a percentage but rather a coarse battery level. If the value is None. then the device
+                            /// does not support coarse battery reporting, and the [`percentage`][struct@crate::Device#percentage] should be used instead.
                             pub fn battery_level(self, battery_level: BatteryLevel) -> Self {
                             Self { builder: self.builder.property("battery-level", battery_level), }
                         }
 
+                            /// An icon name representing this Device.
+                            /// NOTE: [`battery_icon_name`][struct@crate::Device#battery_icon_name] might be a better fit as it is calculated from percentage.
                             pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("icon-name", icon_name.into()), }
                         }
 
+                            /// Indicates if [`state`][struct@crate::Device#state] is charging or fully charged.
                             pub fn charging(self, charging: bool) -> Self {
                             Self { builder: self.builder.property("charging", charging), }
                         }
 
+                            /// Indicates if [`device_type`][struct@crate::Device#device_type] is not line power or unknown.
                             pub fn is_battery(self, is_battery: bool) -> Self {
                             Self { builder: self.builder.property("is-battery", is_battery), }
                         }
 
+                            /// An icon name in the form of "battery-level-$percentage-$state-symbolic".
                             pub fn battery_icon_name(self, battery_icon_name: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("battery-icon-name", battery_icon_name.into()), }
                         }
 
+                            /// A string representation of this device's [`device_type`][struct@crate::Device#device_type].
                             pub fn device_type_name(self, device_type_name: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("device-type-name", device_type_name.into()), }
                         }
 
+                            /// An icon name that can be used to represent this device's [`device_type`][struct@crate::Device#device_type].
                             pub fn device_type_icon(self, device_type_icon: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("device-type-icon", device_type_icon.into()), }
                         }
@@ -204,6 +487,11 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Device`] methods.
+///
+/// # Implementors
+///
+/// [`Device`][struct@crate::Device]
 pub trait DeviceExt: IsA<Device> + 'static {
     #[doc(alias = "astal_battery_device_get_device_type")]
     #[doc(alias = "get_device_type")]
@@ -469,153 +757,208 @@ pub trait DeviceExt: IsA<Device> + 'static {
         }
     }
 
+    /// If it is [enum@AstalBattery.Type.BATTERY], you will need to verify that the property power-supply has the value `true` before
+    /// considering it as a laptop battery. Otherwise it will likely be the battery for a device of an unknown type.
     #[doc(alias = "device-type")]
     fn set_device_type(&self, device_type: Type) {
         ObjectExt::set_property(self.as_ref(),"device-type", device_type)
     }
 
+    /// Native path of the power source. This is the sysfs path, for example /sys/devices/LNXSYSTM:00/device:00/PNP0C0A:00/power_supply/BAT0. It is
+    /// blank if the device is being driven by a user space driver.
     #[doc(alias = "native-path")]
     fn set_native_path(&self, native_path: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"native-path", native_path)
     }
 
+    /// Name of the vendor of the battery.
     fn set_vendor(&self, vendor: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"vendor", vendor)
     }
 
+    /// Name of the model of this battery.
     fn set_model(&self, model: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"model", model)
     }
 
+    /// Unique serial number of the battery.
     fn set_serial(&self, serial: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"serial", serial)
     }
 
+    /// The point in time (seconds since the Epoch) that data was read from the power source.
     #[doc(alias = "update-time")]
     fn set_update_time(&self, update_time: u64) {
         ObjectExt::set_property(self.as_ref(),"update-time", update_time)
     }
 
+    /// If the power device is used to supply the system. This would be set `true` for laptop batteries and UPS devices, but set to `false` for
+    /// wireless mice or PDAs.
     #[doc(alias = "power-supply")]
     fn set_power_supply(&self, power_supply: bool) {
         ObjectExt::set_property(self.as_ref(),"power-supply", power_supply)
     }
 
+    /// Whether power is currently being provided through line power.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.LINE_POWER].
     fn set_online(&self, online: bool) {
         ObjectExt::set_property(self.as_ref(),"online", online)
     }
 
+    /// Amount of energy (measured in Wh) currently available in the power source.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     fn set_energy(&self, energy: f64) {
         ObjectExt::set_property(self.as_ref(),"energy", energy)
     }
 
+    /// Amount of energy (measured in Wh) in the power source when it's considered to be empty.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     #[doc(alias = "energy-empty")]
     fn set_energy_empty(&self, energy_empty: f64) {
         ObjectExt::set_property(self.as_ref(),"energy-empty", energy_empty)
     }
 
+    /// Amount of energy (measured in Wh) in the power source when it's considered full.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     #[doc(alias = "energy-full")]
     fn set_energy_full(&self, energy_full: f64) {
         ObjectExt::set_property(self.as_ref(),"energy-full", energy_full)
     }
 
+    /// Amount of energy (measured in Wh) the power source is designed to hold when it's considered full.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     #[doc(alias = "energy-full-design")]
     fn set_energy_full_design(&self, energy_full_design: f64) {
         ObjectExt::set_property(self.as_ref(),"energy-full-design", energy_full_design)
     }
 
+    /// Amount of energy being drained from the source, measured in W. If positive, the source is being discharged, if negative it's being charged.
+    ///
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     #[doc(alias = "energy-rate")]
     fn set_energy_rate(&self, energy_rate: f64) {
         ObjectExt::set_property(self.as_ref(),"energy-rate", energy_rate)
     }
 
+    /// Voltage in the Cell or being recorded by the meter.
     fn set_voltage(&self, voltage: f64) {
         ObjectExt::set_property(self.as_ref(),"voltage", voltage)
     }
 
+    /// The number of charge cycles as defined by the TCO certification, or -1 if that value is unknown or not applicable.
     #[doc(alias = "charge-cycles")]
     fn set_charge_cycles(&self, charge_cycles: i32) {
         ObjectExt::set_property(self.as_ref(),"charge-cycles", charge_cycles)
     }
 
+    /// Luminosity being recorded by the meter.
     fn set_luminosity(&self, luminosity: f64) {
         ObjectExt::set_property(self.as_ref(),"luminosity", luminosity)
     }
 
+    /// Number of seconds until the power source is considered empty. Is set to 0 if unknown.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     #[doc(alias = "time-to-empty")]
     fn set_time_to_empty(&self, time_to_empty: i64) {
         ObjectExt::set_property(self.as_ref(),"time-to-empty", time_to_empty)
     }
 
+    /// Number of seconds until the power source is considered full. Is set to 0 if unknown.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     #[doc(alias = "time-to-full")]
     fn set_time_to_full(&self, time_to_full: i64) {
         ObjectExt::set_property(self.as_ref(),"time-to-full", time_to_full)
     }
 
+    /// The amount of energy left in the power source expressed as a percentage between 0 and 1.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY]. The percentage
+    /// will be an approximation if [`battery_level`][struct@crate::Device#battery_level] is set to something other than None.
     fn set_percentage(&self, percentage: f64) {
         ObjectExt::set_property(self.as_ref(),"percentage", percentage)
     }
 
+    /// The temperature of the device in degrees Celsius.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     fn set_temperature(&self, temperature: f64) {
         ObjectExt::set_property(self.as_ref(),"temperature", temperature)
     }
 
+    /// If the power source is present in the bay.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     #[doc(alias = "is-present")]
     fn set_is_present(&self, is_present: bool) {
         ObjectExt::set_property(self.as_ref(),"is-present", is_present)
     }
 
+    /// The battery power state.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     fn set_state(&self, state: State) {
         ObjectExt::set_property(self.as_ref(),"state", state)
     }
 
+    /// If the power source is rechargeable.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     #[doc(alias = "is-rechargable")]
     fn set_is_rechargable(&self, is_rechargable: bool) {
         ObjectExt::set_property(self.as_ref(),"is-rechargable", is_rechargable)
     }
 
+    /// The capacity of the power source expressed as a percentage between 0 and 1.
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     fn set_capacity(&self, capacity: f64) {
         ObjectExt::set_property(self.as_ref(),"capacity", capacity)
     }
 
+    /// Technology used in the battery:
+    /// This property is only valid if [`device_type`][struct@crate::Device#device_type] is [enum@AstalBattery.Type.BATTERY].
     fn set_technology(&self, technology: Technology) {
         ObjectExt::set_property(self.as_ref(),"technology", technology)
     }
 
+    /// Warning level of the battery.
     #[doc(alias = "warning-level")]
     fn set_warning_level(&self, warning_level: WarningLevel) {
         ObjectExt::set_property(self.as_ref(),"warning-level", warning_level)
     }
 
+    /// The level of the battery for devices which do not report a percentage but rather a coarse battery level. If the value is None. then the device
+    /// does not support coarse battery reporting, and the [`percentage`][struct@crate::Device#percentage] should be used instead.
     #[doc(alias = "battery-level")]
     fn set_battery_level(&self, battery_level: BatteryLevel) {
         ObjectExt::set_property(self.as_ref(),"battery-level", battery_level)
     }
 
+    /// An icon name representing this Device.
+    /// NOTE: [`battery_icon_name`][struct@crate::Device#battery_icon_name] might be a better fit as it is calculated from percentage.
     #[doc(alias = "icon-name")]
     fn set_icon_name(&self, icon_name: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"icon-name", icon_name)
     }
 
+    /// Indicates if [`state`][struct@crate::Device#state] is charging or fully charged.
     fn set_charging(&self, charging: bool) {
         ObjectExt::set_property(self.as_ref(),"charging", charging)
     }
 
+    /// Indicates if [`device_type`][struct@crate::Device#device_type] is not line power or unknown.
     #[doc(alias = "is-battery")]
     fn set_is_battery(&self, is_battery: bool) {
         ObjectExt::set_property(self.as_ref(),"is-battery", is_battery)
     }
 
+    /// An icon name in the form of "battery-level-$percentage-$state-symbolic".
     #[doc(alias = "battery-icon-name")]
     fn set_battery_icon_name(&self, battery_icon_name: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"battery-icon-name", battery_icon_name)
     }
 
+    /// A string representation of this device's [`device_type`][struct@crate::Device#device_type].
     #[doc(alias = "device-type-name")]
     fn set_device_type_name(&self, device_type_name: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"device-type-name", device_type_name)
     }
 
+    /// An icon name that can be used to represent this device's [`device_type`][struct@crate::Device#device_type].
     #[doc(alias = "device-type-icon")]
     fn set_device_type_icon(&self, device_type_icon: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"device-type-icon", device_type_icon)

@@ -8,6 +8,67 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Client for the UPower [dbus interface](https://upower.freedesktop.org/docs/UPower.html).
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `devices`
+    ///  List of UPower devices.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `display-device`
+    ///  A composite device that represents the battery status.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `daemon-version`
+    ///  Readable
+    ///
+    ///
+    /// #### `on-battery`
+    ///  Indicates whether the system is running on battery power.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `lid-is-closed`
+    ///  Indicates if the laptop lid is closed where the display cannot be seen.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `lid-is-present`
+    ///  Indicates if the system has a lid device.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `critical-action`
+    ///  When the system's power supply is critical (critically low batteries or UPS), the system will take this action.
+    ///
+    /// Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `device-added`
+    ///  Emitted when a new device is connected.
+    ///
+    ///
+    ///
+    ///
+    /// #### `device-removed`
+    ///  Emitted a new device is disconnected.
+    ///
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`UPowerExt`][trait@crate::prelude::UPowerExt]
     #[doc(alias = "AstalBatteryUPower")]
     pub struct UPower(Object<ffi::AstalBatteryUPower, ffi::AstalBatteryUPowerClass>);
 
@@ -35,6 +96,11 @@ impl Default for UPower {
                      }
                  }
 
+/// Trait containing all [`struct@UPower`] methods.
+///
+/// # Implementors
+///
+/// [`UPower`][struct@crate::UPower]
 pub trait UPowerExt: IsA<UPower> + 'static {
     #[doc(alias = "astal_battery_upower_get_devices")]
     #[doc(alias = "get_devices")]
@@ -92,6 +158,7 @@ pub trait UPowerExt: IsA<UPower> + 'static {
         }
     }
 
+    /// Emitted when a new device is connected.
     #[doc(alias = "device-added")]
     fn connect_device_added<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn device_added_trampoline<P: IsA<UPower>, F: Fn(&P, &Device) + 'static>(this: *mut ffi::AstalBatteryUPower, device: *mut ffi::AstalBatteryDevice, f: glib::ffi::gpointer) {
@@ -105,6 +172,7 @@ pub trait UPowerExt: IsA<UPower> + 'static {
         }
     }
 
+    /// Emitted a new device is disconnected.
     #[doc(alias = "device-removed")]
     fn connect_device_removed<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn device_removed_trampoline<P: IsA<UPower>, F: Fn(&P, &Device) + 'static>(this: *mut ffi::AstalBatteryUPower, device: *mut ffi::AstalBatteryDevice, f: glib::ffi::gpointer) {
