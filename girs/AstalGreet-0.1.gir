@@ -1,0 +1,543 @@
+<?xml version='1.0' encoding='utf-8'?>
+<repository xmlns="http://www.gtk.org/introspection/core/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0" version="1.2">
+<include name="GObject" version="2.0" />
+<include name="Gio" version="2.0" />
+<package name="astal-greet" />
+<c:include name="astal-greet.h" />
+<namespace name="AstalGreet" version="0.1" c:prefix="AstalGreet" c:identifier-prefixes="AstalGreet" shared-library="libastal-greet.so" c:symbol-prefixes="astal_greet">
+	<class name="Request" c:type="AstalGreetRequest" c:symbol-prefix="request" glib:type-name="AstalGreetRequest" glib:get-type="astal_greet_request_get_type" glib:type-struct="RequestClass" parent="GObject.Object" abstract="1">
+		<doc xml:whitespace="preserve">Base Request type.</doc>
+		<field name="parent_instance" readable="0" private="1">
+			<type name="GObject.Object" c:type="GObject" />
+		</field>
+		<field name="priv" readable="0" private="1">
+			<type name="RequestPrivate" c:type="AstalGreetRequestPrivate*" />
+		</field>
+		<method name="send" c:identifier="astal_greet_request_send">
+			<doc xml:whitespace="preserve">Send this request to greetd.</doc>
+			<return-value transfer-ownership="none">
+				<type name="none" c:type="void" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.Request" c:type="AstalGreetRequest*" />
+				</instance-parameter>
+				<parameter name="_callback_" transfer-ownership="none" nullable="1" closure="1" scope="async">
+					<type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback" />
+				</parameter>
+				<parameter name="_callback__target" transfer-ownership="none" nullable="1">
+					<type name="gpointer" c:type="void*" />
+				</parameter>
+			</parameters>
+		</method>
+		<method name="send_finish" c:identifier="astal_greet_request_send_finish" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="AstalGreet.Response" c:type="AstalGreetResponse*" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.Request" c:type="AstalGreetRequest*" />
+				</instance-parameter>
+				<parameter name="_res_" transfer-ownership="none">
+					<type name="Gio.AsyncResult" c:type="GAsyncResult*" />
+				</parameter>
+			</parameters>
+		</method>
+		<property name="type-name">
+			<type name="utf8" c:type="gchar*" />
+		</property>
+		<method name="get_type_name" c:identifier="astal_greet_request_get_type_name">
+			<return-value transfer-ownership="none">
+				<type name="utf8" c:type="const gchar*" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.Request" c:type="AstalGreetRequest*" />
+				</instance-parameter>
+			</parameters>
+		</method>
+		<virtual-method name="get_type_name" invoker="get_type_name">
+			<return-value transfer-ownership="none">
+				<type name="utf8" c:type="const gchar*" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.Request" c:type="AstalGreetRequest*" />
+				</instance-parameter>
+			</parameters>
+		</virtual-method>
+	</class>
+	<record name="RequestClass" c:type="AstalGreetRequestClass" glib:is-gtype-struct-for="Request">
+		<field name="parent_class" readable="0" private="1">
+			<type name="GObject.ObjectClass" c:type="GObjectClass" />
+		</field>
+	</record>
+	<record name="RequestPrivate" c:type="AstalGreetRequestPrivate" disguised="1" />
+	<class name="CreateSession" c:type="AstalGreetCreateSession" c:symbol-prefix="create_session" glib:type-name="AstalGreetCreateSession" glib:get-type="astal_greet_create_session_get_type" glib:type-struct="CreateSessionClass" parent="AstalGreet.Request">
+		<doc xml:whitespace="preserve">Creates a session and initiates a login attempted for the given user. The session is ready to be started if a success is returned.</doc>
+		<field name="parent_instance" readable="0" private="1">
+			<type name="AstalGreet.Request" c:type="AstalGreetRequest" />
+		</field>
+		<field name="priv" readable="0" private="1">
+			<type name="CreateSessionPrivate" c:type="AstalGreetCreateSessionPrivate*" />
+		</field>
+		<constructor name="new" c:identifier="astal_greet_create_session_new">
+			<return-value transfer-ownership="full">
+				<type name="AstalGreet.CreateSession" c:type="AstalGreetCreateSession*" />
+			</return-value>
+			<parameters>
+				<parameter name="username" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*" />
+				</parameter>
+			</parameters>
+		</constructor>
+		<property name="username" writable="1">
+			<type name="utf8" c:type="gchar*" />
+		</property>
+		<method name="get_username" c:identifier="astal_greet_create_session_get_username">
+			<return-value transfer-ownership="none">
+				<type name="utf8" c:type="const gchar*" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.CreateSession" c:type="AstalGreetCreateSession*" />
+				</instance-parameter>
+			</parameters>
+		</method>
+		<method name="set_username" c:identifier="astal_greet_create_session_set_username">
+			<return-value transfer-ownership="none">
+				<type name="none" c:type="void" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.CreateSession" c:type="AstalGreetCreateSession*" />
+				</instance-parameter>
+				<parameter name="value" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*" />
+				</parameter>
+			</parameters>
+		</method>
+	</class>
+	<record name="CreateSessionClass" c:type="AstalGreetCreateSessionClass" glib:is-gtype-struct-for="CreateSession">
+		<field name="parent_class" readable="0" private="1">
+			<type name="AstalGreet.RequestClass" c:type="AstalGreetRequestClass" />
+		</field>
+	</record>
+	<record name="CreateSessionPrivate" c:type="AstalGreetCreateSessionPrivate" disguised="1" />
+	<class name="PostAuthMesssage" c:type="AstalGreetPostAuthMesssage" c:symbol-prefix="post_auth_messsage" glib:type-name="AstalGreetPostAuthMesssage" glib:get-type="astal_greet_post_auth_messsage_get_type" glib:type-struct="PostAuthMesssageClass" parent="AstalGreet.Request">
+		<doc xml:whitespace="preserve">Answers an authentication message. If the message was informative (info, error), then a response does not need to be set in this
+message. The session is ready to be started if a success is returned.</doc>
+		<field name="parent_instance" readable="0" private="1">
+			<type name="AstalGreet.Request" c:type="AstalGreetRequest" />
+		</field>
+		<field name="priv" readable="0" private="1">
+			<type name="PostAuthMesssagePrivate" c:type="AstalGreetPostAuthMesssagePrivate*" />
+		</field>
+		<constructor name="new" c:identifier="astal_greet_post_auth_messsage_new">
+			<return-value transfer-ownership="full">
+				<type name="AstalGreet.PostAuthMesssage" c:type="AstalGreetPostAuthMesssage*" />
+			</return-value>
+			<parameters>
+				<parameter name="response" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*" />
+				</parameter>
+			</parameters>
+		</constructor>
+		<property name="response" writable="1">
+			<type name="utf8" c:type="gchar*" />
+		</property>
+		<method name="get_response" c:identifier="astal_greet_post_auth_messsage_get_response">
+			<return-value transfer-ownership="none">
+				<type name="utf8" c:type="const gchar*" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.PostAuthMesssage" c:type="AstalGreetPostAuthMesssage*" />
+				</instance-parameter>
+			</parameters>
+		</method>
+		<method name="set_response" c:identifier="astal_greet_post_auth_messsage_set_response">
+			<return-value transfer-ownership="none">
+				<type name="none" c:type="void" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.PostAuthMesssage" c:type="AstalGreetPostAuthMesssage*" />
+				</instance-parameter>
+				<parameter name="value" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*" />
+				</parameter>
+			</parameters>
+		</method>
+	</class>
+	<record name="PostAuthMesssageClass" c:type="AstalGreetPostAuthMesssageClass" glib:is-gtype-struct-for="PostAuthMesssage">
+		<field name="parent_class" readable="0" private="1">
+			<type name="AstalGreet.RequestClass" c:type="AstalGreetRequestClass" />
+		</field>
+	</record>
+	<record name="PostAuthMesssagePrivate" c:type="AstalGreetPostAuthMesssagePrivate" disguised="1" />
+	<class name="StartSession" c:type="AstalGreetStartSession" c:symbol-prefix="start_session" glib:type-name="AstalGreetStartSession" glib:get-type="astal_greet_start_session_get_type" glib:type-struct="StartSessionClass" parent="AstalGreet.Request">
+		<doc xml:whitespace="preserve">Requests for the session to be started using the provided command line, adding the supplied environment to that created by PAM. The session
+will start after the greeter process terminates</doc>
+		<field name="parent_instance" readable="0" private="1">
+			<type name="AstalGreet.Request" c:type="AstalGreetRequest" />
+		</field>
+		<field name="priv" readable="0" private="1">
+			<type name="StartSessionPrivate" c:type="AstalGreetStartSessionPrivate*" />
+		</field>
+		<constructor name="new" c:identifier="astal_greet_start_session_new">
+			<return-value transfer-ownership="full">
+				<type name="AstalGreet.StartSession" c:type="AstalGreetStartSession*" />
+			</return-value>
+			<parameters>
+				<parameter name="cmd" transfer-ownership="none">
+					<array length="1" c:type="gchar**">
+						<type name="utf8" c:type="gchar*" />
+					</array>
+				</parameter>
+				<parameter name="cmd_length1" transfer-ownership="none">
+					<type name="gint" c:type="gint" />
+				</parameter>
+				<parameter name="env" transfer-ownership="none">
+					<array length="3" c:type="gchar**">
+						<type name="utf8" c:type="gchar*" />
+					</array>
+				</parameter>
+				<parameter name="env_length1" transfer-ownership="none">
+					<type name="gint" c:type="gint" />
+				</parameter>
+			</parameters>
+		</constructor>
+		<property name="cmd" writable="1">
+			<array c:type="gchar**">
+				<type name="utf8" c:type="gchar*" />
+			</array>
+		</property>
+		<method name="get_cmd" c:identifier="astal_greet_start_session_get_cmd">
+			<return-value transfer-ownership="none">
+				<array length="0" c:type="gchar**">
+					<type name="utf8" c:type="gchar*" />
+				</array>
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.StartSession" c:type="AstalGreetStartSession*" />
+				</instance-parameter>
+				<parameter name="result_length1" direction="out" transfer-ownership="none">
+					<type name="gint" c:type="gint*" />
+				</parameter>
+			</parameters>
+		</method>
+		<method name="set_cmd" c:identifier="astal_greet_start_session_set_cmd">
+			<return-value transfer-ownership="none">
+				<type name="none" c:type="void" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.StartSession" c:type="AstalGreetStartSession*" />
+				</instance-parameter>
+				<parameter name="value" transfer-ownership="none">
+					<array length="1" c:type="gchar**">
+						<type name="utf8" c:type="gchar*" />
+					</array>
+				</parameter>
+				<parameter name="value_length1" transfer-ownership="none">
+					<type name="gint" c:type="gint" />
+				</parameter>
+			</parameters>
+		</method>
+		<property name="env" writable="1">
+			<array c:type="gchar**">
+				<type name="utf8" c:type="gchar*" />
+			</array>
+		</property>
+		<method name="get_env" c:identifier="astal_greet_start_session_get_env">
+			<return-value transfer-ownership="none">
+				<array length="0" c:type="gchar**">
+					<type name="utf8" c:type="gchar*" />
+				</array>
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.StartSession" c:type="AstalGreetStartSession*" />
+				</instance-parameter>
+				<parameter name="result_length1" direction="out" transfer-ownership="none">
+					<type name="gint" c:type="gint*" />
+				</parameter>
+			</parameters>
+		</method>
+		<method name="set_env" c:identifier="astal_greet_start_session_set_env">
+			<return-value transfer-ownership="none">
+				<type name="none" c:type="void" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.StartSession" c:type="AstalGreetStartSession*" />
+				</instance-parameter>
+				<parameter name="value" transfer-ownership="none">
+					<array length="1" c:type="gchar**">
+						<type name="utf8" c:type="gchar*" />
+					</array>
+				</parameter>
+				<parameter name="value_length1" transfer-ownership="none">
+					<type name="gint" c:type="gint" />
+				</parameter>
+			</parameters>
+		</method>
+	</class>
+	<record name="StartSessionClass" c:type="AstalGreetStartSessionClass" glib:is-gtype-struct-for="StartSession">
+		<field name="parent_class" readable="0" private="1">
+			<type name="AstalGreet.RequestClass" c:type="AstalGreetRequestClass" />
+		</field>
+	</record>
+	<record name="StartSessionPrivate" c:type="AstalGreetStartSessionPrivate" disguised="1" />
+	<class name="CancelSession" c:type="AstalGreetCancelSession" c:symbol-prefix="cancel_session" glib:type-name="AstalGreetCancelSession" glib:get-type="astal_greet_cancel_session_get_type" glib:type-struct="CancelSessionClass" parent="AstalGreet.Request">
+		<doc xml:whitespace="preserve">Cancels the session that is currently under configuration.</doc>
+		<field name="parent_instance" readable="0" private="1">
+			<type name="AstalGreet.Request" c:type="AstalGreetRequest" />
+		</field>
+		<field name="priv" readable="0" private="1">
+			<type name="CancelSessionPrivate" c:type="AstalGreetCancelSessionPrivate*" />
+		</field>
+		<constructor name="new" c:identifier="astal_greet_cancel_session_new">
+			<return-value transfer-ownership="full">
+				<type name="AstalGreet.CancelSession" c:type="AstalGreetCancelSession*" />
+			</return-value>
+		</constructor>
+	</class>
+	<record name="CancelSessionClass" c:type="AstalGreetCancelSessionClass" glib:is-gtype-struct-for="CancelSession">
+		<field name="parent_class" readable="0" private="1">
+			<type name="AstalGreet.RequestClass" c:type="AstalGreetRequestClass" />
+		</field>
+	</record>
+	<record name="CancelSessionPrivate" c:type="AstalGreetCancelSessionPrivate" disguised="1" />
+	<class name="Response" c:type="AstalGreetResponse" c:symbol-prefix="response" glib:type-name="AstalGreetResponse" glib:get-type="astal_greet_response_get_type" glib:type-struct="ResponseClass" parent="GObject.Object" abstract="1">
+		<doc xml:whitespace="preserve">Base Response type.</doc>
+		<field name="parent_instance" readable="0" private="1">
+			<type name="GObject.Object" c:type="GObject" />
+		</field>
+		<field name="priv" readable="0" private="1">
+			<type name="ResponsePrivate" c:type="AstalGreetResponsePrivate*" />
+		</field>
+	</class>
+	<record name="ResponseClass" c:type="AstalGreetResponseClass" glib:is-gtype-struct-for="Response">
+		<field name="parent_class" readable="0" private="1">
+			<type name="GObject.ObjectClass" c:type="GObjectClass" />
+		</field>
+	</record>
+	<record name="ResponsePrivate" c:type="AstalGreetResponsePrivate" disguised="1" />
+	<class name="Success" c:type="AstalGreetSuccess" c:symbol-prefix="success" glib:type-name="AstalGreetSuccess" glib:get-type="astal_greet_success_get_type" glib:type-struct="SuccessClass" parent="AstalGreet.Response">
+		<doc xml:whitespace="preserve">Indicates that the request succeeded.</doc>
+		<field name="parent_instance" readable="0" private="1">
+			<type name="AstalGreet.Response" c:type="AstalGreetResponse" />
+		</field>
+		<field name="priv" readable="0" private="1">
+			<type name="SuccessPrivate" c:type="AstalGreetSuccessPrivate*" />
+		</field>
+	</class>
+	<record name="SuccessClass" c:type="AstalGreetSuccessClass" glib:is-gtype-struct-for="Success">
+		<field name="parent_class" readable="0" private="1">
+			<type name="AstalGreet.ResponseClass" c:type="AstalGreetResponseClass" />
+		</field>
+	</record>
+	<record name="SuccessPrivate" c:type="AstalGreetSuccessPrivate" disguised="1" />
+	<class name="Error" c:type="AstalGreetError" c:symbol-prefix="error" glib:type-name="AstalGreetError" glib:get-type="astal_greet_error_get_type" glib:type-struct="ErrorClass" parent="AstalGreet.Response">
+		<doc xml:whitespace="preserve">Indicates that the request succeeded.</doc>
+		<field name="parent_instance" readable="0" private="1">
+			<type name="AstalGreet.Response" c:type="AstalGreetResponse" />
+		</field>
+		<field name="priv" readable="0" private="1">
+			<type name="ErrorPrivate" c:type="AstalGreetErrorPrivate*" />
+		</field>
+		<property name="error-type" writable="1">
+			<type name="AstalGreet.ErrorType" c:type="AstalGreetErrorType" />
+		</property>
+		<method name="get_error_type" c:identifier="astal_greet_error_get_error_type">
+			<return-value transfer-ownership="none">
+				<type name="AstalGreet.ErrorType" c:type="AstalGreetErrorType" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.Error" c:type="AstalGreetError*" />
+				</instance-parameter>
+			</parameters>
+		</method>
+		<property name="description" writable="1">
+			<type name="utf8" c:type="gchar*" />
+		</property>
+		<method name="get_description" c:identifier="astal_greet_error_get_description">
+			<return-value transfer-ownership="none">
+				<type name="utf8" c:type="const gchar*" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.Error" c:type="AstalGreetError*" />
+				</instance-parameter>
+			</parameters>
+		</method>
+	</class>
+	<record name="ErrorClass" c:type="AstalGreetErrorClass" glib:is-gtype-struct-for="Error">
+		<field name="parent_class" readable="0" private="1">
+			<type name="AstalGreet.ResponseClass" c:type="AstalGreetResponseClass" />
+		</field>
+	</record>
+	<record name="ErrorPrivate" c:type="AstalGreetErrorPrivate" disguised="1" />
+	<enumeration name="ErrorType" c:type="AstalGreetErrorType" glib:type-name="AstalGreetErrorType" glib:get-type="astal_greet_error_type_get_type">
+		<member name="auth_error" c:identifier="ASTAL_GREET_ERROR_TYPE_AUTH_ERROR" value="0">
+			<doc xml:whitespace="preserve">Indicates that authentication failed. This is not a fatal error, and is likely caused by incorrect credentials.</doc>
+		</member>
+		<member name="error" c:identifier="ASTAL_GREET_ERROR_TYPE_ERROR" value="1">
+			<doc xml:whitespace="preserve">A general error. See the error description for more information.</doc>
+		</member>
+	</enumeration>
+	<class name="AuthMessage" c:type="AstalGreetAuthMessage" c:symbol-prefix="auth_message" glib:type-name="AstalGreetAuthMessage" glib:get-type="astal_greet_auth_message_get_type" glib:type-struct="AuthMessageClass" parent="AstalGreet.Response">
+		<doc xml:whitespace="preserve">Indicates that the request succeeded.</doc>
+		<field name="parent_instance" readable="0" private="1">
+			<type name="AstalGreet.Response" c:type="AstalGreetResponse" />
+		</field>
+		<field name="priv" readable="0" private="1">
+			<type name="AuthMessagePrivate" c:type="AstalGreetAuthMessagePrivate*" />
+		</field>
+		<property name="message-type" writable="1">
+			<type name="AstalGreet.AuthMessageType" c:type="AstalGreetAuthMessageType" />
+		</property>
+		<method name="get_message_type" c:identifier="astal_greet_auth_message_get_message_type">
+			<return-value transfer-ownership="none">
+				<type name="AstalGreet.AuthMessageType" c:type="AstalGreetAuthMessageType" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.AuthMessage" c:type="AstalGreetAuthMessage*" />
+				</instance-parameter>
+			</parameters>
+		</method>
+		<property name="message" writable="1">
+			<type name="utf8" c:type="gchar*" />
+		</property>
+		<method name="get_message" c:identifier="astal_greet_auth_message_get_message">
+			<return-value transfer-ownership="none">
+				<type name="utf8" c:type="const gchar*" />
+			</return-value>
+			<parameters>
+				<instance-parameter name="self" transfer-ownership="none">
+					<type name="AstalGreet.AuthMessage" c:type="AstalGreetAuthMessage*" />
+				</instance-parameter>
+			</parameters>
+		</method>
+	</class>
+	<record name="AuthMessageClass" c:type="AstalGreetAuthMessageClass" glib:is-gtype-struct-for="AuthMessage">
+		<field name="parent_class" readable="0" private="1">
+			<type name="AstalGreet.ResponseClass" c:type="AstalGreetResponseClass" />
+		</field>
+	</record>
+	<record name="AuthMessagePrivate" c:type="AstalGreetAuthMessagePrivate" disguised="1" />
+	<enumeration name="AuthMessageType" c:type="AstalGreetAuthMessageType" glib:type-name="AstalGreetAuthMessageType" glib:get-type="astal_greet_auth_message_type_get_type">
+		<member name="visible" c:identifier="ASTAL_GREET_AUTH_MESSAGE_TYPE_VISIBLE" value="0">
+			<doc xml:whitespace="preserve">Indicates that input from the user should be visible when they answer this question.</doc>
+		</member>
+		<member name="secret" c:identifier="ASTAL_GREET_AUTH_MESSAGE_TYPE_SECRET" value="1">
+			<doc xml:whitespace="preserve">Indicates that input from the user should be considered secret when they answer this question.</doc>
+		</member>
+		<member name="info" c:identifier="ASTAL_GREET_AUTH_MESSAGE_TYPE_INFO" value="2">
+			<doc xml:whitespace="preserve">Indicates that this message is informative, not a question.</doc>
+		</member>
+		<member name="error" c:identifier="ASTAL_GREET_AUTH_MESSAGE_TYPE_ERROR" value="3">
+			<doc xml:whitespace="preserve">Indicates that this message is an error, not a question.</doc>
+		</member>
+	</enumeration>
+	<constant name="MAJOR_VERSION" c:type="ASTAL_GREET_MAJOR_VERSION" value="0">
+		<type name="gint" c:type="gint" />
+	</constant>
+	<constant name="MINOR_VERSION" c:type="ASTAL_GREET_MINOR_VERSION" value="1">
+		<type name="gint" c:type="gint" />
+	</constant>
+	<constant name="MICRO_VERSION" c:type="ASTAL_GREET_MICRO_VERSION" value="0">
+		<type name="gint" c:type="gint" />
+	</constant>
+	<constant name="VERSION" c:type="ASTAL_GREET_VERSION" value="0.1.0">
+		<type name="utf8" c:type="const gchar*" />
+	</constant>
+	<function name="login" c:identifier="astal_greet_login">
+		<doc xml:whitespace="preserve">Shorthand for creating a session, posting the password, and starting the session with the given `cmd` which is parsed with [func@
+GLib.shell_parse_argv].</doc>
+		<return-value transfer-ownership="none">
+			<type name="none" c:type="void" />
+		</return-value>
+		<parameters>
+			<parameter name="username" transfer-ownership="none">
+				<doc xml:whitespace="preserve">User to login to </doc>
+				<type name="utf8" c:type="const gchar*" />
+			</parameter>
+			<parameter name="password" transfer-ownership="none">
+				<doc xml:whitespace="preserve">Password of the user </doc>
+				<type name="utf8" c:type="const gchar*" />
+			</parameter>
+			<parameter name="cmd" transfer-ownership="none">
+				<doc xml:whitespace="preserve">Command to start the session with </doc>
+				<type name="utf8" c:type="const gchar*" />
+			</parameter>
+			<parameter name="_callback_" transfer-ownership="none" nullable="1" closure="4" scope="async">
+				<type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback" />
+			</parameter>
+			<parameter name="_callback__target" transfer-ownership="none" nullable="1">
+				<type name="gpointer" c:type="void*" />
+			</parameter>
+		</parameters>
+	</function>
+	<function name="login_finish" c:identifier="astal_greet_login_finish" throws="1">
+		<return-value transfer-ownership="full">
+			<type name="none" c:type="void" />
+		</return-value>
+		<parameters>
+			<parameter name="_res_" transfer-ownership="none">
+				<type name="Gio.AsyncResult" c:type="GAsyncResult*" />
+			</parameter>
+		</parameters>
+	</function>
+	<function name="login_with_env" c:identifier="astal_greet_login_with_env">
+		<doc xml:whitespace="preserve">Same as [func@AstalGreet.login] but allow for setting additonal env in the form of `name=value` pairs.</doc>
+		<return-value transfer-ownership="none">
+			<type name="none" c:type="void" />
+		</return-value>
+		<parameters>
+			<parameter name="username" transfer-ownership="none">
+				<doc xml:whitespace="preserve">User to login to </doc>
+				<type name="utf8" c:type="const gchar*" />
+			</parameter>
+			<parameter name="password" transfer-ownership="none">
+				<doc xml:whitespace="preserve">Password of the user </doc>
+				<type name="utf8" c:type="const gchar*" />
+			</parameter>
+			<parameter name="cmd" transfer-ownership="none">
+				<doc xml:whitespace="preserve">Command to start the session with </doc>
+				<type name="utf8" c:type="const gchar*" />
+			</parameter>
+			<parameter name="env" transfer-ownership="none">
+				<doc xml:whitespace="preserve">Additonal env vars to set for the session </doc>
+				<array length="4" c:type="gchar**">
+					<type name="utf8" c:type="gchar*" />
+				</array>
+			</parameter>
+			<parameter name="env_length1" transfer-ownership="none">
+				<type name="gint" c:type="gint" />
+			</parameter>
+			<parameter name="_callback_" transfer-ownership="none" nullable="1" closure="6" scope="async">
+				<type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback" />
+			</parameter>
+			<parameter name="_callback__target" transfer-ownership="none" nullable="1">
+				<type name="gpointer" c:type="void*" />
+			</parameter>
+		</parameters>
+	</function>
+	<function name="login_with_env_finish" c:identifier="astal_greet_login_with_env_finish" throws="1">
+		<return-value transfer-ownership="full">
+			<type name="none" c:type="void" />
+		</return-value>
+		<parameters>
+			<parameter name="_res_" transfer-ownership="none">
+				<type name="Gio.AsyncResult" c:type="GAsyncResult*" />
+			</parameter>
+		</parameters>
+	</function>
+</namespace>
+</repository>
