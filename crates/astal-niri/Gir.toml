@@ -9,27 +9,31 @@ use_gi_docgen = true
 generate_safety_asserts = true
 deprecate_by_min_version = true
 single_version_file = true
-generate_builder = true
+generate_builder = false
 trust_return_value_nullability = true
 
 generate = [
-    "AstalNiri.WorkspaceReferenceArgTag",
     "AstalNiri.ColumnDisplayTag",
     "AstalNiri.SizeChangeTag",
     "AstalNiri.LayoutSwitchTargetTag",
     "AstalNiri.Workspace",
+    "AstalNiri.WindowLayout",
+    "AstalNiri.Mode",
+    "AstalNiri.LogicalOutput",
+    "AstalNiri.msg",
     "AstalNiri.Window",
     "AstalNiri.Output",
     "AstalNiri.Niri",
     "AstalNiri.Overview",
-    "AstalNiri.WindowLayout",
-    "AstalNiri.PhysicalSize",
-    "AstalNiri.Mode",
-    "AstalNiri.LogicalOutput",
-    "AstalNiri.msg",
+    "AstalNiri.WorkspaceReferenceArgTag",
 ]
 
-manual = ["Gio.AsyncReadyCallback", "Gio.AsyncResult", "Json.Array"]
+manual = [
+    "Gio.AsyncReadyCallback",
+    "Gio.AsyncResult",
+    "Json.Array",
+    "AstalNiri.PhysicalSize",
+]
 
 [[object]]
 name = "AstalNiri.*"

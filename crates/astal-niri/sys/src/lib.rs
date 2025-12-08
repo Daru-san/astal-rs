@@ -4,21 +4,28 @@
 // DO NOT EDIT
 
 #![allow(non_camel_case_types, non_upper_case_globals, non_snake_case)]
-#![allow(clippy::approx_constant, clippy::type_complexity, clippy::unreadable_literal, clippy::upper_case_acronyms)]
+#![allow(
+    clippy::approx_constant,
+    clippy::type_complexity,
+    clippy::unreadable_literal,
+    clippy::upper_case_acronyms
+)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+use gio_sys as gio;
 use glib_sys as glib;
 use gobject_sys as gobject;
-use gio_sys as gio;
+use json_glib_sys as json;
 
-#[allow(unused_imports)]
-use std::ffi::{c_int, c_char, c_uchar, c_float, c_uint, c_double,
-    c_short, c_ushort, c_long, c_ulong, c_void};
-#[allow(unused_imports)]
-use libc::{size_t, ssize_t, time_t, off_t, intptr_t, uintptr_t, FILE};
 #[cfg(unix)]
 #[allow(unused_imports)]
 use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
+#[allow(unused_imports)]
+use libc::{intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE};
+#[allow(unused_imports)]
+use std::ffi::{
+    c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
+};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -65,13 +72,13 @@ pub struct AstalNiriLogicalOutput {
 impl ::std::fmt::Debug for AstalNiriLogicalOutput {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriLogicalOutput @ {self:p}"))
-         .field("_x", &self._x)
-         .field("_y", &self._y)
-         .field("_width", &self._width)
-         .field("_height", &self._height)
-         .field("_scale", &self._scale)
-         .field("_transform", &self._transform)
-         .finish()
+            .field("_x", &self._x)
+            .field("_y", &self._y)
+            .field("_width", &self._width)
+            .field("_height", &self._height)
+            .field("_scale", &self._scale)
+            .field("_transform", &self._transform)
+            .finish()
     }
 }
 
@@ -87,11 +94,11 @@ pub struct AstalNiriMode {
 impl ::std::fmt::Debug for AstalNiriMode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriMode @ {self:p}"))
-         .field("_width", &self._width)
-         .field("_height", &self._height)
-         .field("_refresh_rate", &self._refresh_rate)
-         .field("_is_preferred", &self._is_preferred)
-         .finish()
+            .field("_width", &self._width)
+            .field("_height", &self._height)
+            .field("_refresh_rate", &self._refresh_rate)
+            .field("_is_preferred", &self._is_preferred)
+            .finish()
     }
 }
 
@@ -105,8 +112,8 @@ pub struct AstalNiriNiriClass {
 impl ::std::fmt::Debug for AstalNiriNiriClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriNiriClass @ {self:p}"))
-         .field("window_changed", &self.window_changed)
-         .finish()
+            .field("window_changed", &self.window_changed)
+            .finish()
     }
 }
 
@@ -128,7 +135,7 @@ pub struct AstalNiriOutputClass {
 impl ::std::fmt::Debug for AstalNiriOutputClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriOutputClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -150,7 +157,7 @@ pub struct AstalNiriOverviewClass {
 impl ::std::fmt::Debug for AstalNiriOverviewClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriOverviewClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -173,9 +180,9 @@ pub struct AstalNiriPhysicalSize {
 impl ::std::fmt::Debug for AstalNiriPhysicalSize {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriPhysicalSize @ {self:p}"))
-         .field("x", &self.x)
-         .field("y", &self.y)
-         .finish()
+            .field("x", &self.x)
+            .field("y", &self.y)
+            .finish()
     }
 }
 
@@ -188,7 +195,7 @@ pub struct AstalNiriWindowClass {
 impl ::std::fmt::Debug for AstalNiriWindowClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriWindowClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -205,12 +212,15 @@ pub struct AstalNiriWindowLayout {
 impl ::std::fmt::Debug for AstalNiriWindowLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriWindowLayout @ {self:p}"))
-         .field("pos_in_scrolling_layout", &self.pos_in_scrolling_layout)
-         .field("tile_size", &self.tile_size)
-         .field("window_size", &self.window_size)
-         .field("tile_pos_in_workspace_view", &self.tile_pos_in_workspace_view)
-         .field("window_offset_in_tile", &self.window_offset_in_tile)
-         .finish()
+            .field("pos_in_scrolling_layout", &self.pos_in_scrolling_layout)
+            .field("tile_size", &self.tile_size)
+            .field("window_size", &self.window_size)
+            .field(
+                "tile_pos_in_workspace_view",
+                &self.tile_pos_in_workspace_view,
+            )
+            .field("window_offset_in_tile", &self.window_offset_in_tile)
+            .finish()
     }
 }
 
@@ -232,7 +242,7 @@ pub struct AstalNiriWorkspaceClass {
 impl ::std::fmt::Debug for AstalNiriWorkspaceClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriWorkspaceClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -254,7 +264,7 @@ pub struct AstalNirimsgClass {
 impl ::std::fmt::Debug for AstalNirimsgClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNirimsgClass @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -281,10 +291,10 @@ pub struct AstalNiriNiri {
 impl ::std::fmt::Debug for AstalNiriNiri {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriNiri @ {self:p}"))
-         .field("_workspaces", &self._workspaces)
-         .field("_windows", &self._windows)
-         .field("_outputs", &self._outputs)
-         .finish()
+            .field("_workspaces", &self._workspaces)
+            .field("_windows", &self._windows)
+            .field("_outputs", &self._outputs)
+            .finish()
     }
 }
 
@@ -298,7 +308,7 @@ pub struct AstalNiriOutput {
 impl ::std::fmt::Debug for AstalNiriOutput {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriOutput @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -312,7 +322,7 @@ pub struct AstalNiriOverview {
 impl ::std::fmt::Debug for AstalNiriOverview {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriOverview @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -326,7 +336,7 @@ pub struct AstalNiriWindow {
 impl ::std::fmt::Debug for AstalNiriWindow {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriWindow @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -340,7 +350,7 @@ pub struct AstalNiriWorkspace {
 impl ::std::fmt::Debug for AstalNiriWorkspace {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AstalNiriWorkspace @ {self:p}"))
-         .finish()
+            .finish()
     }
 }
 
@@ -353,8 +363,7 @@ pub struct AstalNirimsg {
 
 impl ::std::fmt::Debug for AstalNirimsg {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("AstalNirimsg @ {self:p}"))
-         .finish()
+        f.debug_struct(&format!("AstalNirimsg @ {self:p}")).finish()
     }
 }
 
@@ -389,7 +398,9 @@ extern "C" {
     pub fn astal_niri_logical_output_get_width(self_: *mut AstalNiriLogicalOutput) -> u32;
     pub fn astal_niri_logical_output_get_height(self_: *mut AstalNiriLogicalOutput) -> u32;
     pub fn astal_niri_logical_output_get_scale(self_: *mut AstalNiriLogicalOutput) -> c_float;
-    pub fn astal_niri_logical_output_get_transform(self_: *mut AstalNiriLogicalOutput) -> *const c_char;
+    pub fn astal_niri_logical_output_get_transform(
+        self_: *mut AstalNiriLogicalOutput,
+    ) -> *const c_char;
 
     //=========================================================================
     // AstalNiriMode
@@ -404,7 +415,10 @@ extern "C" {
     // AstalNiriPhysicalSize
     //=========================================================================
     pub fn astal_niri_physical_size_get_type() -> GType;
-    pub fn astal_niri_physical_size_init_from_json(self_: *mut AstalNiriPhysicalSize, size: *mut json::JsonArray);
+    pub fn astal_niri_physical_size_init_from_json(
+        self_: *mut AstalNiriPhysicalSize,
+        size: *mut json::JsonArray,
+    );
 
     //=========================================================================
     // AstalNiriWindowLayout
@@ -417,12 +431,17 @@ extern "C" {
     pub fn astal_niri_niri_get_type() -> GType;
     pub fn astal_niri_niri_get_default() -> *mut AstalNiriNiri;
     pub fn astal_niri_niri_get_window(self_: *mut AstalNiriNiri, id: u64) -> *mut AstalNiriWindow;
-    pub fn astal_niri_niri_get_workspace(self_: *mut AstalNiriNiri, id: u64) -> *mut AstalNiriWorkspace;
+    pub fn astal_niri_niri_get_workspace(
+        self_: *mut AstalNiriNiri,
+        id: u64,
+    ) -> *mut AstalNiriWorkspace;
     pub fn astal_niri_niri_new() -> *mut AstalNiriNiri;
     pub fn astal_niri_niri_get_keyboard_layout_idx(self_: *mut AstalNiriNiri) -> u8;
     pub fn astal_niri_niri_get_config_load_failed(self_: *mut AstalNiriNiri) -> gboolean;
     pub fn astal_niri_niri_get_overview(self_: *mut AstalNiriNiri) -> *mut AstalNiriOverview;
-    pub fn astal_niri_niri_get_focused_workspace(self_: *mut AstalNiriNiri) -> *mut AstalNiriWorkspace;
+    pub fn astal_niri_niri_get_focused_workspace(
+        self_: *mut AstalNiriNiri,
+    ) -> *mut AstalNiriWorkspace;
     pub fn astal_niri_niri_get_focused_window(self_: *mut AstalNiriNiri) -> *mut AstalNiriWindow;
     pub fn astal_niri_niri_get_focused_output(self_: *mut AstalNiriNiri) -> *mut AstalNiriOutput;
     pub fn astal_niri_niri_get_windows(self_: *mut AstalNiriNiri) -> *mut glib::GList;
@@ -439,20 +458,31 @@ extern "C" {
     pub fn astal_niri_output_get_make(self_: *mut AstalNiriOutput) -> *const c_char;
     pub fn astal_niri_output_get_model(self_: *mut AstalNiriOutput) -> *const c_char;
     pub fn astal_niri_output_get_serial(self_: *mut AstalNiriOutput) -> *const c_char;
-    pub fn astal_niri_output_get_physical_size(self_: *mut AstalNiriOutput) -> *mut AstalNiriPhysicalSize;
+    pub fn astal_niri_output_get_physical_size(
+        self_: *mut AstalNiriOutput,
+    ) -> *mut AstalNiriPhysicalSize;
     pub fn astal_niri_output_get_modes(self_: *mut AstalNiriOutput) -> *mut glib::GArray;
     pub fn astal_niri_output_get_current_mode(self_: *mut AstalNiriOutput) -> i64;
     pub fn astal_niri_output_get_vrr_supported(self_: *mut AstalNiriOutput) -> gboolean;
     pub fn astal_niri_output_get_vrr_enabled(self_: *mut AstalNiriOutput) -> gboolean;
-    pub fn astal_niri_output_get_logical(self_: *mut AstalNiriOutput) -> *mut AstalNiriLogicalOutput;
+    pub fn astal_niri_output_get_logical(
+        self_: *mut AstalNiriOutput,
+    ) -> *mut AstalNiriLogicalOutput;
     pub fn astal_niri_output_get_workspaces(self_: *mut AstalNiriOutput) -> *mut glib::GList;
 
     //=========================================================================
     // AstalNiriOverview
     //=========================================================================
     pub fn astal_niri_overview_get_type() -> GType;
-    pub fn astal_niri_overview_toggle(self_: *mut AstalNiriOverview, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_niri_overview_toggle_finish(self_: *mut AstalNiriOverview, _res_: *mut gio::GAsyncResult) -> gboolean;
+    pub fn astal_niri_overview_toggle(
+        self_: *mut AstalNiriOverview,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_niri_overview_toggle_finish(
+        self_: *mut AstalNiriOverview,
+        _res_: *mut gio::GAsyncResult,
+    ) -> gboolean;
     pub fn astal_niri_overview_new() -> *mut AstalNiriOverview;
     pub fn astal_niri_overview_get_is_open(self_: *mut AstalNiriOverview) -> gboolean;
 
@@ -461,9 +491,19 @@ extern "C" {
     //=========================================================================
     pub fn astal_niri_window_get_type() -> GType;
     pub fn astal_niri_window_focus(self_: *mut AstalNiriWindow, id: c_int) -> gboolean;
-    pub fn astal_niri_window_set_urgency(self_: *mut AstalNiriWindow, new_urgency: gboolean) -> gboolean;
-    pub fn astal_niri_window_move_to_workspace(self_: *mut AstalNiriWindow, workspace_id: c_int, focus: *mut gboolean) -> gboolean;
-    pub fn astal_niri_window_move_to_monitor(self_: *mut AstalNiriWindow, output: *const c_char) -> gboolean;
+    pub fn astal_niri_window_set_urgency(
+        self_: *mut AstalNiriWindow,
+        new_urgency: gboolean,
+    ) -> gboolean;
+    pub fn astal_niri_window_move_to_workspace(
+        self_: *mut AstalNiriWindow,
+        workspace_id: c_int,
+        focus: *mut gboolean,
+    ) -> gboolean;
+    pub fn astal_niri_window_move_to_monitor(
+        self_: *mut AstalNiriWindow,
+        output: *const c_char,
+    ) -> gboolean;
     pub fn astal_niri_window_new() -> *mut AstalNiriWindow;
     pub fn astal_niri_window_get_id(self_: *mut AstalNiriWindow) -> u64;
     pub fn astal_niri_window_get_title(self_: *mut AstalNiriWindow) -> *const c_char;
@@ -472,7 +512,10 @@ extern "C" {
     pub fn astal_niri_window_get_is_urgent(self_: *mut AstalNiriWindow) -> gboolean;
     pub fn astal_niri_window_get_is_focused(self_: *mut AstalNiriWindow) -> gboolean;
     pub fn astal_niri_window_get_is_floating(self_: *mut AstalNiriWindow) -> gboolean;
-    pub fn astal_niri_window_get_layout(self_: *mut AstalNiriWindow, result: *mut AstalNiriWindowLayout);
+    pub fn astal_niri_window_get_layout(
+        self_: *mut AstalNiriWindow,
+        result: *mut AstalNiriWindowLayout,
+    );
     pub fn astal_niri_window_get_workspace(self_: *mut AstalNiriWindow) -> *mut AstalNiriWorkspace;
 
     //=========================================================================
@@ -480,8 +523,14 @@ extern "C" {
     //=========================================================================
     pub fn astal_niri_workspace_get_type() -> GType;
     pub fn astal_niri_workspace_focus(self_: *mut AstalNiriWorkspace) -> gboolean;
-    pub fn astal_niri_workspace_rename(self_: *mut AstalNiriWorkspace, name: *const c_char) -> gboolean;
-    pub fn astal_niri_workspace_move_to_monitor(self_: *mut AstalNiriWorkspace, output: *const c_char) -> gboolean;
+    pub fn astal_niri_workspace_rename(
+        self_: *mut AstalNiriWorkspace,
+        name: *const c_char,
+    ) -> gboolean;
+    pub fn astal_niri_workspace_move_to_monitor(
+        self_: *mut AstalNiriWorkspace,
+        output: *const c_char,
+    ) -> gboolean;
     pub fn astal_niri_workspace_new() -> *mut AstalNiriWorkspace;
     pub fn astal_niri_workspace_get_id(self_: *mut AstalNiriWorkspace) -> u64;
     pub fn astal_niri_workspace_get_idx(self_: *mut AstalNiriWorkspace) -> u8;
@@ -491,7 +540,9 @@ extern "C" {
     pub fn astal_niri_workspace_get_is_active(self_: *mut AstalNiriWorkspace) -> gboolean;
     pub fn astal_niri_workspace_get_is_focused(self_: *mut AstalNiriWorkspace) -> gboolean;
     pub fn astal_niri_workspace_get_active_window_id(self_: *mut AstalNiriWorkspace) -> u64;
-    pub fn astal_niri_workspace_get_active_window(self_: *mut AstalNiriWorkspace) -> *mut AstalNiriWindow;
+    pub fn astal_niri_workspace_get_active_window(
+        self_: *mut AstalNiriWorkspace,
+    ) -> *mut AstalNiriWindow;
     pub fn astal_niri_workspace_get_windows(self_: *mut AstalNiriWorkspace) -> *mut glib::GList;
 
     //=========================================================================
@@ -499,7 +550,11 @@ extern "C" {
     //=========================================================================
     pub fn astal_niri_msg_get_type() -> GType;
     pub fn astal_niri_msg_send(message: *const c_char) -> *mut c_char;
-    pub fn astal_niri_msg_send_async(message: *const c_char, _callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
+    pub fn astal_niri_msg_send_async(
+        message: *const c_char,
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
     pub fn astal_niri_msg_send_finish(_res_: *mut gio::GAsyncResult) -> *mut c_char;
     pub fn astal_niri_msg_center_column() -> gboolean;
     pub fn astal_niri_msg_center_visible_columns() -> gboolean;
@@ -574,19 +629,45 @@ extern "C" {
     pub fn astal_niri_msg_move_column_to_monitor_previous() -> gboolean;
     pub fn astal_niri_msg_move_column_to_monitor_right() -> gboolean;
     pub fn astal_niri_msg_move_column_to_monitor_up() -> gboolean;
-    pub fn astal_niri_msg_move_column_to_workspace_by_id(workspace_id: c_int, focus: gboolean) -> gboolean;
-    pub fn astal_niri_msg_move_column_to_workspace_by_index(workspace_index: c_int, focus: gboolean) -> gboolean;
-    pub fn astal_niri_msg_move_column_to_workspace_by_name(workspace_name: *const c_char, focus: gboolean) -> gboolean;
+    pub fn astal_niri_msg_move_column_to_workspace_by_id(
+        workspace_id: c_int,
+        focus: gboolean,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_column_to_workspace_by_index(
+        workspace_index: c_int,
+        focus: gboolean,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_column_to_workspace_by_name(
+        workspace_name: *const c_char,
+        focus: gboolean,
+    ) -> gboolean;
     pub fn astal_niri_msg_move_column_to_workspace_down(focus: gboolean) -> gboolean;
     pub fn astal_niri_msg_move_column_to_workspace_up(focus: gboolean) -> gboolean;
-    pub fn astal_niri_msg_move_floating_window_adjust_x_adjust_y(id: *mut c_int, adjust_x: c_double, adjust_y: c_double) -> gboolean;
-    pub fn astal_niri_msg_move_floating_window_adjust_x_set_y(id: *mut c_int, adjust_x: c_double, set_y: c_double) -> gboolean;
-    pub fn astal_niri_msg_move_floating_window_set_x_adjust_y(id: *mut c_int, set_x: c_double, adjust_y: c_double) -> gboolean;
-    pub fn astal_niri_msg_move_floating_window_set_x_set_y(id: *mut c_int, set_x: c_double, set_y: c_double) -> gboolean;
+    pub fn astal_niri_msg_move_floating_window_adjust_x_adjust_y(
+        id: *mut c_int,
+        adjust_x: c_double,
+        adjust_y: c_double,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_floating_window_adjust_x_set_y(
+        id: *mut c_int,
+        adjust_x: c_double,
+        set_y: c_double,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_floating_window_set_x_adjust_y(
+        id: *mut c_int,
+        set_x: c_double,
+        adjust_y: c_double,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_floating_window_set_x_set_y(
+        id: *mut c_int,
+        set_x: c_double,
+        set_y: c_double,
+    ) -> gboolean;
     pub fn astal_niri_msg_move_window_down() -> gboolean;
     pub fn astal_niri_msg_move_window_down_or_to_workspace_down() -> gboolean;
     pub fn astal_niri_msg_move_window_to_floating(id: *mut c_int) -> gboolean;
-    pub fn astal_niri_msg_move_window_to_monitor(id: *mut c_int, output: *const c_char) -> gboolean;
+    pub fn astal_niri_msg_move_window_to_monitor(id: *mut c_int, output: *const c_char)
+        -> gboolean;
     pub fn astal_niri_msg_move_window_to_monitor_down() -> gboolean;
     pub fn astal_niri_msg_move_window_to_monitor_left() -> gboolean;
     pub fn astal_niri_msg_move_window_to_monitor_right() -> gboolean;
@@ -594,20 +675,50 @@ extern "C" {
     pub fn astal_niri_msg_move_window_to_monitor_previous() -> gboolean;
     pub fn astal_niri_msg_move_window_to_monitor_next() -> gboolean;
     pub fn astal_niri_msg_move_window_to_tiling(id: *mut c_int) -> gboolean;
-    pub fn astal_niri_msg_move_window_to_workspace_by_id(window_id: *mut c_int, workspace_id: c_int, focus: gboolean) -> gboolean;
-    pub fn astal_niri_msg_move_window_to_workspace_by_index(window_id: *mut c_int, workspace_index: c_int, focus: gboolean) -> gboolean;
-    pub fn astal_niri_msg_move_window_to_workspace_by_name(window_id: *mut c_int, workspace_name: *const c_char, focus: gboolean) -> gboolean;
+    pub fn astal_niri_msg_move_window_to_workspace_by_id(
+        window_id: *mut c_int,
+        workspace_id: c_int,
+        focus: gboolean,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_window_to_workspace_by_index(
+        window_id: *mut c_int,
+        workspace_index: c_int,
+        focus: gboolean,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_window_to_workspace_by_name(
+        window_id: *mut c_int,
+        workspace_name: *const c_char,
+        focus: gboolean,
+    ) -> gboolean;
     pub fn astal_niri_msg_move_window_to_workspace_down() -> gboolean;
     pub fn astal_niri_msg_move_window_to_workspace_up() -> gboolean;
     pub fn astal_niri_msg_move_window_up() -> gboolean;
     pub fn astal_niri_msg_move_window_up_or_to_workspace_up() -> gboolean;
     pub fn astal_niri_msg_move_workspace_down() -> gboolean;
-    pub fn astal_niri_msg_move_workspace_to_index_by_id(workspace_id: c_int, index: c_int) -> gboolean;
-    pub fn astal_niri_msg_move_workspace_to_index_by_index(workspace_index: c_int, index: c_int) -> gboolean;
-    pub fn astal_niri_msg_move_workspace_to_index_by_name(workspace_name: *const c_char, index: c_int) -> gboolean;
-    pub fn astal_niri_msg_move_workspace_to_monitor_by_id(output: *const c_char, workspace_id: c_int) -> gboolean;
-    pub fn astal_niri_msg_move_workspace_to_monitor_by_index(output: *const c_char, workspace_index: c_int) -> gboolean;
-    pub fn astal_niri_msg_move_workspace_to_monitor_by_name(output: *const c_char, workspace_name: *const c_char) -> gboolean;
+    pub fn astal_niri_msg_move_workspace_to_index_by_id(
+        workspace_id: c_int,
+        index: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_workspace_to_index_by_index(
+        workspace_index: c_int,
+        index: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_workspace_to_index_by_name(
+        workspace_name: *const c_char,
+        index: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_workspace_to_monitor_by_id(
+        output: *const c_char,
+        workspace_id: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_workspace_to_monitor_by_index(
+        output: *const c_char,
+        workspace_index: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_move_workspace_to_monitor_by_name(
+        output: *const c_char,
+        workspace_name: *const c_char,
+    ) -> gboolean;
     pub fn astal_niri_msg_move_workspace_to_monitor_down() -> gboolean;
     pub fn astal_niri_msg_move_workspace_to_monitor_left() -> gboolean;
     pub fn astal_niri_msg_move_workspace_to_monitor_next() -> gboolean;
@@ -616,36 +727,94 @@ extern "C" {
     pub fn astal_niri_msg_move_workspace_to_monitor_up() -> gboolean;
     pub fn astal_niri_msg_move_workspace_up() -> gboolean;
     pub fn astal_niri_msg_open_overview() -> gboolean;
-    pub fn astal_niri_msg_pick_color(_callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_niri_msg_pick_color_finish(_res_: *mut gio::GAsyncResult, result_length1: *mut c_int) -> *mut c_double;
-    pub fn astal_niri_msg_pick_window(_callback_: gio::GAsyncReadyCallback, _callback__target: *mut c_void);
-    pub fn astal_niri_msg_pick_window_finish(_res_: *mut gio::GAsyncResult) -> *mut AstalNiriWindow;
+    pub fn astal_niri_msg_pick_color(
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_niri_msg_pick_color_finish(
+        _res_: *mut gio::GAsyncResult,
+        result_length1: *mut c_int,
+    ) -> *mut c_double;
+    pub fn astal_niri_msg_pick_window(
+        _callback_: gio::GAsyncReadyCallback,
+        _callback__target: *mut c_void,
+    );
+    pub fn astal_niri_msg_pick_window_finish(_res_: *mut gio::GAsyncResult)
+        -> *mut AstalNiriWindow;
     pub fn astal_niri_msg_power_off_monitors() -> gboolean;
     pub fn astal_niri_msg_power_on_monitors() -> gboolean;
     pub fn astal_niri_msg_quit(skip_confirmation: gboolean) -> gboolean;
     pub fn astal_niri_msg_reset_window_height(id: *mut c_int) -> gboolean;
     pub fn astal_niri_msg_screenshot(show_pointer: gboolean) -> gboolean;
-    pub fn astal_niri_msg_screenshot_screen(write_to_disk: gboolean, show_pointer: gboolean) -> gboolean;
+    pub fn astal_niri_msg_screenshot_screen(
+        write_to_disk: gboolean,
+        show_pointer: gboolean,
+    ) -> gboolean;
     pub fn astal_niri_msg_screenshot_window(id: *mut c_int, write_to_disk: gboolean) -> gboolean;
     pub fn astal_niri_msg_set_column_display(display: AstalNiriColumnDisplayTag) -> gboolean;
-    pub fn astal_niri_msg_set_column_width_adjust_fixed(id: *mut c_int, fixed_value: c_int) -> gboolean;
-    pub fn astal_niri_msg_set_column_width_adjust_proportion(id: *mut c_int, proportion: c_double) -> gboolean;
-    pub fn astal_niri_msg_set_column_width_set_fixed(id: *mut c_int, fixed_value: c_int) -> gboolean;
-    pub fn astal_niri_msg_set_column_width_set_proportion(id: *mut c_int, proportion: c_double) -> gboolean;
+    pub fn astal_niri_msg_set_column_width_adjust_fixed(
+        id: *mut c_int,
+        fixed_value: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_column_width_adjust_proportion(
+        id: *mut c_int,
+        proportion: c_double,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_column_width_set_fixed(
+        id: *mut c_int,
+        fixed_value: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_column_width_set_proportion(
+        id: *mut c_int,
+        proportion: c_double,
+    ) -> gboolean;
     pub fn astal_niri_msg_set_dynamic_cast_window(id: *mut c_int) -> gboolean;
     pub fn astal_niri_msg_set_dynamic_cast_monitor(output: *const c_char) -> gboolean;
-    pub fn astal_niri_msg_set_window_height_adjust_fixed(id: *mut c_int, fixed_value: c_int) -> gboolean;
-    pub fn astal_niri_msg_set_window_height_adjust_proportion(id: *mut c_int, proportion: c_double) -> gboolean;
-    pub fn astal_niri_msg_set_window_height_set_fixed(id: *mut c_int, fixed_value: c_int) -> gboolean;
-    pub fn astal_niri_msg_set_window_height_set_proportion(id: *mut c_int, proportion: c_double) -> gboolean;
+    pub fn astal_niri_msg_set_window_height_adjust_fixed(
+        id: *mut c_int,
+        fixed_value: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_window_height_adjust_proportion(
+        id: *mut c_int,
+        proportion: c_double,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_window_height_set_fixed(
+        id: *mut c_int,
+        fixed_value: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_window_height_set_proportion(
+        id: *mut c_int,
+        proportion: c_double,
+    ) -> gboolean;
     pub fn astal_niri_msg_set_window_urgent(id: c_int) -> gboolean;
-    pub fn astal_niri_msg_set_window_width_adjust_fixed(id: *mut c_int, fixed_value: c_int) -> gboolean;
-    pub fn astal_niri_msg_set_window_width_adjust_proportion(id: *mut c_int, proportion: c_double) -> gboolean;
-    pub fn astal_niri_msg_set_window_width_set_fixed(id: *mut c_int, fixed_value: c_int) -> gboolean;
-    pub fn astal_niri_msg_set_window_width_set_proportion(id: *mut c_int, proportion: c_double) -> gboolean;
-    pub fn astal_niri_msg_set_workspace_name_by_id(workspace_id: c_int, new_name: *const c_char) -> gboolean;
-    pub fn astal_niri_msg_set_workspace_name_by_index(workspace_index: c_int, new_name: *const c_char) -> gboolean;
-    pub fn astal_niri_msg_set_workspace_name_by_name(workspace_name: *const c_char, new_name: *const c_char) -> gboolean;
+    pub fn astal_niri_msg_set_window_width_adjust_fixed(
+        id: *mut c_int,
+        fixed_value: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_window_width_adjust_proportion(
+        id: *mut c_int,
+        proportion: c_double,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_window_width_set_fixed(
+        id: *mut c_int,
+        fixed_value: c_int,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_window_width_set_proportion(
+        id: *mut c_int,
+        proportion: c_double,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_workspace_name_by_id(
+        workspace_id: c_int,
+        new_name: *const c_char,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_workspace_name_by_index(
+        workspace_index: c_int,
+        new_name: *const c_char,
+    ) -> gboolean;
+    pub fn astal_niri_msg_set_workspace_name_by_name(
+        workspace_name: *const c_char,
+        new_name: *const c_char,
+    ) -> gboolean;
     pub fn astal_niri_msg_show_hotkey_overlay() -> gboolean;
     pub fn astal_niri_msg_spawn(command: *mut *mut c_char, command_length1: c_int) -> gboolean;
     pub fn astal_niri_msg_swap_window_left() -> gboolean;

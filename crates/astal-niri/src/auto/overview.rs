@@ -27,15 +27,6 @@ impl Overview {
             from_glib_full(ffi::astal_niri_overview_new())
         }
     }
-
-            // rustdoc-stripper-ignore-next
-            /// Creates a new builder-pattern struct instance to construct [`Overview`] objects.
-            ///
-            /// This method returns an instance of [`OverviewBuilder`](crate::builders::OverviewBuilder) which can be used to create [`Overview`] objects.
-            pub fn builder() -> OverviewBuilder {
-                OverviewBuilder::new()
-            }
-        
 }
 
 impl Default for Overview {
@@ -43,32 +34,6 @@ impl Default for Overview {
                          Self::new()
                      }
                  }
-
-// rustdoc-stripper-ignore-next
-        /// A [builder-pattern] type to construct [`Overview`] objects.
-        ///
-        /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-#[must_use = "The builder must be built to be used"]
-pub struct OverviewBuilder {
-            builder: glib::object::ObjectBuilder<'static, Overview>,
-        }
-
-        impl OverviewBuilder {
-        fn new() -> Self {
-            Self { builder: glib::object::Object::builder() }
-        }
-
-                            pub fn is_open(self, is_open: bool) -> Self {
-                            Self { builder: self.builder.property("is-open", is_open), }
-                        }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`Overview`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> Overview {
-assert_initialized_main_thread!();
-    self.builder.build() }
-}
 
 pub trait OverviewExt: IsA<Overview> + 'static {
     //#[doc(alias = "astal_niri_overview_toggle")]

@@ -3,36 +3,31 @@
 // from ../../gtk-girs
 // DO NOT EDIT
 
-use crate::{ffi,ColumnDisplayTag,Window};
-use glib::{prelude::*,translate::*};
+use crate::{ColumnDisplayTag, Window, ffi};
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "AstalNirimsg")]
-    pub struct msg(Object<ffi::AstalNirimsg, ffi::AstalNirimsgClass>);
+    pub struct Msg(Object<ffi::AstalNirimsg, ffi::AstalNirimsgClass>);
 
     match fn {
         type_ => || ffi::astal_niri_msg_get_type(),
     }
 }
 
-impl msg {
-        pub const NONE: Option<&'static msg> = None;
-    
+impl Msg {
+    pub const NONE: Option<&'static Msg> = None;
 
     #[doc(alias = "astal_niri_msg_new")]
-    pub fn new() -> msg {
+    pub fn new() -> Msg {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::astal_niri_msg_new())
-        }
+        unsafe { from_glib_full(ffi::astal_niri_msg_new()) }
     }
 
     #[doc(alias = "astal_niri_msg_send")]
     pub fn send(message: &str) -> Option<glib::GString> {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::astal_niri_msg_send(message.to_glib_none().0))
-        }
+        unsafe { from_glib_full(ffi::astal_niri_msg_send(message.to_glib_none().0)) }
     }
 
     //#[doc(alias = "astal_niri_msg_send_async")]
@@ -43,408 +38,322 @@ impl msg {
     #[doc(alias = "astal_niri_msg_center_column")]
     pub fn center_column() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_center_column())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_center_column()) }
     }
 
     #[doc(alias = "astal_niri_msg_center_visible_columns")]
     pub fn center_visible_columns() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_center_visible_columns())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_center_visible_columns()) }
     }
 
     #[doc(alias = "astal_niri_msg_center_window")]
-    pub fn center_window(id: i32) -> bool {
+    pub fn center_window(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_center_window(id))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_center_window(cast_optional!(id))) }
     }
 
     #[doc(alias = "astal_niri_msg_clear_dynamic_cast_target")]
     pub fn clear_dynamic_cast_target() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_clear_dynamic_cast_target())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_clear_dynamic_cast_target()) }
     }
 
     #[doc(alias = "astal_niri_msg_close_overview")]
     pub fn close_overview() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_close_overview())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_close_overview()) }
     }
 
     #[doc(alias = "astal_niri_msg_close_window")]
-    pub fn close_window(id: i32) -> bool {
+    pub fn close_window(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_close_window(id))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_close_window(cast_optional!(id))) }
     }
 
     #[doc(alias = "astal_niri_msg_consume_or_expel_window_left")]
-    pub fn consume_or_expel_window_left(id: i32) -> bool {
+    pub fn consume_or_expel_window_left(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_consume_or_expel_window_left(id))
+            from_glib(ffi::astal_niri_msg_consume_or_expel_window_left(
+                cast_optional!(id),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_consume_or_expel_window_right")]
-    pub fn consume_or_expel_window_right(id: i32) -> bool {
+    pub fn consume_or_expel_window_right(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_consume_or_expel_window_right(id))
+            from_glib(ffi::astal_niri_msg_consume_or_expel_window_right(
+                cast_optional!(id),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_consume_window_into_column")]
     pub fn consume_window_into_column() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_consume_window_into_column())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_consume_window_into_column()) }
     }
 
     #[doc(alias = "astal_niri_msg_debug_toggle_damage")]
     pub fn debug_toggle_damage() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_debug_toggle_damage())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_debug_toggle_damage()) }
     }
 
     #[doc(alias = "astal_niri_msg_debug_toggle_opaque_regions")]
     pub fn debug_toggle_opaque_regions() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_debug_toggle_opaque_regions())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_debug_toggle_opaque_regions()) }
     }
 
     #[doc(alias = "astal_niri_msg_do_screen_transition")]
-    pub fn do_screen_transition(delay_ms: i32) -> bool {
+    pub fn do_screen_transition(delay_ms: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_do_screen_transition(delay_ms))
+            from_glib(ffi::astal_niri_msg_do_screen_transition(cast_optional!(
+                delay_ms
+            )))
         }
     }
 
     #[doc(alias = "astal_niri_msg_expand_column_to_available_width")]
     pub fn expand_column_to_available_width() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_expand_column_to_available_width())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_expand_column_to_available_width()) }
     }
 
     #[doc(alias = "astal_niri_msg_expel_window_from_column")]
     pub fn expel_window_from_column() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_expel_window_from_column())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_expel_window_from_column()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_column")]
     pub fn focus_column(index: i32) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_column(index))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_column(index)) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_column_first")]
     pub fn focus_column_first() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_column_first())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_column_first()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_column_last")]
     pub fn focus_column_last() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_column_last())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_column_last()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_column_left")]
     pub fn focus_column_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_column_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_column_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_column_left_or_last")]
     pub fn focus_column_left_or_last() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_column_left_or_last())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_column_left_or_last()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_column_or_monitor_left")]
     pub fn focus_column_or_monitor_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_column_or_monitor_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_column_or_monitor_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_column_or_monitor_right")]
     pub fn focus_column_or_monitor_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_column_or_monitor_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_column_or_monitor_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_column_right")]
     pub fn focus_column_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_column_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_column_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_column_right_or_first")]
     pub fn focus_column_right_or_first() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_column_right_or_first())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_column_right_or_first()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_floating")]
     pub fn focus_floating() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_floating())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_floating()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_monitor")]
     pub fn focus_monitor(output: &str) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_monitor(output.to_glib_none().0))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_monitor(output.to_glib_none().0)) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_monitor_down")]
     pub fn focus_monitor_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_monitor_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_monitor_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_monitor_left")]
     pub fn focus_monitor_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_monitor_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_monitor_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_monitor_next")]
     pub fn focus_monitor_next() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_monitor_next())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_monitor_next()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_monitor_previous")]
     pub fn focus_monitor_previous() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_monitor_previous())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_monitor_previous()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_monitor_right")]
     pub fn focus_monitor_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_monitor_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_monitor_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_monitor_up")]
     pub fn focus_monitor_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_monitor_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_monitor_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_tiling")]
     pub fn focus_tiling() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_tiling())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_tiling()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window")]
     pub fn focus_window(id: i32) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window(id))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window(id)) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_bottom")]
     pub fn focus_window_bottom() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_bottom())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_bottom()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_down")]
     pub fn focus_window_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_down_or_column_left")]
     pub fn focus_window_down_or_column_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_down_or_column_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_down_or_column_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_down_or_column_right")]
     pub fn focus_window_down_or_column_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_down_or_column_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_down_or_column_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_down_or_top")]
     pub fn focus_window_down_or_top() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_down_or_top())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_down_or_top()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_or_workspace_down")]
     pub fn focus_window_or_workspace_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_or_workspace_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_or_workspace_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_or_workspace_up")]
     pub fn focus_window_or_workspace_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_or_workspace_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_or_workspace_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_in_column")]
     pub fn focus_window_in_column(index: i32) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_in_column(index))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_in_column(index)) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_or_monitor_down")]
     pub fn focus_window_or_monitor_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_or_monitor_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_or_monitor_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_or_monitor_up")]
     pub fn focus_window_or_monitor_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_or_monitor_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_or_monitor_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_previous")]
     pub fn focus_window_previous() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_previous())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_previous()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_top")]
     pub fn focus_window_top() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_top())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_top()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_up")]
     pub fn focus_window_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_up_or_bottom")]
     pub fn focus_window_up_or_bottom() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_up_or_bottom())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_up_or_bottom()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_up_or_column_left")]
     pub fn focus_window_up_or_column_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_up_or_column_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_up_or_column_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_window_up_or_column_right")]
     pub fn focus_window_up_or_column_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_window_up_or_column_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_window_up_or_column_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_workspace_by_id")]
     pub fn focus_workspace_by_id(workspace_id: i32) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_workspace_by_id(workspace_id))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_workspace_by_id(workspace_id)) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_workspace_by_index")]
     pub fn focus_workspace_by_index(workspace_index: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_focus_workspace_by_index(workspace_index))
+            from_glib(ffi::astal_niri_msg_focus_workspace_by_index(
+                workspace_index,
+            ))
         }
     }
 
@@ -452,175 +361,144 @@ impl msg {
     pub fn focus_workspace_by_name(workspace_name: &str) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_focus_workspace_by_name(workspace_name.to_glib_none().0))
+            from_glib(ffi::astal_niri_msg_focus_workspace_by_name(
+                workspace_name.to_glib_none().0,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_focus_workspace_down")]
     pub fn focus_workspace_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_workspace_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_workspace_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_workspace_previous")]
     pub fn focus_workspace_previous() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_workspace_previous())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_workspace_previous()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_workspace_next")]
     pub fn focus_workspace_next() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_workspace_next())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_workspace_next()) }
     }
 
     #[doc(alias = "astal_niri_msg_focus_workspace_up")]
     pub fn focus_workspace_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_focus_workspace_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_focus_workspace_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_fullscreen_window")]
-    pub fn fullscreen_window(id: i32) -> bool {
+    pub fn fullscreen_window(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_fullscreen_window(id))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_fullscreen_window(cast_optional!(id))) }
     }
 
     #[doc(alias = "astal_niri_msg_maximize_column")]
     pub fn maximize_column() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_maximize_column())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_maximize_column()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_left")]
     pub fn move_column_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_left_or_to_monitor_left")]
     pub fn move_column_left_or_to_monitor_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_left_or_to_monitor_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_left_or_to_monitor_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_right")]
     pub fn move_column_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_right_or_to_monitor_right")]
     pub fn move_column_right_or_to_monitor_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_right_or_to_monitor_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_right_or_to_monitor_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_first")]
     pub fn move_column_to_first() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_first())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_to_first()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_index")]
     pub fn move_column_to_index(index: i32) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_index(index))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_to_index(index)) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_last")]
     pub fn move_column_to_last() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_last())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_to_last()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_monitor")]
     pub fn move_column_to_monitor(output: &str) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_monitor(output.to_glib_none().0))
+            from_glib(ffi::astal_niri_msg_move_column_to_monitor(
+                output.to_glib_none().0,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_monitor_down")]
     pub fn move_column_to_monitor_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_monitor_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_to_monitor_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_monitor_left")]
     pub fn move_column_to_monitor_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_monitor_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_to_monitor_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_monitor_next")]
     pub fn move_column_to_monitor_next() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_monitor_next())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_to_monitor_next()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_monitor_previous")]
     pub fn move_column_to_monitor_previous() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_monitor_previous())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_to_monitor_previous()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_monitor_right")]
     pub fn move_column_to_monitor_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_monitor_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_to_monitor_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_monitor_up")]
     pub fn move_column_to_monitor_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_monitor_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_column_to_monitor_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_column_to_workspace_by_id")]
     pub fn move_column_to_workspace_by_id(workspace_id: i32, focus: bool) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_workspace_by_id(workspace_id, focus.into_glib()))
+            from_glib(ffi::astal_niri_msg_move_column_to_workspace_by_id(
+                workspace_id,
+                focus.into_glib(),
+            ))
         }
     }
 
@@ -628,7 +506,10 @@ impl msg {
     pub fn move_column_to_workspace_by_index(workspace_index: i32, focus: bool) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_workspace_by_index(workspace_index, focus.into_glib()))
+            from_glib(ffi::astal_niri_msg_move_column_to_workspace_by_index(
+                workspace_index,
+                focus.into_glib(),
+            ))
         }
     }
 
@@ -636,7 +517,10 @@ impl msg {
     pub fn move_column_to_workspace_by_name(workspace_name: &str, focus: bool) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_workspace_by_name(workspace_name.to_glib_none().0, focus.into_glib()))
+            from_glib(ffi::astal_niri_msg_move_column_to_workspace_by_name(
+                workspace_name.to_glib_none().0,
+                focus.into_glib(),
+            ))
         }
     }
 
@@ -644,7 +528,9 @@ impl msg {
     pub fn move_column_to_workspace_down(focus: bool) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_workspace_down(focus.into_glib()))
+            from_glib(ffi::astal_niri_msg_move_column_to_workspace_down(
+                focus.into_glib(),
+            ))
         }
     }
 
@@ -652,199 +538,229 @@ impl msg {
     pub fn move_column_to_workspace_up(focus: bool) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_column_to_workspace_up(focus.into_glib()))
+            from_glib(ffi::astal_niri_msg_move_column_to_workspace_up(
+                focus.into_glib(),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_floating_window_adjust_x_adjust_y")]
-    pub fn move_floating_window_adjust_x_adjust_y(id: i32, adjust_x: f64, adjust_y: f64) -> bool {
+    pub fn move_floating_window_adjust_x_adjust_y(
+        id: Option<i32>,
+        adjust_x: f64,
+        adjust_y: f64,
+    ) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_floating_window_adjust_x_adjust_y(id, adjust_x, adjust_y))
+            from_glib(ffi::astal_niri_msg_move_floating_window_adjust_x_adjust_y(
+                cast_optional!(id),
+                adjust_x,
+                adjust_y,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_floating_window_adjust_x_set_y")]
-    pub fn move_floating_window_adjust_x_set_y(id: i32, adjust_x: f64, set_y: f64) -> bool {
+    pub fn move_floating_window_adjust_x_set_y(id: Option<i32>, adjust_x: f64, set_y: f64) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_floating_window_adjust_x_set_y(id, adjust_x, set_y))
+            from_glib(ffi::astal_niri_msg_move_floating_window_adjust_x_set_y(
+                cast_optional!(id),
+                adjust_x,
+                set_y,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_floating_window_set_x_adjust_y")]
-    pub fn move_floating_window_set_x_adjust_y(id: i32, set_x: f64, adjust_y: f64) -> bool {
+    pub fn move_floating_window_set_x_adjust_y(id: Option<i32>, set_x: f64, adjust_y: f64) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_floating_window_set_x_adjust_y(id, set_x, adjust_y))
+            from_glib(ffi::astal_niri_msg_move_floating_window_set_x_adjust_y(
+                cast_optional!(id),
+                set_x,
+                adjust_y,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_floating_window_set_x_set_y")]
-    pub fn move_floating_window_set_x_set_y(id: i32, set_x: f64, set_y: f64) -> bool {
+    pub fn move_floating_window_set_x_set_y(id: Option<i32>, set_x: f64, set_y: f64) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_floating_window_set_x_set_y(id, set_x, set_y))
+            from_glib(ffi::astal_niri_msg_move_floating_window_set_x_set_y(
+                cast_optional!(id),
+                set_x,
+                set_y,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_down")]
     pub fn move_window_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_down_or_to_workspace_down")]
     pub fn move_window_down_or_to_workspace_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_down_or_to_workspace_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_down_or_to_workspace_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_floating")]
-    pub fn move_window_to_floating(id: i32) -> bool {
+    pub fn move_window_to_floating(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_floating(id))
+            from_glib(ffi::astal_niri_msg_move_window_to_floating(cast_optional!(
+                id
+            )))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_monitor")]
-    pub fn move_window_to_monitor(id: i32, output: &str) -> bool {
+    pub fn move_window_to_monitor(id: Option<i32>, output: &str) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_monitor(id, output.to_glib_none().0))
+            from_glib(ffi::astal_niri_msg_move_window_to_monitor(
+                cast_optional!(id),
+                output.to_glib_none().0,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_monitor_down")]
     pub fn move_window_to_monitor_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_monitor_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_to_monitor_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_monitor_left")]
     pub fn move_window_to_monitor_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_monitor_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_to_monitor_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_monitor_right")]
     pub fn move_window_to_monitor_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_monitor_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_to_monitor_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_monitor_up")]
     pub fn move_window_to_monitor_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_monitor_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_to_monitor_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_monitor_previous")]
     pub fn move_window_to_monitor_previous() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_monitor_previous())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_to_monitor_previous()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_monitor_next")]
     pub fn move_window_to_monitor_next() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_monitor_next())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_to_monitor_next()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_tiling")]
-    pub fn move_window_to_tiling(id: i32) -> bool {
+    pub fn move_window_to_tiling(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_tiling(id))
+            from_glib(ffi::astal_niri_msg_move_window_to_tiling(cast_optional!(
+                id
+            )))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_workspace_by_id")]
-    pub fn move_window_to_workspace_by_id(window_id: i32, workspace_id: i32, focus: bool) -> bool {
+    pub fn move_window_to_workspace_by_id(
+        window_id: Option<i32>,
+        workspace_id: i32,
+        focus: bool,
+    ) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_workspace_by_id(window_id, workspace_id, focus.into_glib()))
+            from_glib(ffi::astal_niri_msg_move_window_to_workspace_by_id(
+                cast_optional!(window_id),
+                workspace_id,
+                focus.into_glib(),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_workspace_by_index")]
-    pub fn move_window_to_workspace_by_index(window_id: i32, workspace_index: i32, focus: bool) -> bool {
+    pub fn move_window_to_workspace_by_index(
+        window_id: Option<i32>,
+        workspace_index: i32,
+        focus: bool,
+    ) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_workspace_by_index(window_id, workspace_index, focus.into_glib()))
+            from_glib(ffi::astal_niri_msg_move_window_to_workspace_by_index(
+                cast_optional!(window_id),
+                workspace_index,
+                focus.into_glib(),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_workspace_by_name")]
-    pub fn move_window_to_workspace_by_name(window_id: i32, workspace_name: &str, focus: bool) -> bool {
+    pub fn move_window_to_workspace_by_name(
+        window_id: Option<i32>,
+        workspace_name: &str,
+        focus: bool,
+    ) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_workspace_by_name(window_id, workspace_name.to_glib_none().0, focus.into_glib()))
+            from_glib(ffi::astal_niri_msg_move_window_to_workspace_by_name(
+                cast_optional!(window_id),
+                workspace_name.to_glib_none().0,
+                focus.into_glib(),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_workspace_down")]
     pub fn move_window_to_workspace_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_workspace_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_to_workspace_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_to_workspace_up")]
     pub fn move_window_to_workspace_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_to_workspace_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_to_workspace_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_up")]
     pub fn move_window_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_window_up_or_to_workspace_up")]
     pub fn move_window_up_or_to_workspace_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_window_up_or_to_workspace_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_window_up_or_to_workspace_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_workspace_down")]
     pub fn move_workspace_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_workspace_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_workspace_to_index_by_id")]
     pub fn move_workspace_to_index_by_id(workspace_id: i32, index: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_index_by_id(workspace_id, index))
+            from_glib(ffi::astal_niri_msg_move_workspace_to_index_by_id(
+                workspace_id,
+                index,
+            ))
         }
     }
 
@@ -852,7 +768,10 @@ impl msg {
     pub fn move_workspace_to_index_by_index(workspace_index: i32, index: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_index_by_index(workspace_index, index))
+            from_glib(ffi::astal_niri_msg_move_workspace_to_index_by_index(
+                workspace_index,
+                index,
+            ))
         }
     }
 
@@ -860,7 +779,10 @@ impl msg {
     pub fn move_workspace_to_index_by_name(workspace_name: &str, index: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_index_by_name(workspace_name.to_glib_none().0, index))
+            from_glib(ffi::astal_niri_msg_move_workspace_to_index_by_name(
+                workspace_name.to_glib_none().0,
+                index,
+            ))
         }
     }
 
@@ -868,7 +790,10 @@ impl msg {
     pub fn move_workspace_to_monitor_by_id(output: &str, workspace_id: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_by_id(output.to_glib_none().0, workspace_id))
+            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_by_id(
+                output.to_glib_none().0,
+                workspace_id,
+            ))
         }
     }
 
@@ -876,7 +801,10 @@ impl msg {
     pub fn move_workspace_to_monitor_by_index(output: &str, workspace_index: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_by_index(output.to_glib_none().0, workspace_index))
+            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_by_index(
+                output.to_glib_none().0,
+                workspace_index,
+            ))
         }
     }
 
@@ -884,72 +812,59 @@ impl msg {
     pub fn move_workspace_to_monitor_by_name(output: &str, workspace_name: &str) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_by_name(output.to_glib_none().0, workspace_name.to_glib_none().0))
+            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_by_name(
+                output.to_glib_none().0,
+                workspace_name.to_glib_none().0,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_move_workspace_to_monitor_down")]
     pub fn move_workspace_to_monitor_down() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_down())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_down()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_workspace_to_monitor_left")]
     pub fn move_workspace_to_monitor_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_workspace_to_monitor_next")]
     pub fn move_workspace_to_monitor_next() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_next())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_next()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_workspace_to_monitor_previous")]
     pub fn move_workspace_to_monitor_previous() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_previous())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_previous()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_workspace_to_monitor_right")]
     pub fn move_workspace_to_monitor_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_workspace_to_monitor_up")]
     pub fn move_workspace_to_monitor_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_workspace_to_monitor_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_move_workspace_up")]
     pub fn move_workspace_up() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_move_workspace_up())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_move_workspace_up()) }
     }
 
     #[doc(alias = "astal_niri_msg_open_overview")]
     pub fn open_overview() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_open_overview())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_open_overview()) }
     }
 
     //#[doc(alias = "astal_niri_msg_pick_color")]
@@ -965,104 +880,112 @@ impl msg {
     #[doc(alias = "astal_niri_msg_power_off_monitors")]
     pub fn power_off_monitors() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_power_off_monitors())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_power_off_monitors()) }
     }
 
     #[doc(alias = "astal_niri_msg_power_on_monitors")]
     pub fn power_on_monitors() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_power_on_monitors())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_power_on_monitors()) }
     }
 
     #[doc(alias = "astal_niri_msg_quit")]
     pub fn quit(skip_confirmation: bool) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_quit(skip_confirmation.into_glib()))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_quit(skip_confirmation.into_glib())) }
     }
 
     #[doc(alias = "astal_niri_msg_reset_window_height")]
-    pub fn reset_window_height(id: i32) -> bool {
+    pub fn reset_window_height(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_reset_window_height(id))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_reset_window_height(cast_optional!(id))) }
     }
 
     #[doc(alias = "astal_niri_msg_screenshot")]
     pub fn screenshot(show_pointer: bool) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_screenshot(show_pointer.into_glib()))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_screenshot(show_pointer.into_glib())) }
     }
 
     #[doc(alias = "astal_niri_msg_screenshot_screen")]
     pub fn screenshot_screen(write_to_disk: bool, show_pointer: bool) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_screenshot_screen(write_to_disk.into_glib(), show_pointer.into_glib()))
+            from_glib(ffi::astal_niri_msg_screenshot_screen(
+                write_to_disk.into_glib(),
+                show_pointer.into_glib(),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_screenshot_window")]
-    pub fn screenshot_window(id: i32, write_to_disk: bool) -> bool {
+    pub fn screenshot_window(id: Option<i32>, write_to_disk: bool) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_screenshot_window(id, write_to_disk.into_glib()))
+            from_glib(ffi::astal_niri_msg_screenshot_window(
+                cast_optional!(id),
+                write_to_disk.into_glib(),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_column_display")]
     pub fn set_column_display(display: ColumnDisplayTag) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_set_column_display(display.into_glib()))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_set_column_display(display.into_glib())) }
     }
 
     #[doc(alias = "astal_niri_msg_set_column_width_adjust_fixed")]
-    pub fn set_column_width_adjust_fixed(id: i32, fixed_value: i32) -> bool {
+    pub fn set_column_width_adjust_fixed(id: Option<i32>, fixed_value: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_column_width_adjust_fixed(id, fixed_value))
+            from_glib(ffi::astal_niri_msg_set_column_width_adjust_fixed(
+                cast_optional!(id),
+                fixed_value,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_column_width_adjust_proportion")]
-    pub fn set_column_width_adjust_proportion(id: i32, proportion: f64) -> bool {
+    pub fn set_column_width_adjust_proportion(id: Option<i32>, proportion: f64) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_column_width_adjust_proportion(id, proportion))
+            from_glib(ffi::astal_niri_msg_set_column_width_adjust_proportion(
+                cast_optional!(id),
+                proportion,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_column_width_set_fixed")]
-    pub fn set_column_width_set_fixed(id: i32, fixed_value: i32) -> bool {
+    pub fn set_column_width_set_fixed(id: Option<i32>, fixed_value: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_column_width_set_fixed(id, fixed_value))
+            from_glib(ffi::astal_niri_msg_set_column_width_set_fixed(
+                cast_optional!(id),
+                fixed_value,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_column_width_set_proportion")]
-    pub fn set_column_width_set_proportion(id: i32, proportion: f64) -> bool {
+    pub fn set_column_width_set_proportion(id: Option<i32>, proportion: f64) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_column_width_set_proportion(id, proportion))
+            from_glib(ffi::astal_niri_msg_set_column_width_set_proportion(
+                cast_optional!(id),
+                proportion,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_dynamic_cast_window")]
-    pub fn set_dynamic_cast_window(id: i32) -> bool {
+    pub fn set_dynamic_cast_window(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_dynamic_cast_window(id))
+            from_glib(ffi::astal_niri_msg_set_dynamic_cast_window(cast_optional!(
+                id
+            )))
         }
     }
 
@@ -1070,79 +993,103 @@ impl msg {
     pub fn set_dynamic_cast_monitor(output: Option<&str>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_dynamic_cast_monitor(output.to_glib_none().0))
+            from_glib(ffi::astal_niri_msg_set_dynamic_cast_monitor(
+                output.to_glib_none().0,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_window_height_adjust_fixed")]
-    pub fn set_window_height_adjust_fixed(id: i32, fixed_value: i32) -> bool {
+    pub fn set_window_height_adjust_fixed(id: Option<i32>, fixed_value: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_window_height_adjust_fixed(id, fixed_value))
+            from_glib(ffi::astal_niri_msg_set_window_height_adjust_fixed(
+                cast_optional!(id),
+                fixed_value,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_window_height_adjust_proportion")]
-    pub fn set_window_height_adjust_proportion(id: i32, proportion: f64) -> bool {
+    pub fn set_window_height_adjust_proportion(id: Option<i32>, proportion: f64) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_window_height_adjust_proportion(id, proportion))
+            from_glib(ffi::astal_niri_msg_set_window_height_adjust_proportion(
+                cast_optional!(id),
+                proportion,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_window_height_set_fixed")]
-    pub fn set_window_height_set_fixed(id: i32, fixed_value: i32) -> bool {
+    pub fn set_window_height_set_fixed(id: Option<i32>, fixed_value: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_window_height_set_fixed(id, fixed_value))
+            from_glib(ffi::astal_niri_msg_set_window_height_set_fixed(
+                cast_optional!(id),
+                fixed_value,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_window_height_set_proportion")]
-    pub fn set_window_height_set_proportion(id: i32, proportion: f64) -> bool {
+    pub fn set_window_height_set_proportion(id: Option<i32>, proportion: f64) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_window_height_set_proportion(id, proportion))
+            from_glib(ffi::astal_niri_msg_set_window_height_set_proportion(
+                cast_optional!(id),
+                proportion,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_window_urgent")]
     pub fn set_window_urgent(id: i32) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_set_window_urgent(id))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_set_window_urgent(id)) }
     }
 
     #[doc(alias = "astal_niri_msg_set_window_width_adjust_fixed")]
-    pub fn set_window_width_adjust_fixed(id: i32, fixed_value: i32) -> bool {
+    pub fn set_window_width_adjust_fixed(id: Option<i32>, fixed_value: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_window_width_adjust_fixed(id, fixed_value))
+            from_glib(ffi::astal_niri_msg_set_window_width_adjust_fixed(
+                cast_optional!(id),
+                fixed_value,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_window_width_adjust_proportion")]
-    pub fn set_window_width_adjust_proportion(id: i32, proportion: f64) -> bool {
+    pub fn set_window_width_adjust_proportion(id: Option<i32>, proportion: f64) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_window_width_adjust_proportion(id, proportion))
+            from_glib(ffi::astal_niri_msg_set_window_width_adjust_proportion(
+                cast_optional!(id),
+                proportion,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_window_width_set_fixed")]
-    pub fn set_window_width_set_fixed(id: i32, fixed_value: i32) -> bool {
+    pub fn set_window_width_set_fixed(id: Option<i32>, fixed_value: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_window_width_set_fixed(id, fixed_value))
+            from_glib(ffi::astal_niri_msg_set_window_width_set_fixed(
+                cast_optional!(id),
+                fixed_value,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_set_window_width_set_proportion")]
-    pub fn set_window_width_set_proportion(id: i32, proportion: f64) -> bool {
+    pub fn set_window_width_set_proportion(id: Option<i32>, proportion: f64) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_window_width_set_proportion(id, proportion))
+            from_glib(ffi::astal_niri_msg_set_window_width_set_proportion(
+                cast_optional!(id),
+                proportion,
+            ))
         }
     }
 
@@ -1150,7 +1097,10 @@ impl msg {
     pub fn set_workspace_name_by_id(workspace_id: i32, new_name: &str) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_workspace_name_by_id(workspace_id, new_name.to_glib_none().0))
+            from_glib(ffi::astal_niri_msg_set_workspace_name_by_id(
+                workspace_id,
+                new_name.to_glib_none().0,
+            ))
         }
     }
 
@@ -1158,7 +1108,10 @@ impl msg {
     pub fn set_workspace_name_by_index(workspace_index: i32, new_name: &str) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_workspace_name_by_index(workspace_index, new_name.to_glib_none().0))
+            from_glib(ffi::astal_niri_msg_set_workspace_name_by_index(
+                workspace_index,
+                new_name.to_glib_none().0,
+            ))
         }
     }
 
@@ -1166,16 +1119,17 @@ impl msg {
     pub fn set_workspace_name_by_name(workspace_name: &str, new_name: &str) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_set_workspace_name_by_name(workspace_name.to_glib_none().0, new_name.to_glib_none().0))
+            from_glib(ffi::astal_niri_msg_set_workspace_name_by_name(
+                workspace_name.to_glib_none().0,
+                new_name.to_glib_none().0,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_show_hotkey_overlay")]
     pub fn show_hotkey_overlay() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_show_hotkey_overlay())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_show_hotkey_overlay()) }
     }
 
     #[doc(alias = "astal_niri_msg_spawn")]
@@ -1183,167 +1137,154 @@ impl msg {
         assert_initialized_main_thread!();
         let command_length1 = command.len() as _;
         unsafe {
-            from_glib(ffi::astal_niri_msg_spawn(command.to_glib_full(), command_length1))
+            from_glib(ffi::astal_niri_msg_spawn(
+                command.to_glib_full(),
+                command_length1,
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_swap_window_left")]
     pub fn swap_window_left() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_swap_window_left())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_swap_window_left()) }
     }
 
     #[doc(alias = "astal_niri_msg_swap_window_right")]
     pub fn swap_window_right() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_swap_window_right())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_swap_window_right()) }
     }
 
     #[doc(alias = "astal_niri_msg_switch_focus_between_floating_and_tiling")]
     pub fn switch_focus_between_floating_and_tiling() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_switch_focus_between_floating_and_tiling())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_switch_focus_between_floating_and_tiling()) }
     }
 
     #[doc(alias = "astal_niri_msg_switch_layout_index")]
     pub fn switch_layout_index(index: i32) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_switch_layout_index(index))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_switch_layout_index(index)) }
     }
 
     #[doc(alias = "astal_niri_msg_switch_layout_next")]
     pub fn switch_layout_next() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_switch_layout_next())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_switch_layout_next()) }
     }
 
     #[doc(alias = "astal_niri_msg_switch_layout_prev")]
     pub fn switch_layout_prev() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_switch_layout_prev())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_switch_layout_prev()) }
     }
 
     #[doc(alias = "astal_niri_msg_switch_preset_column_width")]
     pub fn switch_preset_column_width() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_switch_preset_column_width())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_switch_preset_column_width()) }
     }
 
     #[doc(alias = "astal_niri_msg_switch_preset_window_height")]
-    pub fn switch_preset_window_height(id: i32) -> bool {
+    pub fn switch_preset_window_height(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_switch_preset_window_height(id))
+            from_glib(ffi::astal_niri_msg_switch_preset_window_height(
+                cast_optional!(id),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_switch_preset_window_width")]
-    pub fn switch_preset_window_width(id: i32) -> bool {
+    pub fn switch_preset_window_width(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_switch_preset_window_width(id))
+            from_glib(ffi::astal_niri_msg_switch_preset_window_width(
+                cast_optional!(id),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_toggle_column_tabbed_display")]
     pub fn toggle_column_tabbed_display() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_toggle_column_tabbed_display())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_toggle_column_tabbed_display()) }
     }
 
     #[doc(alias = "astal_niri_msg_toggle_debug_tint")]
     pub fn toggle_debug_tint() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_toggle_debug_tint())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_toggle_debug_tint()) }
     }
 
     #[doc(alias = "astal_niri_msg_toggle_keyboard_shortcuts_inhibit")]
     pub fn toggle_keyboard_shortcuts_inhibit() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_toggle_keyboard_shortcuts_inhibit())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_toggle_keyboard_shortcuts_inhibit()) }
     }
 
     #[doc(alias = "astal_niri_msg_toggle_overview")]
     pub fn toggle_overview() -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_toggle_overview())
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_toggle_overview()) }
     }
 
     #[doc(alias = "astal_niri_msg_toggle_window_floating")]
-    pub fn toggle_window_floating(id: i32) -> bool {
+    pub fn toggle_window_floating(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_toggle_window_floating(id))
+            from_glib(ffi::astal_niri_msg_toggle_window_floating(cast_optional!(
+                id
+            )))
         }
     }
 
     #[doc(alias = "astal_niri_msg_toggle_window_rule_opacity")]
-    pub fn toggle_window_rule_opacity(id: i32) -> bool {
+    pub fn toggle_window_rule_opacity(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_toggle_window_rule_opacity(id))
+            from_glib(ffi::astal_niri_msg_toggle_window_rule_opacity(
+                cast_optional!(id),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_toggle_window_urgent")]
     pub fn toggle_window_urgent(id: i32) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_toggle_window_urgent(id))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_toggle_window_urgent(id)) }
     }
 
     #[doc(alias = "astal_niri_msg_toggle_windowed_fullscreen")]
-    pub fn toggle_windowed_fullscreen(id: i32) -> bool {
+    pub fn toggle_windowed_fullscreen(id: Option<i32>) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_toggle_windowed_fullscreen(id))
+            from_glib(ffi::astal_niri_msg_toggle_windowed_fullscreen(
+                cast_optional!(id),
+            ))
         }
     }
 
     #[doc(alias = "astal_niri_msg_unset_window_urgent")]
     pub fn unset_window_urgent(id: i32) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_unset_window_urgent(id))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_unset_window_urgent(id)) }
     }
 
     #[doc(alias = "astal_niri_msg_unset_workspace_name_by_id")]
     pub fn unset_workspace_name_by_id(workspace_id: i32) -> bool {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::astal_niri_msg_unset_workspace_name_by_id(workspace_id))
-        }
+        unsafe { from_glib(ffi::astal_niri_msg_unset_workspace_name_by_id(workspace_id)) }
     }
 
     #[doc(alias = "astal_niri_msg_unset_workspace_name_by_index")]
     pub fn unset_workspace_name_by_index(workspace_index: i32) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_unset_workspace_name_by_index(workspace_index))
+            from_glib(ffi::astal_niri_msg_unset_workspace_name_by_index(
+                workspace_index,
+            ))
         }
     }
 
@@ -1351,24 +1292,24 @@ impl msg {
     pub fn unset_workspace_name_by_name(workspace_name: &str) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::astal_niri_msg_unset_workspace_name_by_name(workspace_name.to_glib_none().0))
+            from_glib(ffi::astal_niri_msg_unset_workspace_name_by_name(
+                workspace_name.to_glib_none().0,
+            ))
         }
     }
 }
 
-impl Default for msg {
-                     fn default() -> Self {
-                         Self::new()
-                     }
-                 }
+impl Default for Msg {
+    fn default() -> Self {
+        Self::new()
+    }
+}
 
-pub trait msgExt: IsA<msg> + 'static {
+pub trait MsgExt: IsA<Msg> + 'static {
     #[doc(alias = "astal_niri_msg_layers")]
     fn layers(&self) -> glib::GString {
-        unsafe {
-            from_glib_full(ffi::astal_niri_msg_layers(self.as_ref().to_glib_none().0))
-        }
+        unsafe { from_glib_full(ffi::astal_niri_msg_layers(self.as_ref().to_glib_none().0)) }
     }
 }
 
-impl<O: IsA<msg>> msgExt for O {}
+impl<O: IsA<Msg>> MsgExt for O {}

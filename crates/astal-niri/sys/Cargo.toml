@@ -21,6 +21,7 @@ libc.workspace = true
 glib-sys.workspace = true
 gobject-sys.workspace = true
 gio-sys.workspace = true
+json-glib-sys.workspace = true
 
 [build-dependencies]
 system-deps = "7"
