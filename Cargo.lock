@@ -3,6 +3,132 @@
 version = 4
 
 [[package]]
+name = "astal-apps"
+version = "0.1.0"
+dependencies = [
+ "astal-apps-sys",
+ "gio 0.21.5",
+ "glib 0.21.5",
+]
+
+[[package]]
+name = "astal-apps-sys"
+version = "0.0.1"
+dependencies = [
+ "gio-sys 0.21.5",
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-auth"
+version = "0.1.0"
+dependencies = [
+ "astal-auth-sys",
+ "gio 0.21.5",
+ "glib 0.21.5",
+]
+
+[[package]]
+name = "astal-auth-sys"
+version = "0.0.1"
+dependencies = [
+ "gio-sys 0.21.5",
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-battery"
+version = "0.1.0"
+dependencies = [
+ "astal-battery-sys",
+ "glib 0.21.5",
+]
+
+[[package]]
+name = "astal-battery-sys"
+version = "0.0.1"
+dependencies = [
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-bluetooth"
+version = "0.1.0"
+dependencies = [
+ "astal-bluetooth-sys",
+ "glib 0.21.5",
+]
+
+[[package]]
+name = "astal-bluetooth-sys"
+version = "0.0.1"
+dependencies = [
+ "gio-sys 0.21.5",
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-cava"
+version = "0.1.0"
+dependencies = [
+ "astal-cava-sys",
+ "glib 0.21.5",
+]
+
+[[package]]
+name = "astal-cava-sys"
+version = "0.0.1"
+dependencies = [
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-greet"
+version = "0.1.0"
+dependencies = [
+ "astal-greet-sys",
+ "glib 0.21.5",
+]
+
+[[package]]
+name = "astal-greet-sys"
+version = "0.0.1"
+dependencies = [
+ "gio-sys 0.21.5",
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
 name = "astal-hyprland"
 version = "0.1.0"
 dependencies = [
@@ -38,6 +164,27 @@ name = "astal-io-sys"
 version = "0.0.1"
 dependencies = [
  "gio-sys 0.21.5",
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-mpris"
+version = "0.1.0"
+dependencies = [
+ "astal-mpris-sys",
+ "gio 0.21.5",
+ "glib 0.21.5",
+]
+
+[[package]]
+name = "astal-mpris-sys"
+version = "0.0.1"
+dependencies = [
  "glib-sys 0.21.5",
  "gobject-sys 0.21.5",
  "libc",
@@ -88,6 +235,48 @@ dependencies = [
 ]
 
 [[package]]
+name = "astal-notifd"
+version = "0.1.0"
+dependencies = [
+ "astal-notifd-sys",
+ "gio 0.21.5",
+ "glib 0.21.5",
+]
+
+[[package]]
+name = "astal-notifd-sys"
+version = "0.0.1"
+dependencies = [
+ "gio-sys 0.21.5",
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-power-profiles-sys"
+version = "0.0.1"
+dependencies = [
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-powerprofiles"
+version = "0.1.0"
+dependencies = [
+ "astal-power-profiles-sys",
+ "glib 0.21.5",
+]
+
+[[package]]
 name = "astal-river"
 version = "0.1.0"
 dependencies = [
@@ -99,6 +288,30 @@ dependencies = [
 name = "astal-river-sys"
 version = "0.0.1"
 dependencies = [
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.7",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-tray"
+version = "0.1.0"
+dependencies = [
+ "astal-tray-sys",
+ "gdk-pixbuf 0.21.5",
+ "gio 0.21.5",
+ "glib 0.21.5",
+]
+
+[[package]]
+name = "astal-tray-sys"
+version = "0.0.1"
+dependencies = [
+ "gdk-pixbuf-sys 0.21.5",
+ "gio-sys 0.21.5",
  "glib-sys 0.21.5",
  "gobject-sys 0.21.5",
  "libc",

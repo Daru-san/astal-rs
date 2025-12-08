@@ -6,18 +6,38 @@ members = [
     "astal3/sys",
     "astal4",
     "astal4/sys",
+    "crates/astal-apps",
+    "crates/astal-apps/sys",
+    "crates/astal-auth",
+    "crates/astal-auth/sys",
+    "crates/astal-battery",
+    "crates/astal-battery/sys",
+    "crates/astal-bluetooth",
+    "crates/astal-bluetooth/sys",
+    "crates/astal-cava",
+    "crates/astal-cava/sys",
+    "crates/astal-greet",
+    "crates/astal-greet/sys",
     "crates/astal-hyprland",
     "crates/astal-hyprland/sys",
     "crates/astal-io",
     "crates/astal-io/sys",
-    "crates/astal-river",
-    "crates/astal-river/sys",
+    "crates/astal-mpris",
+    "crates/astal-mpris/sys",
     "crates/astal-network",
     "crates/astal-network/sys",
+    "crates/astal-notifd",
+    "crates/astal-notifd/sys",
     "crates/astal-niri",
     "crates/astal-niri/sys",
-    "crates/astal-wireplumber/sys",
+    "crates/astal-powerprofiles",
+    "crates/astal-powerprofiles/sys",
+    "crates/astal-river",
+    "crates/astal-river/sys",
+    "crates/astal-tray",
+    "crates/astal-tray/sys",
     "crates/astal-wireplumber",
+    "crates/astal-wireplumber/sys",
 ]
 
 [workspace.dependencies]
@@ -25,6 +45,7 @@ gdk = "0.18.2"
 gdk-sys = "0.18.2"
 gdk4 = "0.10.3"
 gdk-pixbuf = "0.21.5"
+gdk-pixbuf-sys = "0.21.5"
 glib = "0.21.5"
 glib-sys = "0.21.5"
 gtk = "0.18.2"
