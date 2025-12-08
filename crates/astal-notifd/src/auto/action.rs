@@ -8,6 +8,33 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Notification action.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `id`
+    ///  Id of this action.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `label`
+    ///  Label of this action that should be displayed to user.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `invoked`
+    ///  Emitted when the notification this action was added to invoked this action.
+    ///
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`ActionExt`][trait@crate::prelude::ActionExt]
     #[doc(alias = "AstalNotifdAction")]
     pub struct Action(Object<ffi::AstalNotifdAction, ffi::AstalNotifdActionClass>);
 
@@ -58,10 +85,12 @@ pub struct ActionBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// Id of this action.
                             pub fn id(self, id: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("id", id.into()), }
                         }
 
+                            /// Label of this action that should be displayed to user.
                             pub fn label(self, label: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("label", label.into()), }
                         }
@@ -74,7 +103,14 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Action`] methods.
+///
+/// # Implementors
+///
+/// [`Action`][struct@crate::Action]
 pub trait ActionExt: IsA<Action> + 'static {
+    /// Invoke this action. Note that this method just notifies the client that this action was invoked by the user. If for example this notification
+    /// persists through the lifetime of the sending application this action will have no effect.
     #[doc(alias = "astal_notifd_action_invoke")]
     fn invoke(&self) {
         unsafe {
@@ -112,6 +148,7 @@ pub trait ActionExt: IsA<Action> + 'static {
         }
     }
 
+    /// Emitted when the notification this action was added to invoked this action.
     #[doc(alias = "invoked")]
     fn connect_invoked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invoked_trampoline<P: IsA<Action>, F: Fn(&P) + 'static>(this: *mut ffi::AstalNotifdAction, f: glib::ffi::gpointer) {

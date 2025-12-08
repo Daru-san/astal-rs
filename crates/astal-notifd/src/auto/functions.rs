@@ -7,6 +7,7 @@ use crate::{ffi,Notifd};
 use glib::{prelude::*,translate::*};
 
 
+/// Get the singleton instance of [`Notifd`][crate::Notifd]
 #[doc(alias = "astal_notifd_get_default")]
 #[doc(alias = "get_default")]
 #[allow(clippy::should_implement_trait)]pub fn default() -> Notifd {

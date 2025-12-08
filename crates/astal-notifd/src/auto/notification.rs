@@ -8,6 +8,163 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Class representing a notification.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `state`
+    ///  State of the notification.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `time`
+    ///  Unix time of when the notification was sent or received.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `id`
+    ///  Id of the notification.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `app-name`
+    ///  Name of the sending application.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `app-icon`
+    ///  Icon name of the sending application.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `summary`
+    ///  Single line overview of the notification.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `body`
+    ///  Multi-line body of text, where each line is a paragraph. May contain markup.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `expire-timeout`
+    ///  Time in milliseconds after the notification expires.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `actions`
+    ///  List of [`Action`][crate::Action] of the notification. Can be invoked by calling [`NotificationExt::invoke()`][crate::prelude::NotificationExt::invoke()] with
+    /// the action's id.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `hints`
+    ///  Hints of the notification. Hints are a way to provide extra data to servers. To set hints on a `DRAFT` Notification use [method@
+    /// AstalNotifd.Notification.set_hint] or the property setters for standard hints.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `image`
+    ///  Standard `image-path` hint. Path of an image
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `action-icons`
+    ///  Standard `action-icons` hint. Indicates whether [`Action`][crate::Action] identifier should be interpreted as a named icon.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `category`
+    ///  Standard `category` hint. [](https://specifications.freedesktop.org/notification-spec/latest/categories.html)
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `desktop-entry`
+    ///  Standard `desktop-entry` hint. Specifies the name of the desktop filename representing the calling program.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `resident`
+    ///  Standard `resident` hint. Indicates whether notification is kept after action invocation.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `sound-file`
+    ///  Standard `sound-file` hint. The path to a sound file to play when the notification pops up.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `sound-name`
+    ///  Standard `sound-name` hint. A themeable named sound from to play when the notification pops up
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `suppress-sound`
+    ///  Standard `suppress-sound` hint. Indicates to suppress playing any sounds.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `transient`
+    ///  Standard `transient` hint. Indicates that the notification should be excluded from persistency.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `x`
+    ///  Standard `x` hint. Specifies the X location on the screen that the notification should point to. The "y" hint must also be specified.
+    ///
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `y`
+    ///  Standard `y` hint. Specifies the Y location on the screen that the notification should point to. The "x" hint must also be specified.
+    ///
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `urgency`
+    ///  Standard `urgency` hint. [`Urgency`][crate::Urgency] level of the notification.
+    ///
+    /// Readable | Writeable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `resolved`
+    ///  Emitted when this this notification is resolved.
+    ///
+    ///
+    ///
+    ///
+    /// #### `invoked`
+    ///  Emitted when an [`Action`][crate::Action] of this notification is invoked.
+    ///
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`NotificationExt`][trait@crate::prelude::NotificationExt]
     #[doc(alias = "AstalNotifdNotification")]
     pub struct Notification(Object<ffi::AstalNotifdNotification, ffi::AstalNotifdNotificationClass>);
 
@@ -58,86 +215,110 @@ pub struct NotificationBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// State of the notification.
                             pub fn state(self, state: State) -> Self {
                             Self { builder: self.builder.property("state", state), }
                         }
 
+                            /// Unix time of when the notification was sent or received.
                             pub fn time(self, time: i64) -> Self {
                             Self { builder: self.builder.property("time", time), }
                         }
 
+                            /// Id of the notification.
                             pub fn id(self, id: u32) -> Self {
                             Self { builder: self.builder.property("id", id), }
                         }
 
+                            /// Name of the sending application.
                             pub fn app_name(self, app_name: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("app-name", app_name.into()), }
                         }
 
+                            /// Icon name of the sending application.
                             pub fn app_icon(self, app_icon: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("app-icon", app_icon.into()), }
                         }
 
+                            /// Single line overview of the notification.
                             pub fn summary(self, summary: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("summary", summary.into()), }
                         }
 
+                            /// Multi-line body of text, where each line is a paragraph. May contain markup.
                             pub fn body(self, body: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("body", body.into()), }
                         }
 
+                            /// Time in milliseconds after the notification expires.
                             pub fn expire_timeout(self, expire_timeout: i32) -> Self {
                             Self { builder: self.builder.property("expire-timeout", expire_timeout), }
                         }
 
+                            /// Hints of the notification. Hints are a way to provide extra data to servers. To set hints on a `DRAFT` Notification use [method@
+                            /// AstalNotifd.Notification.set_hint] or the property setters for standard hints.
                             pub fn hints(self, hints: &glib::Variant) -> Self {
                             Self { builder: self.builder.property("hints", hints.clone()), }
                         }
 
+                            /// Standard `image-path` hint. Path of an image
                             pub fn image(self, image: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("image", image.into()), }
                         }
 
+                            /// Standard `action-icons` hint. Indicates whether [`Action`][crate::Action] identifier should be interpreted as a named icon.
                             pub fn action_icons(self, action_icons: bool) -> Self {
                             Self { builder: self.builder.property("action-icons", action_icons), }
                         }
 
+                            /// Standard `category` hint. [](https://specifications.freedesktop.org/notification-spec/latest/categories.html)
                             pub fn category(self, category: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("category", category.into()), }
                         }
 
+                            /// Standard `desktop-entry` hint. Specifies the name of the desktop filename representing the calling program.
                             pub fn desktop_entry(self, desktop_entry: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("desktop-entry", desktop_entry.into()), }
                         }
 
+                            /// Standard `resident` hint. Indicates whether notification is kept after action invocation.
                             pub fn resident(self, resident: bool) -> Self {
                             Self { builder: self.builder.property("resident", resident), }
                         }
 
+                            /// Standard `sound-file` hint. The path to a sound file to play when the notification pops up.
                             pub fn sound_file(self, sound_file: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("sound-file", sound_file.into()), }
                         }
 
+                            /// Standard `sound-name` hint. A themeable named sound from to play when the notification pops up
                             pub fn sound_name(self, sound_name: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("sound-name", sound_name.into()), }
                         }
 
+                            /// Standard `suppress-sound` hint. Indicates to suppress playing any sounds.
                             pub fn suppress_sound(self, suppress_sound: bool) -> Self {
                             Self { builder: self.builder.property("suppress-sound", suppress_sound), }
                         }
 
+                            /// Standard `transient` hint. Indicates that the notification should be excluded from persistency.
                             pub fn transient(self, transient: bool) -> Self {
                             Self { builder: self.builder.property("transient", transient), }
                         }
 
+                            /// Standard `x` hint. Specifies the X location on the screen that the notification should point to. The "y" hint must also be specified.
+                            ///
                             pub fn x(self, x: i32) -> Self {
                             Self { builder: self.builder.property("x", x), }
                         }
 
+                            /// Standard `y` hint. Specifies the Y location on the screen that the notification should point to. The "x" hint must also be specified.
+                            ///
                             pub fn y(self, y: i32) -> Self {
                             Self { builder: self.builder.property("y", y), }
                         }
 
+                            /// Standard `urgency` hint. [`Urgency`][crate::Urgency] level of the notification.
                             pub fn urgency(self, urgency: Urgency) -> Self {
                             Self { builder: self.builder.property("urgency", urgency), }
                         }
@@ -150,7 +331,13 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Notification`] methods.
+///
+/// # Implementors
+///
+/// [`Notification`][struct@crate::Notification]
 pub trait NotificationExt: IsA<Notification> + 'static {
+    /// Resolve this notification with [enum@AstalNotifd.ClosedReason.DISMISSED_BY_USER].
     #[doc(alias = "astal_notifd_notification_dismiss")]
     fn dismiss(&self) {
         unsafe {
@@ -158,6 +345,8 @@ pub trait NotificationExt: IsA<Notification> + 'static {
         }
     }
 
+    /// Resolve this notification with [enum@AstalNotifd.ClosedReason.EXPIRED]. Note that there should be no reason to use this method because
+    /// expiration should be left to the daemon.
     #[doc(alias = "astal_notifd_notification_expire")]
     fn expire(&self) {
         unsafe {
@@ -165,6 +354,7 @@ pub trait NotificationExt: IsA<Notification> + 'static {
         }
     }
 
+    /// Invoke an [`Action`][crate::Action] of this notification.
     #[doc(alias = "astal_notifd_notification_invoke")]
     fn invoke(&self, action_id: &str) {
         unsafe {
@@ -498,18 +688,25 @@ pub trait NotificationExt: IsA<Notification> + 'static {
         }
     }
 
+    /// State of the notification.
     fn set_state(&self, state: State) {
         ObjectExt::set_property(self.as_ref(),"state", state)
     }
 
+    /// Unix time of when the notification was sent or received.
     fn set_time(&self, time: i64) {
         ObjectExt::set_property(self.as_ref(),"time", time)
     }
 
+    /// Hints of the notification. Hints are a way to provide extra data to servers. To set hints on a `DRAFT` Notification use [method@
+    /// AstalNotifd.Notification.set_hint] or the property setters for standard hints.
     fn set_hints(&self, hints: Option<&glib::Variant>) {
         ObjectExt::set_property(self.as_ref(),"hints", hints)
     }
 
+    /// Emitted when this this notification is resolved.
+    /// ## `reason`
+    /// The reason how the Notification was resolved. 
     #[doc(alias = "resolved")]
     fn connect_resolved<F: Fn(&Self, ClosedReason) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn resolved_trampoline<P: IsA<Notification>, F: Fn(&P, ClosedReason) + 'static>(this: *mut ffi::AstalNotifdNotification, reason: ffi::AstalNotifdClosedReason, f: glib::ffi::gpointer) {
@@ -523,6 +720,9 @@ pub trait NotificationExt: IsA<Notification> + 'static {
         }
     }
 
+    /// Emitted when an [`Action`][crate::Action] of this notification is invoked.
+    /// ## `action_id`
+    /// id of the invoked action 
     #[doc(alias = "invoked")]
     fn connect_invoked<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invoked_trampoline<P: IsA<Notification>, F: Fn(&P, &str) + 'static>(this: *mut ffi::AstalNotifdNotification, action_id: *const std::ffi::c_char, f: glib::ffi::gpointer) {

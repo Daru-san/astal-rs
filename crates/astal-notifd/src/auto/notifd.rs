@@ -8,6 +8,55 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// The Notification daemon.
+    /// This class queues up to become the next daemon, while acting as a proxy in the meantime.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `ignore-timeout`
+    ///  Ignore the timeout specified by incoming notifications. By default notifications can specify a timeout in milliseconds after which the daemon
+    /// will resolve them even without user input.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `dont-disturb`
+    ///  Indicate to frontends to not show popups to the user. This property does not have any effect on its own, its merely a value to use between the
+    /// daemon process and proxies for frontends to use.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `default-timeout`
+    ///  Timeout used for notifications that do not specify a timeout and let the server decide. Negative values result in no timeout. By default this
+    /// is -1.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `notifications`
+    ///  List of currently unresolved notifications.
+    ///
+    /// Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `notified`
+    ///  Emitted when the daemon receives a [`Notification`][crate::Notification].
+    ///
+    ///
+    ///
+    ///
+    /// #### `resolved`
+    ///  Emitted when a [`Notification`][crate::Notification] is resolved.
+    ///
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`NotifdExt`][trait@crate::prelude::NotifdExt]
     #[doc(alias = "AstalNotifdNotifd")]
     pub struct Notifd(Object<ffi::AstalNotifdNotifd, ffi::AstalNotifdNotifdClass>);
 
@@ -37,6 +86,7 @@ impl Notifd {
             }
         
 
+    /// Get the singleton instance
     #[doc(alias = "astal_notifd_notifd_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]    pub fn default() -> Notifd {
@@ -67,14 +117,20 @@ pub struct NotifdBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// Ignore the timeout specified by incoming notifications. By default notifications can specify a timeout in milliseconds after which the daemon
+                            /// will resolve them even without user input.
                             pub fn ignore_timeout(self, ignore_timeout: bool) -> Self {
                             Self { builder: self.builder.property("ignore-timeout", ignore_timeout), }
                         }
 
+                            /// Indicate to frontends to not show popups to the user. This property does not have any effect on its own, its merely a value to use between the
+                            /// daemon process and proxies for frontends to use.
                             pub fn dont_disturb(self, dont_disturb: bool) -> Self {
                             Self { builder: self.builder.property("dont-disturb", dont_disturb), }
                         }
 
+                            /// Timeout used for notifications that do not specify a timeout and let the server decide. Negative values result in no timeout. By default this
+                            /// is -1.
                             pub fn default_timeout(self, default_timeout: i32) -> Self {
                             Self { builder: self.builder.property("default-timeout", default_timeout), }
                         }
@@ -87,7 +143,13 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Notifd`] methods.
+///
+/// # Implementors
+///
+/// [`Notifd`][struct@crate::Notifd]
 pub trait NotifdExt: IsA<Notifd> + 'static {
+    /// Gets the [`Notification`][crate::Notification] with id or null if there is no such Notification.
     #[doc(alias = "astal_notifd_notifd_get_notification")]
     #[doc(alias = "get_notification")]
     fn notification(&self, id: u32) -> Option<Notification> {
@@ -149,6 +211,7 @@ pub trait NotifdExt: IsA<Notifd> + 'static {
         }
     }
 
+    /// Emitted when the daemon receives a [`Notification`][crate::Notification].
     #[doc(alias = "notified")]
     fn connect_notified<F: Fn(&Self, u32, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notified_trampoline<P: IsA<Notifd>, F: Fn(&P, u32, bool) + 'static>(this: *mut ffi::AstalNotifdNotifd, id: std::ffi::c_uint, replaced: glib::ffi::gboolean, f: glib::ffi::gpointer) {
@@ -162,6 +225,7 @@ pub trait NotifdExt: IsA<Notifd> + 'static {
         }
     }
 
+    /// Emitted when a [`Notification`][crate::Notification] is resolved.
     #[doc(alias = "resolved")]
     fn connect_resolved<F: Fn(&Self, u32, ClosedReason) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn resolved_trampoline<P: IsA<Notifd>, F: Fn(&P, u32, ClosedReason) + 'static>(this: *mut ffi::AstalNotifdNotifd, id: std::ffi::c_uint, reason: ffi::AstalNotifdClosedReason, f: glib::ffi::gpointer) {
