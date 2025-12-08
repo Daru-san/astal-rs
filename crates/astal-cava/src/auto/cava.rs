@@ -8,6 +8,94 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `active`
+    ///  whether or not the audio capture and visualization is running. if false the values array will
+    /// not be updated.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `autosens`
+    ///  When set, the sensitivity will automatically be adjusted.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `bars`
+    ///  the number of bars the visualizer should create.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `channels`
+    ///  how many input channels to consider
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `framerate`
+    ///  how often the values should be updated
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `high-cutoff`
+    ///  cut off frequencies above this value
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `input`
+    ///  specifies which audio server should be used.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `low-cutoff`
+    ///  cut off frequencies below this value
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `noise-reduction`
+    ///  adjusts the noise-reduction filter. low values are fast and noisy, large values are slow and
+    /// smooth.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `samplerate`
+    ///  the samplerate of the input
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `source`
+    ///  specifies which audio source should be used. Refer to the cava docs on how to use this
+    /// property.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `stereo`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `values`
+    ///  A list of values, each represent the height of one bar. The values are generally between 0
+    /// and 1 but can overshoot occasionally, in which case the sensitivity will be decreased
+    /// automatically if [`autosens`][struct@crate::Cava#autosens] is set. The array will have
+    /// [`bars`][struct@crate::Cava#bars] entries. If [`stereo`][struct@crate::Cava#stereo] is set, the first
+    /// half of the array will represent the left channel and the second half the right channel, so
+    /// there will be only bars/2 bars per channel. If the number of bars is odd, the last value will
+    /// be 0.
+    ///
+    /// Readable
     #[doc(alias = "AstalCavaCava")]
     pub struct Cava(Object<ffi::AstalCavaCava, ffi::AstalCavaCavaClass>);
 
@@ -230,6 +318,7 @@ impl Cava {
         }
     }
 
+    /// gets the default Cava object.
     #[doc(alias = "astal_cava_cava_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]    pub fn default() -> Option<Cava> {
@@ -423,46 +512,60 @@ pub struct CavaBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// whether or not the audio capture and visualization is running. if false the values array will
+                            /// not be updated.
                             pub fn active(self, active: bool) -> Self {
                             Self { builder: self.builder.property("active", active), }
                         }
 
+                            /// When set, the sensitivity will automatically be adjusted.
                             pub fn autosens(self, autosens: bool) -> Self {
                             Self { builder: self.builder.property("autosens", autosens), }
                         }
 
+                            /// the number of bars the visualizer should create.
                             pub fn bars(self, bars: i32) -> Self {
                             Self { builder: self.builder.property("bars", bars), }
                         }
 
+                            /// how many input channels to consider
                             pub fn channels(self, channels: i32) -> Self {
                             Self { builder: self.builder.property("channels", channels), }
                         }
 
+                            /// how often the values should be updated
                             pub fn framerate(self, framerate: i32) -> Self {
                             Self { builder: self.builder.property("framerate", framerate), }
                         }
 
+                            /// cut off frequencies above this value
                             pub fn high_cutoff(self, high_cutoff: i32) -> Self {
                             Self { builder: self.builder.property("high-cutoff", high_cutoff), }
                         }
 
+                            /// specifies which audio server should be used.
                             pub fn input(self, input: Input) -> Self {
                             Self { builder: self.builder.property("input", input), }
                         }
 
+                            /// cut off frequencies below this value
                             pub fn low_cutoff(self, low_cutoff: i32) -> Self {
                             Self { builder: self.builder.property("low-cutoff", low_cutoff), }
                         }
 
+                            /// adjusts the noise-reduction filter. low values are fast and noisy, large values are slow and
+                            /// smooth.
                             pub fn noise_reduction(self, noise_reduction: f64) -> Self {
                             Self { builder: self.builder.property("noise-reduction", noise_reduction), }
                         }
 
+                            /// the samplerate of the input
                             pub fn samplerate(self, samplerate: i32) -> Self {
                             Self { builder: self.builder.property("samplerate", samplerate), }
                         }
 
+                            /// specifies which audio source should be used. Refer to the cava docs on how to use this
+                            /// property.
                             pub fn source(self, source: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("source", source.into()), }
                         }

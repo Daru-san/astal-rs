@@ -7,6 +7,7 @@ use crate::{ffi,Cava};
 use glib::{translate::*};
 
 
+/// gets the default Cava object.
 #[doc(alias = "astal_cava_get_default")]
 #[doc(alias = "get_default")]
 #[allow(clippy::should_implement_trait)]pub fn default() -> Option<Cava> {
