@@ -8,6 +8,117 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Object representing a [device](https://github.com/luetzel/bluez/blob/master/doc/device-api.txt).
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `uuids`
+    ///  List of 128-bit UUIDs that represents the available remote services.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `connected`
+    ///  Indicates if the remote device is currently connected.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `legacy-pairing`
+    ///  `true` if the device only supports the pre-2.1 pairing mechanism.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `paired`
+    ///  Indicates if the remote device is paired.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `rssi`
+    ///  Received Signal Strength Indicator of the remote device (inquiry or advertising).
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `adapter`
+    ///  The object path of the adapter the device belongs to.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `address`
+    ///  The Bluetooth device address of the remote device.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `icon`
+    ///  Proposed icon name.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `modalias`
+    ///  Remote Device ID information in modalias format used by the kernel and udev.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `name`
+    ///  The Bluetooth remote name.
+    /// It is always better to use [`alias`][struct@crate::Device#alias].
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `appearance`
+    ///  External appearance of device, as found on GAP service.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `class`
+    ///  The Bluetooth class of device of the remote device.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `connecting`
+    ///  Indicates if this device is currently trying to be connected.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `blocked`
+    ///  If set to `true` any incoming connections from the device will be immediately rejected.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `trusted`
+    ///  Indicates if the remote is seen as trusted.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `battery-percentage`
+    ///  The percentage of battery left on the device if it has one, else -1.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `alias`
+    ///  The name alias for the remote device.
+    /// In case no alias is set, it will return the remote device [`name`][struct@crate::Device#name].
+    ///
+    /// Readable | Writeable
+    ///
+    /// # Implements
+    ///
+    /// [`DeviceExt`][trait@crate::prelude::DeviceExt]
     #[doc(alias = "AstalBluetoothDevice")]
     pub struct Device(Object<ffi::AstalBluetoothDevice, ffi::AstalBluetoothDeviceClass>);
 
@@ -51,18 +162,23 @@ pub struct DeviceBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// Indicates if this device is currently trying to be connected.
                             pub fn connecting(self, connecting: bool) -> Self {
                             Self { builder: self.builder.property("connecting", connecting), }
                         }
 
+                            /// If set to `true` any incoming connections from the device will be immediately rejected.
                             pub fn blocked(self, blocked: bool) -> Self {
                             Self { builder: self.builder.property("blocked", blocked), }
                         }
 
+                            /// Indicates if the remote is seen as trusted.
                             pub fn trusted(self, trusted: bool) -> Self {
                             Self { builder: self.builder.property("trusted", trusted), }
                         }
 
+                            /// The name alias for the remote device.
+                            /// In case no alias is set, it will return the remote device [`name`][struct@crate::Device#name].
                             pub fn alias(self, alias: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("alias", alias.into()), }
                         }
@@ -75,6 +191,11 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Device`] methods.
+///
+/// # Implementors
+///
+/// [`Device`][struct@crate::Device]
 pub trait DeviceExt: IsA<Device> + 'static {
     //#[doc(alias = "astal_bluetooth_device_connect_device")]
     //fn connect_device(&self, _callback_: AsyncReadyCallback) {
@@ -86,6 +207,10 @@ pub trait DeviceExt: IsA<Device> + 'static {
     //    unsafe { TODO: call ffi:astal_bluetooth_device_disconnect_device() }
     //}
 
+    /// This method connects a specific profile of this device. The UUID provided is the remote service UUID for the profile.
+    /// Possible errors: `Failed`, `InProgress`, `InvalidArguments`, `NotAvailable`, `NotReady`.
+    /// ## `uuid`
+    /// the remote service UUID. 
     #[doc(alias = "astal_bluetooth_device_connect_profile")]
     fn connect_profile(&self, uuid: &str) -> Result<(), glib::Error> {
         unsafe {
@@ -95,6 +220,10 @@ pub trait DeviceExt: IsA<Device> + 'static {
         }
     }
 
+    /// This method disconnects a specific profile of this device.
+    /// Possible errors: `Failed`, `InProgress`, `InvalidArguments`, `NotSupported`.
+    /// ## `uuid`
+    /// the remote service UUID. 
     #[doc(alias = "astal_bluetooth_device_disconnect_profile")]
     fn disconnect_profile(&self, uuid: &str) -> Result<(), glib::Error> {
         unsafe {
@@ -104,6 +233,9 @@ pub trait DeviceExt: IsA<Device> + 'static {
         }
     }
 
+    /// This method will connect to the remote device and initiate pairing.
+    /// Possible errors: `InvalidArguments`, `Failed`, `AlreadyExists`, `AuthenticationCanceled`, `AuthenticationFailed`, `AuthenticationRejected`,
+    /// `AuthenticationTimeout`, `ConnectionAttemptFailed`.
     #[doc(alias = "astal_bluetooth_device_pair")]
     fn pair(&self) -> Result<(), glib::Error> {
         unsafe {
@@ -113,6 +245,8 @@ pub trait DeviceExt: IsA<Device> + 'static {
         }
     }
 
+    /// This method can be used to cancel a pairing operation initiated by [`pair()`][Self::pair()].
+    /// Possible errors: `DoesNotExist`, `Failed`.
     #[doc(alias = "astal_bluetooth_device_cancel_pairing")]
     fn cancel_pairing(&self) -> Result<(), glib::Error> {
         unsafe {
@@ -279,6 +413,7 @@ pub trait DeviceExt: IsA<Device> + 'static {
         }
     }
 
+    /// Indicates if this device is currently trying to be connected.
     fn set_connecting(&self, connecting: bool) {
         ObjectExt::set_property(self.as_ref(),"connecting", connecting)
     }

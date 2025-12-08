@@ -7,6 +7,7 @@ use crate::{ffi,Bluetooth};
 use glib::{translate::*};
 
 
+/// Gets the default singleton Bluetooth object.
 #[doc(alias = "astal_bluetooth_get_default")]
 #[doc(alias = "get_default")]
 #[allow(clippy::should_implement_trait)]pub fn default() -> Bluetooth {

@@ -8,6 +8,69 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Manager object for `org.bluez`.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `is-powered`
+    ///  `true` if any of the [`adapters`][struct@crate::Bluetooth#adapters] are powered.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `is-connected`
+    ///  `true` if any of the [`devices`][struct@crate::Bluetooth#devices] is connected.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `adapter`
+    ///  The first registered adapter which is usually the only adapter.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `adapters`
+    ///  List of adapters available on the host device.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `devices`
+    ///  List of registered devices on the `org.bluez` bus.
+    ///
+    /// Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `device-added`
+    ///  Emitted when a new device is registered on the `org.bluez` bus.
+    ///
+    ///
+    ///
+    ///
+    /// #### `device-removed`
+    ///  Emitted when a device is unregistered on the `org.bluez` bus.
+    ///
+    ///
+    ///
+    ///
+    /// #### `adapter-added`
+    ///  Emitted when an adapter is registered on the `org.bluez` bus.
+    ///
+    ///
+    ///
+    ///
+    /// #### `adapter-removed`
+    ///  Emitted when an adapter is unregistered on the `org.bluez` bus.
+    ///
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`BluetoothExt`][trait@crate::prelude::BluetoothExt]
     #[doc(alias = "AstalBluetoothBluetooth")]
     pub struct Bluetooth(Object<ffi::AstalBluetoothBluetooth, ffi::AstalBluetoothBluetoothClass>);
 
@@ -37,6 +100,7 @@ impl Bluetooth {
             }
         
 
+    /// Gets the default singleton Bluetooth object.
     #[doc(alias = "astal_bluetooth_bluetooth_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]    pub fn default() -> Bluetooth {
@@ -67,10 +131,12 @@ pub struct BluetoothBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// `true` if any of the [`adapters`][struct@crate::Bluetooth#adapters] are powered.
                             pub fn is_powered(self, is_powered: bool) -> Self {
                             Self { builder: self.builder.property("is-powered", is_powered), }
                         }
 
+                            /// `true` if any of the [`devices`][struct@crate::Bluetooth#devices] is connected.
                             pub fn is_connected(self, is_connected: bool) -> Self {
                             Self { builder: self.builder.property("is-connected", is_connected), }
                         }
@@ -83,7 +149,13 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Bluetooth`] methods.
+///
+/// # Implementors
+///
+/// [`Bluetooth`][struct@crate::Bluetooth]
 pub trait BluetoothExt: IsA<Bluetooth> + 'static {
+    /// Toggle the [`powered`][struct@crate::Adapter#powered] property of the [`adapter`][struct@crate::Bluetooth#adapter].
     #[doc(alias = "astal_bluetooth_bluetooth_toggle")]
     fn toggle(&self) {
         unsafe {
@@ -131,16 +203,19 @@ pub trait BluetoothExt: IsA<Bluetooth> + 'static {
         }
     }
 
+    /// `true` if any of the [`adapters`][struct@crate::Bluetooth#adapters] are powered.
     #[doc(alias = "is-powered")]
     fn set_is_powered(&self, is_powered: bool) {
         ObjectExt::set_property(self.as_ref(),"is-powered", is_powered)
     }
 
+    /// `true` if any of the [`devices`][struct@crate::Bluetooth#devices] is connected.
     #[doc(alias = "is-connected")]
     fn set_is_connected(&self, is_connected: bool) {
         ObjectExt::set_property(self.as_ref(),"is-connected", is_connected)
     }
 
+    /// Emitted when a new device is registered on the `org.bluez` bus.
     #[doc(alias = "device-added")]
     fn connect_device_added<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn device_added_trampoline<P: IsA<Bluetooth>, F: Fn(&P, &Device) + 'static>(this: *mut ffi::AstalBluetoothBluetooth, device: *mut ffi::AstalBluetoothDevice, f: glib::ffi::gpointer) {
@@ -154,6 +229,7 @@ pub trait BluetoothExt: IsA<Bluetooth> + 'static {
         }
     }
 
+    /// Emitted when a device is unregistered on the `org.bluez` bus.
     #[doc(alias = "device-removed")]
     fn connect_device_removed<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn device_removed_trampoline<P: IsA<Bluetooth>, F: Fn(&P, &Device) + 'static>(this: *mut ffi::AstalBluetoothBluetooth, device: *mut ffi::AstalBluetoothDevice, f: glib::ffi::gpointer) {
@@ -167,6 +243,7 @@ pub trait BluetoothExt: IsA<Bluetooth> + 'static {
         }
     }
 
+    /// Emitted when an adapter is registered on the `org.bluez` bus.
     #[doc(alias = "adapter-added")]
     fn connect_adapter_added<F: Fn(&Self, &Adapter) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn adapter_added_trampoline<P: IsA<Bluetooth>, F: Fn(&P, &Adapter) + 'static>(this: *mut ffi::AstalBluetoothBluetooth, adapter: *mut ffi::AstalBluetoothAdapter, f: glib::ffi::gpointer) {
@@ -180,6 +257,7 @@ pub trait BluetoothExt: IsA<Bluetooth> + 'static {
         }
     }
 
+    /// Emitted when an adapter is unregistered on the `org.bluez` bus.
     #[doc(alias = "adapter-removed")]
     fn connect_adapter_removed<F: Fn(&Self, &Adapter) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn adapter_removed_trampoline<P: IsA<Bluetooth>, F: Fn(&P, &Adapter) + 'static>(this: *mut ffi::AstalBluetoothBluetooth, adapter: *mut ffi::AstalBluetoothAdapter, f: glib::ffi::gpointer) {

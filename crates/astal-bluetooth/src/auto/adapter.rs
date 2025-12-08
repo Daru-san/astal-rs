@@ -8,6 +8,89 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Object representing an [adapter](https://github.com/RadiusNetworks/bluez/blob/master/doc/adapter-api.txt).
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `uuids`
+    ///  List of 128-bit UUIDs that represents the available local services.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `discovering`
+    ///  Indicates that a device discovery procedure is active.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `modalias`
+    ///  Local Device ID information in modalias format used by the kernel and udev.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `name`
+    ///  The Bluetooth system name (pretty hostname).
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `class`
+    ///  The Bluetooth class of device.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `address`
+    ///  The Bluetooth device address.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `discoverable`
+    ///  Switch an adapter to discoverable or non-discoverable to either make it visible or hide it.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `pairable`
+    ///  Switch an adapter to pairable or non-pairable.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `powered`
+    ///  Switch an adapter on or off.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `alias`
+    ///  The Bluetooth friendly name.
+    /// In case no alias is set, it will return [`name`][struct@crate::Adapter#name].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `discoverable-timeout`
+    ///  The discoverable timeout in seconds. A value of zero means that the timeout is disabled and it will stay in discoverable/limited mode forever
+    /// until [`AdapterExt::stop_discovery()`][crate::prelude::AdapterExt::stop_discovery()] is invoked. The default value for the discoverable timeout should be `180`.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `pairable-timeout`
+    ///  The pairable timeout in seconds.
+    /// A value of zero means that the timeout is disabled and it will stay in pairable mode forever. The default value for pairable timeout should be
+    /// disabled `0`.
+    ///
+    /// Readable | Writeable
+    ///
+    /// # Implements
+    ///
+    /// [`AdapterExt`][trait@crate::prelude::AdapterExt]
     #[doc(alias = "AstalBluetoothAdapter")]
     pub struct Adapter(Object<ffi::AstalBluetoothAdapter, ffi::AstalBluetoothAdapterClass>);
 
@@ -51,26 +134,36 @@ pub struct AdapterBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// Switch an adapter to discoverable or non-discoverable to either make it visible or hide it.
                             pub fn discoverable(self, discoverable: bool) -> Self {
                             Self { builder: self.builder.property("discoverable", discoverable), }
                         }
 
+                            /// Switch an adapter to pairable or non-pairable.
                             pub fn pairable(self, pairable: bool) -> Self {
                             Self { builder: self.builder.property("pairable", pairable), }
                         }
 
+                            /// Switch an adapter on or off.
                             pub fn powered(self, powered: bool) -> Self {
                             Self { builder: self.builder.property("powered", powered), }
                         }
 
+                            /// The Bluetooth friendly name.
+                            /// In case no alias is set, it will return [`name`][struct@crate::Adapter#name].
                             pub fn alias(self, alias: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("alias", alias.into()), }
                         }
 
+                            /// The discoverable timeout in seconds. A value of zero means that the timeout is disabled and it will stay in discoverable/limited mode forever
+                            /// until [`AdapterExt::stop_discovery()`][crate::prelude::AdapterExt::stop_discovery()] is invoked. The default value for the discoverable timeout should be `180`.
                             pub fn discoverable_timeout(self, discoverable_timeout: u32) -> Self {
                             Self { builder: self.builder.property("discoverable-timeout", discoverable_timeout), }
                         }
 
+                            /// The pairable timeout in seconds.
+                            /// A value of zero means that the timeout is disabled and it will stay in pairable mode forever. The default value for pairable timeout should be
+                            /// disabled `0`.
                             pub fn pairable_timeout(self, pairable_timeout: u32) -> Self {
                             Self { builder: self.builder.property("pairable-timeout", pairable_timeout), }
                         }
@@ -83,7 +176,14 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Adapter`] methods.
+///
+/// # Implementors
+///
+/// [`Adapter`][struct@crate::Adapter]
 pub trait AdapterExt: IsA<Adapter> + 'static {
+    /// This removes the remote device and the pairing information.
+    /// Possible errors: `InvalidArguments`, `Failed`.
     #[doc(alias = "astal_bluetooth_adapter_remove_device")]
     fn remove_device(&self, device: &impl IsA<Device>) -> Result<(), glib::Error> {
         unsafe {
@@ -93,6 +193,8 @@ pub trait AdapterExt: IsA<Adapter> + 'static {
         }
     }
 
+    /// This method starts the device discovery procedure.
+    /// Possible errors: `NotReady`, `Failed`.
     #[doc(alias = "astal_bluetooth_adapter_start_discovery")]
     fn start_discovery(&self) -> Result<(), glib::Error> {
         unsafe {
@@ -102,6 +204,8 @@ pub trait AdapterExt: IsA<Adapter> + 'static {
         }
     }
 
+    /// This method will cancel any previous [`start_discovery()`][Self::start_discovery()] procedure.
+    /// Possible errors: `NotReady`, `Failed`, `NotAuthorized`.
     #[doc(alias = "astal_bluetooth_adapter_stop_discovery")]
     fn stop_discovery(&self) -> Result<(), glib::Error> {
         unsafe {
