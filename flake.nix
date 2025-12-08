@@ -35,6 +35,11 @@
             tray
             astal3
             astal4
+            notifd
+            cava
+            greet
+            powerprofiles
+            auth
             wireplumber
             apps
           ])
@@ -70,6 +75,7 @@
           freetype
           wayland.dev
           networkmanager
+          appmenu-glib-translator
         ];
       in
       {
