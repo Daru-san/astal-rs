@@ -6,6 +6,7 @@ license.workspace = true
 repository.workspace = true
 version.workspace = true
 edition = "2021"
+description = "FFI Bindings for libatstal and its libraries"
 build = "build.rs"
 
 [package.metadata.system-deps.astal_bluetooth]

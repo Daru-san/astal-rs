@@ -2,6 +2,7 @@
 name = "astal3-sys"
 version = "0.0.1"
 edition = "2021"
+description = "FFI Bindings for libatstal and its libraries"
 build = "build.rs"
 
 [package.metadata.system-deps.astal]
