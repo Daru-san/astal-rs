@@ -8,6 +8,233 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Object which tracks players through their mpris DBus interface. The most simple way is to use [`Mpris`][crate::Mpris] which tracks
+    /// every player, but [`Player`][crate::Player] can be constructed for dedicated players too.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `bus-name`
+    ///  Full dbus nama of this player.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `available`
+    ///  Indicates if [`bus_name`][struct@crate::Player#bus_name] is available on dbus.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `can-quit`
+    ///  Indicates if [`PlayerExt::quit()`][crate::prelude::PlayerExt::quit()] has any effect.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `fullscreen`
+    ///  Indicates if the player is occupying the fullscreen. This is typically used for videos. Use [`PlayerExt::toggle_fullscreen()`][crate::prelude::PlayerExt::toggle_fullscreen()]
+    /// to toggle fullscreen state.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `can-set-fullscreen`
+    ///  Indicates if [`PlayerExt::toggle_fullscreen()`][crate::prelude::PlayerExt::toggle_fullscreen()] has any effect.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `can-raise`
+    ///  Indicates if [`PlayerExt::raise()`][crate::prelude::PlayerExt::raise()] has any effect.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `identity`
+    ///  A human friendly name to identify the player.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `entry`
+    ///  The base name of a .desktop file
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `supported-uri-schemes`
+    ///  The URI schemes supported by the media player. This can be viewed as protocols supported by the player in almost all cases. Almost every media
+    /// player will include support for the "file" scheme. Other common schemes are "http" and "rtsp".
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `supported-mime-types`
+    ///  The mime-types supported by the player.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `loop-status`
+    ///  The current loop/repeat status.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `shuffle-status`
+    ///  The current shuffle status.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `rate`
+    ///  The current playback rate.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `volume`
+    ///  The current volume level between 0 and 1 or -1 when it is unsupported.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `position`
+    ///  The current position of the track in seconds or -1 when it is unsupported. To get a progress percentage simply divide this with [property
+    /// @AstalMpris.Player:length].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `playback-status`
+    ///  The current playback status.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `minimum-rate`
+    ///  The minimum value which the [`rate`][struct@crate::Player#rate] can take.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `maximum-rate`
+    ///  The maximum value which the [`rate`][struct@crate::Player#rate] can take.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `can-go-next`
+    ///  Indicates if invoking [`PlayerExt::next()`][crate::prelude::PlayerExt::next()] has effect.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `can-go-previous`
+    ///  Indicates if invoking [`PlayerExt::previous()`][crate::prelude::PlayerExt::previous()] has effect.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `can-play`
+    ///  Indicates if invoking [`PlayerExt::play()`][crate::prelude::PlayerExt::play()] has effect.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `can-pause`
+    ///  Indicates if invoking [`PlayerExt::pause()`][crate::prelude::PlayerExt::pause()] has effect.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `can-seek`
+    ///  Indicates if setting [`position`][struct@crate::Player#position] has effect.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `can-control`
+    ///  Indicates if the player can be controlled with methods such as [`PlayerExt::play_pause()`][crate::prelude::PlayerExt::play_pause()].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `metadata`
+    ///  Metadata of this player.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `trackid`
+    ///  Currently playing track's id.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `length`
+    ///  Length of the currently playing track in seconds.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `art-url`
+    ///  The location of an image representing the track or album. You might prefer using [`cover_art`][struct@crate::Player#cover_art].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `album`
+    ///  Title of the currently playing album.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `album-artist`
+    ///  Artists of the currently playing album.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `artist`
+    ///  Artists of the currently playing track.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `lyrics`
+    ///  Lyrics of the currently playing track.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `title`
+    ///  Title of the currently playing track.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `composer`
+    ///  Composers of the currently playing track.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `comments`
+    ///  Comments of the currently playing track.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `cover-art`
+    ///  Path of the cached [`art_url`][struct@crate::Player#art_url].
+    ///
+    /// Readable | Writeable
+    ///
+    /// # Implements
+    ///
+    /// [`PlayerExt`][trait@crate::prelude::PlayerExt]
     #[doc(alias = "AstalMprisPlayer")]
     pub struct Player(Object<ffi::AstalMprisPlayer, ffi::AstalMprisPlayerClass>);
 
@@ -20,6 +247,11 @@ impl Player {
         pub const NONE: Option<&'static Player> = None;
     
 
+    /// Construct a Player that tracks a dbus name. For example "org.mpris.MediaPlayer2.spotify". The "org.mpris.MediaPlayer2."
+    /// prefix can be omitted so simply "spotify" would mean the same. [`available`][struct@crate::Player#available] indicates whether the player
+    /// is actually running or not.
+    /// ## `name`
+    /// dbus name of the player. 
     #[doc(alias = "astal_mpris_player_new")]
     pub fn new(name: &str) -> Player {
         assert_initialized_main_thread!();
@@ -58,146 +290,185 @@ pub struct PlayerBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// Full dbus nama of this player.
                             pub fn bus_name(self, bus_name: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("bus-name", bus_name.into()), }
                         }
 
+                            /// Indicates if [`bus_name`][struct@crate::Player#bus_name] is available on dbus.
                             pub fn available(self, available: bool) -> Self {
                             Self { builder: self.builder.property("available", available), }
                         }
 
+                            /// Indicates if [`PlayerExt::quit()`][crate::prelude::PlayerExt::quit()] has any effect.
                             pub fn can_quit(self, can_quit: bool) -> Self {
                             Self { builder: self.builder.property("can-quit", can_quit), }
                         }
 
+                            /// Indicates if the player is occupying the fullscreen. This is typically used for videos. Use [`PlayerExt::toggle_fullscreen()`][crate::prelude::PlayerExt::toggle_fullscreen()]
+                            /// to toggle fullscreen state.
                             pub fn fullscreen(self, fullscreen: bool) -> Self {
                             Self { builder: self.builder.property("fullscreen", fullscreen), }
                         }
 
+                            /// Indicates if [`PlayerExt::toggle_fullscreen()`][crate::prelude::PlayerExt::toggle_fullscreen()] has any effect.
                             pub fn can_set_fullscreen(self, can_set_fullscreen: bool) -> Self {
                             Self { builder: self.builder.property("can-set-fullscreen", can_set_fullscreen), }
                         }
 
+                            /// Indicates if [`PlayerExt::raise()`][crate::prelude::PlayerExt::raise()] has any effect.
                             pub fn can_raise(self, can_raise: bool) -> Self {
                             Self { builder: self.builder.property("can-raise", can_raise), }
                         }
 
+                            /// A human friendly name to identify the player.
                             pub fn identity(self, identity: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("identity", identity.into()), }
                         }
 
+                            /// The base name of a .desktop file
                             pub fn entry(self, entry: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("entry", entry.into()), }
                         }
 
+                            /// The URI schemes supported by the media player. This can be viewed as protocols supported by the player in almost all cases. Almost every media
+                            /// player will include support for the "file" scheme. Other common schemes are "http" and "rtsp".
                             pub fn supported_uri_schemes(self, supported_uri_schemes: impl Into<glib::StrV>) -> Self {
                             Self { builder: self.builder.property("supported-uri-schemes", supported_uri_schemes.into()), }
                         }
 
+                            /// The mime-types supported by the player.
                             pub fn supported_mime_types(self, supported_mime_types: impl Into<glib::StrV>) -> Self {
                             Self { builder: self.builder.property("supported-mime-types", supported_mime_types.into()), }
                         }
 
+                            /// The current loop/repeat status.
                             pub fn loop_status(self, loop_status: Loop) -> Self {
                             Self { builder: self.builder.property("loop-status", loop_status), }
                         }
 
+                            /// The current shuffle status.
                             pub fn shuffle_status(self, shuffle_status: Shuffle) -> Self {
                             Self { builder: self.builder.property("shuffle-status", shuffle_status), }
                         }
 
+                            /// The current playback rate.
                             pub fn rate(self, rate: f64) -> Self {
                             Self { builder: self.builder.property("rate", rate), }
                         }
 
+                            /// The current volume level between 0 and 1 or -1 when it is unsupported.
                             pub fn volume(self, volume: f64) -> Self {
                             Self { builder: self.builder.property("volume", volume), }
                         }
 
+                            /// The current position of the track in seconds or -1 when it is unsupported. To get a progress percentage simply divide this with [property
+                            /// @AstalMpris.Player:length].
                             pub fn position(self, position: f64) -> Self {
                             Self { builder: self.builder.property("position", position), }
                         }
 
+                            /// The current playback status.
                             pub fn playback_status(self, playback_status: PlaybackStatus) -> Self {
                             Self { builder: self.builder.property("playback-status", playback_status), }
                         }
 
+                            /// The minimum value which the [`rate`][struct@crate::Player#rate] can take.
                             pub fn minimum_rate(self, minimum_rate: f64) -> Self {
                             Self { builder: self.builder.property("minimum-rate", minimum_rate), }
                         }
 
+                            /// The maximum value which the [`rate`][struct@crate::Player#rate] can take.
                             pub fn maximum_rate(self, maximum_rate: f64) -> Self {
                             Self { builder: self.builder.property("maximum-rate", maximum_rate), }
                         }
 
+                            /// Indicates if invoking [`PlayerExt::next()`][crate::prelude::PlayerExt::next()] has effect.
                             pub fn can_go_next(self, can_go_next: bool) -> Self {
                             Self { builder: self.builder.property("can-go-next", can_go_next), }
                         }
 
+                            /// Indicates if invoking [`PlayerExt::previous()`][crate::prelude::PlayerExt::previous()] has effect.
                             pub fn can_go_previous(self, can_go_previous: bool) -> Self {
                             Self { builder: self.builder.property("can-go-previous", can_go_previous), }
                         }
 
+                            /// Indicates if invoking [`PlayerExt::play()`][crate::prelude::PlayerExt::play()] has effect.
                             pub fn can_play(self, can_play: bool) -> Self {
                             Self { builder: self.builder.property("can-play", can_play), }
                         }
 
+                            /// Indicates if invoking [`PlayerExt::pause()`][crate::prelude::PlayerExt::pause()] has effect.
                             pub fn can_pause(self, can_pause: bool) -> Self {
                             Self { builder: self.builder.property("can-pause", can_pause), }
                         }
 
+                            /// Indicates if setting [`position`][struct@crate::Player#position] has effect.
                             pub fn can_seek(self, can_seek: bool) -> Self {
                             Self { builder: self.builder.property("can-seek", can_seek), }
                         }
 
+                            /// Indicates if the player can be controlled with methods such as [`PlayerExt::play_pause()`][crate::prelude::PlayerExt::play_pause()].
                             pub fn can_control(self, can_control: bool) -> Self {
                             Self { builder: self.builder.property("can-control", can_control), }
                         }
 
+                            /// Metadata of this player.
                             pub fn metadata(self, metadata: &glib::Variant) -> Self {
                             Self { builder: self.builder.property("metadata", metadata.clone()), }
                         }
 
+                            /// Currently playing track's id.
                             pub fn trackid(self, trackid: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("trackid", trackid.into()), }
                         }
 
+                            /// Length of the currently playing track in seconds.
                             pub fn length(self, length: f64) -> Self {
                             Self { builder: self.builder.property("length", length), }
                         }
 
+                            /// The location of an image representing the track or album. You might prefer using [`cover_art`][struct@crate::Player#cover_art].
                             pub fn art_url(self, art_url: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("art-url", art_url.into()), }
                         }
 
+                            /// Title of the currently playing album.
                             pub fn album(self, album: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("album", album.into()), }
                         }
 
+                            /// Artists of the currently playing album.
                             pub fn album_artist(self, album_artist: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("album-artist", album_artist.into()), }
                         }
 
+                            /// Artists of the currently playing track.
                             pub fn artist(self, artist: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("artist", artist.into()), }
                         }
 
+                            /// Lyrics of the currently playing track.
                             pub fn lyrics(self, lyrics: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("lyrics", lyrics.into()), }
                         }
 
+                            /// Title of the currently playing track.
                             pub fn title(self, title: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("title", title.into()), }
                         }
 
+                            /// Composers of the currently playing track.
                             pub fn composer(self, composer: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("composer", composer.into()), }
                         }
 
+                            /// Comments of the currently playing track.
                             pub fn comments(self, comments: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("comments", comments.into()), }
                         }
 
+                            /// Path of the cached [`art_url`][struct@crate::Player#art_url].
                             pub fn cover_art(self, cover_art: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("cover-art", cover_art.into()), }
                         }
@@ -210,7 +481,15 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Player`] methods.
+///
+/// # Implementors
+///
+/// [`Player`][struct@crate::Player]
 pub trait PlayerExt: IsA<Player> + 'static {
+    /// Brings the player's user interface to the front using any appropriate mechanism available. The media player may be unable to control how
+    /// its user interface is displayed, or it may not have a graphical user interface at all. In this case, the [property@
+    /// AstalMpris.Player:can_raise] is `false` and this method does nothing.
     #[doc(alias = "astal_mpris_player_raise")]
     fn raise(&self) {
         unsafe {
@@ -218,6 +497,8 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Causes the media player to stop running. The media player may refuse to allow clients to shut it down. In this case, the [property@
+    /// AstalMpris.Player:can_quit] property is false and this method does nothing.
     #[doc(alias = "astal_mpris_player_quit")]
     fn quit(&self) {
         unsafe {
@@ -225,6 +506,7 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Toggle [`fullscreen`][struct@crate::Player#fullscreen] state.
     #[doc(alias = "astal_mpris_player_toggle_fullscreen")]
     fn toggle_fullscreen(&self) {
         unsafe {
@@ -232,6 +514,8 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Skips to the next track in the tracklist. If there is no next track (and endless playback and track repeat are both off), stop
+    /// playback. If [`can_go_next`][struct@crate::Player#can_go_next] is `false` this method has no effect.
     #[doc(alias = "astal_mpris_player_next")]
     fn next(&self) {
         unsafe {
@@ -239,6 +523,8 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Skips to the previous track in the tracklist. If there is no previous track (and endless playback and track repeat are both off),
+    /// stop playback. If [`can_go_previous`][struct@crate::Player#can_go_previous] is `false` this method has no effect.
     #[doc(alias = "astal_mpris_player_previous")]
     fn previous(&self) {
         unsafe {
@@ -246,6 +532,8 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Pauses playback. If playback is already paused, this has no effect. If [`can_pause`][struct@crate::Player#can_pause] is `false` this method has
+    /// no effect.
     #[doc(alias = "astal_mpris_player_pause")]
     fn pause(&self) {
         unsafe {
@@ -253,6 +541,7 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Pauses playback. If playback is already paused, resumes playback. If playback is stopped, starts playback.
     #[doc(alias = "astal_mpris_player_play_pause")]
     fn play_pause(&self) {
         unsafe {
@@ -260,6 +549,8 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Stops playback. If playback is already stopped, this has no effect. If [`can_control`][struct@crate::Player#can_control] is `false` this method
+    /// has no effect.
     #[doc(alias = "astal_mpris_player_stop")]
     fn stop(&self) {
         unsafe {
@@ -267,6 +558,8 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Starts or resumes playback. If already playing, this has no effect. If paused, playback resumes from the current position. If [property@
+    /// AstalMpris.Player:can_play] is `false` this method has no effect.
     #[doc(alias = "astal_mpris_player_play")]
     fn play(&self) {
         unsafe {
@@ -274,6 +567,10 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// uri scheme should be an element of [`supported_uri_schemes`][struct@crate::Player#supported_uri_schemes] and the mime-type should match one of the elements
+    /// of [`supported_mime_types`][struct@crate::Player#supported_mime_types].
+    /// ## `uri`
+    /// Uri of the track to load. 
     #[doc(alias = "astal_mpris_player_open_uri")]
     fn open_uri(&self, uri: &str) {
         unsafe {
@@ -281,6 +578,7 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Change [`loop_status`][struct@crate::Player#loop_status] from none to track, from track to playlist, from playlist to none.
     #[doc(alias = "astal_mpris_player_loop")]
     #[doc(alias = "loop")]
     fn loop_(&self) {
@@ -289,6 +587,7 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Toggle [`shuffle_status`][struct@crate::Player#shuffle_status].
     #[doc(alias = "astal_mpris_player_shuffle")]
     fn shuffle(&self) {
         unsafe {
@@ -296,6 +595,7 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Lookup a key from [`metadata`][struct@crate::Player#metadata]. This method is useful for languages that fail to introspect hashtables.
     #[doc(alias = "astal_mpris_player_get_meta")]
     #[doc(alias = "get_meta")]
     fn meta(&self, key: &str) -> Option<glib::Variant> {
@@ -631,143 +931,176 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    /// Full dbus nama of this player.
     #[doc(alias = "bus-name")]
     fn set_bus_name(&self, bus_name: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"bus-name", bus_name)
     }
 
+    /// Indicates if [`bus_name`][struct@crate::Player#bus_name] is available on dbus.
     fn set_available(&self, available: bool) {
         ObjectExt::set_property(self.as_ref(),"available", available)
     }
 
+    /// Indicates if [`quit()`][Self::quit()] has any effect.
     #[doc(alias = "can-quit")]
     fn set_can_quit(&self, can_quit: bool) {
         ObjectExt::set_property(self.as_ref(),"can-quit", can_quit)
     }
 
+    /// Indicates if the player is occupying the fullscreen. This is typically used for videos. Use [`toggle_fullscreen()`][Self::toggle_fullscreen()]
+    /// to toggle fullscreen state.
     fn set_fullscreen(&self, fullscreen: bool) {
         ObjectExt::set_property(self.as_ref(),"fullscreen", fullscreen)
     }
 
+    /// Indicates if [`toggle_fullscreen()`][Self::toggle_fullscreen()] has any effect.
     #[doc(alias = "can-set-fullscreen")]
     fn set_can_set_fullscreen(&self, can_set_fullscreen: bool) {
         ObjectExt::set_property(self.as_ref(),"can-set-fullscreen", can_set_fullscreen)
     }
 
+    /// Indicates if [`raise()`][Self::raise()] has any effect.
     #[doc(alias = "can-raise")]
     fn set_can_raise(&self, can_raise: bool) {
         ObjectExt::set_property(self.as_ref(),"can-raise", can_raise)
     }
 
+    /// A human friendly name to identify the player.
     fn set_identity(&self, identity: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"identity", identity)
     }
 
+    /// The base name of a .desktop file
     fn set_entry(&self, entry: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"entry", entry)
     }
 
+    /// The URI schemes supported by the media player. This can be viewed as protocols supported by the player in almost all cases. Almost every media
+    /// player will include support for the "file" scheme. Other common schemes are "http" and "rtsp".
     #[doc(alias = "supported-uri-schemes")]
     fn set_supported_uri_schemes(&self, supported_uri_schemes: &[&str]) {
         ObjectExt::set_property(self.as_ref(),"supported-uri-schemes", supported_uri_schemes)
     }
 
+    /// The mime-types supported by the player.
     #[doc(alias = "supported-mime-types")]
     fn set_supported_mime_types(&self, supported_mime_types: &[&str]) {
         ObjectExt::set_property(self.as_ref(),"supported-mime-types", supported_mime_types)
     }
 
+    /// The current playback status.
     #[doc(alias = "playback-status")]
     fn set_playback_status(&self, playback_status: PlaybackStatus) {
         ObjectExt::set_property(self.as_ref(),"playback-status", playback_status)
     }
 
+    /// The minimum value which the [`rate`][struct@crate::Player#rate] can take.
     #[doc(alias = "minimum-rate")]
     fn set_minimum_rate(&self, minimum_rate: f64) {
         ObjectExt::set_property(self.as_ref(),"minimum-rate", minimum_rate)
     }
 
+    /// The maximum value which the [`rate`][struct@crate::Player#rate] can take.
     #[doc(alias = "maximum-rate")]
     fn set_maximum_rate(&self, maximum_rate: f64) {
         ObjectExt::set_property(self.as_ref(),"maximum-rate", maximum_rate)
     }
 
+    /// Indicates if invoking [`next()`][Self::next()] has effect.
     #[doc(alias = "can-go-next")]
     fn set_can_go_next(&self, can_go_next: bool) {
         ObjectExt::set_property(self.as_ref(),"can-go-next", can_go_next)
     }
 
+    /// Indicates if invoking [`previous()`][Self::previous()] has effect.
     #[doc(alias = "can-go-previous")]
     fn set_can_go_previous(&self, can_go_previous: bool) {
         ObjectExt::set_property(self.as_ref(),"can-go-previous", can_go_previous)
     }
 
+    /// Indicates if invoking [`play()`][Self::play()] has effect.
     #[doc(alias = "can-play")]
     fn set_can_play(&self, can_play: bool) {
         ObjectExt::set_property(self.as_ref(),"can-play", can_play)
     }
 
+    /// Indicates if invoking [`pause()`][Self::pause()] has effect.
     #[doc(alias = "can-pause")]
     fn set_can_pause(&self, can_pause: bool) {
         ObjectExt::set_property(self.as_ref(),"can-pause", can_pause)
     }
 
+    /// Indicates if setting [`position`][struct@crate::Player#position] has effect.
     #[doc(alias = "can-seek")]
     fn set_can_seek(&self, can_seek: bool) {
         ObjectExt::set_property(self.as_ref(),"can-seek", can_seek)
     }
 
+    /// Indicates if the player can be controlled with methods such as [`play_pause()`][Self::play_pause()].
     #[doc(alias = "can-control")]
     fn set_can_control(&self, can_control: bool) {
         ObjectExt::set_property(self.as_ref(),"can-control", can_control)
     }
 
+    /// Metadata of this player.
     fn set_metadata(&self, metadata: Option<&glib::Variant>) {
         ObjectExt::set_property(self.as_ref(),"metadata", metadata)
     }
 
+    /// Currently playing track's id.
     fn set_trackid(&self, trackid: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"trackid", trackid)
     }
 
+    /// Length of the currently playing track in seconds.
     fn set_length(&self, length: f64) {
         ObjectExt::set_property(self.as_ref(),"length", length)
     }
 
+    /// The location of an image representing the track or album. You might prefer using [`cover_art`][struct@crate::Player#cover_art].
     #[doc(alias = "art-url")]
     fn set_art_url(&self, art_url: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"art-url", art_url)
     }
 
+    /// Title of the currently playing album.
     fn set_album(&self, album: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"album", album)
     }
 
+    /// Artists of the currently playing album.
     #[doc(alias = "album-artist")]
     fn set_album_artist(&self, album_artist: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"album-artist", album_artist)
     }
 
+    /// Artists of the currently playing track.
     fn set_artist(&self, artist: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"artist", artist)
     }
 
+    /// Lyrics of the currently playing track.
     fn set_lyrics(&self, lyrics: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"lyrics", lyrics)
     }
 
+    /// Title of the currently playing track.
     fn set_title(&self, title: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"title", title)
     }
 
+    /// Composers of the currently playing track.
     fn set_composer(&self, composer: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"composer", composer)
     }
 
+    /// Comments of the currently playing track.
     fn set_comments(&self, comments: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"comments", comments)
     }
 
+    /// Path of the cached [`art_url`][struct@crate::Player#art_url].
     #[doc(alias = "cover-art")]
     fn set_cover_art(&self, cover_art: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"cover-art", cover_art)

@@ -13,10 +13,13 @@ use glib::{prelude::*,translate::*};
 pub enum Loop {
     #[doc(alias = "ASTAL_MPRIS_LOOP_UNSUPPORTED")]
     Unsupported,
+    /// The playback will stop when there are no more tracks to play.
     #[doc(alias = "ASTAL_MPRIS_LOOP_NONE")]
     None,
+    /// The current track will start again from the begining once it has finished playing.
     #[doc(alias = "ASTAL_MPRIS_LOOP_TRACK")]
     Track,
+    /// The playback loops through a list of tracks.
     #[doc(alias = "ASTAL_MPRIS_LOOP_PLAYLIST")]
     Playlist,
 #[doc(hidden)]
@@ -219,8 +222,10 @@ impl From<PlaybackStatus> for glib::Value {
 pub enum Shuffle {
     #[doc(alias = "ASTAL_MPRIS_SHUFFLE_UNSUPPORTED")]
     Unsupported,
+    /// Playback is progressing through a playlist in some other order.
     #[doc(alias = "ASTAL_MPRIS_SHUFFLE_ON")]
     On,
+    /// Playback is progressing linearly through a playlist.
     #[doc(alias = "ASTAL_MPRIS_SHUFFLE_OFF")]
     Off,
 #[doc(hidden)]

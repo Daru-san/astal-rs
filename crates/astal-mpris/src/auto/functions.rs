@@ -7,6 +7,7 @@ use crate::{ffi,Mpris};
 use glib::{translate::*};
 
 
+/// Gets the default singleton Mpris instance.
 #[doc(alias = "astal_mpris_get_default")]
 #[doc(alias = "get_default")]
 #[allow(clippy::should_implement_trait)]pub fn default() -> Mpris {
