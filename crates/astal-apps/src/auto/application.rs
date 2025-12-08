@@ -12,6 +12,74 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    /// Object representing an applications .desktop file.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `app`
+    ///  The underlying DesktopAppInfo.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `frequency`
+    ///  The number of times [`ApplicationExt::launch()`][crate::prelude::ApplicationExt::launch()] was called on this Application.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `name`
+    ///  The name of this Application.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `entry`
+    ///  Name of the .desktop of this Application.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `description`
+    ///  Description of this Application.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `wm-class`
+    ///  `StartupWMClass` field from the desktop file. This represents the `WM_CLASS` property of the main window of the application.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `executable`
+    ///  `Exec` field from the desktop file. Note that if you want to launch this Application you should use the [method@
+    /// AstalApps.Application.launch] method.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `icon-name`
+    ///  `Icon` field from the desktop file. This is usually a named icon or a path to a file.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `keywords`
+    ///  `Keywords` field from the desktop file.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `categories`
+    ///  `Categories` field from the desktop file.
+    ///
+    /// Readable
+    ///
+    /// # Implements
+    ///
+    /// [`ApplicationExt`][trait@crate::prelude::ApplicationExt]
     #[doc(alias = "AstalAppsApplication")]
     pub struct Application(Object<ffi::AstalAppsApplication, ffi::AstalAppsApplicationClass>);
 
@@ -55,12 +123,14 @@ impl ApplicationBuilder {
         }
     }
 
+    /// The underlying DesktopAppInfo.
     pub fn app(self, app: &gio::DesktopAppInfo) -> Self {
         Self {
             builder: self.builder.property("app", app.clone()),
         }
     }
 
+    /// The number of times [`ApplicationExt::launch()`][crate::prelude::ApplicationExt::launch()] was called on this Application.
     pub fn frequency(self, frequency: i32) -> Self {
         Self {
             builder: self.builder.property("frequency", frequency),
@@ -76,7 +146,13 @@ impl ApplicationBuilder {
     }
 }
 
+/// Trait containing all [`struct@Application`] methods.
+///
+/// # Implementors
+///
+/// [`Application`][struct@crate::Application]
 pub trait ApplicationExt: IsA<Application> + 'static {
+    /// Get a value from the .desktop file by its key.
     #[doc(alias = "astal_apps_application_get_key")]
     #[doc(alias = "get_key")]
     fn key(&self, key: &str) -> glib::GString {
@@ -88,6 +164,7 @@ pub trait ApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    /// Launches this application. The launched application inherits the environment of the launching process
     #[doc(alias = "astal_apps_application_launch")]
     fn launch(&self) -> bool {
         unsafe {
@@ -97,6 +174,10 @@ pub trait ApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    /// Calculate a score for an application using fuzzy matching algorithm.
+    ///
+    /// # Returns
+    ///
     #[doc(alias = "astal_apps_application_fuzzy_match")]
     fn fuzzy_match(&self, term: &str) -> Score {
         unsafe {
@@ -110,6 +191,10 @@ pub trait ApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    /// Calculate a score using exact string algorithm.
+    ///
+    /// # Returns
+    ///
     #[doc(alias = "astal_apps_application_exact_match")]
     fn exact_match(&self, term: &str) -> Score {
         unsafe {

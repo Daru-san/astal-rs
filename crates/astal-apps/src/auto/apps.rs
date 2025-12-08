@@ -8,6 +8,68 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// This object can be used to query applications. Multipliers can be set to customize [`Score`][crate::Score] results from queries which
+    /// then are summed and sorted accordingly.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `show-hidden`
+    ///  Indicates wether hidden applications should included in queries.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `list`
+    ///  Full list of available applications.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `min-score`
+    ///  The minimum score the application has to meet in order to be included in queries.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `name-multiplier`
+    ///  Extra multiplier to apply when matching the `name` of an application. Defaults to `2`
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `entry-multiplier`
+    ///  Extra multiplier to apply when matching the entry of an application. Defaults to `0`
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `executable-multiplier`
+    ///  Extra multiplier to apply when matching the executable of an application. Defaults to `0.5`
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `description-multiplier`
+    ///  Extra multiplier to apply when matching the description of an application. Defaults to `0`
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `keywords-multiplier`
+    ///  Extra multiplier to apply when matching the keywords of an application. Defaults to `0.5`
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `categories-multiplier`
+    ///  Extra multiplier to apply when matching the categories of an application. Defaults to `0`
+    ///
+    /// Readable | Writeable
+    ///
+    /// # Implements
+    ///
+    /// [`AppsExt`][trait@crate::prelude::AppsExt]
     #[doc(alias = "AstalAppsApps")]
     pub struct Apps(Object<ffi::AstalAppsApps, ffi::AstalAppsAppsClass>);
 
@@ -58,34 +120,42 @@ pub struct AppsBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// Indicates wether hidden applications should included in queries.
                             pub fn show_hidden(self, show_hidden: bool) -> Self {
                             Self { builder: self.builder.property("show-hidden", show_hidden), }
                         }
 
+                            /// The minimum score the application has to meet in order to be included in queries.
                             pub fn min_score(self, min_score: f64) -> Self {
                             Self { builder: self.builder.property("min-score", min_score), }
                         }
 
+                            /// Extra multiplier to apply when matching the `name` of an application. Defaults to `2`
                             pub fn name_multiplier(self, name_multiplier: f64) -> Self {
                             Self { builder: self.builder.property("name-multiplier", name_multiplier), }
                         }
 
+                            /// Extra multiplier to apply when matching the entry of an application. Defaults to `0`
                             pub fn entry_multiplier(self, entry_multiplier: f64) -> Self {
                             Self { builder: self.builder.property("entry-multiplier", entry_multiplier), }
                         }
 
+                            /// Extra multiplier to apply when matching the executable of an application. Defaults to `0.5`
                             pub fn executable_multiplier(self, executable_multiplier: f64) -> Self {
                             Self { builder: self.builder.property("executable-multiplier", executable_multiplier), }
                         }
 
+                            /// Extra multiplier to apply when matching the description of an application. Defaults to `0`
                             pub fn description_multiplier(self, description_multiplier: f64) -> Self {
                             Self { builder: self.builder.property("description-multiplier", description_multiplier), }
                         }
 
+                            /// Extra multiplier to apply when matching the keywords of an application. Defaults to `0.5`
                             pub fn keywords_multiplier(self, keywords_multiplier: f64) -> Self {
                             Self { builder: self.builder.property("keywords-multiplier", keywords_multiplier), }
                         }
 
+                            /// Extra multiplier to apply when matching the categories of an application. Defaults to `0`
                             pub fn categories_multiplier(self, categories_multiplier: f64) -> Self {
                             Self { builder: self.builder.property("categories-multiplier", categories_multiplier), }
                         }
@@ -98,7 +168,13 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Apps`] methods.
+///
+/// # Implementors
+///
+/// [`Apps`][struct@crate::Apps]
 pub trait AppsExt: IsA<Apps> + 'static {
+    /// Calculate a score for an application using fuzzy matching algorithm. Taking this Apps' include settings into consideration .
     #[doc(alias = "astal_apps_apps_fuzzy_score")]
     fn fuzzy_score(&self, search: &str, a: &impl IsA<Application>) -> f64 {
         unsafe {
@@ -106,6 +182,7 @@ pub trait AppsExt: IsA<Apps> + 'static {
         }
     }
 
+    /// Calculate a score for an application using exact string algorithm. Taking this Apps' include settings into consideration .
     #[doc(alias = "astal_apps_apps_exact_score")]
     fn exact_score(&self, search: &str, a: &impl IsA<Application>) -> f64 {
         unsafe {
@@ -113,6 +190,7 @@ pub trait AppsExt: IsA<Apps> + 'static {
         }
     }
 
+    /// Query the `list` of applications with a fuzzy matching algorithm.
     #[doc(alias = "astal_apps_apps_fuzzy_query")]
     fn fuzzy_query(&self, search: Option<&str>) -> Vec<Application> {
         unsafe {
@@ -120,6 +198,7 @@ pub trait AppsExt: IsA<Apps> + 'static {
         }
     }
 
+    /// Query the `list` of applications with a simple string matching algorithm.
     #[doc(alias = "astal_apps_apps_exact_query")]
     fn exact_query(&self, search: Option<&str>) -> Vec<Application> {
         unsafe {
@@ -127,6 +206,7 @@ pub trait AppsExt: IsA<Apps> + 'static {
         }
     }
 
+    /// Reload the `list` of Applications.
     #[doc(alias = "astal_apps_apps_reload")]
     fn reload(&self) {
         unsafe {
