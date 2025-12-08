@@ -3,13 +3,12 @@
 // from ../../gtk-girs
 // DO NOT EDIT
 
-use crate::{Connectivity, Primary, State, Wifi, Wired, ffi};
+use crate::{Connectivity, Primary, State, Wifi, Wired, ffi, nm};
 use glib::{
     prelude::*,
     signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
-use libnm as nm;
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
@@ -41,9 +40,16 @@ impl Network {
     #[doc(alias = "astal_network_network_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]
-    pub fn default() -> Network {
+    pub fn default() -> Option<Network> {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::astal_network_network_get_default()) }
+        unsafe {
+            let net = ffi::astal_network_network_get_default();
+            if net.is_null() {
+                None
+            } else {
+                from_glib_full(net)
+            }
+        }
     }
 }
 

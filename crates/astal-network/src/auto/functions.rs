@@ -3,15 +3,8 @@
 // from ../../gtk-girs
 // DO NOT EDIT
 
-use crate::{Connectivity, DeviceState, Internet, Network, Primary, State, ffi};
+use crate::{Connectivity, DeviceState, Internet, Network, Primary, State, ffi, nm};
 use glib::{prelude::*, translate::*};
-use libnm as nm;
-
-#[doc(alias = "astal_network_primary_to_string")]
-pub fn primary_to_string(self) -> glib::GString {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_full(ffi::astal_network_primary_to_string(self.into_glib())) }
-}
 
 #[doc(alias = "astal_network_primary_from_connection_type")]
 pub fn primary_from_connection_type(type_: &str) -> Primary {
@@ -23,24 +16,6 @@ pub fn primary_from_connection_type(type_: &str) -> Primary {
     }
 }
 
-#[doc(alias = "astal_network_state_to_string")]
-pub fn state_to_string(self) -> glib::GString {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_full(ffi::astal_network_state_to_string(self.into_glib())) }
-}
-
-#[doc(alias = "astal_network_connectivity_to_string")]
-pub fn connectivity_to_string(self) -> glib::GString {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_full(ffi::astal_network_connectivity_to_string(self.into_glib())) }
-}
-
-#[doc(alias = "astal_network_device_state_to_string")]
-pub fn device_state_to_string(self) -> glib::GString {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_full(ffi::astal_network_device_state_to_string(self.into_glib())) }
-}
-
 #[doc(alias = "astal_network_internet_from_device")]
 pub fn internet_from_device(device: &impl IsA<nm::Device>) -> Internet {
     assert_initialized_main_thread!();
@@ -49,12 +24,6 @@ pub fn internet_from_device(device: &impl IsA<nm::Device>) -> Internet {
             device.as_ref().to_glib_none().0,
         ))
     }
-}
-
-#[doc(alias = "astal_network_internet_to_string")]
-pub fn internet_to_string(self) -> glib::GString {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_full(ffi::astal_network_internet_to_string(self.into_glib())) }
 }
 
 #[doc(alias = "astal_network_get_default")]

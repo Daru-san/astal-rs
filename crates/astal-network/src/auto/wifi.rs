@@ -3,14 +3,13 @@
 // from ../../gtk-girs
 // DO NOT EDIT
 
-use crate::{AccessPoint, DeviceState, Internet, ffi};
+use crate::{AccessPoint, DeviceState, Internet, ffi, nm};
 use glib::{
     object::ObjectType as _,
     prelude::*,
     signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
-use libnm as nm;
 use std::boxed::Box as Box_;
 
 glib::wrapper! {

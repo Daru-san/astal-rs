@@ -3,13 +3,12 @@
 // from ../../gtk-girs
 // DO NOT EDIT
 
-use crate::{DeviceState, Internet, ffi};
+use crate::{DeviceState, Internet, ffi, nm};
 use glib::{
     prelude::*,
     signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
-use libnm as nm;
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
@@ -91,7 +90,7 @@ impl WiredBuilder {
 pub trait WiredExt: IsA<Wired> + 'static {
     #[doc(alias = "astal_network_wired_get_device")]
     #[doc(alias = "get_device")]
-    fn device(&self) -> nm::NMDeviceEthernet {
+    fn device(&self) -> nm::DeviceEthernet {
         unsafe {
             from_glib_none(ffi::astal_network_wired_get_device(
                 self.as_ref().to_glib_none().0,
@@ -100,7 +99,7 @@ pub trait WiredExt: IsA<Wired> + 'static {
     }
 
     #[doc(alias = "astal_network_wired_set_device")]
-    fn set_device(&self, value: &impl IsA<nm::NMDeviceEthernet>) {
+    fn set_device(&self, value: &impl IsA<nm::DeviceEthernet>) {
         unsafe {
             ffi::astal_network_wired_set_device(
                 self.as_ref().to_glib_none().0,

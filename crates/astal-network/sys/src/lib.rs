@@ -15,7 +15,7 @@
 use gio_sys as gio;
 use glib_sys as glib;
 use gobject_sys as gobject;
-use nm_sys as nm;
+use libnm_sys as nm;
 
 #[cfg(unix)]
 #[allow(unused_imports)]

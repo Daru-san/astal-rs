@@ -3,11 +3,10 @@
 // from ../../gtk-girs
 // DO NOT EDIT
 
-use crate::{ffi};
-use glib::{prelude::*,translate::*};
+use crate::ffi;
+use glib::{prelude::*, translate::*};
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AstalNetworkConnectivity")]
 pub enum Connectivity {
@@ -21,7 +20,7 @@ pub enum Connectivity {
     Limited,
     #[doc(alias = "ASTAL_NETWORK_CONNECTIVITY_FULL")]
     Full,
-#[doc(hidden)]
+    #[doc(hidden)]
     __Unknown(i32),
 }
 
@@ -30,51 +29,51 @@ impl IntoGlib for Connectivity {
     type GlibType = ffi::AstalNetworkConnectivity;
 
     #[inline]
-fn into_glib(self) -> ffi::AstalNetworkConnectivity {
-match self {
+    fn into_glib(self) -> ffi::AstalNetworkConnectivity {
+        match self {
             Self::Unknown => ffi::ASTAL_NETWORK_CONNECTIVITY_UNKNOWN,
             Self::None => ffi::ASTAL_NETWORK_CONNECTIVITY_NONE,
             Self::Portal => ffi::ASTAL_NETWORK_CONNECTIVITY_PORTAL,
             Self::Limited => ffi::ASTAL_NETWORK_CONNECTIVITY_LIMITED,
             Self::Full => ffi::ASTAL_NETWORK_CONNECTIVITY_FULL,
             Self::__Unknown(value) => value,
-}
-}
+        }
+    }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::AstalNetworkConnectivity> for Connectivity {
     #[inline]
-unsafe fn from_glib(value: ffi::AstalNetworkConnectivity) -> Self {
+    unsafe fn from_glib(value: ffi::AstalNetworkConnectivity) -> Self {
         skip_assert_initialized!();
-        
-match value {
+
+        match value {
             ffi::ASTAL_NETWORK_CONNECTIVITY_UNKNOWN => Self::Unknown,
             ffi::ASTAL_NETWORK_CONNECTIVITY_NONE => Self::None,
             ffi::ASTAL_NETWORK_CONNECTIVITY_PORTAL => Self::Portal,
             ffi::ASTAL_NETWORK_CONNECTIVITY_LIMITED => Self::Limited,
             ffi::ASTAL_NETWORK_CONNECTIVITY_FULL => Self::Full,
             value => Self::__Unknown(value),
-}
-}
+        }
+    }
 }
 
 impl StaticType for Connectivity {
-                #[inline]
+    #[inline]
     #[doc(alias = "astal_network_connectivity_get_type")]
-   fn static_type() -> glib::Type {
-                    unsafe { from_glib(ffi::astal_network_connectivity_get_type()) }
-                }
-            }
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::astal_network_connectivity_get_type()) }
+    }
+}
 
 impl glib::HasParamSpec for Connectivity {
-                type ParamSpec = glib::ParamSpecEnum;
-                type SetValue = Self;
-                type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
-    
-                fn param_spec_builder() -> Self::BuilderFn {
-                    Self::ParamSpec::builder_with_default
-                }
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
 }
 
 impl glib::value::ValueType for Connectivity {
@@ -115,8 +114,7 @@ impl From<Connectivity> for glib::Value {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AstalNetworkDeviceState")]
 pub enum DeviceState {
@@ -146,7 +144,7 @@ pub enum DeviceState {
     Deactivating,
     #[doc(alias = "ASTAL_NETWORK_DEVICE_STATE_FAILED")]
     Failed,
-#[doc(hidden)]
+    #[doc(hidden)]
     __Unknown(i32),
 }
 
@@ -155,7 +153,7 @@ impl IntoGlib for DeviceState {
     type GlibType = ffi::AstalNetworkDeviceState;
 
     fn into_glib(self) -> ffi::AstalNetworkDeviceState {
-match self {
+        match self {
             Self::Unknown => ffi::ASTAL_NETWORK_DEVICE_STATE_UNKNOWN,
             Self::Unmanaged => ffi::ASTAL_NETWORK_DEVICE_STATE_UNMANAGED,
             Self::Unavailable => ffi::ASTAL_NETWORK_DEVICE_STATE_UNAVAILABLE,
@@ -170,16 +168,16 @@ match self {
             Self::Deactivating => ffi::ASTAL_NETWORK_DEVICE_STATE_DEACTIVATING,
             Self::Failed => ffi::ASTAL_NETWORK_DEVICE_STATE_FAILED,
             Self::__Unknown(value) => value,
-}
-}
+        }
+    }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::AstalNetworkDeviceState> for DeviceState {
     unsafe fn from_glib(value: ffi::AstalNetworkDeviceState) -> Self {
         skip_assert_initialized!();
-        
-match value {
+
+        match value {
             ffi::ASTAL_NETWORK_DEVICE_STATE_UNKNOWN => Self::Unknown,
             ffi::ASTAL_NETWORK_DEVICE_STATE_UNMANAGED => Self::Unmanaged,
             ffi::ASTAL_NETWORK_DEVICE_STATE_UNAVAILABLE => Self::Unavailable,
@@ -194,26 +192,26 @@ match value {
             ffi::ASTAL_NETWORK_DEVICE_STATE_DEACTIVATING => Self::Deactivating,
             ffi::ASTAL_NETWORK_DEVICE_STATE_FAILED => Self::Failed,
             value => Self::__Unknown(value),
-}
-}
+        }
+    }
 }
 
 impl StaticType for DeviceState {
-                #[inline]
+    #[inline]
     #[doc(alias = "astal_network_device_state_get_type")]
-   fn static_type() -> glib::Type {
-                    unsafe { from_glib(ffi::astal_network_device_state_get_type()) }
-                }
-            }
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::astal_network_device_state_get_type()) }
+    }
+}
 
 impl glib::HasParamSpec for DeviceState {
-                type ParamSpec = glib::ParamSpecEnum;
-                type SetValue = Self;
-                type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
-    
-                fn param_spec_builder() -> Self::BuilderFn {
-                    Self::ParamSpec::builder_with_default
-                }
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
 }
 
 impl glib::value::ValueType for DeviceState {
@@ -254,8 +252,7 @@ impl From<DeviceState> for glib::Value {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AstalNetworkInternet")]
 pub enum Internet {
@@ -265,7 +262,7 @@ pub enum Internet {
     Connecting,
     #[doc(alias = "ASTAL_NETWORK_INTERNET_DISCONNECTED")]
     Disconnected,
-#[doc(hidden)]
+    #[doc(hidden)]
     __Unknown(i32),
 }
 
@@ -274,47 +271,47 @@ impl IntoGlib for Internet {
     type GlibType = ffi::AstalNetworkInternet;
 
     #[inline]
-fn into_glib(self) -> ffi::AstalNetworkInternet {
-match self {
+    fn into_glib(self) -> ffi::AstalNetworkInternet {
+        match self {
             Self::Connected => ffi::ASTAL_NETWORK_INTERNET_CONNECTED,
             Self::Connecting => ffi::ASTAL_NETWORK_INTERNET_CONNECTING,
             Self::Disconnected => ffi::ASTAL_NETWORK_INTERNET_DISCONNECTED,
             Self::__Unknown(value) => value,
-}
-}
+        }
+    }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::AstalNetworkInternet> for Internet {
     #[inline]
-unsafe fn from_glib(value: ffi::AstalNetworkInternet) -> Self {
+    unsafe fn from_glib(value: ffi::AstalNetworkInternet) -> Self {
         skip_assert_initialized!();
-        
-match value {
+
+        match value {
             ffi::ASTAL_NETWORK_INTERNET_CONNECTED => Self::Connected,
             ffi::ASTAL_NETWORK_INTERNET_CONNECTING => Self::Connecting,
             ffi::ASTAL_NETWORK_INTERNET_DISCONNECTED => Self::Disconnected,
             value => Self::__Unknown(value),
-}
-}
+        }
+    }
 }
 
 impl StaticType for Internet {
-                #[inline]
+    #[inline]
     #[doc(alias = "astal_network_internet_get_type")]
-   fn static_type() -> glib::Type {
-                    unsafe { from_glib(ffi::astal_network_internet_get_type()) }
-                }
-            }
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::astal_network_internet_get_type()) }
+    }
+}
 
 impl glib::HasParamSpec for Internet {
-                type ParamSpec = glib::ParamSpecEnum;
-                type SetValue = Self;
-                type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
-    
-                fn param_spec_builder() -> Self::BuilderFn {
-                    Self::ParamSpec::builder_with_default
-                }
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
 }
 
 impl glib::value::ValueType for Internet {
@@ -355,8 +352,7 @@ impl From<Internet> for glib::Value {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AstalNetworkPrimary")]
 pub enum Primary {
@@ -366,7 +362,7 @@ pub enum Primary {
     Wired,
     #[doc(alias = "ASTAL_NETWORK_PRIMARY_WIFI")]
     Wifi,
-#[doc(hidden)]
+    #[doc(hidden)]
     __Unknown(i32),
 }
 
@@ -375,47 +371,47 @@ impl IntoGlib for Primary {
     type GlibType = ffi::AstalNetworkPrimary;
 
     #[inline]
-fn into_glib(self) -> ffi::AstalNetworkPrimary {
-match self {
+    fn into_glib(self) -> ffi::AstalNetworkPrimary {
+        match self {
             Self::Unknown => ffi::ASTAL_NETWORK_PRIMARY_UNKNOWN,
             Self::Wired => ffi::ASTAL_NETWORK_PRIMARY_WIRED,
             Self::Wifi => ffi::ASTAL_NETWORK_PRIMARY_WIFI,
             Self::__Unknown(value) => value,
-}
-}
+        }
+    }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::AstalNetworkPrimary> for Primary {
     #[inline]
-unsafe fn from_glib(value: ffi::AstalNetworkPrimary) -> Self {
+    unsafe fn from_glib(value: ffi::AstalNetworkPrimary) -> Self {
         skip_assert_initialized!();
-        
-match value {
+
+        match value {
             ffi::ASTAL_NETWORK_PRIMARY_UNKNOWN => Self::Unknown,
             ffi::ASTAL_NETWORK_PRIMARY_WIRED => Self::Wired,
             ffi::ASTAL_NETWORK_PRIMARY_WIFI => Self::Wifi,
             value => Self::__Unknown(value),
-}
-}
+        }
+    }
 }
 
 impl StaticType for Primary {
-                #[inline]
+    #[inline]
     #[doc(alias = "astal_network_primary_get_type")]
-   fn static_type() -> glib::Type {
-                    unsafe { from_glib(ffi::astal_network_primary_get_type()) }
-                }
-            }
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::astal_network_primary_get_type()) }
+    }
+}
 
 impl glib::HasParamSpec for Primary {
-                type ParamSpec = glib::ParamSpecEnum;
-                type SetValue = Self;
-                type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
-    
-                fn param_spec_builder() -> Self::BuilderFn {
-                    Self::ParamSpec::builder_with_default
-                }
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
 }
 
 impl glib::value::ValueType for Primary {
@@ -456,8 +452,7 @@ impl From<Primary> for glib::Value {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AstalNetworkState")]
 pub enum State {
@@ -477,7 +472,7 @@ pub enum State {
     ConnectedSite,
     #[doc(alias = "ASTAL_NETWORK_STATE_CONNECTED_GLOBAL")]
     ConnectedGlobal,
-#[doc(hidden)]
+    #[doc(hidden)]
     __Unknown(i32),
 }
 
@@ -486,8 +481,8 @@ impl IntoGlib for State {
     type GlibType = ffi::AstalNetworkState;
 
     #[inline]
-fn into_glib(self) -> ffi::AstalNetworkState {
-match self {
+    fn into_glib(self) -> ffi::AstalNetworkState {
+        match self {
             Self::Unknown => ffi::ASTAL_NETWORK_STATE_UNKNOWN,
             Self::Asleep => ffi::ASTAL_NETWORK_STATE_ASLEEP,
             Self::Disconnected => ffi::ASTAL_NETWORK_STATE_DISCONNECTED,
@@ -497,17 +492,17 @@ match self {
             Self::ConnectedSite => ffi::ASTAL_NETWORK_STATE_CONNECTED_SITE,
             Self::ConnectedGlobal => ffi::ASTAL_NETWORK_STATE_CONNECTED_GLOBAL,
             Self::__Unknown(value) => value,
-}
-}
+        }
+    }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::AstalNetworkState> for State {
     #[inline]
-unsafe fn from_glib(value: ffi::AstalNetworkState) -> Self {
+    unsafe fn from_glib(value: ffi::AstalNetworkState) -> Self {
         skip_assert_initialized!();
-        
-match value {
+
+        match value {
             ffi::ASTAL_NETWORK_STATE_UNKNOWN => Self::Unknown,
             ffi::ASTAL_NETWORK_STATE_ASLEEP => Self::Asleep,
             ffi::ASTAL_NETWORK_STATE_DISCONNECTED => Self::Disconnected,
@@ -517,26 +512,26 @@ match value {
             ffi::ASTAL_NETWORK_STATE_CONNECTED_SITE => Self::ConnectedSite,
             ffi::ASTAL_NETWORK_STATE_CONNECTED_GLOBAL => Self::ConnectedGlobal,
             value => Self::__Unknown(value),
-}
-}
+        }
+    }
 }
 
 impl StaticType for State {
-                #[inline]
+    #[inline]
     #[doc(alias = "astal_network_state_get_type")]
-   fn static_type() -> glib::Type {
-                    unsafe { from_glib(ffi::astal_network_state_get_type()) }
-                }
-            }
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::astal_network_state_get_type()) }
+    }
+}
 
 impl glib::HasParamSpec for State {
-                type ParamSpec = glib::ParamSpecEnum;
-                type SetValue = Self;
-                type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
-    
-                fn param_spec_builder() -> Self::BuilderFn {
-                    Self::ParamSpec::builder_with_default
-                }
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
 }
 
 impl glib::value::ValueType for State {
@@ -576,4 +571,3 @@ impl From<State> for glib::Value {
         ToValue::to_value(&v)
     }
 }
-
