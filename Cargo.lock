@@ -63,7 +63,7 @@ dependencies = [
  "glib-sys 0.21.5",
  "gobject-sys 0.21.5",
  "libc",
- "nm-sys",
+ "libnm-sys",
  "shell-words",
  "system-deps 7.0.7",
  "tempfile",
@@ -895,11 +895,23 @@ checksum = "37c93d8daa9d8a012fd8ab92f088405fb202ea0b6ab73ee2482ae66af4f42091"
 [[package]]
 name = "libnm"
 version = "0.1.0"
-source = "git+https://github.com/Daru-san/nm-rs#30a3fa11b3f5a767a6b24062e45170f4b4bdc5e3"
+source = "git+https://github.com/Daru-san/nm-rs#ff7b6eec2e21fd6bee2c5e36ca648ac2994d1744"
 dependencies = [
  "gio 0.21.5",
  "glib 0.21.5",
- "nm-sys",
+ "libnm-sys",
+]
+
+[[package]]
+name = "libnm-sys"
+version = "0.0.1"
+source = "git+https://github.com/Daru-san/nm-rs#ff7b6eec2e21fd6bee2c5e36ca648ac2994d1744"
+dependencies = [
+ "gio-sys 0.21.5",
+ "glib-sys 0.21.5",
+ "gobject-sys 0.21.5",
+ "libc",
+ "system-deps 7.0.7",
 ]
 
 [[package]]
@@ -921,18 +933,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "488016bfae457b036d996092f6cb448677611ce4449e970ceaf42695203f218a"
 dependencies = [
  "autocfg",
-]
-
-[[package]]
-name = "nm-sys"
-version = "0.0.1"
-source = "git+https://github.com/Daru-san/nm-rs#30a3fa11b3f5a767a6b24062e45170f4b4bdc5e3"
-dependencies = [
- "gio-sys 0.21.5",
- "glib-sys 0.21.5",
- "gobject-sys 0.21.5",
- "libc",
- "system-deps 7.0.7",
 ]
 
 [[package]]

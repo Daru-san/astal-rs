@@ -36,6 +36,6 @@ json-glib = "0.1.0"
 json-glib-sys = "0.1.0"
 libc = "0.2"
 libnm = { git = "https://github.com/Daru-san/nm-rs", version = "0.1.0" }
-nm-sys = { git = "https://github.com/Daru-san/nm-rs", version = "0.0.1" }
+libnm-sys = { git = "https://github.com/Daru-san/nm-rs", version = "0.0.1" }
 gio-sys = "0.21.5"
 gio = "0.21.5"
