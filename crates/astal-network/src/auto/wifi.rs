@@ -13,6 +13,83 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `device`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `active-connection`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `active-access-point`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `access-points`
+    ///  Readable
+    ///
+    ///
+    /// #### `enabled`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `internet`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `bandwidth`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `ssid`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `strength`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `frequency`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `state`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `icon-name`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `is-hotspot`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `scanning`
+    ///  Readable | Writeable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `access-point-added`
+    ///
+    ///
+    ///
+    /// #### `access-point-removed`
+    ///
+    ///
+    ///
+    /// #### `state-changed`
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`WifiExt`][trait@crate::prelude::WifiExt]
     #[doc(alias = "AstalNetworkWifi")]
     pub struct Wifi(Object<ffi::AstalNetworkWifi, ffi::AstalNetworkWifiClass>);
 
@@ -140,6 +217,11 @@ impl WifiBuilder {
     }
 }
 
+/// Trait containing all [`struct@Wifi`] methods.
+///
+/// # Implementors
+///
+/// [`Wifi`][struct@crate::Wifi]
 pub trait WifiExt: IsA<Wifi> + 'static {
     #[doc(alias = "astal_network_wifi_scan")]
     fn scan(&self) {

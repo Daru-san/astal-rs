@@ -12,6 +12,65 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `bandwidth`
+    ///  Readable
+    ///
+    ///
+    /// #### `bssid`
+    ///  Readable
+    ///
+    ///
+    /// #### `frequency`
+    ///  Readable
+    ///
+    ///
+    /// #### `last-seen`
+    ///  Readable
+    ///
+    ///
+    /// #### `max-bitrate`
+    ///  Readable
+    ///
+    ///
+    /// #### `strength`
+    ///  Readable
+    ///
+    ///
+    /// #### `icon-name`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `mode`
+    ///  Readable
+    ///
+    ///
+    /// #### `flags`
+    ///  Readable
+    ///
+    ///
+    /// #### `rsn-flags`
+    ///  Readable
+    ///
+    ///
+    /// #### `wpa-flags`
+    ///  Readable
+    ///
+    ///
+    /// #### `requires-password`
+    ///  Readable
+    ///
+    ///
+    /// #### `ssid`
+    ///  Readable
+    ///
+    /// # Implements
+    ///
+    /// [`AccessPointExt`][trait@crate::prelude::AccessPointExt]
     #[doc(alias = "AstalNetworkAccessPoint")]
     pub struct AccessPoint(Object<ffi::AstalNetworkAccessPoint, ffi::AstalNetworkAccessPointClass>);
 
@@ -63,6 +122,11 @@ impl AccessPointBuilder {
     }
 }
 
+/// Trait containing all [`struct@AccessPoint`] methods.
+///
+/// # Implementors
+///
+/// [`AccessPoint`][struct@crate::AccessPoint]
 pub trait AccessPointExt: IsA<AccessPoint> + 'static {
     #[doc(alias = "astal_network_access_point_get_connections")]
     #[doc(alias = "get_connections")]

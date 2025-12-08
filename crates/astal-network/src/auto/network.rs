@@ -12,6 +12,37 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `client`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `wifi`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `wired`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `primary`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `connectivity`
+    ///  Readable
+    ///
+    ///
+    /// #### `state`
+    ///  Readable
+    ///
+    /// # Implements
+    ///
+    /// [`NetworkExt`][trait@crate::prelude::NetworkExt]
     #[doc(alias = "AstalNetworkNetwork")]
     pub struct Network(Object<ffi::AstalNetworkNetwork, ffi::AstalNetworkNetworkClass>);
 
@@ -108,6 +139,11 @@ impl NetworkBuilder {
     }
 }
 
+/// Trait containing all [`struct@Network`] methods.
+///
+/// # Implementors
+///
+/// [`Network`][struct@crate::Network]
 pub trait NetworkExt: IsA<Network> + 'static {
     #[doc(alias = "astal_network_network_get_client")]
     #[doc(alias = "get_client")]

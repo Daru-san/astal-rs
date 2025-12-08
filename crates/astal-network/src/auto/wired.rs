@@ -12,6 +12,33 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `device`
+    ///  Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `speed`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `internet`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `state`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `icon-name`
+    ///  Readable | Writeable
+    ///
+    /// # Implements
+    ///
+    /// [`WiredExt`][trait@crate::prelude::WiredExt]
     #[doc(alias = "AstalNetworkWired")]
     pub struct Wired(Object<ffi::AstalNetworkWired, ffi::AstalNetworkWiredClass>);
 
@@ -87,6 +114,11 @@ impl WiredBuilder {
     }
 }
 
+/// Trait containing all [`struct@Wired`] methods.
+///
+/// # Implementors
+///
+/// [`Wired`][struct@crate::Wired]
 pub trait WiredExt: IsA<Wired> + 'static {
     #[doc(alias = "astal_network_wired_get_device")]
     #[doc(alias = "get_device")]
