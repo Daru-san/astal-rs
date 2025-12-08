@@ -36,6 +36,7 @@
             astal3
             astal4
             wireplumber
+            apps
           ])
           ++ [
             (astal-niri.packages.${system}.niri.overrideAttrs {
