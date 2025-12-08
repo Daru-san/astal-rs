@@ -40,7 +40,7 @@ members = [
 
 [workspace.package]
 authors = ["Daru-san"]
-categories = ["api-bindings", "gtk"]
+categories = ["api-bindings"]
 edition = "2024"
 license = "MIT"
 repository = "https://codeberg.org/Daru-san/astal-rs"
