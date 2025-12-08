@@ -8,6 +8,17 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `is-open`
+    ///  Readable | Writeable
+    ///
+    /// # Implements
+    ///
+    /// [`OverviewExt`][trait@crate::prelude::OverviewExt]
     #[doc(alias = "AstalNiriOverview")]
     pub struct Overview(Object<ffi::AstalNiriOverview, ffi::AstalNiriOverviewClass>);
 
@@ -35,6 +46,11 @@ impl Default for Overview {
                      }
                  }
 
+/// Trait containing all [`struct@Overview`] methods.
+///
+/// # Implementors
+///
+/// [`Overview`][struct@crate::Overview]
 pub trait OverviewExt: IsA<Overview> + 'static {
     //#[doc(alias = "astal_niri_overview_toggle")]
     //fn toggle(&self, _callback_: AsyncReadyCallback) {

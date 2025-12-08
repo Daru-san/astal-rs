@@ -14,6 +14,111 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `keyboard-layout-idx`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `config-load-failed`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `overview`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `focused-workspace`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `focused-window`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `focused-output`
+    ///  Readable
+    ///
+    ///
+    /// #### `windows`
+    ///  Readable
+    ///
+    ///
+    /// #### `outputs`
+    ///  Readable
+    ///
+    ///
+    /// #### `workspaces`
+    ///  Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `event-stream`
+    ///
+    ///
+    ///
+    /// #### `workspaces-changed`
+    ///
+    ///
+    ///
+    /// #### `workspace-activated`
+    ///
+    ///
+    ///
+    /// #### `workspace-active-window-changed`
+    ///
+    ///
+    ///
+    /// #### `windows-changed`
+    ///
+    ///
+    ///
+    /// #### `window-opened-or-changed`
+    ///
+    ///
+    ///
+    /// #### `window-opened`
+    ///
+    ///
+    ///
+    /// #### `window-changed`
+    ///
+    ///
+    ///
+    /// #### `window-closed`
+    ///
+    ///
+    ///
+    /// #### `window-focus-changed`
+    ///
+    ///
+    ///
+    /// #### `window-urgency-changed`
+    ///
+    ///
+    ///
+    /// #### `workspace-urgency-changed`
+    ///
+    ///
+    ///
+    /// #### `overview-opened-or-closed`
+    ///
+    ///
+    ///
+    /// #### `keyboard-layouts-changed`
+    ///
+    ///
+    ///
+    /// #### `keyboard-layout-switched`
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`NiriExt`][trait@crate::prelude::NiriExt]
     #[doc(alias = "AstalNiriNiri")]
     pub struct Niri(Object<ffi::AstalNiriNiri, ffi::AstalNiriNiriClass>);
 
@@ -46,6 +151,11 @@ impl Default for Niri {
     }
 }
 
+/// Trait containing all [`struct@Niri`] methods.
+///
+/// # Implementors
+///
+/// [`Niri`][struct@crate::Niri]
 pub trait NiriExt: IsA<Niri> + 'static {
     #[doc(alias = "astal_niri_niri_get_window")]
     #[doc(alias = "get_window")]

@@ -13,6 +13,59 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `id`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `title`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `app-id`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `workspace-id`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `is-urgent`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `is-focused`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `is-floating`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `layout`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `workspace`
+    ///  Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `changed`
+    ///
+    ///
+    ///
+    /// #### `closed`
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`WindowExt`][trait@crate::prelude::WindowExt]
     #[doc(alias = "AstalNiriWindow")]
     pub struct Window(Object<ffi::AstalNiriWindow, ffi::AstalNiriWindowClass>);
 
@@ -37,6 +90,11 @@ impl Default for Window {
     }
 }
 
+/// Trait containing all [`struct@Window`] methods.
+///
+/// # Implementors
+///
+/// [`Window`][struct@crate::Window]
 pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "astal_niri_window_focus")]
     fn focus(&self, id: i32) -> bool {

@@ -13,6 +13,63 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `id`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `idx`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `name`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `output`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `is-urgent`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `is-active`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `is-focused`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `active-window-id`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `active-window`
+    ///  Readable
+    ///
+    ///
+    /// #### `windows`
+    ///  Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `activated`
+    ///
+    ///
+    ///
+    /// #### `active-window-changed`
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`WorkspaceExt`][trait@crate::prelude::WorkspaceExt]
     #[doc(alias = "AstalNiriWorkspace")]
     pub struct Workspace(Object<ffi::AstalNiriWorkspace, ffi::AstalNiriWorkspaceClass>);
 
@@ -37,6 +94,11 @@ impl Default for Workspace {
     }
 }
 
+/// Trait containing all [`struct@Workspace`] methods.
+///
+/// # Implementors
+///
+/// [`Workspace`][struct@crate::Workspace]
 pub trait WorkspaceExt: IsA<Workspace> + 'static {
     #[doc(alias = "astal_niri_workspace_focus")]
     fn focus(&self) -> bool {

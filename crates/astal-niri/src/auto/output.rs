@@ -13,6 +13,67 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `name`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `make`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `model`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `serial`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `physical-size`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `modes`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `current-mode`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `vrr-supported`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `vrr-enabled`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `logical`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `workspaces`
+    ///  Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `focused`
+    ///
+    ///
+    ///
+    /// #### `active-workspace-changed`
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`OutputExt`][trait@crate::prelude::OutputExt]
     #[doc(alias = "AstalNiriOutput")]
     pub struct Output(Object<ffi::AstalNiriOutput, ffi::AstalNiriOutputClass>);
 
@@ -44,6 +105,11 @@ impl std::fmt::Display for Output {
     }
 }
 
+/// Trait containing all [`struct@Output`] methods.
+///
+/// # Implementors
+///
+/// [`Output`][struct@crate::Output]
 pub trait OutputExt: IsA<Output> + 'static {
     #[doc(alias = "astal_niri_output_focus")]
     fn focus(&self) -> bool {
