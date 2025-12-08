@@ -13,6 +13,98 @@ use glib::{
 use std::{boxed::Box as Box_, pin::Pin};
 
 glib::wrapper! {
+    /// For simple authentication using only a password, using the [`authenticate()`][Self::authenticate()]
+    /// method is recommended. Look at the simple examples for how to use it.
+    ///
+    /// There is also a way to get access to the pam conversation, to allow for a more complex
+    /// authentication process, like using multiple factor authentication. Generally it can be used like
+    /// this:
+    ///
+    /// 1. create the Pam object.
+    /// 2. set username and service if so required. It has sane defaults, so in most cases you can skip
+    /// this.
+    /// 3. connect to the signals.
+    ///    After an `auth-*` signal is emitted, it has to be responded with exactly one
+    /// [`supply_secret()`][Self::supply_secret()] call. The secret is a string containing the user input. For
+    /// [auth-info][`auth-info`][struct@crate::Pam#auth-info]:] and [auth-error][`auth-error`][struct@crate::Pam#auth-error]:]
+    /// it should be `NULL`. Not connecting those signals, is equivalent to calling
+    /// [`supply_secret()`][Self::supply_secret()] with `NULL` immediately after the signal is emitted.
+    /// 4. start authentication process using [`start_authenticate()`][Self::start_authenticate()].
+    /// 5. it is possible to reuse the same Pam object for multiple sequential authentication attempts.
+    /// Just call [`start_authenticate()`][Self::start_authenticate()] again after the `success` or `fail` signal
+    /// was emitted.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `service`
+    ///  The pam service used for authentication.
+    /// Changing the value of this property has no affect on an already started authentication
+    /// process.
+    ///
+    /// Defaults to the astal-auth pam service.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    ///
+    /// #### `username`
+    ///  The username used for authentication.
+    /// Changing the value of this property has no affect on an already started authentication
+    /// process.
+    ///
+    /// Defaults to the user that owns this process.
+    ///
+    /// Readable | Writeable | Construct
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `auth-error`
+    ///  This signal is emitted when an authentication error has occured.
+    ///
+    /// This signal has to be matched with exaclty one supply_secret call.
+    ///
+    ///
+    ///
+    ///
+    /// #### `auth-info`
+    ///  This signal is emitted when the user should receive an information (e.g., tell the user to
+    /// touch a security key, or the remaining time pam has been locked after multiple failed
+    /// attempts)
+    ///
+    /// This signal has to be matched with exaclty one supply_secret call.
+    ///
+    ///
+    ///
+    ///
+    /// #### `auth-prompt-hidden`
+    ///  This signal is emitted when user input is required. The input should be hidden
+    /// when entered (e.g., for passwords).
+    ///
+    /// This signal has to be matched with exaclty one supply_secret call.
+    ///
+    ///
+    ///
+    ///
+    /// #### `auth-prompt-visible`
+    ///  This signal is emitted when user input is required. The input should be visible
+    /// when entered (e.g., for One-Time Passwords (OTP)).
+    ///
+    /// This signal has to be matched with exaclty one supply_secret call.
+    ///
+    ///
+    ///
+    ///
+    /// #### `fail`
+    ///  This signal is emitted when authentication failed.
+    ///
+    ///
+    ///
+    ///
+    /// #### `success`
+    ///  This signal is emitted after successful authentication
+    ///
+    ///
     #[doc(alias = "AstalAuthPam")]
     pub struct Pam(Object<ffi::AstalAuthPam, ffi::AstalAuthPamClass>);
 
@@ -30,18 +122,37 @@ impl Pam {
         PamBuilder::new()
     }
 
+    /// Fetches the service from AsalAuthPam object.
+    ///
+    /// # Returns
+    ///
+    /// the service of the AsalAuthPam object. This string is
+    /// owned by the object and must not be modified or freed.
     #[doc(alias = "astal_auth_pam_get_service")]
     #[doc(alias = "get_service")]
     pub fn service(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::astal_auth_pam_get_service(self.to_glib_none().0)) }
     }
 
+    /// Fetches the username from AsalAuthPam object.
+    ///
+    /// # Returns
+    ///
+    /// the username of the AsalAuthPam object. This string is
+    /// owned by the object and must not be modified or freed.
     #[doc(alias = "astal_auth_pam_get_username")]
     #[doc(alias = "get_username")]
     pub fn username(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::astal_auth_pam_get_username(self.to_glib_none().0)) }
     }
 
+    /// Sets the service to be used for authentication. This must be set to
+    /// before calling start_authenticate.
+    /// Changing it afterwards has no effect on the authentication process.
+    ///
+    /// Defaults to `astal-auth`.
+    /// ## `service`
+    /// the pam service used for authentication
     #[doc(alias = "astal_auth_pam_set_service")]
     #[doc(alias = "service")]
     pub fn set_service(&self, service: &str) {
@@ -50,6 +161,13 @@ impl Pam {
         }
     }
 
+    /// Sets the username to be used for authentication. This must be set to
+    /// before calling start_authenticate.
+    /// Changing it afterwards has no effect on the authentication process.
+    ///
+    /// Defaults to the owner of the process.
+    /// ## `username`
+    /// the new username
     #[doc(alias = "astal_auth_pam_set_username")]
     #[doc(alias = "username")]
     pub fn set_username(&self, username: &str) {
@@ -58,6 +176,9 @@ impl Pam {
         }
     }
 
+    /// starts a new authentication process using the PAM (Pluggable Authentication Modules) system.
+    /// Note that this will cancel an already running authentication process
+    /// associated with this AstalAuthPam object.
     #[doc(alias = "astal_auth_pam_start_authenticate")]
     pub fn start_authenticate(&self) -> bool {
         unsafe {
@@ -67,6 +188,10 @@ impl Pam {
         }
     }
 
+    /// provides pam with a secret. This method must be called exactly once after a
+    /// auth-* signal is emitted.
+    /// ## `secret`
+    /// the secret to be provided to pam. Can be NULL.
     #[doc(alias = "astal_auth_pam_supply_secret")]
     pub fn supply_secret(&self, secret: Option<&str>) {
         unsafe {
@@ -74,6 +199,13 @@ impl Pam {
         }
     }
 
+    /// Requests authentication of the provided password using the PAM (Pluggable Authentication Modules)
+    /// system.
+    /// ## `password`
+    /// the password to be authenticated
+    /// ## `result_callback`
+    /// a GAsyncReadyCallback
+    ///   to call when the request is satisfied
     #[doc(alias = "astal_auth_pam_authenticate")]
     pub fn authenticate<P: FnOnce(Result<isize, glib::Error>) + 'static>(
         password: &str,
@@ -134,6 +266,11 @@ impl Pam {
         }))
     }
 
+    /// This signal is emitted when an authentication error has occured.
+    ///
+    /// This signal has to be matched with exaclty one supply_secret call.
+    /// ## `msg`
+    /// the error message
     #[doc(alias = "auth-error")]
     pub fn connect_auth_error<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn auth_error_trampoline<F: Fn(&Pam, &str) + 'static>(
@@ -160,6 +297,13 @@ impl Pam {
         }
     }
 
+    /// This signal is emitted when the user should receive an information (e.g., tell the user to
+    /// touch a security key, or the remaining time pam has been locked after multiple failed
+    /// attempts)
+    ///
+    /// This signal has to be matched with exaclty one supply_secret call.
+    /// ## `msg`
+    /// the info mssage to be shown to the user
     #[doc(alias = "auth-info")]
     pub fn connect_auth_info<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn auth_info_trampoline<F: Fn(&Pam, &str) + 'static>(
@@ -186,6 +330,12 @@ impl Pam {
         }
     }
 
+    /// This signal is emitted when user input is required. The input should be hidden
+    /// when entered (e.g., for passwords).
+    ///
+    /// This signal has to be matched with exaclty one supply_secret call.
+    /// ## `msg`
+    /// the prompt to be shown to the user
     #[doc(alias = "auth-prompt-hidden")]
     pub fn connect_auth_prompt_hidden<F: Fn(&Self, &str) + 'static>(
         &self,
@@ -215,6 +365,12 @@ impl Pam {
         }
     }
 
+    /// This signal is emitted when user input is required. The input should be visible
+    /// when entered (e.g., for One-Time Passwords (OTP)).
+    ///
+    /// This signal has to be matched with exaclty one supply_secret call.
+    /// ## `msg`
+    /// the prompt to be shown to the user
     #[doc(alias = "auth-prompt-visible")]
     pub fn connect_auth_prompt_visible<F: Fn(&Self, &str) + 'static>(
         &self,
@@ -244,6 +400,9 @@ impl Pam {
         }
     }
 
+    /// This signal is emitted when authentication failed.
+    /// ## `msg`
+    /// the authentication failure message
     #[doc(alias = "fail")]
     pub fn connect_fail<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn fail_trampoline<F: Fn(&Pam, &str) + 'static>(
@@ -270,6 +429,7 @@ impl Pam {
         }
     }
 
+    /// This signal is emitted after successful authentication
     #[doc(alias = "success")]
     pub fn connect_success<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn success_trampoline<F: Fn(&Pam) + 'static>(
@@ -355,12 +515,22 @@ impl PamBuilder {
         }
     }
 
+    /// The pam service used for authentication.
+    /// Changing the value of this property has no affect on an already started authentication
+    /// process.
+    ///
+    /// Defaults to the astal-auth pam service.
     pub fn service(self, service: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("service", service.into()),
         }
     }
 
+    /// The username used for authentication.
+    /// Changing the value of this property has no affect on an already started authentication
+    /// process.
+    ///
+    /// Defaults to the user that owns this process.
     pub fn username(self, username: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("username", username.into()),
