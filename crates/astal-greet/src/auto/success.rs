@@ -6,6 +6,11 @@
 use crate::{ffi,Response};
 
 glib::wrapper! {
+    /// Indicates that the request succeeded.
+    ///
+    /// # Implements
+    ///
+    /// [`ResponseExt`][trait@crate::prelude::ResponseExt]
     #[doc(alias = "AstalGreetSuccess")]
     pub struct Success(Object<ffi::AstalGreetSuccess, ffi::AstalGreetSuccessClass>) @extends Response;
 

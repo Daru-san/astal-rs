@@ -8,6 +8,24 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Answers an authentication message. If the message was informative (info, error), then a response does not need to be set in this
+    /// message. The session is ready to be started if a success is returned.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `response`
+    ///  Readable | Writeable
+    /// <details><summary><h4>Request</h4></summary>
+    ///
+    ///
+    /// #### `type-name`
+    ///  Readable
+    /// </details>
+    ///
+    /// # Implements
+    ///
+    /// [`PostAuthMesssageExt`][trait@crate::prelude::PostAuthMesssageExt], [`RequestExt`][trait@crate::prelude::RequestExt]
     #[doc(alias = "AstalGreetPostAuthMesssage")]
     pub struct PostAuthMesssage(Object<ffi::AstalGreetPostAuthMesssage, ffi::AstalGreetPostAuthMesssageClass>) @extends Request;
 
@@ -70,6 +88,11 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@PostAuthMesssage`] methods.
+///
+/// # Implementors
+///
+/// [`PostAuthMesssage`][struct@crate::PostAuthMesssage]
 pub trait PostAuthMesssageExt: IsA<PostAuthMesssage> + 'static {
     #[doc(alias = "astal_greet_post_auth_messsage_get_response")]
     #[doc(alias = "get_response")]

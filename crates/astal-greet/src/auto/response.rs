@@ -6,6 +6,9 @@
 use crate::{ffi};
 
 glib::wrapper! {
+    /// Base Response type.
+    ///
+    /// This is an Abstract Base Class, you cannot instantiate it.
     #[doc(alias = "AstalGreetResponse")]
     pub struct Response(Object<ffi::AstalGreetResponse, ffi::AstalGreetResponseClass>);
 

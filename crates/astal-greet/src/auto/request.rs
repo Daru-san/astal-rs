@@ -8,6 +8,19 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Base Request type.
+    ///
+    /// This is an Abstract Base Class, you cannot instantiate it.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `type-name`
+    ///  Readable
+    ///
+    /// # Implements
+    ///
+    /// [`RequestExt`][trait@crate::prelude::RequestExt]
     #[doc(alias = "AstalGreetRequest")]
     pub struct Request(Object<ffi::AstalGreetRequest, ffi::AstalGreetRequestClass>);
 
@@ -21,6 +34,11 @@ impl Request {
     
 }
 
+/// Trait containing all [`struct@Request`] methods.
+///
+/// # Implementors
+///
+/// [`CancelSession`][struct@crate::CancelSession], [`CreateSession`][struct@crate::CreateSession], [`PostAuthMesssage`][struct@crate::PostAuthMesssage], [`Request`][struct@crate::Request], [`StartSession`][struct@crate::StartSession]
 pub trait RequestExt: IsA<Request> + 'static {
     //#[doc(alias = "astal_greet_request_send")]
     //fn send(&self, _callback_: AsyncReadyCallback) {

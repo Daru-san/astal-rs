@@ -8,6 +8,21 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Indicates that the request succeeded.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `message-type`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `message`
+    ///  Readable | Writeable
+    ///
+    /// # Implements
+    ///
+    /// [`AuthMessageExt`][trait@crate::prelude::AuthMessageExt], [`ResponseExt`][trait@crate::prelude::ResponseExt]
     #[doc(alias = "AstalGreetAuthMessage")]
     pub struct AuthMessage(Object<ffi::AstalGreetAuthMessage, ffi::AstalGreetAuthMessageClass>) @extends Response;
 
@@ -60,6 +75,11 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@AuthMessage`] methods.
+///
+/// # Implementors
+///
+/// [`AuthMessage`][struct@crate::AuthMessage]
 pub trait AuthMessageExt: IsA<AuthMessage> + 'static {
     #[doc(alias = "astal_greet_auth_message_get_message_type")]
     #[doc(alias = "get_message_type")]

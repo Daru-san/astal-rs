@@ -8,6 +8,23 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Creates a session and initiates a login attempted for the given user. The session is ready to be started if a success is returned.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `username`
+    ///  Readable | Writeable
+    /// <details><summary><h4>Request</h4></summary>
+    ///
+    ///
+    /// #### `type-name`
+    ///  Readable
+    /// </details>
+    ///
+    /// # Implements
+    ///
+    /// [`CreateSessionExt`][trait@crate::prelude::CreateSessionExt], [`RequestExt`][trait@crate::prelude::RequestExt]
     #[doc(alias = "AstalGreetCreateSession")]
     pub struct CreateSession(Object<ffi::AstalGreetCreateSession, ffi::AstalGreetCreateSessionClass>) @extends Request;
 
@@ -70,6 +87,11 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@CreateSession`] methods.
+///
+/// # Implementors
+///
+/// [`CreateSession`][struct@crate::CreateSession]
 pub trait CreateSessionExt: IsA<CreateSession> + 'static {
     #[doc(alias = "astal_greet_create_session_get_username")]
     #[doc(alias = "get_username")]

@@ -8,6 +8,21 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Indicates that the request succeeded.
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `error-type`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `description`
+    ///  Readable | Writeable
+    ///
+    /// # Implements
+    ///
+    /// [`ErrorExt`][trait@crate::prelude::ErrorExt], [`ResponseExt`][trait@crate::prelude::ResponseExt]
     #[doc(alias = "AstalGreetError")]
     pub struct Error(Object<ffi::AstalGreetError, ffi::AstalGreetErrorClass>) @extends Response;
 
@@ -60,6 +75,11 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@Error`] methods.
+///
+/// # Implementors
+///
+/// [`Error`][struct@crate::Error]
 pub trait ErrorExt: IsA<Error> + 'static {
     #[doc(alias = "astal_greet_error_get_error_type")]
     #[doc(alias = "get_error_type")]

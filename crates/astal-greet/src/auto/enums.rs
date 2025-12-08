@@ -11,12 +11,16 @@ use glib::{prelude::*,translate::*};
 #[non_exhaustive]
 #[doc(alias = "AstalGreetAuthMessageType")]
 pub enum AuthMessageType {
+    /// Indicates that input from the user should be visible when they answer this question.
     #[doc(alias = "ASTAL_GREET_AUTH_MESSAGE_TYPE_VISIBLE")]
     Visible,
+    /// Indicates that input from the user should be considered secret when they answer this question.
     #[doc(alias = "ASTAL_GREET_AUTH_MESSAGE_TYPE_SECRET")]
     Secret,
+    /// Indicates that this message is informative, not a question.
     #[doc(alias = "ASTAL_GREET_AUTH_MESSAGE_TYPE_INFO")]
     Info,
+    /// Indicates that this message is an error, not a question.
     #[doc(alias = "ASTAL_GREET_AUTH_MESSAGE_TYPE_ERROR")]
     Error,
 #[doc(hidden)]
@@ -116,8 +120,10 @@ impl From<AuthMessageType> for glib::Value {
 #[non_exhaustive]
 #[doc(alias = "AstalGreetErrorType")]
 pub enum ErrorType {
+    /// Indicates that authentication failed. This is not a fatal error, and is likely caused by incorrect credentials.
     #[doc(alias = "ASTAL_GREET_ERROR_TYPE_AUTH_ERROR")]
     AuthError,
+    /// A general error. See the error description for more information.
     #[doc(alias = "ASTAL_GREET_ERROR_TYPE_ERROR")]
     Error,
 #[doc(hidden)]

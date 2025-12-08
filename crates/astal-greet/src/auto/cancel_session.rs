@@ -7,6 +7,11 @@ use crate::{ffi,Request};
 use glib::{translate::*};
 
 glib::wrapper! {
+    /// Cancels the session that is currently under configuration.
+    ///
+    /// # Implements
+    ///
+    /// [`RequestExt`][trait@crate::prelude::RequestExt]
     #[doc(alias = "AstalGreetCancelSession")]
     pub struct CancelSession(Object<ffi::AstalGreetCancelSession, ffi::AstalGreetCancelSessionClass>) @extends Request;
 

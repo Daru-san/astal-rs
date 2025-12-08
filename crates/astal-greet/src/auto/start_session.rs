@@ -8,6 +8,28 @@ use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    /// Requests for the session to be started using the provided command line, adding the supplied environment to that created by PAM. The session
+    /// will start after the greeter process terminates
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `cmd`
+    ///  Readable | Writeable
+    ///
+    ///
+    /// #### `env`
+    ///  Readable | Writeable
+    /// <details><summary><h4>Request</h4></summary>
+    ///
+    ///
+    /// #### `type-name`
+    ///  Readable
+    /// </details>
+    ///
+    /// # Implements
+    ///
+    /// [`StartSessionExt`][trait@crate::prelude::StartSessionExt], [`RequestExt`][trait@crate::prelude::RequestExt]
     #[doc(alias = "AstalGreetStartSession")]
     pub struct StartSession(Object<ffi::AstalGreetStartSession, ffi::AstalGreetStartSessionClass>) @extends Request;
 
@@ -76,6 +98,11 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@StartSession`] methods.
+///
+/// # Implementors
+///
+/// [`StartSession`][struct@crate::StartSession]
 pub trait StartSessionExt: IsA<StartSession> + 'static {
     #[doc(alias = "astal_greet_start_session_get_cmd")]
     #[doc(alias = "get_cmd")]
