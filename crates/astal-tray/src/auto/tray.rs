@@ -8,6 +8,39 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `items`
+    ///  List of currently registered tray items
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `items-model`
+    ///  ListModel containing the currently registered tray items.
+    ///
+    /// Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `item-added`
+    ///  emitted when a new tray item was added.
+    ///
+    ///
+    ///
+    ///
+    /// #### `item-removed`
+    ///  emitted when a tray item was removed.
+    ///
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`TrayExt`][trait@crate::prelude::TrayExt]
     #[doc(alias = "AstalTrayTray")]
     pub struct Tray(Object<ffi::AstalTrayTray, ffi::AstalTrayTrayClass>);
 
@@ -28,6 +61,7 @@ impl Tray {
         }
     }
 
+    /// Get the singleton instance of [`Tray`][crate::Tray]
     #[doc(alias = "astal_tray_tray_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]    pub fn default() -> Tray {
@@ -44,7 +78,13 @@ impl Default for Tray {
                      }
                  }
 
+/// Trait containing all [`struct@Tray`] methods.
+///
+/// # Implementors
+///
+/// [`Tray`][struct@crate::Tray]
 pub trait TrayExt: IsA<Tray> + 'static {
+    /// gets the TrayItem with the given item-id.
     #[doc(alias = "astal_tray_tray_get_item")]
     #[doc(alias = "get_item")]
     fn item(&self, item_id: &str) -> TrayItem {
@@ -69,6 +109,7 @@ pub trait TrayExt: IsA<Tray> + 'static {
         }
     }
 
+    /// emitted when a new tray item was added.
     #[doc(alias = "item-added")]
     fn connect_item_added<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn item_added_trampoline<P: IsA<Tray>, F: Fn(&P, &str) + 'static>(this: *mut ffi::AstalTrayTray, item_id: *const std::ffi::c_char, f: glib::ffi::gpointer) {
@@ -82,6 +123,7 @@ pub trait TrayExt: IsA<Tray> + 'static {
         }
     }
 
+    /// emitted when a tray item was removed.
     #[doc(alias = "item-removed")]
     fn connect_item_removed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn item_removed_trampoline<P: IsA<Tray>, F: Fn(&P, &str) + 'static>(this: *mut ffi::AstalTrayTray, item_id: *const std::ffi::c_char, f: glib::ffi::gpointer) {

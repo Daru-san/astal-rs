@@ -8,6 +8,127 @@ use glib::{object::ObjectType as _,prelude::*,signal::{connect_raw, SignalHandle
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `title`
+    ///  The Title of the TrayItem
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `category`
+    ///  The category this item belongs to
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `status`
+    ///  The current status of this item
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `tooltip`
+    ///  The tooltip of this item
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `tooltip-markup`
+    ///  A markup representation of the tooltip. This is basically equvivalent to `tooltip.title \n tooltip.description`
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `tooltip-text`
+    ///  A text representation of the tooltip. This is basically equvivalent to `tooltip.title \n tooltip.description.`
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `id`
+    ///  the id of the item. This id is specified by the tray app.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `is-menu`
+    ///  If set, this only supports the menu, so showing the menu should be prefered over calling [`TrayItemExt::activate()`][crate::prelude::TrayItemExt::activate()].
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `icon-theme-path`
+    ///  The icon theme path, where to look for the [`icon-name`][struct@crate::TrayItem#icon-name]. It is recommended to use the [property@
+    /// AstalTray.TrayItem:gicon] property, which does the icon lookups for you.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `icon-name`
+    ///  The name of the icon. This should be looked up in the [`icon-theme-path`][struct@crate::TrayItem#icon-theme-path] if set or in the currently used icon
+    /// theme otherwise. It is recommended to use the [`gicon`][struct@crate::TrayItem#gicon] property, which does the icon lookups for you.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `icon-pixbuf`
+    ///  A pixbuf containing the icon. It is recommended to use the [`gicon`][struct@crate::TrayItem#gicon] property, which does the icon lookups for
+    /// you.
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `gicon`
+    ///  Contains the items icon. This property is intended to be used with the gicon property of the Icon widget and the recommended way to display the
+    /// icon. This property unifies the [`icon-name`][struct@crate::TrayItem#icon-name], [`icon-theme-path`][struct@crate::TrayItem#icon-theme-path] and [property
+    /// @AstalTray.TrayItem:icon-pixbuf] properties.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `item-id`
+    ///  The id of the item used to uniquely identify the TrayItems by this lib.
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `menu-path`
+    ///  The object path to the dbusmenu
+    ///
+    /// Readable | Writeable
+    ///
+    ///
+    /// #### `menu-model`
+    ///  The MenuModel describing the menu for this TrayItem to be used with a MenuButton or PopoverMenu. The actions for this menu are defined in
+    /// [`action-group`][struct@crate::TrayItem#action-group].
+    ///
+    /// Readable
+    ///
+    ///
+    /// #### `action-group`
+    ///  The ActionGroup containing the actions for the menu. All actions have the `dbusmenu` prefix and are setup to work with the [property@
+    /// AstalTray.TrayItem:menu-model]. Make sure to insert this action group into a parent widget of the menu, eg the MenuButton for which the MenuModel for
+    /// this TrayItem is set.
+    ///
+    /// Readable
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `changed`
+    ///
+    ///
+    ///
+    /// #### `ready`
+    ///
+    ///
+    /// # Implements
+    ///
+    /// [`TrayItemExt`][trait@crate::prelude::TrayItemExt]
     #[doc(alias = "AstalTrayTrayItem")]
     pub struct TrayItem(Object<ffi::AstalTrayTrayItem, ffi::AstalTrayTrayItemClass>);
 
@@ -44,38 +165,50 @@ pub struct TrayItemBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
+                            /// The Title of the TrayItem
                             pub fn title(self, title: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("title", title.into()), }
                         }
 
+                            /// The category this item belongs to
                             pub fn category(self, category: Category) -> Self {
                             Self { builder: self.builder.property("category", category), }
                         }
 
+                            /// The current status of this item
                             pub fn status(self, status: Status) -> Self {
                             Self { builder: self.builder.property("status", status), }
                         }
 
+                            /// The tooltip of this item
                             pub fn tooltip(self, tooltip: &Tooltip) -> Self {
                             Self { builder: self.builder.property("tooltip", tooltip), }
                         }
 
+                            /// the id of the item. This id is specified by the tray app.
                             pub fn id(self, id: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("id", id.into()), }
                         }
 
+                            /// If set, this only supports the menu, so showing the menu should be prefered over calling [`TrayItemExt::activate()`][crate::prelude::TrayItemExt::activate()].
                             pub fn is_menu(self, is_menu: bool) -> Self {
                             Self { builder: self.builder.property("is-menu", is_menu), }
                         }
 
+                            /// The icon theme path, where to look for the [`icon-name`][struct@crate::TrayItem#icon-name]. It is recommended to use the [property@
+                            /// AstalTray.TrayItem:gicon] property, which does the icon lookups for you.
                             pub fn icon_theme_path(self, icon_theme_path: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("icon-theme-path", icon_theme_path.into()), }
                         }
 
+                            /// Contains the items icon. This property is intended to be used with the gicon property of the Icon widget and the recommended way to display the
+                            /// icon. This property unifies the [`icon-name`][struct@crate::TrayItem#icon-name], [`icon-theme-path`][struct@crate::TrayItem#icon-theme-path] and [property
+                            /// @AstalTray.TrayItem:icon-pixbuf] properties.
                             pub fn gicon(self, gicon: &impl IsA<gio::Icon>) -> Self {
                             Self { builder: self.builder.property("gicon", gicon.clone().upcast()), }
                         }
 
+                            /// The id of the item used to uniquely identify the TrayItems by this lib.
                             pub fn item_id(self, item_id: impl Into<glib::GString>) -> Self {
                             Self { builder: self.builder.property("item-id", item_id.into()), }
                         }
@@ -92,7 +225,14 @@ assert_initialized_main_thread!();
     self.builder.build() }
 }
 
+/// Trait containing all [`struct@TrayItem`] methods.
+///
+/// # Implementors
+///
+/// [`TrayItem`][struct@crate::TrayItem]
 pub trait TrayItemExt: IsA<TrayItem> + 'static {
+    /// tells the tray app that its menu is about to be opened, so it can update the menu if needed. You should call this method before openening the
+    /// menu.
     #[doc(alias = "astal_tray_tray_item_about_to_show")]
     fn about_to_show(&self) {
         unsafe {
@@ -100,6 +240,7 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
         }
     }
 
+    /// Send an activate request to the tray app.
     #[doc(alias = "astal_tray_tray_item_activate")]
     fn activate(&self, x: i32, y: i32) {
         unsafe {
@@ -107,6 +248,7 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
         }
     }
 
+    /// Send a secondary activate request to the tray app.
     #[doc(alias = "astal_tray_tray_item_secondary_activate")]
     fn secondary_activate(&self, x: i32, y: i32) {
         unsafe {
@@ -114,6 +256,7 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
         }
     }
 
+    /// Send a scroll request to the tray app. valid values for the orientation are "horizontal" and "vertical".
     #[doc(alias = "astal_tray_tray_item_scroll")]
     fn scroll(&self, delta: i32, orientation: &str) {
         unsafe {
@@ -254,40 +397,52 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
         }
     }
 
+    /// The Title of the TrayItem
     fn set_title(&self, title: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"title", title)
     }
 
+    /// The category this item belongs to
     fn set_category(&self, category: Category) {
         ObjectExt::set_property(self.as_ref(),"category", category)
     }
 
+    /// The current status of this item
     fn set_status(&self, status: Status) {
         ObjectExt::set_property(self.as_ref(),"status", status)
     }
 
+    /// The tooltip of this item
     fn set_tooltip(&self, tooltip: Option<&Tooltip>) {
         ObjectExt::set_property(self.as_ref(),"tooltip", tooltip)
     }
 
+    /// the id of the item. This id is specified by the tray app.
     fn set_id(&self, id: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"id", id)
     }
 
+    /// If set, this only supports the menu, so showing the menu should be prefered over calling [`activate()`][Self::activate()].
     #[doc(alias = "is-menu")]
     fn set_is_menu(&self, is_menu: bool) {
         ObjectExt::set_property(self.as_ref(),"is-menu", is_menu)
     }
 
+    /// The icon theme path, where to look for the [`icon-name`][struct@crate::TrayItem#icon-name]. It is recommended to use the [property@
+    /// AstalTray.TrayItem:gicon] property, which does the icon lookups for you.
     #[doc(alias = "icon-theme-path")]
     fn set_icon_theme_path(&self, icon_theme_path: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"icon-theme-path", icon_theme_path)
     }
 
+    /// Contains the items icon. This property is intended to be used with the gicon property of the Icon widget and the recommended way to display the
+    /// icon. This property unifies the [`icon-name`][struct@crate::TrayItem#icon-name], [`icon-theme-path`][struct@crate::TrayItem#icon-theme-path] and [property
+    /// @AstalTray.TrayItem:icon-pixbuf] properties.
     fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         ObjectExt::set_property(self.as_ref(),"gicon", gicon)
     }
 
+    /// The id of the item used to uniquely identify the TrayItems by this lib.
     #[doc(alias = "item-id")]
     fn set_item_id(&self, item_id: Option<&str>) {
         ObjectExt::set_property(self.as_ref(),"item-id", item_id)

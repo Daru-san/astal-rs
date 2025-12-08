@@ -46,6 +46,7 @@ pub fn status_from_string(value: &str) -> Result<Status, glib::Error> {
     }
 }
 
+/// Get the singleton instance of [`Tray`][crate::Tray]
 #[doc(alias = "astal_tray_get_default")]
 #[doc(alias = "get_default")]
 #[allow(clippy::should_implement_trait)]
