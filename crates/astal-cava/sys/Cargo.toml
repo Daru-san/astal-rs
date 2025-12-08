@@ -1,6 +1,10 @@
 [package]
 name = "astal-cava-sys"
-version = "0.0.1"
+authors.workspace = true
+categories.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
 edition = "2021"
 build = "build.rs"
 

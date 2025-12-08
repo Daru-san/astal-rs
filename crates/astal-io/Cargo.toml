@@ -1,10 +1,15 @@
 [package]
 name = "astal-io"
-version = "0.1.0"
-edition = "2024"
+authors.workspace = true
+categories.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+readme.workspace = true
 
 [dependencies]
-astal-io-sys = { version = "0.0.1", path = "sys" }
+astal-io-sys = { version = "0.1.0", path = "sys" }
 gio.workspace = true
 glib.workspace = true
 

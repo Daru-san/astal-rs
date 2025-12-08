@@ -1,10 +1,15 @@
 [package]
 name = "astal-river"
-version = "0.1.0"
-edition = "2024"
+authors.workspace = true
+categories.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+readme.workspace = true
+edition.workspace = true
 
 [dependencies]
-astal-river-sys = { version = "0.0.1", path = "sys" }
+astal-river-sys = { version = "0.1.0", path = "sys" }
 glib.workspace = true
 
 [features]

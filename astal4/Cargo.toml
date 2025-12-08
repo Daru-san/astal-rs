@@ -1,11 +1,16 @@
 [package]
 name = "astal4"
-version = "0.1.0"
-edition = "2024"
+authors.workspace = true
+categories.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+readme.workspace = true
 
 [dependencies]
 astal-io = { version = "0.1.0", path = "../crates/astal-io" }
-astal4-sys = { version = "0.0.1", path = "sys" }
+astal4-sys = { version = "0.1.0", path = "sys" }
 gdk4.workspace = true
 gio.workspace = true
 glib.workspace = true

@@ -2,8 +2,6 @@
 resolver = "2"
 
 members = [
-    "astal3",
-    "astal3/sys",
     "astal4",
     "astal4/sys",
     "crates/astal-apps",
@@ -39,6 +37,15 @@ members = [
     "crates/astal-wireplumber",
     "crates/astal-wireplumber/sys",
 ]
+
+[workspace.package]
+authors = ["Daru-san"]
+categories = ["api-bindings", "gtk"]
+edition = "2024"
+license = "MIT"
+repository = "https://codeberg.org/Daru-san/astal-rs"
+version = "0.1.0"
+readme = "README.md"
 
 [workspace.dependencies]
 gdk = "0.18.2"

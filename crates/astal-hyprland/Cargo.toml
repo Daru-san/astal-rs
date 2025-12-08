@@ -1,12 +1,17 @@
 [package]
 name = "astal-hyprland"
-version = "0.1.0"
-edition = "2024"
+authors.workspace = true
+categories.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+readme.workspace = true
+edition.workspace = true
 
 [dependencies]
 glib.workspace = true
 gtk4.workspace = true
-astal-hyprland-sys = { version = "0.0.1", path = "sys" }
+astal-hyprland-sys = { version = "0.1.0", path = "sys" }
 
 [package.metadata.docs.rs]
 all-features = true

@@ -1,8 +1,12 @@
 [package]
 name = "astal-mpris-sys"
-version = "0.0.1"
 edition = "2021"
 build = "build.rs"
+authors.workspace = true
+categories.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
 
 [package.metadata.system-deps.astal_mpris]
 name = "astal-mpris-0.1"
