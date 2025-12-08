@@ -21,7 +21,7 @@ glib::wrapper! {
 
 impl Uninitialized for Score {
     unsafe fn uninitialized() -> Self {
-        let ptr: *mut ffi::AstalAppsScore = std::ptr::null_mut();
+        let ptr: *mut ffi::AstalAppsScore = std::ptr::dangling_mut();
         Score {
             inner: Boxed::from_glib_full(ptr),
         }
