@@ -18,7 +18,7 @@ name = "astal_network_sys"
 
 [dependencies]
 libc.workspace = true
-libnm-sys.workspace = true
+libnm-api-sys.workspace = true
 
 [dependencies.glib-sys]
 workspace = true

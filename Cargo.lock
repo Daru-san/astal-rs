@@ -199,7 +199,7 @@ version = "0.1.0"
 dependencies = [
  "astal-network-sys",
  "glib 0.21.5",
- "libnm",
+ "libnm-api",
 ]
 
 [[package]]
@@ -210,7 +210,7 @@ dependencies = [
  "glib-sys 0.21.5",
  "gobject-sys 0.21.5",
  "libc",
- "libnm-sys",
+ "libnm-api-sys",
  "shell-words",
  "system-deps 7.0.7",
  "tempfile",
@@ -1111,19 +1111,21 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "37c93d8daa9d8a012fd8ab92f088405fb202ea0b6ab73ee2482ae66af4f42091"
 
 [[package]]
-name = "libnm"
+name = "libnm-api"
 version = "0.1.0"
-source = "git+https://github.com/Daru-san/nm-rs#ff7b6eec2e21fd6bee2c5e36ca648ac2994d1744"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "668aead809a343b6cbce300f15f173533d81318d02386c6b5545ddb4e914be18"
 dependencies = [
  "gio 0.21.5",
  "glib 0.21.5",
- "libnm-sys",
+ "libnm-api-sys",
 ]
 
 [[package]]
-name = "libnm-sys"
-version = "0.0.1"
-source = "git+https://github.com/Daru-san/nm-rs#ff7b6eec2e21fd6bee2c5e36ca648ac2994d1744"
+name = "libnm-api-sys"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "51425764d5e8370d787272734b7af796f365b1203beb98f7e85d932e4f780a70"
 dependencies = [
  "gio-sys 0.21.5",
  "glib-sys 0.21.5",

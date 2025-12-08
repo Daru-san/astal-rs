@@ -6,4 +6,4 @@ edition = "2024"
 [dependencies]
 astal-network-sys = { version = "0.0.1", path = "sys" }
 glib.workspace = true
-libnm.workspace = true
+libnm-api.workspace = true

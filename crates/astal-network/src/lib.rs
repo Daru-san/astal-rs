@@ -17,7 +17,7 @@ pub use auto::*;
 mod auto;
 pub mod prelude;
 
-use libnm as nm;
+use libnm_api as nm;
 
 pub mod functions {
     pub use super::auto::functions::*;
