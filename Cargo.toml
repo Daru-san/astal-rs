@@ -46,6 +46,7 @@ license = "MIT"
 repository = "https://codeberg.org/Daru-san/astal-rs"
 version = "0.1.0"
 readme = "README.md"
+description = "Rust bindings for libastal and it's libraries"
 
 [workspace.dependencies]
 gdk = "0.18.2"
