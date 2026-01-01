@@ -195,9 +195,10 @@ dependencies = [
 
 [[package]]
 name = "astal-network"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "astal-network-sys",
+ "gio",
  "glib",
  "libnm-api",
 ]
