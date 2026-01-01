@@ -10,7 +10,7 @@ use glib::{
     signal::{SignalHandlerId, connect_raw},
     translate::*,
 };
-use std::boxed::Box as Box_;
+use std::{boxed::Box as Box_, os::raw::c_void};
 
 glib::wrapper! {
     ///
@@ -230,10 +230,27 @@ pub trait WifiExt: IsA<Wifi> + 'static {
         }
     }
 
-    //#[doc(alias = "astal_network_wifi_deactivate_connection")]
-    //fn deactivate_connection(&self, _callback_: AsyncReadyCallback) {
-    //    unsafe { TODO: call ffi:astal_network_wifi_deactivate_connection() }
-    //}
+    #[doc(alias = "astal_network_wifi_deactivate_connection")]
+    fn deactivate_connection(&self) -> Result<(), glib::Error> {
+        unsafe {
+            ffi::astal_network_wifi_deactivate_connection(
+                self.as_ref().to_glib_none().0,
+                None,
+                std::ptr::null_mut::<c_void>(),
+            );
+            let err = std::ptr::null_mut();
+            ffi::astal_network_wifi_deactivate_connection_finish(
+                self.as_ref().to_glib_none().0,
+                std::ptr::null_mut(),
+                err,
+            );
+            if err.is_null() {
+                Ok(())
+            } else {
+                Err(glib::Error::from_glib_full(err.read()))
+            }
+        }
+    }
 
     #[doc(alias = "astal_network_wifi_get_device")]
     #[doc(alias = "get_device")]
