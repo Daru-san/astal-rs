@@ -157,16 +157,16 @@ pub trait AccessPointExt: IsA<AccessPoint> + 'static {
                 None,
                 std::ptr::null_mut(),
             );
-            let err = std::ptr::null_mut();
+            let mut err = std::ptr::null_mut();
             ffi::astal_network_access_point_activate_finish(
                 self.as_ref().to_glib_none().0,
                 std::ptr::null_mut(),
-                err,
+                &mut err,
             );
             if err.is_null() {
                 Ok(())
             } else {
-                Err(glib::Error::from_glib_full(err.read()))
+                Err(glib::Error::from_glib_full(err))
             }
         }
     }
