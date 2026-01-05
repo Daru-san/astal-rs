@@ -15,3 +15,5 @@ pub trait CavaExtManual: IsA<Cava> + ObjectType<GlibType = ffi::AstalCavaCava> {
         }
     }
 }
+
+impl<T: IsA<Cava> + ObjectType<GlibType = ffi::AstalCavaCava>> CavaExtManual for T {}
