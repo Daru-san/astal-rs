@@ -15,4 +15,5 @@ use astal_cava_sys as ffi;
 pub use auto::*;
 
 mod auto;
+mod cava;
 pub mod prelude;
