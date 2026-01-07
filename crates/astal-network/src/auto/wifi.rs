@@ -230,28 +230,6 @@ pub trait WifiExt: IsA<Wifi> + 'static {
         }
     }
 
-    #[doc(alias = "astal_network_wifi_deactivate_connection")]
-    fn deactivate_connection(&self) -> Result<(), glib::Error> {
-        unsafe {
-            ffi::astal_network_wifi_deactivate_connection(
-                self.as_ref().to_glib_none().0,
-                None,
-                std::ptr::null_mut::<c_void>(),
-            );
-            let mut err = std::ptr::null_mut();
-            ffi::astal_network_wifi_deactivate_connection_finish(
-                self.as_ref().to_glib_none().0,
-                std::ptr::null_mut(),
-                &mut err,
-            );
-            if err.is_null() {
-                Ok(())
-            } else {
-                Err(glib::Error::from_glib_full(err))
-            }
-        }
-    }
-
     #[doc(alias = "astal_network_wifi_get_device")]
     #[doc(alias = "get_device")]
     fn device(&self) -> nm::DeviceWifi {

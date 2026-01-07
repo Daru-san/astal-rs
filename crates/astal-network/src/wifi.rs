@@ -58,6 +58,7 @@ pub trait WifiExtManual: IsA<Wifi> + ObjectType<GlibType = AstalNetworkWifi> {
         }
     }
 
+    #[doc(alias = "astal_network_wifi_deactivate_connection")]
     fn deactivate_connection_future(
         &self,
     ) -> Pin<Box<dyn Future<Output = Result<(), glib::Error>> + 'static>> {
