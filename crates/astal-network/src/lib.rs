@@ -14,8 +14,10 @@ macro_rules! skip_assert_initialized {
 use astal_network_sys as ffi;
 pub use auto::*;
 
+mod access_point;
 mod auto;
 pub mod prelude;
+mod wifi;
 
 use libnm_api as nm;
 

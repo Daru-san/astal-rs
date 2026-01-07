@@ -148,29 +148,6 @@ pub trait AccessPointExt: IsA<AccessPoint> + 'static {
         }
     }
 
-    #[doc(alias = "astal_network_access_point_activate")]
-    fn activate(&self, password: Option<&str>) -> Result<(), glib::Error> {
-        unsafe {
-            ffi::astal_network_access_point_activate(
-                self.as_ref().to_glib_none().0,
-                password.to_glib_none().0,
-                None,
-                std::ptr::null_mut(),
-            );
-            let mut err = std::ptr::null_mut();
-            ffi::astal_network_access_point_activate_finish(
-                self.as_ref().to_glib_none().0,
-                std::ptr::null_mut(),
-                &mut err,
-            );
-            if err.is_null() {
-                Ok(())
-            } else {
-                Err(glib::Error::from_glib_full(err))
-            }
-        }
-    }
-
     #[doc(alias = "astal_network_access_point_get_bandwidth")]
     #[doc(alias = "get_bandwidth")]
     fn bandwidth(&self) -> u32 {
