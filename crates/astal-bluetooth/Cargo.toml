@@ -12,3 +12,4 @@ edition.workspace = true
 [dependencies]
 astal-bluetooth-sys = { version = "0.1.0", path = "sys" }
 glib.workspace = true
+gio.workspace = true
