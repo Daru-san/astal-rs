@@ -210,51 +210,6 @@ impl DeviceBuilder {
 ///
 /// [`Device`][struct@crate::Device]
 pub trait DeviceExt: IsA<Device> + 'static {
-    #[doc(alias = "astal_bluetooth_device_connect_device")]
-    fn connect_device(&self) -> Result<(), glib::Error> {
-        unsafe {
-            ffi::astal_bluetooth_device_connect_device(
-                self.as_ref().to_glib_none().0,
-                None,
-                std::ptr::null_mut(),
-            );
-
-            let mut error = std::ptr::null_mut();
-            ffi::astal_bluetooth_device_connect_device_finish(
-                self.as_ref().to_glib_none().0,
-                std::ptr::null_mut(),
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(glib::Error::from_glib_full(error))
-            }
-        }
-    }
-
-    #[doc(alias = "astal_bluetooth_device_disconnect_device")]
-    fn disconnect_device(&self) -> Result<(), glib::Error> {
-        unsafe {
-            ffi::astal_bluetooth_device_disconnect_device(
-                self.as_ref().to_glib_none().0,
-                None,
-                std::ptr::null_mut(),
-            );
-            let mut error = std::ptr::null_mut();
-            ffi::astal_bluetooth_device_disconnect_device_finish(
-                self.as_ref().to_glib_none().0,
-                std::ptr::null_mut(),
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(glib::Error::from_glib_full(error))
-            }
-        }
-    }
-
     /// This method connects a specific profile of this device. The UUID provided is the remote service UUID for the profile.
     /// Possible errors: `Failed`, `InProgress`, `InvalidArguments`, `NotAvailable`, `NotReady`.
     /// ## `uuid`

@@ -11,4 +11,5 @@ use astal_bluetooth_sys as ffi;
 pub use auto::*;
 
 mod auto;
+mod device;
 pub mod prelude;
