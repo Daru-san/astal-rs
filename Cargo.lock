@@ -824,9 +824,9 @@ dependencies = [
 
 [[package]]
 name = "nm-rs"
-version = "0.1.2"
+version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f578a0184d1ca7b42dcfbd938abf8bcc2c84554185bd6545140e21f2f2183dfb"
+checksum = "fcfe3b4326b201e193be20143aed261044cf700de8f76b3fc45f85d78939fb2e"
 dependencies = [
  "gio",
  "glib",
@@ -835,9 +835,9 @@ dependencies = [
 
 [[package]]
 name = "nm-rs-sys"
-version = "0.1.0"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1c30b84815c838d44409775e337d32e59ac1fc848f4718b8d12fb0ea6245fa0a"
+checksum = "660e3f7dfce2de70f74e8538db12e8504372afcb57571ea674ab09ad2717307b"
 dependencies = [
  "gio-sys",
  "glib-sys",
