@@ -19,7 +19,7 @@ mod auto;
 pub mod prelude;
 mod wifi;
 
-use libnm_api as nm;
+pub use nm_rs as nm;
 
 pub mod functions {
     pub use super::auto::functions::*;

@@ -13,4 +13,4 @@ edition.workspace = true
 astal-network-sys = { version = "0.1.0", path = "sys" }
 gio.workspace = true
 glib.workspace = true
-libnm-api.workspace = true
+nm-rs.workspace = true
