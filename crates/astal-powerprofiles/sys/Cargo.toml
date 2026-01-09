@@ -1,8 +1,8 @@
 [package]
 name = "astal-power-profiles-sys"
-version = "0.0.1"
+version = "0.1.0"
 edition = "2021"
-description = "FFI Bindings for libatstal and its libraries"
+description = "FFI Bindings for the astal-power-profiles library"
 build = "build.rs"
 
 [package.metadata.system-deps.astal_power_profiles]
