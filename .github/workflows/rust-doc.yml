@@ -17,15 +17,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
+      - name: Install Nix
+        uses: cachix/install-nix-action@v20
 
       - name: Build documentation
-        run: RUSTDOCFLAGS="--html-in-header katex-header.html" cargo doc --no-deps --workspace
+        run: RUSTDOCFLAGS="--html-in-header katex-header.html" nix develop --command cargo doc --no-deps --workspace
 
       - name: Finalize documentation
         run: |
