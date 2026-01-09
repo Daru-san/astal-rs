@@ -21,7 +21,7 @@ jobs:
         uses: cachix/install-nix-action@v20
 
       - name: Build documentation
-        run: RUSTDOCFLAGS="--html-in-header katex-header.html" nix develop --command cargo doc --no-deps --workspace
+        run: nix develop --command cargo doc --no-deps --workspace
 
       - name: Finalize documentation
         run: |
