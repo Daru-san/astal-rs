@@ -264,6 +264,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "astal-power-profiles-sys"
+version = "0.0.1"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
+ "libc",
+ "shell-words",
+ "system-deps",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-powerprofiles"
+version = "0.1.0"
+dependencies = [
+ "astal-power-profiles-sys",
+ "glib",
+]
+
+[[package]]
 name = "astal-river"
 version = "0.1.0"
 dependencies = [
