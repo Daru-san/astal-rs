@@ -230,10 +230,11 @@ pub trait PowerProfilesExt: IsA<PowerProfiles> + 'static {
                 self.as_ref().to_glib_none().0,
                 result_length1.as_mut_ptr(),
             );
-            FromGlibContainerAsVec::from_glib_container_num_as_vec(
-                holds,
-                result_length1.assume_init() as _,
-            )
+            let slice = std::slice::from_raw_parts_mut(holds, result_length1.assume_init() as _);
+            slice
+                .iter_mut()
+                .map(|hold| Hold::from_glib_full(hold as *mut _))
+                .collect()
         }
     }
 
@@ -254,14 +255,15 @@ pub trait PowerProfilesExt: IsA<PowerProfiles> + 'static {
     fn profiles(&self) -> Vec<Profile> {
         unsafe {
             let mut result_length1 = std::mem::MaybeUninit::uninit();
-            let ret = FromGlibContainer::from_glib_full_num(
-                ffi::astal_power_profiles_power_profiles_get_profiles(
-                    self.as_ref().to_glib_none().0,
-                    result_length1.as_mut_ptr(),
-                ),
-                result_length1.assume_init() as _,
+            let profiles = ffi::astal_power_profiles_power_profiles_get_profiles(
+                self.as_ref().to_glib_none().0,
+                result_length1.as_mut_ptr(),
             );
-            ret
+            let slice = std::slice::from_raw_parts_mut(profiles, result_length1.assume_init() as _);
+            slice
+                .iter_mut()
+                .map(|profile| Profile::from_glib_full(profile as *mut _))
+                .collect()
         }
     }
 
